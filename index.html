@@ -63,6 +63,8 @@
 </head>
 
 <body>
+
+<!-- home page starts -->
 <div class="container-fluid landing-form align-top">
     <h3 class=title>SMART Therapy Explorer</h3>
     <div class="row">
@@ -164,12 +166,17 @@
         </div>
     </div>
     <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
-
 </div>
+<!-- home page ends -->
+
+<!-- help menu i suppose -->
   <div class="info-overlay dashboard-help">
     <img id="helpImg" src="imgs/help.png">
   </div>
+
+
     <div class="container-fluid dashboard align-top">
+        <!-- navigation bar on the top -->
         <div class="row" id="title">
             <nav class="navbar">
                 <div class="container-fluid navbar-grey">
@@ -221,6 +228,7 @@
                 </div>
             </nav>
         </div>
+        <!-- nav bar ends -->
 
         <div class="row" id="allContent">
             <div class="col-md-3 contentWrapper kiviatDiv">
@@ -228,11 +236,14 @@
                     <div class="infoDiv" id="infoDiv-kiviat">
 
                     </div>
+                    <!-- kiviat header - title and dropdown -->
                     <div id="kiviatHeader">
+                        <!-- kiviat title  -->
                         <div class="row viewTitleDiv">
                             Most Similar Patients
                             <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kiviat"></span>
                         </div>
+                        <!-- patient dropdown menu -->
                         <div class="row patient-dropdown-wrapper">
                             <div class="form-inline">
                                 <div class="form-group">
@@ -242,13 +253,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- kiviat diagram itself -->
                     <div id="kiviatDiagram">
+                        <!-- divided into two
+                        left one contains the subject's kiviat and legend
+                        right one contains the matching kiviats -->
                         <div class="col-md-6 kiviatLeft">
+                            <!-- subject's kiviat diagram -->
                             <div class="row" id="kiviatDiagram-subject">
                             </div>
+                            <!-- kiviat diagram legend -->
                             <div class="row" id="kiviatDiagram-legend">
                             </div>
                         </div>
+                        <!-- neghbors kiviat diagram -->
                         <div class="col-md-6 kiviatRight" id="kiviatDiagram-neighbors">
                         </div>
                     </div>
@@ -258,6 +276,7 @@
                 <div class="infoDiv" id="">
                 </div>
             </div>
+            <!-- nomogram control box -->
             <div class="col-md-2 contentWrapper controlDiv nomogramControlsBox">
               <div class="infoDiv" id="infoDiv-nomogramControls">
 
@@ -267,6 +286,7 @@
                             <h4>
                                     Nomogram Controls
                             </h4>
+                        <!-- first dropdown menu -->
                         <div class="col-md-12">
 
                             <!--<div class="row dropdown-row">-->
@@ -330,6 +350,8 @@
                 </div>
             </div>
 
+            <!-- right divided int nomogram on top 
+            and kaplan meier and the table on botom -->
             <div class="col-md-7" id="right">
 
                 <div class="row" id="top">
@@ -338,6 +360,7 @@
                             <div class="infoDiv" id="infoDiv-nomogram">
 
                             </div>
+                            <!-- just the title and stuffs -->
                             <div id="nomogramHeader">
                                 <div class="row viewTitleDiv">
                                     Nomogram Risk Prediction
@@ -359,6 +382,7 @@
                 </div>
 
                 <div class="row" id="bottom">
+                    <!-- kaplan meier plot -->
                     <div class="col-md-6 contentWrapper kaplanDiv">
                         <div class="contentDiv">
                             <div class="infoDiv" id="infoDiv-kaplanMeier">
@@ -372,6 +396,7 @@
                                 <div class="row patient-dropdown-wrapper">
                                     <div class="form-inline">
                                         <div class="form-group">
+                                            <!-- option generates from control or other JS i suppose -->
                                             <select class="attribute-dropdown form-control input-sm" id="attributeSel">
                                     </select>
                                         </div>
@@ -383,6 +408,7 @@
                         </div>
 
                     </div>
+                    <!-- tables -->
                     <div class="col-md-6 contentWrapper mosaicDiv">
                         <div class="contentDiv">
                             <div class="infoDiv" id="infoDiv-mosaic">

@@ -70,6 +70,8 @@ let AxesModel = function() {
     let getOverallAxes = () => axes.overall;
     let getProgressionAxes = () => axes.progression;
 
+    //  console.log(getAspirationAxes())
+
     let axesfunctions = {
         "aspiration": getAspirationAxes,
         "default": getDefaultAxes,
