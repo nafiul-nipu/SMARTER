@@ -51,6 +51,7 @@ let PatientModel = function() {
                     self.patients[i].Censor = +d.Censor;
 
                 });
+                // console.log(self.patients)
                 // calculatePatientAttributeDomains();
 
                 // resolve within await callback after data finished processing
@@ -78,7 +79,7 @@ let PatientModel = function() {
     /* calculate the patient attribute domains including age and pbty */
     function calculatePatientAttributeDomains() {
         let patientObjArray = Object.values(self.patients);
-
+       
         for (let attribute of App.patientKnnAttributes) {
             let attribute_valueArray = patientObjArray.map(function(o) {
                 return o[attribute];
