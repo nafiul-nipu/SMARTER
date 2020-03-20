@@ -55,7 +55,7 @@ let PatientSelectorController = function() {
             .on("change", function(d) {
                 let selectedID = d3.select(this).node().value;
                 self.currentPatient = selectedID;
-                console.log(selectedID);
+                // console.log("check me which controller i am " + selectedID);
                 updateSelectedPatients(selectedID);
             })
     }
@@ -88,6 +88,7 @@ let PatientSelectorController = function() {
         updatedPatients.subject = App.models.patients.getPatientByID(subjectID);
         updatedPatients.neighbors = App.models.patients.getKnn();
 
+        // console.log(updatedPatients)
         return updatedPatients;
     }
 

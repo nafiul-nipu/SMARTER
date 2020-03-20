@@ -9,7 +9,8 @@ let PatientModel = function() {
         patients: {},
         attributeDomains: {},
         axes: {},
-        commonAttributeValues: {}
+        commonAttributeValues: {},
+        commonKaplanAttributeValues: {}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -101,6 +102,44 @@ let PatientModel = function() {
         return self.commonAttributeValues;
     }
 
+    function getPatientIDFromDummyID(patientDummyID){
+        // console.log(self.patients[2]["Dummy ID"])
+        for(let patient in self.patients){
+            if(self.patients[patient]["Dummy ID"] == patientDummyID){
+                return patient;
+            }
+        }
+    }
+
+
+     /**
+         * Computes how many attributes the kn patients have in common with all, according to kaplanAttribute
+         *          * @param {array} knn 
+         */
+        function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
+            self.commonKaplanAttributeValues = {};
+            let patientRealID = getPatientIDFromDummyID(currentPatient)
+            if(!patientRealID){
+                patientRealID = 0;
+            }
+            // console.log("patient's dummy ID " + currentPatient)
+            // console.log("patient serial id in the data set " + test);
+            // console.log(patients[13][kaplanAttribute[0]])
+            // console.log(patients[test])
+
+            for (let attribute of kaplanAttribute) {
+                self.commonKaplanAttributeValues[patients[patientRealID][attribute]] = 0;
+                for (let patient in self.patients){
+                    // console.log(patients[patient])
+                    if (patients[patient][attribute] === patients[patientRealID][attribute]) {
+                        self.commonKaplanAttributeValues[patients[patientRealID][attribute]] += 1;
+                    }
+                }
+            }
+            return self.commonKaplanAttributeValues;
+        }
+
+
     /* get the patient knn attribute domains */
     function getPatientKnnAttributeDomains() {
         let knnAttributeDomains = {};
@@ -158,6 +197,10 @@ let PatientModel = function() {
         }
 
         computeCommonAttributeValues(topKpatients, knnAttributes, subjectID);
+        // console.log(topKpatients)
+        // console.log(subjectID)
+        // console.log(knnAttributes)
+        // console.log(self.patients[2])
 
         return topKpatients;
     }
@@ -168,6 +211,7 @@ let PatientModel = function() {
      */
     function computeCommonAttributeValues(topKpatients, knnAttributes, subjectID){
         self.commonAttributeValues = {};
+        // console.log(topKpatients)
 
         for (let attribute of knnAttributes) {
             self.commonAttributeValues[attribute] = 0;
@@ -179,13 +223,26 @@ let PatientModel = function() {
         }
     }
 
+
+   
+
     /* calculate the similarity between two patients based on the hamming distance
        over a subset of patientAttributes */
     function similarityScore(patientID, subjectID, knnAttributes) {
         let score = 0;
+        
+        //giving error 
+        // if(self.patients[patientID].AgeAtTx && self.patients[subjectID].AgeAtTx){
+        //     let tieBreaker = -(Math.abs(self.patients[patientID].AgeAtTx - self.patients[subjectID].AgeAtTx)) / 150; // max age diff - 150
+
+        //     score += tieBreaker;
+
+        // }
+
         let tieBreaker = -(Math.abs(self.patients[patientID].AgeAtTx - self.patients[subjectID].AgeAtTx)) / 150; // max age diff - 150
 
-        score += tieBreaker;
+            score += tieBreaker;
+        
 
         for (let attribute of knnAttributes) {
             // console.log(patientID, self.patients[patientID][axes[attribute].name] === self.patients[subjectID][axes[attribute].name]);
@@ -208,9 +265,11 @@ let PatientModel = function() {
         getPatients,
         getPatientNumber,
         getPatientByID,
+        getPatientIDFromDummyID,
         getPatientAttirbuteDomains,
         getPatientKnnAttributeDomains,
         getCommonAttributeValues,
+        computeCommonKaplanAttributeValues,
         filterPatients,
         setAxes,
         getKnn: calculateKNN

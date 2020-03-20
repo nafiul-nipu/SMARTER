@@ -47,20 +47,48 @@ let StatsView = function () {
     }
 
     function updatePatientsCount() {
+        //all of the patients in the data set 
         let patients = App.models.patients.filterPatients();
+        // console.log(patients)
         self.totalPatientsText
             .text(Object.keys(patients).length);
+
+        // console.log(self.totalPatientsText.text(Object.keys(patients).length))
     }
 
-    function populateCommonAttributeTable(commonAttributeValues){
+    function populateCommonAttributeTable(currentPatient){
+        //stats view modification
+
+        // console.log(currentPatient)
+        //getting the current patients values from patient model
+        let currentPatientAttributes = App.models.patients.getPatientByID(currentPatient);
+        //group of the kaplam view
+        let kaplanMeierGroup = App.mosaicAttributeOrder;
+        
+        let allPatients = App.models.patients.getPatients();
+        // console.log(allPatients)
+        // console.log(kaplanMeierGroup)
+        // console.log(currentPatientAttributes)
+        //getting the keys of the patients all attribute
+        // let keys = Object.keys(currentPatientAttributes)
+        // console.log(keys)
+
+        //count all the values of kaplan meier
+        let kaplamMeierGroupValues = App.models.patients.computeCommonKaplanAttributeValues(allPatients, kaplanMeierGroup, currentPatient)
+        // console.log(kaplamMeierGroupValues)
+
+
         $("table.order-list").empty();
-        for (let attr of Object.keys(commonAttributeValues)) {
+        for (let attr of Object.keys(kaplamMeierGroupValues)) {
+            
             var newRow = $("<tr>");
             var cols = "";
     
             cols += `<td class="col-sm-6"><span class="">${attr}</span></td>`;
-            cols += `<td class="col-sm-6"><span class="">${commonAttributeValues[attr]}</span></td>`;
-    
+            cols += `<td class="col-sm-6"><span class="">${kaplamMeierGroupValues[attr]}</span></td>`;
+
+            // console.log(attr + "and its value is : " + commonAttributeValues[attr])  
+            // console.log("keys " : + Object.keys(commonAttributeValues))  
             newRow.append(cols);
             $("table.order-list").append(newRow);
         }
@@ -68,11 +96,13 @@ let StatsView = function () {
 
 
     function updateButtons(currentPatient) {
+        
         setDendrogramButtons(currentPatient);
         setLymphButton(currentPatient);
         setCamprtButton(currentPatient);
+        // console.log("current patient " + currentPatient)
 
-        populateCommonAttributeTable(App.models.patients.getCommonAttributeValues());
+        populateCommonAttributeTable(currentPatient);        
     }
 
     return {

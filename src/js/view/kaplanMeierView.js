@@ -14,6 +14,7 @@ let KaplanMeierView = function(targetID) {
 
     function init() {
         self.targetElement = d3.select(targetID);
+        // console.log(self.targetElement)
 
         self.targetSvg = self.targetElement.append("svg")
             .attr("width", self.targetElement.node().clientWidth)

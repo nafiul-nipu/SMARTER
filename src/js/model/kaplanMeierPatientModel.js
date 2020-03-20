@@ -40,6 +40,7 @@ let KaplanMeierPatientModel = function() {
         // get all the values of the selected attribute
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
         let groups = attributeDomains[self.selectedAttribute];
+        // console.log("groups from kaplan meier " + groups)
 
         // reset
         self.patientGroups = {};
