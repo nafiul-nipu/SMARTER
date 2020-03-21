@@ -70,7 +70,7 @@ let NomogramView = function (targetID) {
     function updateNomogram(nomogramtype) {
         App.models.axesModel.setCurrentAxes(nomogramtype);
         self.axes = App.models.axesModel.getAxesData();
-        console.log(self.axes);
+        // console.log(self.axes);
         self.filteredAxes = Object.keys(self.axes);
 
         updateAxes();
@@ -170,7 +170,7 @@ let NomogramView = function (targetID) {
         d3.selectAll(".nomogramLegend").remove();
 
         let attrVals = App.models.patients.getPatientKnnAttributeDomains()[attr];
-        console.log(attr, attrVals);
+        // console.log(attr, attrVals);
 
         for (let valInd in attrVals) {
             self.legendSVG.append("line")

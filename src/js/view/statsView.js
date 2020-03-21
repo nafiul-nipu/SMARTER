@@ -62,6 +62,7 @@ let StatsView = function () {
         // console.log(currentPatient)
         //getting the current patients values from patient model
         let currentPatientAttributes = App.models.patients.getPatientByID(currentPatient);
+        console.log(currentPatientAttributes)
         //group of the kaplam view
         let kaplanMeierGroup = App.mosaicAttributeOrder;
         // console.log(kaplanMeierGroup)
@@ -89,7 +90,7 @@ let StatsView = function () {
             var cols = "";
 
             if(attr == "Subgroup"){
-                cols += `<td class="col-sm-6">`+"Patient ID: "+ `<span class="">${currentPatient}</span> <span class="">${attr}</span></td>`;
+                cols += `<td class="col-sm-6">`+"Patient ID: "+ `<span class="">${currentPatientAttributes["Dummy ID"]}</span> <span class="">${attr}</span></td>`;
             }else{
                 cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">${attr}</span></td>`;
                 kaplanGroupNameCounter++;
@@ -108,6 +109,7 @@ let StatsView = function () {
 
 
     function updateButtons(currentPatient) {
+        console.log("stats view current patient " + currentPatient)
         
         setDendrogramButtons(currentPatient);
         setLymphButton(currentPatient);

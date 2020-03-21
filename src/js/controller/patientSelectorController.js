@@ -84,11 +84,12 @@ let PatientSelectorController = function() {
 
     /* get the updated selected patient and knn */
     function getUpdatedData(subjectID) {
+        let subjectIndex = App.models.patients.getPatientIDFromDummyID(subjectID);
         let updatedPatients = {};
-        updatedPatients.subject = App.models.patients.getPatientByID(subjectID);
+        updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
 
-        // console.log(updatedPatients)
+        console.log(updatedPatients)
         return updatedPatients;
     }
 

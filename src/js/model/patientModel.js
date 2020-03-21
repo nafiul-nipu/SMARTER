@@ -72,7 +72,8 @@ let PatientModel = function() {
         return Object.keys(self.patients).length;
     }
 
-    /* get the patient Info by the ID */
+    /* get the patient Info by the ID 
+    this ID is the index number of the patient*/
     function getPatientByID(patientID) {
         return self.patients[patientID];
     }
@@ -102,6 +103,7 @@ let PatientModel = function() {
         return self.commonAttributeValues;
     }
 
+    //from the DummyId getting the index number in the dataset
     function getPatientIDFromDummyID(patientDummyID){
         // console.log(self.patients[2]["Dummy ID"])
         for(let patient in self.patients){
@@ -117,10 +119,12 @@ let PatientModel = function() {
          *          * @param {array} knn 
          */
         function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
+            // console.log("kaplan attribute values " + currentPatient)
             self.commonKaplanAttributeValues = {Subgroup : 0};
-            let patientRealID = getPatientIDFromDummyID(currentPatient)
-            if(!patientRealID){
-                patientRealID = 0;
+            // let patientRealID = getPatientIDFromDummyID(currentPatient)
+            // console.log(patientRealID);
+            if(!currentPatient){
+                currentPatient = 0;
             }
             // console.log("patient's dummy ID " + currentPatient)
             // console.log("patient serial id in the data set " + test);
@@ -129,12 +133,12 @@ let PatientModel = function() {
 
             for (let attribute of kaplanAttribute) {
                 // console.log(attribute)
-                self.commonKaplanAttributeValues[patients[patientRealID][attribute]] = 0;
+                self.commonKaplanAttributeValues[patients[currentPatient][attribute]] = 0;
                 for (let patient in patients){
                     // console.log(patients[patient])
-                    // console.log(patients[patient][attribute] +  "===" + patients[patientRealID][attribute])
-                    if (patients[patient][attribute] === patients[patientRealID][attribute]) {
-                        self.commonKaplanAttributeValues[patients[patientRealID][attribute]] += 1;
+                    // console.log(patients[patient][attribute] +  "===" + patients[currentPatient][attribute])
+                    if (patients[patient][attribute] === patients[currentPatient][attribute]) {
+                        self.commonKaplanAttributeValues[patients[currentPatient][attribute]] += 1;
                     }
                 }
             }
@@ -145,8 +149,8 @@ let PatientModel = function() {
                 let check = true ;
                 for(let attribute of kaplanAttribute){
                     // console.log(patients[patient][attribute])
-                    // console.log(patients[patient][attribute] +  "!=" + patients[patientRealID][attribute])
-                    if (patients[patient][attribute] != patients[patientRealID][attribute]) {
+                    // console.log(patients[patient][attribute] +  "!=" + patients[currentPatient][attribute])
+                    if (patients[patient][attribute] != patients[currentPatient][attribute]) {
                         check = false;
                         break;
                     }
@@ -179,7 +183,9 @@ let PatientModel = function() {
         - e.g. {'Ethnicity': 'white', ... } */
     function filterPatients() {
         let filters = App.models.applicationState.getAttributeFilters();
+        // console.log(filters)
         let filteredPatients = _.filter(self.patients, filters);
+        // console.log(filteredPatients)
 
         return _.keyBy(filteredPatients, function(o) {
             return o.ID; // object
@@ -192,9 +198,19 @@ let PatientModel = function() {
         let otherPatients = [];
 
         let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
+        // console.log("number of neigbors " + numberOfNeighbors)
         let subjectID = App.models.applicationState.getSelectedPatientID();
+        // console.log("suject ID "+subjectID)
+
+        let subjectIndexID = getPatientIDFromDummyID(subjectID);
+        // console.log("patients Index number on dataset " + subjectIndexID)
+        // console.log(getPatientByID(subjectIndexID))
+
         let patientAttributes = App.patientKnnAttributes;
+        // console.log("patient Knn Attributes " + patientAttributes)
+
         let knnExcludedAttributes = App.models.applicationState.getKnnExcludedAttributes();
+        // console.log("knn excluded attributes " + knnExcludedAttributes)
 
         // get the actual patient attributes used for calculating knn
         let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);
@@ -202,14 +218,18 @@ let PatientModel = function() {
 
         // calculate the similarity scores between the selected patient and the rest patients in the list
         for (let patientID of Object.keys(self.patients)) {
-            if (patientID !== subjectID && patientID !== 'columns') {
+            // console.log(patientID)
+            if (patientID !== subjectIndexID && patientID !== 'columns') {
                 otherPatients[patientID] = {};
                 otherPatients[patientID].id = patientID;
-                otherPatients[patientID].score = similarityScore(patientID, subjectID, knnAttributes);
+                otherPatients[patientID].score = similarityScore(patientID, subjectIndexID, knnAttributes);
             }
         }
+        // console.log(otherPatients)
 
         let sortedPatients = _.reverse(_.sortBy(otherPatients, ['score']));
+
+        // console.log(sortedPatients)
 
         // output the top k similar patients
         let topKpatients = [];
@@ -218,8 +238,9 @@ let PatientModel = function() {
             neighbor.score = sortedPatients[i].score;
             topKpatients.push(neighbor);
         }
+        // console.log("topKpatients " + topKpatients)
 
-        computeCommonAttributeValues(topKpatients, knnAttributes, subjectID);
+        computeCommonAttributeValues(topKpatients, knnAttributes, subjectIndexID);
         // console.log(topKpatients)
         // console.log(subjectID)
         // console.log(knnAttributes)
@@ -233,6 +254,7 @@ let PatientModel = function() {
      * @param {array} knn 
      */
     function computeCommonAttributeValues(topKpatients, knnAttributes, subjectID){
+        // console.log("subject id in compute common att " + subjectID)
         self.commonAttributeValues = {};
         // console.log(topKpatients)
 
@@ -244,6 +266,7 @@ let PatientModel = function() {
                 }
             }
         }
+        // console.log(self.commonAttributeValues)
     }
 
 

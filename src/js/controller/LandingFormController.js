@@ -26,7 +26,7 @@ let LandingFormController = function() {
                 let selectedID = d3.select(this).node().value;
                 if (selectedID !== "N/A") {
                     self.currentPatient = selectedID;
-                    console.log(selectedID);
+                    // console.log(selectedID);
                     updateLandingForms(patients[selectedID]);
                 }
             })
@@ -37,7 +37,7 @@ let LandingFormController = function() {
         self.submitButton = d3.select(element)
             .on("click", function() {
                 let data = consolidateData();
-                console.log(data);
+                // console.log(data);
                 if (data.age === null)
                     return;
                 else {

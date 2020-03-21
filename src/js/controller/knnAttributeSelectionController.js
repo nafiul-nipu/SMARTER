@@ -62,8 +62,9 @@ let KNNAttributeSelectionController = function(listID) {
 
     /* get the updated selected patient and knn */
     function getUpdatedData(subjectID) {
+        let subjectIndex = App.models.patients.getPatientIDFromDummyID(subjectID);
         let updatedPatients = {};
-        updatedPatients.subject = App.models.patients.getPatientByID(subjectID);
+        updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
 
         return updatedPatients;
@@ -71,6 +72,7 @@ let KNNAttributeSelectionController = function(listID) {
 
     /* update relative views */
     function updateViews(updatedPatients) {
+        // console.log("updated patients" + updatedPatients)
         App.views.kiviatDiagram.update(updatedPatients);
         App.views.nomogram.updateKnnData(updatedPatients);
     }

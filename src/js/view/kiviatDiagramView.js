@@ -125,9 +125,14 @@ let KiviatDiagramView = function(targetID) {
         }
 
         let currentPatient = App.controllers.patientSelector.getCurrentPatient();
+        // console.log(currentPatient)
+        let currentPatientByIndex = App.models.patients.getPatientIDFromDummyID(currentPatient)
+        // console.log(currentPatientByIndex)
 
         // sets the mist similar patients buttons' links.
-        App.views.stats.updateButtons(currentPatient);
+        App.views.stats.updateButtons(currentPatientByIndex);
+
+        // console.log(patients.subject)
 
         // update the kiviat diagram of the subject
         self.subjectSvg

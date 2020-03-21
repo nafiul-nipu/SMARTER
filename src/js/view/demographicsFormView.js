@@ -36,7 +36,7 @@ let DemographicsFormView = function () {
         setHpvp16Element(hpv_stat);
         setAspirationElement(aspiration);
         setPacksPerYearElement(packsperyear);
-        console.log(data);
+        // console.log(data);
     }
 
     function consolidateData() {
