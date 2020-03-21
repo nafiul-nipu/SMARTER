@@ -117,7 +117,7 @@ let PatientModel = function() {
          *          * @param {array} knn 
          */
         function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
-            self.commonKaplanAttributeValues = {};
+            self.commonKaplanAttributeValues = {Subgroup : 0};
             let patientRealID = getPatientIDFromDummyID(currentPatient)
             if(!patientRealID){
                 patientRealID = 0;
@@ -128,14 +128,37 @@ let PatientModel = function() {
             // console.log(patients[test])
 
             for (let attribute of kaplanAttribute) {
+                // console.log(attribute)
                 self.commonKaplanAttributeValues[patients[patientRealID][attribute]] = 0;
-                for (let patient in self.patients){
+                for (let patient in patients){
                     // console.log(patients[patient])
+                    // console.log(patients[patient][attribute] +  "===" + patients[patientRealID][attribute])
                     if (patients[patient][attribute] === patients[patientRealID][attribute]) {
                         self.commonKaplanAttributeValues[patients[patientRealID][attribute]] += 1;
                     }
                 }
             }
+
+            //calculate how many pepople are in this sub group
+            for(let patient in patients){
+                // console.log(patient)
+                let check = true ;
+                for(let attribute of kaplanAttribute){
+                    // console.log(patients[patient][attribute])
+                    // console.log(patients[patient][attribute] +  "!=" + patients[patientRealID][attribute])
+                    if (patients[patient][attribute] != patients[patientRealID][attribute]) {
+                        check = false;
+                        break;
+                    }
+                }
+                if(check == true){
+                    self.commonKaplanAttributeValues["Subgroup"] += 1;
+                }
+            }
+
+
+
+
             return self.commonKaplanAttributeValues;
         }
 

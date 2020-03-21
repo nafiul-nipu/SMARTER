@@ -64,6 +64,7 @@ let StatsView = function () {
         let currentPatientAttributes = App.models.patients.getPatientByID(currentPatient);
         //group of the kaplam view
         let kaplanMeierGroup = App.mosaicAttributeOrder;
+        // console.log(kaplanMeierGroup)
         
         let allPatients = App.models.patients.getPatients();
         // console.log(allPatients)
@@ -79,18 +80,29 @@ let StatsView = function () {
 
 
         $("table.order-list").empty();
+        let kaplanGroupNameCounter = 0;
+
         for (let attr of Object.keys(kaplamMeierGroupValues)) {
             
+            // console.log(attr)
             var newRow = $("<tr>");
             var cols = "";
-    
-            cols += `<td class="col-sm-6"><span class="">${attr}</span></td>`;
+
+            if(attr == "Subgroup"){
+                cols += `<td class="col-sm-6">`+"Patient ID: "+ `<span class="">${currentPatient}</span> <span class="">${attr}</span></td>`;
+            }else{
+                cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">${attr}</span></td>`;
+                kaplanGroupNameCounter++;
+            }
+            
             cols += `<td class="col-sm-6"><span class="">${kaplamMeierGroupValues[attr]}</span></td>`;
 
             // console.log(attr + "and its value is : " + commonAttributeValues[attr])  
             // console.log("keys " : + Object.keys(commonAttributeValues))  
             newRow.append(cols);
             $("table.order-list").append(newRow);
+
+            
         }
     }
 
