@@ -58,6 +58,9 @@ let StatsView = function () {
 
     function populateCommonAttributeTable(currentPatient){
         //stats view modification
+        if(!currentPatient){
+            currentPatient = 0;
+        }
 
         // console.log(currentPatient)
         //getting the current patients values from patient model
