@@ -10,7 +10,8 @@ let PatientModel = function() {
         attributeDomains: {},
         axes: {},
         commonAttributeValues: {},
-        commonKaplanAttributeValues: {}
+        commonKaplanAttributeValues: {},
+        statisticsOfAllPatients:{}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -50,8 +51,12 @@ let PatientModel = function() {
                     self.patients[i].ID = d["Dummy ID"];
                     self.patients[i].OS = +d["OS (Calculated)"];
                     self.patients[i].Censor = +d.Censor;
-
+                    //for attribute statistics
+                    self.patients[i].SmokeStatusPacksYear = +d["Smoking status (Packs/Year)"];
+                    self.patients[i].TotalDose = +d["Total dose"];
+                    self.patients[i].TreatmentDays = +d["Treatment duration (Days)"];
                 });
+
                 // console.log(self.patients)
                 // calculatePatientAttributeDomains();
 
@@ -77,6 +82,14 @@ let PatientModel = function() {
     function getPatientByID(patientID) {
         return self.patients[patientID];
     }
+
+    /**get the total number of patients in the dataset */
+    function getTotalPatients(){
+        let total = Object.keys(self.patients).length;
+        return total;
+    }
+
+    
 
     /* calculate the patient attribute domains including age and pbty */
     function calculatePatientAttributeDomains() {
@@ -113,12 +126,20 @@ let PatientModel = function() {
         }
     }
 
+    // //calculate the patient stats
+    // function statisticsOfAllPatients(){
+    //    let attributeData = App.models.attibuteModel.getAttributeData();
+    //    console.log(attributeData)
+
+    // }
+
 
      /**
          * Computes how many attributes the kn patients have in common with all, according to kaplanAttribute
          *          * @param {array} knn 
          */
         function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
+            App.models.attributeModel.statisticsOfAllPatients();
             // console.log("kaplan attribute values " + currentPatient)
             self.commonKaplanAttributeValues = {Subgroup : 0};
             // let patientRealID = getPatientIDFromDummyID(currentPatient)
@@ -318,6 +339,8 @@ let PatientModel = function() {
         computeCommonKaplanAttributeValues,
         filterPatients,
         setAxes,
+        getTotalPatients,
+        // statisticsOfAllPatients,
         getKnn: calculateKNN
     };
 }

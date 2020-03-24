@@ -9,7 +9,8 @@ let StatsView = function () {
         lymphNodeButton: null,
         camprtButton: null,
         totalPatientsText: null,
-        commonAttributesTable: null
+        commonAttributesTable: null,
+        detailsStatistics: null
     };
 
     init();
@@ -24,7 +25,17 @@ let StatsView = function () {
         // Code to link CAMP-RT
         self.camprtButton = d3.select("#camprtlinker");
         self.totalPatientsText = d3.select("#total-patient-span");
+
+        //code to show statistics
+        self.detailsStatistics = d3.select("#statisticsPatients")
+
     }
+
+    function setStatisticsPatients(){
+        let url = `https://www.google.com`;
+        self.detailsStatistics.attr("href", url);
+    }
+
 
     function setDendrogramButtons(pid) {
         // Tim's work currently hosted using GH pages.
@@ -65,7 +76,7 @@ let StatsView = function () {
         // console.log(currentPatient)
         //getting the current patients values from patient model
         let currentPatientAttributes = App.models.patients.getPatientByID(currentPatient);
-        console.log(currentPatientAttributes)
+        // console.log(currentPatientAttributes)
         //group of the kaplam view
         let kaplanMeierGroup = App.mosaicAttributeOrder;
         // console.log(kaplanMeierGroup)
@@ -112,14 +123,16 @@ let StatsView = function () {
 
 
     function updateButtons(currentPatient) {
-        console.log("stats view current patient " + currentPatient)
+        // console.log("stats view current patient " + currentPatient)
         
         setDendrogramButtons(currentPatient);
         setLymphButton(currentPatient);
         setCamprtButton(currentPatient);
+        setStatisticsPatients();
         // console.log("current patient " + currentPatient)
 
-        populateCommonAttributeTable(currentPatient);        
+        populateCommonAttributeTable(currentPatient); 
+
     }
 
     return {

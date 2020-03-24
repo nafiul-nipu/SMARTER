@@ -89,7 +89,7 @@ let PatientSelectorController = function() {
         updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
 
-        console.log(updatedPatients)
+        // console.log(updatedPatients)
         return updatedPatients;
     }
 

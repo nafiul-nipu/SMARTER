@@ -33,9 +33,19 @@ less.pageLoadFinished.then(function() {
             .then(() => {
                 console.log("Axes loaded");
             });
+
+
+        App.models.attributeModel = new AttributeModel();
+        App.models.attributeModel.loadAttributeData()
+                .then(() => {
+                    console.log("attribute data loaded");
+                });
+                
+                
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
+
 
     }
 
@@ -111,6 +121,8 @@ less.pageLoadFinished.then(function() {
                 App.controllers.dataUpdate.updateApplication();
 
                 App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
+
+                // App.models.attributeModel.loadAttributes();
             })
             .catch(function(err) {
                 console.log("Promise Error", err);
