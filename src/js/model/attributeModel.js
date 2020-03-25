@@ -6,12 +6,15 @@ let AttributeModel = function() {
 
     let self  = {
         attributeData: {},
-        meanAttributeData:{}
+        meanAttributeData:{},
+        count : 0 
     };
 
     let _constants = {
         attributeFile: "data/attributes.json",
     };
+
+    
 
     function loadAttributeData () {
         return new Promise( (resolve, reject) => {
@@ -37,21 +40,18 @@ let AttributeModel = function() {
                 }
 
                 // self.attributeData = attributeFile;
-                console.log(self.attributeData)
-                console.log(self.meanAttributeData)
+                // console.log(self.attributeData)
+                // console.log(self.meanAttributeData)
 
                 resolve();
             }
         })
     }
 
-    let getAttributeData = function() {
-        return self.attributeData;
-    };
-
     let statisticsOfAllPatients = function(){
 
-        let patients = App.models.patients.getPatients();
+        if(self.count == 0){ //count is used to keep this method run only once
+            let patients = App.models.patients.getPatients();
         // console.log(patients)
 
         let total = App.models.patients.getTotalPatients();
@@ -88,15 +88,27 @@ let AttributeModel = function() {
             self.meanAttributeData[meanAttribute] = (self.meanAttributeData[meanAttribute] / total).toFixed(5);
         }
 
+        self.count = 1;
+            
+        }
+
         console.log(self.attributeData)
         console.log(self.meanAttributeData)
 
+    }
 
+    let getAttributeData = function() {
+        return self.attributeData;
+    };
+
+    let getMeanAttributeData = function(){
+        return self.meanAttributeData;
     }
 
     return {
         loadAttributeData,
         getAttributeData,
-        statisticsOfAllPatients
+        statisticsOfAllPatients,
+        getMeanAttributeData
     }
 }

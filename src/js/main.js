@@ -39,6 +39,7 @@ less.pageLoadFinished.then(function() {
         App.models.attributeModel.loadAttributeData()
                 .then(() => {
                     console.log("attribute data loaded");
+                    // App.views.statisticsModalView = new StatisticsModalView();
                 });
                 
                 
@@ -61,6 +62,8 @@ less.pageLoadFinished.then(function() {
         App.views.demographForm = new DemographicsFormView();
         App.views.treatmentForm = new TreatmentFormView();
         App.views.cancerDescriptorsForm = new CancerDescriptorsFormView();
+
+        App.views.statisticsModalView = new StatisticsModalView();
     }
 
     App.createControllers = function() {
@@ -121,6 +124,10 @@ less.pageLoadFinished.then(function() {
                 App.controllers.dataUpdate.updateApplication();
 
                 App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
+
+                // App.views.statisticsModalView = new StatisticsModalView();
+
+                // App.views.statisticsModalView.testMethod();
 
                 // App.models.attributeModel.loadAttributes();
             })

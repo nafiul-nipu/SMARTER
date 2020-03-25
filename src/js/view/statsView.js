@@ -32,8 +32,10 @@ let StatsView = function () {
     }
 
     function setStatisticsPatients(){
-        let url = `https://www.google.com`;
+        App.models.attributeModel.statisticsOfAllPatients();
+        let url = `statistics.html`;
         self.detailsStatistics.attr("href", url);
+        // self.detailsStatistics.on("click", App.models.attributeModel.populateStatisticsTable())
     }
 
 

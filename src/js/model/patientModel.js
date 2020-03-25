@@ -11,7 +11,7 @@ let PatientModel = function() {
         axes: {},
         commonAttributeValues: {},
         commonKaplanAttributeValues: {},
-        statisticsOfAllPatients:{}
+        // statisticsOfAllPatients:{}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -139,7 +139,6 @@ let PatientModel = function() {
          *          * @param {array} knn 
          */
         function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
-            App.models.attributeModel.statisticsOfAllPatients();
             // console.log("kaplan attribute values " + currentPatient)
             self.commonKaplanAttributeValues = {Subgroup : 0};
             // let patientRealID = getPatientIDFromDummyID(currentPatient)

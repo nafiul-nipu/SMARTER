@@ -58,6 +58,7 @@
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
+    <script src="src/js/view/statisticsModalView.js" charset="utf-8"></script>
 
     <script src="src/js/main.js" charset="utf-8"></script>
 
@@ -431,7 +432,10 @@
                                         <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
                                         <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
                                         <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
-                                        <a href="#" target="_blank" id="statisticsPatients"><button class="btn btn-default btn-sm">Statistics</button></a>
+                                        <!-- <a href="#" target="_blank" id="statisticsPatients"><button class="btn btn-default btn-sm">Statistics</button></a> -->
+                                        <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
+                                            Statistics
+                                          </button>
                                     </div>
                                     <div class="col-md-12">
                                             <table id="commonAttributesTable" class=" table order-list">
@@ -472,6 +476,52 @@
         </div>
 
     </div>
+
+
+    <!-- statistics modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Statistics Of All Patients</h5> -->
+          <h3 class="modal-title">Statistics of All Patients</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="statisticsModalBody">
+            <table class="table table-bordered statsTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Attribute Name</th>
+                    <th scope="col">Count/Mean</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                  </tr>
+                  <tr>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Larry the Bird</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
     <!-- Modal -->
     <div id="exploreModal" class="modal fade" role="dialog">
