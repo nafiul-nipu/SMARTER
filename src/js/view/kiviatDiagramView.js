@@ -39,13 +39,18 @@ let KiviatDiagramView = function(targetID) {
             .attr("preserveAspectRatio", "xMidYMid");
 
 
+        // console.log(App.kiviatAttributes)
         // initialize the range of each attribute
         for (let attribute of App.kiviatAttributes) {
             self.attributeScales[attribute] = d3.scaleOrdinal()
                 .range([5, 35]);
         }
 
+        // console.log(self.attributeScales)
+
         self.axes = App.models.axesModel.getAxesData();
+
+        // console.log(self.axes)
 
         self.colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
@@ -104,7 +109,8 @@ let KiviatDiagramView = function(targetID) {
                 .style("font-weight", "bold")
                 .text(survivalRateText[i]);
         }
-
+        
+        // console.log(App.kiviatAttributes)
         // axis labels
         for (let attributeInd in App.kiviatAttributes) {
             self.legendSvg.append("text")
@@ -214,6 +220,7 @@ let KiviatDiagramView = function(targetID) {
                 .style("text-anchor", "middle")
                 .text(j);
 
+            // console.log("App.kiviatAttributes[j]" + App.kiviatAttributes[j])
             // tool tip circle for each axis
             axesGroup.append("circle")
                 .attr("class", "axisTooltipCircle")
@@ -260,6 +267,7 @@ let KiviatDiagramView = function(targetID) {
         SVG.select(".kiviatPath")
             .attr("d", calculatePath)
             .style("fill", self.colorScale(d["Probability of Survival"]))
+            // .style("fill", "black")
             .style("opacity", 0.75);
 
         if (d.score) {
@@ -285,15 +293,49 @@ let KiviatDiagramView = function(targetID) {
 
     /* calculate the path */
     function calculatePath(d) {
+        // let test = d3.scaleLinear()
+        //             .domain(["Male","Female"])
+        //             .range([5,35]);
+        // // console.log(test(35))
+        // // console.log(test(55))
+        // console.log(test())
+        // console.log(d)
         let pathCoord = [];
         for (let attributeInd in App.kiviatAttributes) {
+            
             let attribute = App.kiviatAttributes[attributeInd];
+            // console.log(d[attribute])
+            // console.log(attribute)
+            // console.log(isNaN (self.axes[attribute].domain[0]))
+            // console.log(self.attributeScales[attribute])
             // console.log(attribute, d[self.axes[attribute]["name"]]);
-            let xPoint = self.attributeScales[attribute](d[attribute]);
+            let xPoint;
+            if(isNaN(self.axes[attribute].domain[0])){
+                self.attributeScales[attribute]
+                    .domain(self.axes[attribute].domain);
+                // console.log(self.attributeScales[attribute](d[attribute]))
+                xPoint = self.attributeScales[attribute](d[attribute]);                
+            }else{
+                let linearAttributeScale = d3.scaleLinear()
+                            .domain(self.axes[attribute].domain)
+                            .range([5,35]);
+                xPoint = linearAttributeScale(d[attribute]);
+            }
+
+
+            // self.attributeScales[attribute]
+            //         .domain(self.axes[attribute].domain);
+            // // console.log(self.attributeScales[attribute](d[attribute]))
+            // let xPoint = self.attributeScales[attribute](d[attribute]);
             // console.log(attribute, xPoint);
+
+
             let endpoint = rotatePointOntoAxis(xPoint, attributeInd);
+            // console.log(attribute, endpoint)
+            // console.log(attribute, xPoint)
 
             pathCoord.push(endpoint.x + " " + endpoint.y);
+            // console.log(pathCoord)
         }
 
         return "M " + pathCoord.join(" L ") + " Z";
@@ -302,6 +344,7 @@ let KiviatDiagramView = function(targetID) {
     /* get the coordinates of the point on each axis */
     function rotatePointOntoAxis(pointX, axisIndex) {
         let angle = Math.PI * 2 * axisIndex / App.kiviatAttributes.length;
+        // console.log(angle)
         return rotatePoint(pointX, angle);
     }
 
@@ -318,6 +361,7 @@ let KiviatDiagramView = function(targetID) {
         for (let attribute of App.kiviatAttributes) {
             let attributeDomainLength = newDomains[attribute].length;
 
+            console.log(newDomains)
             self.attributeScales[attribute]
                 .domain(newDomains[attribute])
                 .range(

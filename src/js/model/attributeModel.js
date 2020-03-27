@@ -92,8 +92,8 @@ let AttributeModel = function() {
             
         }
 
-        console.log(self.attributeData)
-        console.log(self.meanAttributeData)
+        // console.log(self.attributeData)
+        // console.log(self.meanAttributeData)
 
     }
 
