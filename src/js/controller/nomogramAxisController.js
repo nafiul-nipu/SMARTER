@@ -159,12 +159,21 @@ let NomogramAxisController = function(listID) {
         let sliderElement = d3.select("#axisHeightSlider");
         let sliderWidth = sliderElement.node().clientWidth;
         let sliderHeight = sliderElement.node().clientHeight;
+        //make sure the slider does not get 0px height and width
+        if(sliderHeight == 0){
+            sliderHeight = 150;
+        }
+        if(sliderWidth == 0){
+            sliderWidth = 15;
+        }
 
         self.sliderSvg = sliderElement.append("svg")
             .attr("width", sliderWidth)
             .attr("height", sliderHeight)
         // .style("background-color", "lightblue");
 
+        console.log(sliderWidth)
+        console.log(sliderHeight)
         let sliderBar = self.sliderSvg.append("rect")
             .attr("x", sliderWidth / 2.5)
             .attr("y", 0)
@@ -184,6 +193,7 @@ let NomogramAxisController = function(listID) {
             .attr("class", "brush")
             .call(self.brushFunc);
 
+        // console.log(self.sliderBrush)
 
         // get the attribute range on each axis
         _.forEach(self.axes, function(value, key) {

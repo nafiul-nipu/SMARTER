@@ -17,6 +17,24 @@
     "forKiviat": true,
     "forKnn": true
   },
+  "Race": {
+    "name":"Race",
+    "rangeShrink": [0.128,0],
+    "domain":["White/Caucasion","Other"],
+    "label": "Race",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
+  "Smoking Status": {
+    "name":"Smoking status at Diagnosis (Never/Former/Current)",
+    "rangeShrink": [0,0.087],
+    "domain": ["Former","Current","Never"],
+    "label": "Smoking Status",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
   "HPV/P16": {
     "name":"HPV/P16 status",
     "rangeShrink": [0,0.431],
@@ -26,6 +44,15 @@
     "forKiviat": false,
     "forKnn": true
   },
+  "T-category": {
+    "name":"T-category",
+    "rangeShrink": [0,1],
+    "domain": ["Tis","T1","T2","T3","T4","Tx"],
+    "label": "T-category",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
   "N-category": {
     "name":"N-category",
     "rangeShrink": [0,0.477],
@@ -33,6 +60,24 @@
     "label": "N-category",
     "type": "ordinal",
     "forKiviat": true,
+    "forKnn": true
+  },
+  "Tumor Subsite": {
+    "name":"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
+    "rangeShrink": [0,0.3],
+    "domain":["Tonsil","BOT","Other"],
+    "label": "Tumor Subsite",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
+  "Therapeutic combination": {
+    "name":"Therapeutic combination",
+    "rangeShrink": [0,0.642376502],
+    "domain": ["Radiation Alone","IC+Radiation Alone","CC","IC+CC"],
+    "label": "Therapeutic combination",
+    "type": "ordinal",
+    "forKiviat": false,
     "forKnn": true
   },
   "Neck boost": {
@@ -51,61 +96,6 @@
     "label": "Neck dissection",
     "type": "ordinal",
     "forKiviat": false,
-    "forKnn": true
-  },
-  "Packs/Year": {
-    "name":"Smoking status (Packs/Year)",
-    "rangeShrink": [0,0.269],
-    "domain": [0, 1],
-    "tickValues": [0,30,60,90,120],
-    "label": "Packs/Year",
-    "type": "linear",
-    "forKiviat": false,
-    "forKnn": false
-  },
-  "Smoking Status": {
-    "name":"Smoking status at Diagnosis (Never/Former/Current)",
-    "rangeShrink": [0,0.087],
-    "domain": ["Former","Current","Never"],
-    "label": "Smoking Status",
-    "type": "ordinal",
-    "forKiviat": false,
-    "forKnn": true
-  },
-  "T-category": {
-    "name":"T-category",
-    "rangeShrink": [0,1],
-    "domain": ["Tis","T1","T2","T3","T4","Tx"],
-    "label": "T-category",
-    "type": "ordinal",
-    "forKiviat": true,
-    "forKnn": true
-  },
-  "Therapeutic combination": {
-    "name":"Therapeutic combination",
-    "rangeShrink": [0,0.642376502],
-    "domain": ["Radiation Alone","IC+Radiation Alone","CC","IC+CC"],
-    "label": "Therapeutic combination",
-    "type": "ordinal",
-    "forKiviat": false,
-    "forKnn": true
-  },
-  "Tumor Subsite": {
-    "name":"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
-    "rangeShrink": [0,0.3],
-    "domain":["Tonsil","BOT","Other"],
-    "label": "Tumor Subsite",
-    "type": "ordinal",
-    "forKiviat": false,
-    "forKnn": true
-  },
-  "Race": {
-    "name":"Race",
-    "rangeShrink": [0.128,0],
-    "domain":["White/Caucasion","Other"],
-    "label": "Race",
-    "type": "ordinal",
-    "forKiviat": true,
     "forKnn": true
   },
   "Predictive Probability": {
