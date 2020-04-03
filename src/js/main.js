@@ -57,7 +57,7 @@ less.pageLoadFinished.then(function() {
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
         // App.views.mosaic = new MosaicView("#mosaic");
         App.views.stats = new StatsView();
-        App.views.helpInfo = new HelpInfoView("#HelpInfo");
+        // App.views.helpInfo = new HelpInfoView("#HelpInfo");
 
         App.views.demographForm = new DemographicsFormView();
         App.views.treatmentForm = new TreatmentFormView();

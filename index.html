@@ -54,7 +54,7 @@
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
     <script src="src/js/view/statsView.js" charset="utf-8"></script>
-    <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
+    <!-- <script src="src/js/view/helpInfoView.js" charset="utf-8"></script> -->
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
@@ -207,10 +207,15 @@
                           <span class="glyphicon glyphicon-info-sign"></span>
                           About
                         </button>
-                        <button class="btn btn-link navbar-btn" id="HelpInfo">
+                        <button type="button" class="btn btn-link navbar-btn" id="HelpInfo" data-toggle="modal" data-target="#OverallHelpInfo">
                           <span class="glyphicon glyphicon-question-sign"></span>
                           Help
                         </button>
+
+                          <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OverallHelpInfo">
+    Launch demo modal
+  </button> -->
 
                         <!-- <div class="dropdown"> -->
                         <!--<button class="btn btn-basic navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">-->
@@ -243,7 +248,10 @@
                         <!-- kiviat title  -->
                         <div class="row viewTitleDiv">
                             Most Similar Patients
-                            <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kiviat"></span>
+                        <!-- Button trigger modal -->
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
+                                <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
+                            <!-- </button>                             -->
                         </div>
                         <!-- patient dropdown menu -->
                         <div class="row patient-dropdown-wrapper">
@@ -366,7 +374,10 @@
                             <div id="nomogramHeader">
                                 <div class="row viewTitleDiv">
                                     Nomogram Risk Prediction
-                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-nomogram"></span>
+                                    <!-- Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nomogramModal"> -->
+                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
+                                    <!-- </button> -->
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4 col-lg-offset-4">
@@ -393,7 +404,10 @@
                             <div id="kaplanMeierHeader">
                                 <div class="row viewTitleDiv">
                                     Survival Over Time
-                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kaplanMeier"></span>
+                                    <!-- Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kaplanmeierModal"> -->
+                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kaplanmeierModal" id="HelpInfo-kaplanMeier"></span>
+                                    <!-- </button> -->
                                 </div>
                                 <div class="row patient-dropdown-wrapper">
                                     <div class="form-inline">
@@ -419,7 +433,7 @@
                             <div id="mosaicHeader">
                                 <div class="row viewTitleDiv">
                                     Statistics and Cohort
-                                    <!--<span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>-->
+                                    <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#statHelpModal" id="HelpInfo-mosaic"></span>
                                 </div>
                             </div>
 
@@ -512,6 +526,147 @@
                   </tr>
                 </tbody>
               </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- help information modals -->
+
+  <!-- overall help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="OverallHelpInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">The SMART Therapy Explorer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li><b>About</b> provides description of the project</li>
+                <li><b>The kiviat diagram</b> on the left shows current patient and most similar patiens</li>
+                <li><b>Nomogram Risk Prediction</b> is graphical calculating device for Probability of Survival</li>
+                <li><b>Kaplan Meier</b> shows probabilty of survival over time</li>
+                <li><b>Statisctics and Cohort</b> provides subgroup analysis and statistics of all patients</li>
+                <li>Clicking on the Question Marks (?) beside each view will show help information for that view</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- kiviat diagram help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="kiviatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Most Similar Patients (Kiviat Diagrams)</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>Select desired patient from the dropdown list</li>
+                <li>Kiviat Diagram Shows five characteristics of the patient
+                    <ul>
+                        <li>Age</li>
+                        <li>Gender</li>
+                        <li>Race</li>
+                        <li>T-Category</li>
+                        <li>N-Category</li>
+                    </ul>
+                </li>
+                <li>The Color indicates probabilty of survival</li>
+                <li>For each selected patient five most similar patients in the repository are shown</li>
+                <li>Mouse Over to see details</li>
+              </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- nomogram help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="nomogramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nomogram Risk Prediction</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>Choose the desired prediction from the drop down menu</li>
+                <li>Use the controller setting to control which scales and scale-intervals are shown. </li>
+                <li>Use the controller setting to resize and reposition each axis</li>
+                <li>In the view, the thick dark polyline corresonds to the patient that the user selected.<br>
+                    The remaining polylines correspond to the five most similar patients</li>
+              </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- kaplan meier help modal --> 
+  <!-- Modal -->
+  <div class="modal fade" id="kaplanmeierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Survival Over Time</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Kaplan Meier plot showing survival over time per patient group,
+            depending on the selected attribute
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- statistics and cohort help modal --> 
+  <!-- Modal -->
+  <div class="modal fade" id="statHelpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Statisctics and Cohort</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>The first row of the table shows how many similar patients are in the repository from the subgroup (kaplan meier groups) of the patient selected in Similar Patients view</li>
+                <li>Rest of the rows show the kaplan meier groups' values for the selected patient and the similar patients to that particula group in the repository </li>
+                <li>Clicking on the <b>Statistics</b> button will show a popup providing the information of the repository</li>
+                </ul>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
