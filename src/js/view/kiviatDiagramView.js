@@ -216,10 +216,10 @@ let KiviatDiagramView = function(targetID) {
             axesGroup.append("text")
                 .attr("x", axisEndpoint.x)
                 .attr("y", axisEndpoint.y + 4)
-                .style("font-size", "10px")
+                .style("font-size", "6px")
                 .style("text-anchor", "middle")
-                .text(j);
-                // .text(App.kiviatAttributes[j]);
+                // .text(j);
+                .text(App.kiviatAttributes[j]);
 
             // console.log("App.kiviatAttributes[j]" + App.kiviatAttributes[j])
             // tool tip circle for each axis
