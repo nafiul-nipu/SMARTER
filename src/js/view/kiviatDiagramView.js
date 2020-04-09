@@ -219,6 +219,7 @@ let KiviatDiagramView = function(targetID) {
                 .style("font-size", "10px")
                 .style("text-anchor", "middle")
                 .text(j);
+                // .text(App.kiviatAttributes[j]);
 
             // console.log("App.kiviatAttributes[j]" + App.kiviatAttributes[j])
             // tool tip circle for each axis

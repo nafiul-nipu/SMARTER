@@ -551,7 +551,7 @@
         <div class="modal-body">
             <ul>
                 <li><b>About</b> provides description of the project</li>
-                <li><b>The kiviat diagram</b> on the left shows current patient and most similar patiens</li>
+                <li><b>The Star Plot</b> on the left shows current patient and most similar patiens</li>
                 <li><b>Nomogram Risk Prediction</b> is graphical calculating device for Probability of Survival</li>
                 <li><b>Kaplan Meier</b> shows probabilty of survival over time</li>
                 <li><b>Statisctics and Cohort</b> provides subgroup analysis and statistics of all patients</li>
@@ -572,14 +572,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Most Similar Patients (Kiviat Diagrams)</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Most Similar Patients (Star Plots)</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <ul>
-                <li>Select desired patient from the dropdown list</li>
+                <li>Select desired patient from the dropdown list <br> <br>
+                    <img src="imgs/kiviat/select-dropdown.png"  style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
                 <li>Kiviat Diagram Shows five characteristics of the patient
                     <ul>
                         <li>Age</li>
@@ -591,7 +594,18 @@
                 </li>
                 <li>The Color indicates probabilty of survival</li>
                 <li>For each selected patient five most similar patients in the repository are shown</li>
-                <li>Mouse Over to see details</li>
+                <li>Mouse Over to see details <br><br>
+                    <div style="display:flex;">
+                        <div style="flex: 50%; padding: 5px;">
+                          <img src="imgs/kiviat/mouseOver.png" alt="mouse over" style="width:100%">
+                        </div>
+                        <div style="flex: 50%; padding: 5px;">
+                          <img src="imgs/kiviat/mouseOverAxis.png" alt="mouse over axis" style="width:100%">
+                        </div>
+                    </div>
+                    <!-- <img src="imgs/kiviat/mouseOver.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;">
+                    <img src="imgs/kiviat/mouseOverAxis.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;"> -->
+                </li>
               </ul>
         </div>
         <div class="modal-footer">
@@ -614,9 +628,18 @@
         </div>
         <div class="modal-body">
             <ul>
-                <li>Choose the desired prediction from the drop down menu</li>
-                <li>Use the controller setting to control which scales and scale-intervals are shown. </li>
-                <li>Use the controller setting to resize and reposition each axis</li>
+                <li>Choose the desired prediction from the drop down menu <br><br>
+                    <img src="imgs/nomogram/nomogram-dropdown.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li>Use the controller setting to control which scales and scale-intervals are shown. <br> <br>
+                    <img src="imgs/nomogram/controller settings.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li>Use the controller setting to resize and reposition each axis <br><br>
+                    <img src="imgs/nomogram/resize 3.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
                 <li>In the view, the thick dark polyline corresonds to the patient that the user selected.<br>
                     The remaining polylines correspond to the five most similar patients</li>
               </ul>
