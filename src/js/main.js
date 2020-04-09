@@ -17,7 +17,7 @@ less.pageLoadFinished.then(function() {
 
     // hard code the order of attributes for drawing the mosaic viewBox
     App.mosaicAttributeOrder = ["Race", "T-category", "Gender",
-        "N-category"
+        "N-category", "Therapeutic combination"
     ];
 
     // need to find better colors

@@ -74,7 +74,7 @@
   "Therapeutic combination": {
     "name":"Therapeutic combination",
     "rangeShrink": [0,0.642376502],
-    "domain": ["Radiation Alone","IC+Radiation Alone","CC","IC+CC"],
+    "domain": ["Radiation alone","IC+Radiation alone","CC","IC+CC"],
     "label": "Therapeutic combination",
     "type": "ordinal",
     "forKiviat": false,

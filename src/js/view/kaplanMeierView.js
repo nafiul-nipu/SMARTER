@@ -78,6 +78,7 @@ let KaplanMeierView = function(targetID) {
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
+        // console.log("KMDATA" + KMData[0])
         d3.selectAll(".kmVar").remove();
         d3.selectAll(".kmPlots").remove();
         d3.selectAll(".legend").remove();
@@ -94,6 +95,8 @@ let KaplanMeierView = function(targetID) {
         // draw kaplan-meier plots
         let attrValNum = 0;
         for (let attrKey of Object.keys(KMData)) {
+            // console.log(attrKey)
+            // console.log(KMData[attrKey])
             if (KMData[attrKey].length > 0) {  // have patients in the group
                 drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
                 drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));
