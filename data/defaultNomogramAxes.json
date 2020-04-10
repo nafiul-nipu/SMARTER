@@ -46,7 +46,7 @@
   },
   "Smoking Status": {
     "name": "Smoking status at Diagnosis (Never/Former/Current)",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true,
     "rangeShrink": [
       0,
@@ -73,7 +73,7 @@
     ],
     "label": "HPV/P16",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "T-category": {
@@ -125,7 +125,7 @@
     ],
     "label": "Tumor Subsite",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "Therapeutic combination": {
@@ -134,12 +134,12 @@
     "domain": ["IC+Radiation alone","CC","IC+CC","Radiation alone"],
     "label": "Therapeutic combination",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "Neck boost": {
     "name": "Neck boost (Y/N)",
-    "forKiviat": false,
+    "forKiviat": true,
     "rangeShrink": [
       0.08,
       0
@@ -154,7 +154,7 @@
   },
   "Neck dissection": {
     "name": "Neck Disssection after IMRT (Y/N)",
-    "forKiviat": false,
+    "forKiviat": true,
     "rangeShrink": [
       0,
       0.1499

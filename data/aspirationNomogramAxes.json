@@ -32,7 +32,7 @@
     "domain": ["Former","Current","Never"],
     "label": "Smoking Status",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "HPV/P16": {

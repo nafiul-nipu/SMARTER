@@ -249,6 +249,7 @@ let KiviatDiagramView = function(targetID) {
             .attr("class", "d3-tip")
             .direction("e")
             .html(function(d) {
+                // console.log(d)
                 return d.attr + ": " + d.val;
             });
 
@@ -262,6 +263,7 @@ let KiviatDiagramView = function(targetID) {
 
     /* draw the kiviat diagram for each patient */
     function updateKiviatPatient(d, i) {
+        // console.log(d)
 
         let SVG = d3.select(this);
 
