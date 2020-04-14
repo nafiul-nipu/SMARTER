@@ -51,7 +51,9 @@ let AxesModel = function() {
 
                 // App.patientKnnAttributes = [];
                 // App.kiviatAttributes = [];
+                // console.log(axesAttributes)
                 axesAttributes.forEach((d) => {
+                    // console.log(d)
                     if (defaultAxes[d].forKiviat)
                         App.kiviatAttributes.push(d);
                     if (defaultAxes[d].forKnn)

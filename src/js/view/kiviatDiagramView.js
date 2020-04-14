@@ -23,6 +23,8 @@ let KiviatDiagramView = function(targetID) {
         self.neighborsElement = d3.select(targetID + "-neighbors");
         self.legendElement = d3.select(targetID + "-legend");
 
+        self.axes = App.models.axesModel.getAxesData();
+
         self.subjectSvg = self.subjectElement.append("svg")
             .attr("width", self.subjectElement.node().clientWidth)
             .attr("height", self.subjectElement.node().clientHeight)
@@ -43,14 +45,10 @@ let KiviatDiagramView = function(targetID) {
         // initialize the range of each attribute
         for (let attribute of App.kiviatAttributes) {
             self.attributeScales[attribute] = d3.scaleOrdinal()
-                .range([5, 35]);
+                // .range([5, 35]);
         }
 
         // console.log(self.attributeScales)
-
-        self.axes = App.models.axesModel.getAxesData();
-
-        // console.log(self.axes)
 
         self.colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
@@ -170,6 +168,15 @@ let KiviatDiagramView = function(targetID) {
 
     /* create the axes of kiviat diagram */
     function createKiviatDiagram(d, i) {
+        // console.log(d)
+        // console.log("=== operator for undefined" + (d == undefined))
+        // console.log(self.axes)
+        // console.log(App.kiviatAttributes)
+        // console.log(App.kiviatAttributes[0])
+        // console.log(self.axes[App.kiviatAttributes[0]].name)
+        // console.log(patients.subject[self.axes[App.kiviatAttributes[0]].name])
+
+
         let SVG = d3.select(this);
 
         creatToolTips();
@@ -222,6 +229,9 @@ let KiviatDiagramView = function(targetID) {
                 .text(App.kiviatAttributes[j]);
 
             // console.log("App.kiviatAttributes[j]" + App.kiviatAttributes[j])
+            // console.log(self.axes)
+            // console.log("d")
+            // console.log(d)
             // tool tip circle for each axis
             axesGroup.append("circle")
                 .attr("class", "axisTooltipCircle")
@@ -231,6 +241,7 @@ let KiviatDiagramView = function(targetID) {
                 .style("opacity", 0.25)
                 .datum({
                     "attr": App.kiviatAttributes[j]
+                    // "name" : d[self.axes[App.kiviatAttributes[j]].name]
                     // "val": d[App.patientKnnAttributes[j]]
                 })
                 .on('mouseover', self.axisTip.show)
@@ -249,6 +260,7 @@ let KiviatDiagramView = function(targetID) {
             .attr("class", "d3-tip")
             .direction("e")
             .html(function(d) {
+                // console.log(d)
                 return d.attr + ": " + d.val;
             });
 
@@ -281,7 +293,10 @@ let KiviatDiagramView = function(targetID) {
             .selectAll(".axisTooltipCircle")
             .datum(function(data) {
                 let newData = data;
-                data.val = d[data.attr];
+                // "name" : d[self.axes[App.kiviatAttributes[j]].name]
+                data.name = self.axes[data.attr].name;
+                data.val = d[data.name]; //getting the values from name
+                console.log(data)
 
                 return newData;
             });
@@ -314,7 +329,8 @@ let KiviatDiagramView = function(targetID) {
             //using ordinal scale for categorical values and linear scale for numbers
             if(isNaN(self.axes[attribute].domain[0])){
                 self.attributeScales[attribute]
-                    .domain(self.axes[attribute].domain);
+                    .domain(self.axes[attribute].domain)
+                    .range(self.axes[attribute].range);
                 // console.log(self.attributeScales[attribute](d[attribute]))
                 xPoint = self.attributeScales[attribute](d[attribute]);                
             }else{

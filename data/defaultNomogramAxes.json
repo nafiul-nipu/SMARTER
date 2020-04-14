@@ -1,6 +1,6 @@
 {
   "AgeAtTx": {
-    "name": "Age at Diagnosis (Calculated)",
+    "name": "AgeAtTx",
     "rangeShrink": [
       0,
       1
@@ -20,6 +20,7 @@
       "Male",
       "Female"
     ],
+    "range":[5 , 35],
     "rangeShrink": [
       0,
       0.058
@@ -39,6 +40,8 @@
       "White/Caucasion",
       "Other"
     ],
+    "range":[5 , 35],
+
     "label": "Race",
     "type": "ordinal",
     "forKiviat": true,
@@ -46,7 +49,7 @@
   },
   "Smoking Status": {
     "name": "Smoking status at Diagnosis (Never/Former/Current)",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true,
     "rangeShrink": [
       0,
@@ -57,6 +60,7 @@
       "Never",
       "Current"
     ],
+    "range":[5 , 20, 35],
     "label": "Smoking Status",
     "type": "ordinal"
   },
@@ -71,9 +75,10 @@
       "Positive",
       "Unknown"
     ],
+    "range":[5 , 20, 35],
     "label": "HPV/P16",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "T-category": {
@@ -90,6 +95,7 @@
       "T4",
       "Tx"
     ],
+    "range":[5 , 11, 17, 23, 29, 35],
     "label": "T-category",
     "type": "ordinal",
     "forKiviat": true,
@@ -107,6 +113,7 @@
       "N1",
       "N2"
     ],
+    "range":[5 , 15, 25, 35],
     "label": "N-category",
     "type": "ordinal",
     "forKiviat": true,
@@ -123,23 +130,25 @@
       "BOT",
       "Other"
     ],
+    "range":[5 , 20, 35],
     "label": "Tumor Subsite",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "Therapeutic combination": {
     "name":"Therapeutic combination",
     "rangeShrink": [0,0.15211864],
     "domain": ["IC+Radiation alone","CC","IC+CC","Radiation alone"],
+    "range":[5 , 15, 25, 35],
     "label": "Therapeutic combination",
     "type": "ordinal",
-    "forKiviat": false,
+    "forKiviat": true,
     "forKnn": true
   },
   "Neck boost": {
     "name": "Neck boost (Y/N)",
-    "forKiviat": false,
+    "forKiviat": true,
     "rangeShrink": [
       0.08,
       0
@@ -148,13 +157,14 @@
       "N",
       "Y"
     ],
+    "range":[5 , 35],
     "label": "Neck boost",
     "type": "ordinal",
     "forKnn": true
   },
   "Neck dissection": {
     "name": "Neck Disssection after IMRT (Y/N)",
-    "forKiviat": false,
+    "forKiviat": true,
     "rangeShrink": [
       0,
       0.1499
@@ -163,6 +173,7 @@
       "N",
       "Y"
     ],
+    "range":[5 , 35],
     "label": "Neck dissection",
     "type": "ordinal",
     "forKnn": true

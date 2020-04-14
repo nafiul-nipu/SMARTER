@@ -172,8 +172,8 @@ let NomogramAxisController = function(listID) {
             .attr("height", sliderHeight)
         // .style("background-color", "lightblue");
 
-        console.log(sliderWidth)
-        console.log(sliderHeight)
+        // console.log(sliderWidth)
+        // console.log(sliderHeight)
         let sliderBar = self.sliderSvg.append("rect")
             .attr("x", sliderWidth / 2.5)
             .attr("y", 0)

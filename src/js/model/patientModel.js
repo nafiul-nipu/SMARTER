@@ -234,7 +234,7 @@ let PatientModel = function() {
 
         // get the actual patient attributes used for calculating knn
         let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);
-        console.log("knn attributes" + knnAttributes);
+        // console.log("knn attributes" + knnAttributes);
 
         // calculate the similarity scores between the selected patient and the rest patients in the list
         for (let patientID of Object.keys(self.patients)) {
