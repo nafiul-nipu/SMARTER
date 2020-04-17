@@ -124,6 +124,8 @@ let KiviatDiagramView = function(targetID) {
         // console.log(patients.subject);
         // console.log(patients.neighbors);
 
+        // console.log(App.kiviatAttributes.length);
+
         if (patients.subject.score) {
             delete patients.subject.score;
         }
@@ -139,6 +141,7 @@ let KiviatDiagramView = function(targetID) {
         // console.log(patients.subject)
 
         // update the kiviat diagram of the subject
+        //need to create for axes control
         self.subjectSvg
             .datum(patients.subject)
             .each(updateKiviatPatient);
@@ -296,7 +299,7 @@ let KiviatDiagramView = function(targetID) {
                 // "name" : d[self.axes[App.kiviatAttributes[j]].name]
                 data.name = self.axes[data.attr].name;
                 data.val = d[data.name]; //getting the values from name
-                console.log(data)
+                // console.log(data)
 
                 return newData;
             });

@@ -6,7 +6,8 @@ let PatientSelectorController = function() {
 
     let self = {
         patientDropDown: null,
-        currentPatient: null
+        currentPatient: null,
+        patientWithGroup: {}
     };
 
     /* display the patient drop down list */
@@ -79,6 +80,9 @@ let PatientSelectorController = function() {
 
         let updatedPatients = getUpdatedData(subjectID);
 
+        self.patientWithGroup = updatedPatients;
+        console.log(self.patientWithGroup)
+
         updateViews(updatedPatients);
     }
 
@@ -99,12 +103,22 @@ let PatientSelectorController = function() {
         App.views.nomogram.updateKnnData(updatedPatients);
     }
 
+    function getPatientWithGroup(){
+        return self.patientWithGroup;
+    }
+
+    function setPatientWithGroup(patients){
+        self.patientWithGroup = patients;
+    }
+
 
     /* return the pubilicly accessible functions */
     return {
         attachToSelect,
         updatePateintDropDown: populatePateintDropDown,
         setPatient,
-        getCurrentPatient // used in kiviatDiagramView for setting dendrogram links.
+        getCurrentPatient, // used in kiviatDiagramView for setting dendrogram links.
+        getPatientWithGroup,
+        setPatientWithGroup
     };
 }

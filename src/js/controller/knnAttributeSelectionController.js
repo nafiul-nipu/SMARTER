@@ -3,7 +3,8 @@
 let KNNAttributeSelectionController = function(listID) {
     let self = {
         list: null,
-        checkboxStates: {}
+        checkboxStates: {},
+        // patientWithGroups: {}
     };
 
     init();
@@ -16,6 +17,8 @@ let KNNAttributeSelectionController = function(listID) {
         }
 
         self.list = d3.select(listID);
+
+        // console.log(self.list)
 
         self.list.selectAll(".checkbox-li")
             .data(attributes)
@@ -39,6 +42,14 @@ let KNNAttributeSelectionController = function(listID) {
                     })
                     .text(d);
             });
+
+            let buttonDiv = d3.select(listID).append("div").attr("class", "modal-footer");
+            buttonDiv.append("button")
+                    .attr("class", "btn btn-default dropdown-toggle")
+                    .attr("type", "button")
+                    .attr("data-toggle", "collapse")
+                    .attr("data-target", "#knnAttributesControl")
+                    .text("Close");
     }
 
     function checkboxOnChange() {
@@ -56,6 +67,11 @@ let KNNAttributeSelectionController = function(listID) {
 
         let subjectID = App.models.applicationState.getSelectedPatientID();
         let updatedPatients = getUpdatedData(subjectID);
+
+        // App.controllers.patientSelector.patientWithGroup = updatedPatients;
+
+        App.controllers.patientSelector.setPatientWithGroup(updatedPatients)
+        // console.log(App.controllers.patientSelector.patientWithGroup)
 
         updateViews(updatedPatients);
     }
@@ -89,7 +105,12 @@ let KNNAttributeSelectionController = function(listID) {
         }
     }
 
+    // function getPatientsForKiviat(){
+    //     return self.patientWithGroups;
+    // }
+
     return {
-        updateSelectedCheckboxes
+        updateSelectedCheckboxes,
+        // getPatientsForKiviat
     };
 };

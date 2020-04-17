@@ -46,6 +46,7 @@
     <script src="src/js/controller/exploreFormController.js" charset="utf-8"></script>
     <script src="src/js/controller/addPatientController.js" charset="utf-8"></script>
     <script src="src/js/controller/knnAttributeSelectionController.js" charset="utf-8"></script>
+    <script src="src/js/controller/kiviatAttributeSelectionController.js" charset="utf-8"></script>
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
@@ -189,12 +190,33 @@
                         <li class="active"><a href="#">Home</a></li>
                     </ul> -->
 
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <!-- KNN controller -->
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
                         KNN Attributes Used
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl">
                         <!-- populating list in controller -->
+                        <!-- <div class="modal-footer">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                Close
+                            </button>
+                        </div> -->
+                    </ul>
+
+                    <!-- kiviat axes controller -->
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                        Patient Axes Control
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu col-sm-12 col-md-3" id="kiviatAttributesControl">
+                        <!-- populating list in controller -->
+                        <!-- <div class="modal-footer">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                Close
+                            </button>
+                        </div> -->
                     </ul>
 
                     <button class="btn btn-default navbar-btn" id="add-patient-button">
