@@ -113,19 +113,36 @@ let KiviatDiagramView = function(targetID) {
         for (let attributeInd in App.kiviatAttributes) {
             self.legendSvg.append("text")
                 .attr("x", 15)
-                .attr("y", 105 + attributeInd * 12)
-                .style("font-size", "8px")
+                .attr("y", 105 + attributeInd * 8)
+                .style("font-size", "7px")
                 .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
         }
     }
 
 
     function update(patients) {
+        console.log("i am update")
         // console.log(patients.subject);
         // console.log(patients.neighbors);
 
         // console.log(App.kiviatAttributes.length);
+        if(App.controllers.kiviatAttrSelector.getKiviatTrigger()){
+            console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
+            App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
+            console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
+            self.subjectElement.select("svg").remove();
+            self.neighborsElement.selectAll("svg").remove();
+            self.legendElement.select("svg").remove();
+
+            init();
+            commonMethodForKnnAndKiviat(patients);
+        }else{
+            commonMethodForKnnAndKiviat(patients);
+        }        
+    }
+
+    function commonMethodForKnnAndKiviat(patients){
         if (patients.subject.score) {
             delete patients.subject.score;
         }
@@ -140,20 +157,25 @@ let KiviatDiagramView = function(targetID) {
 
         // console.log(patients.subject)
 
-        // update the kiviat diagram of the subject
-        //need to create for axes control
-        self.subjectSvg
-            .datum(patients.subject)
-            .each(updateKiviatPatient);
-
         // JOIN new patients with old elements.
         let neighborBind = self.neighborsSvgs.data(patients.neighbors);
 
         // EXIT old patients not present in new pateint list
         neighborBind.exit().remove();
 
+
+        // update the kiviat diagram of the subject
+        //need to create for axes control
+        self.subjectSvg
+            .datum(patients.subject)
+            // .each(createKiviatDiagram)
+            .each(updateKiviatPatient);
+
+
+
         // UPDATE kiviat diagrams of old patients present in new patient list
         d3.selectAll(".patientNeighborSVG")
+            // .each(createKiviatDiagram)
             .each(updateKiviatPatient);
 
         // ENTER new patients in new pateint list, and create kiviat diagrams along with axes
@@ -167,6 +189,7 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         self.neighborsSvgs = d3.selectAll(".patientNeighborSVG");
+        
     }
 
     /* create the axes of kiviat diagram */
@@ -228,6 +251,7 @@ let KiviatDiagramView = function(targetID) {
                 .attr("y", axisEndpoint.y + 4)
                 .style("font-size", "6px")
                 .style("text-anchor", "middle")
+                // .attr("transform", "rotate(0)")
                 // .text(j);
                 .text(App.kiviatAttributes[j]);
 
@@ -277,6 +301,9 @@ let KiviatDiagramView = function(targetID) {
 
     /* draw the kiviat diagram for each patient */
     function updateKiviatPatient(d, i) {
+
+        // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
+        // console.log(i)
 
         let SVG = d3.select(this);
 

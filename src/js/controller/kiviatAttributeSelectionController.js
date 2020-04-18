@@ -3,7 +3,8 @@
 let kiviatAttributeSelectionController = function(listID) {
     let self = {
         list: null,
-        checkboxStates: {}
+        checkboxStates: {},
+        kiviatTrigger: false
     };
 
     init();
@@ -63,17 +64,30 @@ let kiviatAttributeSelectionController = function(listID) {
         let includedAttributes = _.filter(Object.keys(self.checkboxStates), o => self.checkboxStates[o]);
 
         App.kiviatAttributes = includedAttributes;
-        console.log(App.kiviatAttributes)
+        // console.log(App.kiviatAttributes)
 
         let patients = App.controllers.patientSelector.getPatientWithGroup();
-        console.log(App.controllers.patientSelector.getPatientWithGroup())
-        console.log(patients)
+        // console.log(App.controllers.patientSelector.getPatientWithGroup())
+        // console.log(patients)
+        self.kiviatTrigger = true;
+        // console.log(self.kiviatTrigger)
+
         App.views.kiviatDiagram.update(patients);
+
+        // App.views.kiviatDiagram.init();
 
         // let subjectID = App.models.applicationState.getSelectedPatientID();
         // let updatedPatients = getUpdatedData(subjectID);
 
         // updateViews(patients);
+    }
+
+    function getKiviatTrigger(){
+        return self.kiviatTrigger;
+    }
+
+    function setKiviatTrigger(trigger){
+        self.kiviatTrigger = trigger;
     }
 
     // /* get the updated selected patient and knn */
@@ -105,7 +119,9 @@ let kiviatAttributeSelectionController = function(listID) {
     //     }
     // }
 
-    // return {
-    //     updateSelectedCheckboxes
-    // };
+    return {
+        // updateSelectedCheckboxes
+        getKiviatTrigger,
+        setKiviatTrigger
+    };
 };
