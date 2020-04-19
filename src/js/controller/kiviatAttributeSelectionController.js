@@ -4,8 +4,10 @@ let kiviatAttributeSelectionController = function(listID) {
     let self = {
         list: null,
         checkboxStates: {},
+        // initialChecked : ["AgeAtTx", "Gender", "Race", "T-category", "N-category"],
         kiviatTrigger: false
     };
+    
 
     init();
 

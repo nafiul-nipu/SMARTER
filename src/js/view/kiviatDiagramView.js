@@ -361,13 +361,20 @@ let KiviatDiagramView = function(targetID) {
                 self.attributeScales[attribute]
                     .domain(self.axes[attribute].domain)
                     .range(self.axes[attribute].range);
-                // console.log(self.attributeScales[attribute](d[attribute]))
-                xPoint = self.attributeScales[attribute](d[attribute]);                
+
+                // console.log(d[self.axes[attribute].name])
+                // console.log(attribute)
+                // console.log(d[attribute])
+                // console.log(self.attributeScales[attribute](d[self.axes[attribute].name]))
+                xPoint = self.attributeScales[attribute](d[self.axes[attribute].name]);                
             }else{
                 let linearAttributeScale = d3.scaleLinear()
                             .domain(self.axes[attribute].domain)
                             .range([5,35]);
                 xPoint = linearAttributeScale(d[attribute]);
+                // console.log(attribute)
+                // console.log(d[attribute])
+               
             }
 
 
@@ -375,7 +382,7 @@ let KiviatDiagramView = function(targetID) {
             //         .domain(self.axes[attribute].domain);
             // // console.log(self.attributeScales[attribute](d[attribute]))
             // let xPoint = self.attributeScales[attribute](d[attribute]);
-            // console.log(attribute, xPoint);
+            // console.log(linearAttributeScale());
 
 
             let endpoint = rotatePointOntoAxis(xPoint, attributeInd);

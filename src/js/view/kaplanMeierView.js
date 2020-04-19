@@ -62,10 +62,14 @@ let KaplanMeierView = function(targetID) {
             .attr("class", "legend")
             .attr("x", 80)
             .attr("y", attrValNum * 5)
-            .attr("width", 4)
-            .attr("height", 4)
+            .attr("width", 5)
+            .attr("height", 5)
             .style("fill", color)
-            .style("opacity", 0.5);
+            .style("opacity", 0.5)
+            .on("click", function(d){
+                console.log(color);
+                console.log("I am clicked");
+            });
 
         self.targetSvg.append("text")
             .attr("class", "legend")
