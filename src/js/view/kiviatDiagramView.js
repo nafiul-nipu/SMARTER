@@ -121,7 +121,7 @@ let KiviatDiagramView = function(targetID) {
 
 
     function update(patients) {
-        console.log("i am update")
+        // console.log("i am update")
         // console.log(patients.subject);
         // console.log(patients.neighbors);
 

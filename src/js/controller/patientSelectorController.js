@@ -81,7 +81,7 @@ let PatientSelectorController = function() {
         let updatedPatients = getUpdatedData(subjectID);
 
         self.patientWithGroup = updatedPatients;
-        console.log(self.patientWithGroup)
+        // console.log(self.patientWithGroup)
 
         updateViews(updatedPatients);
     }
