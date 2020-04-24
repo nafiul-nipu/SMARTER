@@ -21,15 +21,15 @@ let KaplanMeierView = function(targetID) {
 
         let bottomPartHeight = document.getElementById("buttonBottom").clientHeight ; 
         let navigationBarHeight = document.getElementById("title").clientHeight ;
-        let kaplanHeight = window.innerHeight - (bottomPartHeight + navigationBarHeight + 100);
+        let kaplanHeight = window.innerHeight - (bottomPartHeight + navigationBarHeight + 200);
         let kaplanWidth = self.targetElement.node().clientWidth;
 
         self.targetSvg = self.targetElement.append("svg")
             .attr("width", kaplanWidth)
             .attr("height", kaplanHeight)
-            .attr("viewBox", "0 0 " + kaplanHeight + " " + kaplanHeight)
+            .attr("viewBox", "0 0 140 100") // + kaplanHeight / 4 + " " + kaplanHeight / 4)
             .style("margin-left", "30px")
-            .attr("preserveAspectRatio", "xMidYMin");
+            // .attr("preserveAspectRatio", "xMidYMin");
 
         drawXAxis();
         drawYAxis();
