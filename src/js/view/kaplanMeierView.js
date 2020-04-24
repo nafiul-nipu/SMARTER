@@ -14,12 +14,21 @@ let KaplanMeierView = function(targetID) {
 
     function init() {
         self.targetElement = d3.select(targetID);
-        // console.log(self.targetElement)
+        console.log(self.targetElement.node())
+        console.log(window.innerHeight)
+        console.log(document.getElementById("buttonBottom").clientHeight)
+        console.log(document.getElementById("title").clientHeight)
+
+        let bottomPartHeight = document.getElementById("buttonBottom").clientHeight ; 
+        let navigationBarHeight = document.getElementById("title").clientHeight ;
+        let kaplanHeight = window.innerHeight - (bottomPartHeight + navigationBarHeight + 100);
+        let kaplanWidth = self.targetElement.node().clientWidth;
 
         self.targetSvg = self.targetElement.append("svg")
-            .attr("width", self.targetElement.node().clientWidth)
-            .attr("height", self.targetElement.node().clientHeight)
-            .attr("viewBox", "0 0 120 100")
+            .attr("width", kaplanWidth)
+            .attr("height", kaplanHeight)
+            .attr("viewBox", "0 0 " + kaplanHeight + " " + kaplanHeight)
+            .style("margin-left", "30px")
             .attr("preserveAspectRatio", "xMidYMin");
 
         drawXAxis();
