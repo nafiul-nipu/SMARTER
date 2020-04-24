@@ -81,6 +81,7 @@ let NomogramView = function (targetID) {
     /* initialize the nomoggram */
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
+        // console.log(self.targetElement.node().clientWidth)
         let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
         let titlefontSize = 0.045 * minSize;
         let tickfontSize = titlefontSize * 0.9;

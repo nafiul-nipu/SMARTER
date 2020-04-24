@@ -37,7 +37,7 @@ let KiviatDiagramView = function(targetID) {
         self.legendSvg = self.legendElement.append("svg")
             .attr("width", self.legendElement.node().clientWidth)
             .attr("height", self.legendElement.node().clientWidth * 2)
-            .attr("viewBox", "0 0 100 200")
+            .attr("viewBox", "0 0 100 250")
             .attr("preserveAspectRatio", "xMidYMid");
 
 
