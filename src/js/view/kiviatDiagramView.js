@@ -179,9 +179,13 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         // ENTER new patients in new pateint list, and create kiviat diagrams along with axes
-        neighborBind.enter().append("svg")
-            .attr("width", self.neighborsElement.node().clientWidth)
-            .attr("height", self.neighborsElement.node().clientHeight / patients.neighbors.length)
+        neighborBind.enter().append("div")
+            .attr("class", "col-md-2")
+            .style("margin-right", "10px")
+            .append("svg")
+            .attr("width", self.neighborsElement.node().clientWidth / patients.neighbors.length)
+            .attr("height", self.neighborsElement.node().clientHeight )
+            .style("margin-top", "20px")
             .attr("viewBox", "0 0 100 100")
             .attr("preserveAspectRatio", "xMidYMin")
             .attr("class", "patientNeighborSVG")

@@ -191,33 +191,33 @@
                     </ul> -->
 
                     <!-- KNN controller -->
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
                         KNN Attributes Used
                         <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl">
+                    </button> -->
+                    <!-- <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl"> -->
                         <!-- populating list in controller -->
                         <!-- <div class="modal-footer">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
                                 Close
                             </button>
                         </div> -->
-                    </ul>
+                    <!-- </ul> -->
 
                     <!-- kiviat axes controller -->
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
                         Patient Axes Control
                         <span class="caret"></span>
-                    </button>
+                    </button> -->
 
-                    <ul class="dropdown-menu col-sm-12 col-md-3" id="kiviatAttributesControl">
+                    <!-- <ul class="dropdown-menu col-sm-12 col-md-3" id="kiviatAttributesControl"> -->
                         <!-- populating list in controller -->
                         <!-- <div class="modal-footer">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
                                 Close
                             </button>
                         </div> -->
-                    </ul>
+                    <!-- </ul> -->
 
                     <button class="btn btn-default navbar-btn" id="add-patient-button">
                       <span class="glyphicon glyphicon-plus"></span>
@@ -479,17 +479,56 @@
                                 <!-- divided into two
                                 left one contains the subject's kiviat and legend
                                 right one contains the matching kiviats -->
-                                <div class="col-md-6 kiviatLeft">
+                                <div class="col-md-5 kiviatLeft">
                                     <!-- kiviat diagram legend -->
-                                    <div class="col-md-4" id="kiviatDiagram-legend">
+                                    <div class="col-md-5" id="kiviatDiagram-legend">
                                     </div>
 
                                     <!-- subject's kiviat diagram -->
-                                    <div class="col-md-8" id="kiviatDiagram-subject">
+                                    <div class="col-md-7" id="kiviatDiagram-subject">
                                     </div>
                                 </div>
                                 <!-- neghbors kiviat diagram -->
-                                <div class="col-md-6 kiviatRight" id="kiviatDiagram-neighbors">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- KNN controller -->
+                                            <button class="btn btn-default dropdown-toggle " type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                                KNN Attributes Used
+                                                <span class="caret"></span>
+                                            </button>
+                                            <!-- <div class="col-md-3" style="height: 100%;"> -->
+                                                <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown scrollCollapse" id="knnAttributesControl">
+                                                    <!-- populating list in controller -->
+                                                    <!-- <div class="modal-footer">
+                                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                                            Close
+                                                        </button>
+                                                    </div> -->
+                                                </ul>
+                                            <!-- </div> -->
+                                        </div>
+                                    
+                                    <div class="col-md-6">
+                                         <!-- kiviat axes controller -->
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                            Patient Axes Control
+                                            <span class="caret"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu col-sm-12 col-md-3 scrollCollapse" id="kiviatAttributesControl">
+                                            <!-- populating list in controller -->
+                                            <!-- <div class="modal-footer">
+                                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                                    Close
+                                                </button>
+                                            </div> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12 kiviatRight" id="kiviatDiagram-neighbors""></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

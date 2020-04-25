@@ -26,6 +26,7 @@ let kiviatAttributeSelectionController = function(listID) {
             .data(attributes)
             .enter().append("li")
             .attr("class", "checkbox-li")
+            // .attr("height", "100%")
             .each(function(d, i) {
                 let div = d3.select(this).append("div").attr("class", "checkbox");
 
