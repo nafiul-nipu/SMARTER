@@ -179,7 +179,7 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         // ENTER new patients in new pateint list, and create kiviat diagrams along with axes
-        console.log((self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10)
+        // console.log((self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10)
         neighborBind.enter().append("div")
             .attr("class", "col-md-2")
             .style("margin-right", "10px")

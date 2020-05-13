@@ -20,7 +20,9 @@ let NomogramView = function (targetID) {
             "filter": []
         },
         selectedPatientID: -1,
-        mode: null
+        mode: null,
+        navigationBarHeight : document.getElementById("title").clientHeight,
+        navigationBarWidth : document.getElementById("title").clientWidth,
     };
 
     init();
@@ -29,9 +31,18 @@ let NomogramView = function (targetID) {
         self.targetID = targetID;
         self.targetElement = d3.select(targetID);
 
+        
+
+        console.log(self.navigationBarHeight)
+        console.log(self.targetElement.node().clientWidth)
+        // console.log(nomogramHeigth)
+        // console.log(nomogramWidth)
+
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
-            .attr("width", self.targetElement.node().clientWidth)
-            .attr("height", self.targetElement.node().clientHeight)
+            // .attr("width", self.targetElement.node().clientWidth)
+            // .attr("height", self.targetElement.node().clientHeight)
+            .attr("width", self.navigationBarWidth)
+            .attr("height", self.navigationBarHeight)
             .attr("viewBox", "0 0 200 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
@@ -82,7 +93,12 @@ let NomogramView = function (targetID) {
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
         // console.log(self.targetElement.node().clientWidth)
-        let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
+        // let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
+
+        let nomogramHeigth =  (window.innerHeight / 2) - (2 * self.navigationBarHeight);
+        let nomogramWidth = self.targetElement.node().clientWidth;
+        
+        let minSize = Math.min(nomogramWidth, nomogramHeigth);
         let titlefontSize = 0.045 * minSize;
         let tickfontSize = titlefontSize * 0.9;
         self.strokewidth.filter = 0.006 * minSize;
