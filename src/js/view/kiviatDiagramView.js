@@ -37,7 +37,7 @@ let KiviatDiagramView = function(targetID) {
         self.legendSvg = self.legendElement.append("svg")
             .attr("width", self.legendElement.node().clientWidth)
             .attr("height", self.legendElement.node().clientWidth * 2)
-            .attr("viewBox", "0 0 100 200")
+            .attr("viewBox", "0 0 100 250")
             .attr("preserveAspectRatio", "xMidYMid");
 
 
@@ -131,9 +131,9 @@ let KiviatDiagramView = function(targetID) {
             App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
             console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
-            self.subjectElement.select("svg").remove();
-            self.neighborsElement.selectAll("svg").remove();
-            self.legendElement.select("svg").remove();
+            self.subjectElement.select("div").remove();
+            self.neighborsElement.selectAll("div").remove();
+            self.legendElement.select("div").remove();
 
             init();
             commonMethodForKnnAndKiviat(patients);
@@ -179,9 +179,15 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         // ENTER new patients in new pateint list, and create kiviat diagrams along with axes
-        neighborBind.enter().append("svg")
-            .attr("width", self.neighborsElement.node().clientWidth)
-            .attr("height", self.neighborsElement.node().clientHeight / patients.neighbors.length)
+        console.log((self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10)
+        neighborBind.enter().append("div")
+            .attr("class", "col-md-2")
+            .style("margin-right", "10px")
+            .append("svg")
+            .attr("width", (self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10 ) //minus margin-right
+            .attr("height", self.neighborsElement.node().clientHeight )
+            .style("margin-top", "20px")
+            // .style("margin-right", "10px")
             .attr("viewBox", "0 0 100 100")
             .attr("preserveAspectRatio", "xMidYMin")
             .attr("class", "patientNeighborSVG")
