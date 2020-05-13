@@ -33,8 +33,8 @@ let NomogramView = function (targetID) {
 
         
 
-        console.log(self.navigationBarHeight)
-        console.log(self.targetElement.node().clientWidth)
+        // console.log(self.navigationBarHeight)
+        // console.log(self.targetElement.node().clientWidth)
         // console.log(nomogramHeigth)
         // console.log(nomogramWidth)
 
@@ -43,7 +43,7 @@ let NomogramView = function (targetID) {
             // .attr("height", self.targetElement.node().clientHeight)
             .attr("width", self.navigationBarWidth)
             .attr("height", self.navigationBarHeight)
-            .attr("viewBox", "0 0 200 100")
+            .attr("viewBox", "0 0 140 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
         const axes = App.models.axesModel.getAxesData();
@@ -92,7 +92,7 @@ let NomogramView = function (targetID) {
     /* initialize the nomoggram */
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
-        // console.log(self.targetElement.node().clientWidth)
+        // console.log(window.innerHeight)
         // let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
 
         let nomogramHeigth =  (window.innerHeight / 2) - (2 * self.navigationBarHeight);
