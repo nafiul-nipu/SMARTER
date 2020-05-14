@@ -1,5 +1,5 @@
 "use strict"
-
+// change the height in the d3.nomogram.js
 var App = App || {};
 
 let NomogramView = function (targetID) {
@@ -21,7 +21,7 @@ let NomogramView = function (targetID) {
         },
         selectedPatientID: -1,
         mode: null,
-        navigationBarHeight : document.getElementById("title").clientHeight,
+        // navigationBarHeight : document.getElementById("title").clientHeight,
         
     };
 
@@ -31,18 +31,18 @@ let NomogramView = function (targetID) {
         self.targetID = targetID;
         self.targetElement = d3.select(targetID);
 
-        let navigationBarWidth = self.targetElement.node().clientWidth;        
+        // let navigationBarWidth = self.targetElement.node().clientWidth;        
 
-        // console.log(self.navigationBarHeight)
-        // console.log(self.targetElement.node().clientWidth)
-        // console.log(nomogramHeigth)
+        console.log(document.getElementById("title").clientHeight)
+        //  console.log(self.targetElement.node().clientWidth)
+        //  console.log(self.targetElement.node().clientHeight)
         // console.log(nomogramWidth)
         
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
-            // .attr("width", self.targetElement.node().clientWidth)
-            // .attr("height", self.targetElement.node().clientHeight)
-            .attr("width", self.navigationBarWidth)
-            .attr("height", self.navigationBarHeight)
+            .attr("width", self.targetElement.node().clientWidth)
+            .attr("height", 80)
+            // .attr("width", self.navigationBarWidth)
+            // .attr("height", self.navigationBarHeight)
             .attr("viewBox", "0 0 140 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
@@ -93,12 +93,12 @@ let NomogramView = function (targetID) {
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
         // console.log(window.innerHeight)
-        // let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
+        let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
 
-        let nomogramHeigth =  (window.innerHeight / 2) - (2 * self.navigationBarHeight);
-        let nomogramWidth = self.targetElement.node().clientWidth;
+        // let nomogramHeigth =  (window.innerHeight / 2) - (2 * self.navigationBarHeight);
+        // let nomogramWidth = self.targetElement.node().clientWidth;
         
-        let minSize = Math.min(nomogramWidth, nomogramHeigth);
+        // let minSize = Math.min(nomogramWidth, nomogramHeigth);
         let titlefontSize = 0.045 * minSize;
         let tickfontSize = titlefontSize * 0.9;
         self.strokewidth.filter = 0.006 * minSize;
@@ -193,17 +193,17 @@ let NomogramView = function (targetID) {
             self.legendSVG.append("line")
                 .attr("class", "nomogramLegend")
                 .attr("x1", 150)
-                .attr("y1", 9 + 5 * valInd)
+                .attr("y1", 9 + 8 * valInd)
                 .attr("x2", 155)
-                .attr("y2", 9 + 5 * valInd)
+                .attr("y2", 9 + 8 * valInd)
                 .style("stroke", App.attributeColors(attrVals[valInd]))
-                .style("stroke-width", "0.6px");
+                .style("stroke-width", "5px");
 
             self.legendSVG.append("text")
                 .attr("class", "nomogramLegend")
                 .attr("x", 160)
-                .attr("y", 10 + 5 * valInd)
-                .style("font-size", "4px")
+                .attr("y", 10 + 10 * valInd)
+                .style("font-size", "10px")
                 .text(attrVals[valInd]);
         }
     }
