@@ -22,7 +22,7 @@ let NomogramView = function (targetID) {
         selectedPatientID: -1,
         mode: null,
         navigationBarHeight : document.getElementById("title").clientHeight,
-        navigationBarWidth : document.getElementById("title").clientWidth,
+        
     };
 
     init();
@@ -31,13 +31,13 @@ let NomogramView = function (targetID) {
         self.targetID = targetID;
         self.targetElement = d3.select(targetID);
 
-        
+        let navigationBarWidth = self.targetElement.node().clientWidth;        
 
         // console.log(self.navigationBarHeight)
         // console.log(self.targetElement.node().clientWidth)
         // console.log(nomogramHeigth)
         // console.log(nomogramWidth)
-
+        
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
             // .attr("width", self.targetElement.node().clientWidth)
             // .attr("height", self.targetElement.node().clientHeight)
