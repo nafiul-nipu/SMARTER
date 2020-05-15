@@ -237,8 +237,19 @@ div {
   border: 2px solid black;
   border-radius: 5px;
   display: none;
+  height: auto;
 }
 
 .navbar-grey {
   background-color: #f4f4f4;
+}
+
+@media screen and (max-height: 650px){
+  #nomogramControl{
+    height: 50px;
+  }
+  #mostSimilarPatient{
+    margin-left: 650px
+  }
+
 }

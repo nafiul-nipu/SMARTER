@@ -21,6 +21,7 @@ let NomogramView = function (targetID) {
         },
         selectedPatientID: -1,
         mode: null,
+        legendSvgHeight : 60
         // navigationBarHeight : document.getElementById("title").clientHeight,
         
     };
@@ -40,10 +41,10 @@ let NomogramView = function (targetID) {
         
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
             .attr("width", self.targetElement.node().clientWidth)
-            .attr("height", 80)
+            .attr("height", self.legendSvgHeight)
             // .attr("width", self.navigationBarWidth)
             // .attr("height", self.navigationBarHeight)
-            .attr("viewBox", "0 0 140 100")
+            // .attr("viewBox", "0 0 140 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
         const axes = App.models.axesModel.getAxesData();
@@ -99,9 +100,9 @@ let NomogramView = function (targetID) {
         // let nomogramWidth = self.targetElement.node().clientWidth;
         
         // let minSize = Math.min(nomogramWidth, nomogramHeigth);
-        let titlefontSize = 0.045 * minSize;
+        let titlefontSize = 0.1 * minSize;
         let tickfontSize = titlefontSize * 0.9;
-        self.strokewidth.filter = 0.006 * minSize;
+        self.strokewidth.filter = 0.008 * minSize;
         self.strokewidth.knn = 0.008 * minSize;
 
         self.nomogram = new Nomogram()
@@ -190,19 +191,19 @@ let NomogramView = function (targetID) {
         // console.log(attr, attrVals);
 
         for (let valInd in attrVals) {
-            self.legendSVG.append("line")
+            self.legendSVG.append("rect")
                 .attr("class", "nomogramLegend")
-                .attr("x1", 150)
-                .attr("y1", 9 + 8 * valInd)
-                .attr("x2", 155)
-                .attr("y2", 9 + 8 * valInd)
-                .style("stroke", App.attributeColors(attrVals[valInd]))
-                .style("stroke-width", "5px");
+                .attr("x", 100 + 110 * valInd)
+                .attr("y", self.legendSvgHeight / 2)
+                .attr("width", 8)
+                .attr("height", 8)
+                .style("fill", App.attributeColors(attrVals[valInd]))
+                .style("opacity", "0.5");
 
             self.legendSVG.append("text")
                 .attr("class", "nomogramLegend")
-                .attr("x", 160)
-                .attr("y", 10 + 10 * valInd)
+                .attr("x", 115 + 110 * valInd)
+                .attr("y", 8 + (self.legendSvgHeight / 2))
                 .style("font-size", "10px")
                 .text(attrVals[valInd]);
         }
