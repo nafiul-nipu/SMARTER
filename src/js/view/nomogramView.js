@@ -21,7 +21,7 @@ let NomogramView = function (targetID) {
         },
         selectedPatientID: -1,
         mode: null,
-        legendSvgHeight : 60
+        legendSvgHeight : 40
         // navigationBarHeight : document.getElementById("title").clientHeight,
         
     };
@@ -34,7 +34,7 @@ let NomogramView = function (targetID) {
 
         // let navigationBarWidth = self.targetElement.node().clientWidth;        
 
-        console.log(document.getElementById("title").clientHeight)
+        // console.log(document.getElementById("title").clientHeight)
         //  console.log(self.targetElement.node().clientWidth)
         //  console.log(self.targetElement.node().clientHeight)
         // console.log(nomogramWidth)
@@ -202,7 +202,7 @@ let NomogramView = function (targetID) {
 
             self.legendSVG.append("text")
                 .attr("class", "nomogramLegend")
-                .attr("x", 115 + 110 * valInd)
+                .attr("x", 110 + 110 * valInd)
                 .attr("y", 8 + (self.legendSvgHeight / 2))
                 .style("font-size", "10px")
                 .text(attrVals[valInd]);

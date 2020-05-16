@@ -396,32 +396,34 @@
                                     <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
                                 <!-- </button>                             -->
                             </div>
-                            <!-- patient dropdown menu -->
-                            <div class="row patient-dropdown-wrapper" id="similarPatientList">
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label for="patientSel">Patient:</label>
-                                        <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- kiviat diagram itself -->
                         <div class="row" id="kiviatDiagram">
                             <!-- divided into two
                             left one contains the subject's kiviat and legend
                             right one contains the matching kiviats -->
-                            <div class="col-md-5 kiviatLeft">
-                                <!-- kiviat diagram legend -->
-                                <div class="col-md-5" id="kiviatDiagram-legend">
+                            <div class="col-md-4 kiviatLeft">
+                                <!-- patient dropdown menu -->
+                                <div class="row patient-dropdown-wrapper" id="similarPatientList">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label for="patientSel">Patient:</label>
+                                            <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div>
+                                    <!-- kiviat diagram legend -->
+                                    <div class="col-md-5" id="kiviatDiagram-legend">
+                                    </div>
 
-                                <!-- subject's kiviat diagram -->
-                                <div class="col-md-7" id="kiviatDiagram-subject">
+                                    <!-- subject's kiviat diagram -->
+                                    <div class="col-md-7" id="kiviatDiagram-subject">
+                                    </div>
                                 </div>
                             </div>
                             <!-- neghbors kiviat diagram -->
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <!-- KNN controller -->
