@@ -69,22 +69,22 @@ div {
 #allContent {
   box-sizing: border-box;
   width: 100%;
-  height: 92.5%;
+  height: 92%;
 }
 
-#right {
-  box-sizing: border-box;
-  height: 100%;
-}
+// #right {
+//   box-sizing: border-box;
+//   height: 50%;
+// }
 
 #top {
   box-sizing: border-box;
-  height: 50%;
+  height: 46%;
 }
 
 #bottom {
   box-sizing: border-box;
-  height: 50%;
+  height: 46%;
 }
 
 // #kaplanTop{
@@ -108,7 +108,7 @@ div {
 
 .contentDiv {
   box-sizing: border-box;
-  height: 100%;
+  // height: 100%;
   /*border: 1px solid black;*/
 
   //background-color: rgba(127, 82, 255, 0.75);
@@ -237,8 +237,26 @@ div {
   border: 2px solid black;
   border-radius: 5px;
   display: none;
+  height: auto;
 }
 
 .navbar-grey {
   background-color: #f4f4f4;
+}
+.kiviatLegendText{
+  font-size: 8px;
+}
+
+@media screen and (max-height: 650px){
+  #nomogramControl{
+    height: 50px;
+  }
+  #mostSimilarPatient{
+    margin-left: 650px
+  }
+  .kiviatLegendText{
+    font-size: 5px;
+    font-weight: bold;
+  }
+
 }

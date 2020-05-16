@@ -179,91 +179,58 @@
   </div>
 
 
-    <div class="container-fluid dashboard align-top">
-        <!-- navigation bar on the top -->
-        <div class="row" id="title">
-            <nav class="navbar">
-                <div class="container-fluid navbar-grey">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
-                    </div>
-                    <!-- <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                    </ul> -->
-
-                    <!-- KNN controller -->
-                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
-                        KNN Attributes Used
-                        <span class="caret"></span>
-                    </button> -->
-                    <!-- <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl"> -->
-                        <!-- populating list in controller -->
-                        <!-- <div class="modal-footer">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
-                                Close
+  <div class="container-fluid dashboard align-top">
+    <!-- navigation bar on the top -->
+    <div class="row" id="title">
+        <nav class="navbar">
+            <div class="container-fluid navbar-grey">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
+                </div>
+                <!-- <div id="nomosaic" class="white-bg text-center"> -->
+                    <!-- <div class="row dropdown-control-row"> -->
+                        <!-- <div class=""> -->
+                            <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
+                            <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
+                            <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
+                            <!-- <a href="#" target="_blank" id="statisticsPatients"><button class="btn btn-default btn-sm">Statistics</button></a> -->
+                            <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
+                                Statistics
+                              </button>
+                            <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
+                            Cohort
                             </button>
-                        </div> -->
-                    <!-- </ul> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
 
-                    <!-- kiviat axes controller -->
-                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
-                        Patient Axes Control
-                        <span class="caret"></span>
-                    </button> -->
+                <button class="btn btn-default navbar-btn" id="add-patient-button">
+                  <span class="glyphicon glyphicon-plus"></span>
+                  Add Patient
+                </button>
 
-                    <!-- <ul class="dropdown-menu col-sm-12 col-md-3" id="kiviatAttributesControl"> -->
-                        <!-- populating list in controller -->
-                        <!-- <div class="modal-footer">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
-                                Close
-                            </button>
-                        </div> -->
-                    <!-- </ul> -->
-
-                    <button class="btn btn-default navbar-btn" id="add-patient-button">
-                      <span class="glyphicon glyphicon-plus"></span>
-                      Add Patient
+                <ul class="nav navbar-nav navbar-right">
+                    <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                      About
+                    </button>
+                    <button type="button" class="btn btn-link navbar-btn" id="HelpInfo" data-toggle="modal" data-target="#OverallHelpInfo">
+                      <span class="glyphicon glyphicon-question-sign"></span>
+                      Help
                     </button>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
-                          <span class="glyphicon glyphicon-info-sign"></span>
-                          About
-                        </button>
-                        <button type="button" class="btn btn-link navbar-btn" id="HelpInfo" data-toggle="modal" data-target="#OverallHelpInfo">
-                          <span class="glyphicon glyphicon-question-sign"></span>
-                          Help
-                        </button>
 
-                          <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OverallHelpInfo">
-    Launch demo modal
-  </button> -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- nav bar ends -->
 
-                        <!-- <div class="dropdown"> -->
-                        <!--<button class="btn btn-basic navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">-->
-                              <!--<span class="glyphicon glyphicon-wrench"></span>-->
-                              <!--&lt;!&ndash; Options &ndash;&gt;-->
-                        <!--</button>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li class="checkbox-li">-->
-                                <!--<input type="checkbox" id="cookieCheckbox" checked>-->
-                                <!--<label for="cookieCheckbox">Save Options Between Sessions</label>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                        <!-- </div> -->
-
-
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- nav bar ends -->
-
-        <div class="row" id="allContent">
+    <div class="row" id="allContent">
+        <div class="row" id="top">
             <div class="col-md-3">
                 <!-- kaplan meier plot -->
-            <div class="row" id="kaplanTop">
+            <!-- <div class="row" id="kaplanTop"> -->
                 <div class="col contentWrapper kaplanDiv">
                     <div class="contentDiv">
                         <div class="infoDiv" id="infoDiv-kaplanMeier">
@@ -292,44 +259,8 @@
                     </div>
 
                 </div>
-            </div>
-            <div class="row" id="buttonBottom">
-                <!-- tables -->
-                <div class="col contentWrapper mosaicDiv" style="margin-right: 30px;">
-                    <div class="contentDiv">
-                        <div class="infoDiv" id="infoDiv-mosaic">
-
-                        </div>
-                        <div id="mosaicHeader">
-                            <div class="row viewTitleDiv">
-                                Statistics and Cohort
-                                <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#statHelpModal" id="HelpInfo-mosaic"></span>
-                            </div>
-                        </div>
-
-                        <div id="nomosaic" class="white-bg text-center">
-                            <div class="row dropdown-control-row">
-                                <!--<div class="col-md-12 pad">-->
-                                    <!--<span class="">Total Patients: <span id="total-patient-span"></span></span>-->
-                                <!--</div>-->
-                                <div class="">
-                                    <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
-                                    <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
-                                    <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
-                                    <!-- <a href="#" target="_blank" id="statisticsPatients"><button class="btn btn-default btn-sm">Statistics</button></a> -->
-                                    <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
-                                        Statistics
-                                      </button>
-                                    <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
-                                    Cohort
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <!-- </div> -->
+            
 
             </div>
             
@@ -344,9 +275,9 @@
               </div>
                 <div class="contentDiv" id="nomogramControls">
                     <div class="row dropdown-control-row">
-                            <h4>
+                            <h5>
                                     Nomogram Controls
-                            </h4>
+                            </h5>
                         <!-- first dropdown menu -->
                         <div class="col-md-12">
 
@@ -380,7 +311,7 @@
                     <div class="row axis-control-row">
                         <div class="col-md-10">
                             <div class="row">
-                                <h4>Edit Axes:</h4>
+                                <h5>Edit Axes:</h5>
                                 <div class="form-group">
                                     <label for="nomogramAxisSelect">Selected Axis:</label>
                                     <select id="nomogramAxisSelect" class="form-control">
@@ -415,12 +346,12 @@
             and kaplan meier and the table on botom -->
             <div class="col-md-7" id="right">
 
-                <div class="row" id="top">
-                    <div class="col-md-12 contentWrapper nomogramDiv">
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-12 contentWrapper nomogramDiv"> -->
                         <div class="contentDiv">
-                            <div class="infoDiv" id="infoDiv-nomogram">
+                            <!-- <div class="infoDiv" id="infoDiv-nomogram">
 
-                            </div>
+                            </div> -->
                             <!-- just the title and stuffs -->
                             <div id="nomogramHeader">
                                 <div class="row viewTitleDiv">
@@ -445,28 +376,36 @@
                             <div id="nomogram">
                             </div>
                         </div>
-                    </div>
-                </div>
+                    <!-- </div> -->
+                <!-- </div> -->
 
-                <div class="row" id="bottom">
-                    <div class="contentWrapper kiviatDiv">
-                        <div class="contentDiv">
-                            
-                            <div class="infoDiv" id="infoDiv-kiviat">
-        
+            </div>
+        </div>
+
+
+        <!-- <div class="row"> -->
+            <div class="row" id="bottom">
+                <div class="contentWrapper kiviatDiv">
+                    <div class="contentDiv">
+                        <!-- kiviat header - title and dropdown -->
+                        <div class = "row" id="kiviatHeader">
+                            <!-- kiviat title  -->
+                            <div class="row viewTitleDiv" id="mostSimilarPatient">
+                                Most Similar Patients
+                            <!-- Button trigger modal -->
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
+                                    <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
+                                <!-- </button>                             -->
                             </div>
-                            <!-- kiviat header - title and dropdown -->
-                            <div class = "row" id="kiviatHeader">
-                                <!-- kiviat title  -->
-                                <div class="row viewTitleDiv">
-                                    Most Similar Patients
-                                <!-- Button trigger modal -->
-                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
-                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
-                                    <!-- </button>                             -->
-                                </div>
+                        </div>
+                        <!-- kiviat diagram itself -->
+                        <div class="row" id="kiviatDiagram">
+                            <!-- divided into two
+                            left one contains the subject's kiviat and legend
+                            right one contains the matching kiviats -->
+                            <div class="col-md-4 kiviatLeft">
                                 <!-- patient dropdown menu -->
-                                <div class="row patient-dropdown-wrapper">
+                                <div class="row patient-dropdown-wrapper" id="similarPatientList">
                                     <div class="form-inline">
                                         <div class="form-group">
                                             <label for="patientSel">Patient:</label>
@@ -474,13 +413,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- kiviat diagram itself -->
-                            <div class="row" id="kiviatDiagram">
-                                <!-- divided into two
-                                left one contains the subject's kiviat and legend
-                                right one contains the matching kiviats -->
-                                <div class="col-md-5 kiviatLeft">
+                                <div>
                                     <!-- kiviat diagram legend -->
                                     <div class="col-md-5" id="kiviatDiagram-legend">
                                     </div>
@@ -489,59 +422,59 @@
                                     <div class="col-md-7" id="kiviatDiagram-subject">
                                     </div>
                                 </div>
-                                <!-- neghbors kiviat diagram -->
-                                <div class="col-md-7">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- KNN controller -->
-                                            <button class="btn btn-default dropdown-toggle " type="button" data-toggle="collapse" data-target="#knnAttributesControl">
-                                                KNN Attributes Used
-                                                <span class="caret"></span>
-                                            </button>
-                                            <!-- <div class="col-md-3" style="height: 100%;"> -->
-                                                <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown scrollCollapse" id="knnAttributesControl">
-                                                    <!-- populating list in controller -->
-                                                    <!-- <div class="modal-footer">
-                                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
-                                                            Close
-                                                        </button>
-                                                    </div> -->
-                                                </ul>
-                                            <!-- </div> -->
-                                        </div>
-                                    
+                            </div>
+                            <!-- neghbors kiviat diagram -->
+                            <div class="col-md-8">
+                                <div class="row">
                                     <div class="col-md-6">
-                                         <!-- kiviat axes controller -->
-                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
-                                            Patient Axes Control
+                                        <!-- KNN controller -->
+                                        <button class="btn btn-default dropdown-toggle " type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                            KNN Attributes Used
                                             <span class="caret"></span>
                                         </button>
+                                        <!-- <div class="col-md-3" style="height: 100%;"> -->
+                                            <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown scrollCollapse" id="knnAttributesControl">
+                                                <!-- populating list in controller -->
+                                                <!-- <div class="modal-footer">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                                        Close
+                                                    </button>
+                                                </div> -->
+                                            </ul>
+                                        <!-- </div> -->
+                                    </div>
+                                
+                                <div class="col-md-6">
+                                     <!-- kiviat axes controller -->
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                        Patient Axes Control
+                                        <span class="caret"></span>
+                                    </button>
 
-                                        <ul class="dropdown-menu col-sm-12 col-md-3 scrollCollapse" id="kiviatAttributesControl">
-                                            <!-- populating list in controller -->
-                                            <!-- <div class="modal-footer">
-                                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
-                                                    Close
-                                                </button>
-                                            </div> -->
-                                        </ul>
-                                    </div>
+                                    <ul class="dropdown-menu col-sm-12 col-md-3 scrollCollapse" id="kiviatAttributesControl">
+                                        <!-- populating list in controller -->
+                                        <!-- <div class="modal-footer">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                                Close
+                                            </button>
+                                        </div> -->
+                                    </ul>
                                 </div>
-                                    <div class="row">
-                                        <div class="col-md-12 kiviatRight" id="kiviatDiagram-neighbors"></div>
-                                    </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-12 kiviatRight" id="kiviatDiagram-neighbors""></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-
+                
             </div>
-
-        </div>
+        <!-- </div> -->
 
     </div>
+
+</div>
 
 
 <!-- cohort view modal -->

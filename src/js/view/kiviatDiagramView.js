@@ -19,15 +19,21 @@ let KiviatDiagramView = function(targetID) {
     };
 
     function init() {
+        
         self.subjectElement = d3.select(targetID + "-subject");
         self.neighborsElement = d3.select(targetID + "-neighbors");
         self.legendElement = d3.select(targetID + "-legend");
+
+        let titleHeight = document.getElementById("title").clientHeight;
+
+        console.log(( window.innerHeight / 2 ) - (2 * titleHeight))
+        console.log(self.subjectElement.node().clientHeight)
 
         self.axes = App.models.axesModel.getAxesData();
 
         self.subjectSvg = self.subjectElement.append("svg")
             .attr("width", self.subjectElement.node().clientWidth)
-            .attr("height", self.subjectElement.node().clientHeight)
+            .attr("height", ( window.innerHeight / 2 ) - (2 * titleHeight))
             .attr("viewBox", "0 0 100 100")
             .attr("preserveAspectRatio", "xMidYMid")
             .each(createKiviatDiagram);
@@ -94,7 +100,7 @@ let KiviatDiagramView = function(targetID) {
             .attr("x", 15)
             .attr("y", 10)
             .attr("width", 10)
-            .attr("height", 80)
+            .attr("height", 50)
             .style("opacity", 0.75);
 
         let survivalRateText = ["1", "Surv. Rate", "0"];
@@ -102,7 +108,7 @@ let KiviatDiagramView = function(targetID) {
         for (let i = 0; i < 3; i++) {
             self.legendSvg.append("text")
                 .attr("x", 30)
-                .attr("y", 16 + 37 * i)
+                .attr("y", 16 + 22 * i)
                 .style("font-size", "8px")
                 .style("font-weight", "bold")
                 .text(survivalRateText[i]);
@@ -112,9 +118,10 @@ let KiviatDiagramView = function(targetID) {
         // axis labels
         for (let attributeInd in App.kiviatAttributes) {
             self.legendSvg.append("text")
+                .attr("class", "kiviatLegendText")
                 .attr("x", 15)
-                .attr("y", 105 + attributeInd * 8)
-                .style("font-size", "7px")
+                .attr("y", 70 + attributeInd * 7)
+                // .style("font-size", "8px") //changed in the style.less
                 .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
         }
     }
@@ -131,9 +138,9 @@ let KiviatDiagramView = function(targetID) {
             App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
             console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
-            self.subjectElement.select("div").remove();
-            self.neighborsElement.selectAll("div").remove();
-            self.legendElement.select("div").remove();
+            self.subjectElement.select("svg").remove();
+            self.neighborsElement.selectAll("svg").remove();
+            self.legendElement.select("svg").remove();
 
             init();
             commonMethodForKnnAndKiviat(patients);
@@ -179,13 +186,13 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         // ENTER new patients in new pateint list, and create kiviat diagrams along with axes
-        console.log((self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10)
+        // console.log((self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10)
         neighborBind.enter().append("div")
             .attr("class", "col-md-2")
             .style("margin-right", "10px")
             .append("svg")
-            .attr("width", (self.neighborsElement.node().clientWidth / patients.neighbors.length) - 10 ) //minus margin-right
-            .attr("height", self.neighborsElement.node().clientHeight )
+            .attr("width", (self.neighborsElement.node().clientWidth / patients.neighbors.length) - 40 ) //minus margin-right
+            .attr("height", ( window.innerHeight / 2 ) - (2 * document.getElementById("title").clientHeight) )
             .style("margin-top", "20px")
             // .style("margin-right", "10px")
             .attr("viewBox", "0 0 100 100")
@@ -255,7 +262,7 @@ let KiviatDiagramView = function(targetID) {
             axesGroup.append("text")
                 .attr("x", axisEndpoint.x)
                 .attr("y", axisEndpoint.y + 4)
-                .style("font-size", "6px")
+                .style("font-size", "5px")
                 .style("text-anchor", "middle")
                 // .attr("transform", "rotate(0)")
                 // .text(j);
