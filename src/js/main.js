@@ -46,6 +46,7 @@ less.pageLoadFinished.then(function() {
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
+        App.models.predictionModel = new predictionModel();
 
 
     }

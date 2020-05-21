@@ -26,8 +26,8 @@ let KiviatDiagramView = function(targetID) {
 
         let titleHeight = document.getElementById("title").clientHeight;
 
-        console.log(( window.innerHeight / 2 ) - (2 * titleHeight))
-        console.log(self.subjectElement.node().clientHeight)
+        // console.log(( window.innerHeight / 2 ) - (2 * titleHeight))
+        // console.log(self.subjectElement.node().clientHeight)
 
         self.axes = App.models.axesModel.getAxesData();
 
