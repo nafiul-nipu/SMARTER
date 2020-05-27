@@ -46,7 +46,9 @@ less.pageLoadFinished.then(function() {
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
-        App.models.predictionModel = new predictionModel();
+        // App.models.logisticRegression = new logisticRegression();
+        // App.models.logisticRegression.get_data();
+        App.models.predictiveAnalysis = new predictiveAnalysis()
 
 
     }
@@ -122,6 +124,8 @@ less.pageLoadFinished.then(function() {
                 App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
                 App.views.stats.updatePatientsCount();
                 App.views.nomogram.setNomogramSelector("#nomogram-selector");
+
+                App.models.predictiveAnalysis.main()
 
                 App.controllers.dataUpdate.updateApplication();
 
