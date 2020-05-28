@@ -55,7 +55,7 @@ let NomogramView = function (targetID) {
 
         let menuDiv = d3.select(self.targetID + "Header")
             .select(".viewTitleDiv").append("div")
-            .attr("class", "pull-left")
+            .attr("class", "pull-right")
             .append("button")
             .attr("class", 'btn btn-default navbar-btn')
             .attr("id", "nomogram-menu-button")

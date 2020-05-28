@@ -1,7 +1,7 @@
 {
   "AgeAtTx": {
     "name":"Age at Diagnosis (Calculated)",
-    "rangeShrink": [0,0.49227],
+    "rangeShrink": [0,1],
     "domain": [25,90],
     "label": "AgeAtTx",
     "type": "linear",

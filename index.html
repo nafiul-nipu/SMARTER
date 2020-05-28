@@ -263,7 +263,46 @@
             
 
             </div>
-            
+
+            <!-- right divided int nomogram on top 
+            and kaplan meier and the table on botom -->
+            <div class="col-md-7" id="right">
+
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-12 contentWrapper nomogramDiv"> -->
+                        <div class="contentDiv">
+                            <!-- <div class="infoDiv" id="infoDiv-nomogram">
+
+                            </div> -->
+                            <!-- just the title and stuffs -->
+                            <div id="nomogramHeader">
+                                <div class="row viewTitleDiv">
+                                    Nomogram Risk Prediction
+                                    <!-- Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nomogramModal"> -->
+                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
+                                    <!-- </button> -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-lg-offset-3">
+                                        <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
+                                    </div>
+                                    <div class="col-lg-3 knnCheckBox">
+                                        <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
+                                    </div>
+                                </div>
+                                <!-- <div class="row knnCheckBox">
+                                    <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
+                                </div> -->
+                            </div>
+                            <div id="nomogram">
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                <!-- </div> -->
+
+            </div>
+
             <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
                 <div class="infoDiv" id="">
                 </div>
@@ -280,18 +319,6 @@
                             </h5>
                         <!-- first dropdown menu -->
                         <div class="col-md-12">
-
-                            <!--<div class="row dropdown-row">-->
-                                <!--<div class="dropdown">-->
-                                    <!--<button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">-->
-                            <!--KNN Attributes Used-->
-                            <!--<span class="caret"></span>-->
-                          <!--</button>-->
-                                    <!--<ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">-->
-                                        <!--&lt;!&ndash; populating list in controller &ndash;&gt;-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                            <!--</div>-->
 
                             <div class="row dropdown-row">
                                 <div class="dropdown">
@@ -341,45 +368,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- right divided int nomogram on top 
-            and kaplan meier and the table on botom -->
-            <div class="col-md-7" id="right">
-
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-md-12 contentWrapper nomogramDiv"> -->
-                        <div class="contentDiv">
-                            <!-- <div class="infoDiv" id="infoDiv-nomogram">
-
-                            </div> -->
-                            <!-- just the title and stuffs -->
-                            <div id="nomogramHeader">
-                                <div class="row viewTitleDiv">
-                                    Nomogram Risk Prediction
-                                    <!-- Button trigger modal -->
-                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nomogramModal"> -->
-                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
-                                    <!-- </button> -->
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-lg-offset-3">
-                                        <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
-                                    </div>
-                                    <div class="col-lg-3 knnCheckBox">
-                                        <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
-                                    </div>
-                                </div>
-                                <!-- <div class="row knnCheckBox">
-                                    <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
-                                </div> -->
-                            </div>
-                            <div id="nomogram">
-                            </div>
-                        </div>
-                    <!-- </div> -->
-                <!-- </div> -->
-
-            </div>
         </div>
 
 
@@ -390,7 +378,7 @@
                         <!-- kiviat header - title and dropdown -->
                         <div class = "row" id="kiviatHeader">
                             <!-- kiviat title  -->
-                            <div class="row viewTitleDiv" id="mostSimilarPatient">
+                            <div class="row viewTitleDiv" id="mostSimilarPatient" style="padding-right: 600px">
                                 Most Similar Patients
                             <!-- Button trigger modal -->
                                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
