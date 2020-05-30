@@ -42,6 +42,7 @@ let KaplanMeierView = function(targetID) {
             .attr("y1", 90)
             .attr("x2", 110)
             .attr("y2", 90)
+            .style("opacity", 0.5)
             .style("stroke", "black")
             .style("stroke-width", "0.6px");
     }
@@ -52,6 +53,7 @@ let KaplanMeierView = function(targetID) {
             .attr("y1", 10)
             .attr("x2", 10)
             .attr("y2", 90)
+            .style("opacity", 0.5)
             .style("stroke", "black")
             .style("stroke-width", "0.6px");
     }
@@ -62,7 +64,8 @@ let KaplanMeierView = function(targetID) {
                 .attr("x", 2)
                 .attr("y", 91 - 8 * i)
                 .style("font-size", "4px")
-                .text((0.1 * i).toFixed(1));
+                .text((0.1 * i).toFixed(1))
+                .style("opacity", 0.7);
         }
     }
 
@@ -160,6 +163,7 @@ let KaplanMeierView = function(targetID) {
                 .attr("y", 95)
                 .style("font-size", "4px")
                 .style("text-anchor", "middle")
+                .style("opacity", 0.7)
                 .text(i);
         }
     }
