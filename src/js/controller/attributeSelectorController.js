@@ -6,7 +6,7 @@ let AttributeSelectorController = function() {
 
     let self = {
         attributeDropDown: null,
-        currentAttribute: App.patientKnnAttributes[0]
+        currentAttribute: App.mosaicAttributeOrder[0]
     };
 
     /* display the attribute drop down list */

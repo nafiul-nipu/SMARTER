@@ -46,6 +46,8 @@ let DataUpdateController = function() {
         }
 
         // initialize the kaplan-meier model
+        console.log(App.patientKnnAttributes[0])
+        console.log(App.mosaicAttributeOrder[0])
         App.models.kaplanMeierPatient.initPatients(updatedData, App.patientKnnAttributes[0]);
 
         // update controllers
