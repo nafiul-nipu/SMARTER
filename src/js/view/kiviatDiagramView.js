@@ -13,6 +13,7 @@ let KiviatDiagramView = function(targetID) {
         neighborsSvgs: null,
         legendElement: null,
         legendSvg: null,
+        legendHeight: null,
         axisTip: null,
         centerTip: null,
         axes: {}
@@ -25,8 +26,9 @@ let KiviatDiagramView = function(targetID) {
         self.legendElement = d3.select(targetID + "-legend");
 
         let titleHeight = document.getElementById("title").clientHeight;
+        self.legendHeight = ( window.innerHeight / 3 ) - (2.5 * titleHeight)
 
-        // console.log(( window.innerHeight / 2 ) - (2 * titleHeight))
+
         // console.log(self.subjectElement.node().clientHeight)
 
         self.axes = App.models.axesModel.getAxesData();
@@ -42,8 +44,8 @@ let KiviatDiagramView = function(targetID) {
 
         self.legendSvg = self.legendElement.append("svg")
             .attr("width", self.legendElement.node().clientWidth)
-            .attr("height", self.legendElement.node().clientWidth * 2)
-            .attr("viewBox", "0 0 100 250")
+            .attr("height", ( window.innerHeight / 3 ) - (2.5 * titleHeight))
+            .attr("viewBox", "0 0 150 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
 
@@ -100,7 +102,7 @@ let KiviatDiagramView = function(targetID) {
             .attr("x", 15)
             .attr("y", 10)
             .attr("width", 10)
-            .attr("height", 50)
+            .attr("height", self.legendHeight)
             .style("opacity", 0.75);
 
         let survivalRateText = ["1", "Surv. Rate", "0"];
@@ -108,22 +110,49 @@ let KiviatDiagramView = function(targetID) {
         for (let i = 0; i < 3; i++) {
             self.legendSvg.append("text")
                 .attr("x", 30)
-                .attr("y", 16 + 22 * i)
-                .style("font-size", "8px")
+                .attr("y", 20 + 40 * i)
+                .style("font-size", "10px")
                 .style("font-weight", "bold")
                 .text(survivalRateText[i]);
         }
         
         // console.log(App.kiviatAttributes)
-        // axis labels
-        for (let attributeInd in App.kiviatAttributes) {
-            self.legendSvg.append("text")
-                .attr("class", "kiviatLegendText")
-                .attr("x", 15)
-                .attr("y", 70 + attributeInd * 7)
-                // .style("font-size", "8px") //changed in the style.less
-                .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
+        // // axis labels
+        // for (let attributeInd in App.kiviatAttributes) {
+        //     self.legendSvg.append("text")
+        //         .attr("class", "kiviatLegendText")
+        //         .attr("x", 15)
+        //         .attr("y", 70 + attributeInd * 7)
+        //         // .style("font-size", "8px") //changed in the style.less
+        //         .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
+        // }
+        // //adding the spatial information and button here
+        // <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
+        // <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
+        // <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
+        self.legendElement.append("h5")
+            .text("Spatial Information")
+            .attr("class", "viewTitleDiv")
+
+        let textName = ["Dendrogram", "Lymph Node", "Camprt"]
+        let idName = ["dendrogramlinker", "lymphthingylinker", "camprtlinker"]
+        
+        let spatialInformation = self.legendElement.append("div")
+                                     .attr("preserveAspectRatio", "xMidYMid")
+                                     .style("padding-left", "25%")
+        for(let i = 0 ; i < textName.length ; i ++ ){
+            spatialInformation.append("a")
+                .attr("href", "#")
+                .attr("target", "_blank")
+                .attr("id", idName[i])
+                .append("button")
+                .attr("class", "btn btn-default btn-sm")
+                .style("font-size", "10px")
+                .style("display", "block")
+                .style("margin-bottom", "5px")
+                .text(textName[i])        
         }
+        
     }
 
 

@@ -42,6 +42,7 @@ let KaplanMeierView = function(targetID) {
             .attr("y1", 90)
             .attr("x2", 110)
             .attr("y2", 90)
+            .style("opacity", 0.5)
             .style("stroke", "black")
             .style("stroke-width", "0.6px");
     }
@@ -52,8 +53,18 @@ let KaplanMeierView = function(targetID) {
             .attr("y1", 10)
             .attr("x2", 10)
             .attr("y2", 90)
+            .style("opacity", 0.5)
             .style("stroke", "black")
             .style("stroke-width", "0.6px");
+
+        self.targetSvg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -35)
+            .attr("y", 15)
+            // .style("stroke-width", "0.6px")
+            .style("font-size", "6px")
+            .attr("text-anchor", "end")
+            .text("Survival Probability");
     }
 
     function drawXAxisLabels() {
@@ -62,8 +73,17 @@ let KaplanMeierView = function(targetID) {
                 .attr("x", 2)
                 .attr("y", 91 - 8 * i)
                 .style("font-size", "4px")
-                .text((0.1 * i).toFixed(1));
+                .text((0.1 * i).toFixed(1))
+                .style("opacity", 0.7);
         }
+        self.targetSvg.append("text")
+            .attr("class", "x axis-label")
+            .attr("x", 50)
+            .attr("y", 100)
+            .style("font-size", "6px")
+            // .attr("font-weight", "bold")
+            .attr("text-anchor", "middle")
+            .text("Duration (in months) ")
     }
 
     function drawLegend(attrVal, attrValNum, color) {
@@ -160,6 +180,7 @@ let KaplanMeierView = function(targetID) {
                 .attr("y", 95)
                 .style("font-size", "4px")
                 .style("text-anchor", "middle")
+                .style("opacity", 0.7)
                 .text(i);
         }
     }
