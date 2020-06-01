@@ -261,22 +261,31 @@
                                     <div class="form-group">
                                         <!-- option generates from control or other JS i suppose -->
                                         <select class="attribute-dropdown form-control input-sm" id="attributeSel">
-                                </select>
+                                        </select>
+                                        <button class="btn btn-default" id="reset_kaplan">
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="selectpicker" data-width = "fit" multiple>
-                                        <optgroup label="Picnic">
-                                          <option>Mustard</option>
-                                          <option>Ketchup</option>
-                                          <option>Relish</option>
-                                        </optgroup>
-                                        <optgroup label="Camping">
-                                          <option>Tent</option>
-                                          <option>Flashlight</option>
-                                          <option>Toilet Paper</option>
-                                        </optgroup>
-                                    </select>                                                                           
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Dropdown
+                                          <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                            <li class="dropdown-submenu">
+                                              <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+                                              <ul class="dropdown-menu">
+                                                <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
+                                                <li class="dropdown-item"><a href="#">Second level</a></li>
+                                                <li class="dropdown-item"><a href="#">Second level</a></li>
+                                              </ul>
+                                            </li>
+                                          </ul>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

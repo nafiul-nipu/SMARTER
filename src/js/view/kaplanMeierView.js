@@ -95,32 +95,47 @@ let KaplanMeierView = function(targetID) {
             .attr("height", 5)
             .style("fill", color)
             .style("opacity", 0.5)
+            .style("cursor", "pointer")
             .on("click", function(d){
                 // console.log(color);
                 // console.log("I am clicked");
-            })
-            .on("mouseover", function(d){
-                // console.log("mouse overed")
-                // console.log(attrVal)
-                highlight(attrVal);
-            })
-            .on("mouseleave", function(d,i){
-                // console.log("mouse leave")
-                noHighlight(attrVal);
+                highlight(attrVal)
             });
+            /*
+             .on("mouseover", function(d){
+                    // console.log("mouse overed")
+                    // console.log(attrVal)
+                    highlight(attrVal);
+                })
+                .on("mouseleave", function(d,i){
+                    // console.log("mouse leave")
+                    noHighlight(attrVal);
+                });
+             */
+            
 
         self.targetSvg.append("text")
             .attr("class", "legend")
             .attr("x", 85)
             .attr("y", 4 + attrValNum * 5)
             .style("font-size", "4px")
+            .style("cursor", "pointer")
             .text(attrVal)
+            .on("click", function(d){
+                highlight(attrVal)
+            });
+            /*
             .on("mouseover", function(d){
                 highlight(attrVal);
             })
             .on("mouseleave", function(d,i){
                 noHighlight(attrVal);
             });
+            */
+
+        d3.select("#reset_kaplan").on("click", function(d){
+            noHighlight();
+        });
     }
 
     // What to do when one group is hovered
@@ -136,7 +151,7 @@ let KaplanMeierView = function(targetID) {
     }
 
     // And when it is not hovered anymore
-    function noHighlight(d){
+    function noHighlight(){
         d3.select("#kaplanMeier").select("svg").selectAll(".kmVar").style("opacity", 0.5)
         // d3.select("#kaplanMeier").select("svg").select(".kmPlots").style("opacity", 0.5)
     }
