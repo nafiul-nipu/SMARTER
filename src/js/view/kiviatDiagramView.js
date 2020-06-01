@@ -221,7 +221,7 @@ let KiviatDiagramView = function(targetID) {
             .style("margin-right", "10px")
             .append("svg")
             .attr("width", (self.neighborsElement.node().clientWidth / patients.neighbors.length) - 40 ) //minus margin-right
-            .attr("height", ( window.innerHeight / 2 ) - (2 * document.getElementById("title").clientHeight) )
+            .attr("height", ( window.innerHeight / 3 ) - (1.5 * document.getElementById("title").clientHeight) )
             .style("margin-top", "20px")
             // .style("margin-right", "10px")
             .attr("viewBox", "0 0 100 100")
@@ -246,6 +246,7 @@ let KiviatDiagramView = function(targetID) {
 
 
         let SVG = d3.select(this);
+        let similarityHead = d3.select(this.parentNode)
 
         creatToolTips();
 
@@ -317,10 +318,10 @@ let KiviatDiagramView = function(targetID) {
                 .on('mouseout', self.axisTip.hide);
         }
 
-        SVG.append("text")
+        similarityHead.append("h5")
             .attr("class", "similarityScore")
-            .attr("x", 0)
-            .attr("y", 10)
+            //.attr("x", 0)
+            //.attr("y", 10)
             .style("font-size", "10px");
     }
 
@@ -348,6 +349,7 @@ let KiviatDiagramView = function(targetID) {
         // console.log(i)
 
         let SVG = d3.select(this);
+        let similarityHead = d3.select(this.parentNode)
 
         SVG.select(".kiviatPath")
             .attr("d", calculatePath)
@@ -356,8 +358,8 @@ let KiviatDiagramView = function(targetID) {
             .style("opacity", 0.75);
 
         if (d.score) {
-            SVG.select(".similarityScore")
-                .text(d.score.toFixed(2));
+            similarityHead.select(".similarityScore")
+                .text("Score: " + d.score.toFixed(2));
         }
 
         // update the attribute value for the axis tool tip
