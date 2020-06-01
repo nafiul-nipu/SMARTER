@@ -39,6 +39,7 @@ let AttributeSelectorController = function() {
     function updateAttributeDropDown() {
 		
         let stateSelectedAttribute = App.models.applicationState.getSelectedAttribute();
+        // console.log(stateSelectedAttribute)
 
         if (stateSelectedAttribute) {
             self.attributeDropDown.node().value = stateSelectedAttribute;
@@ -92,6 +93,8 @@ let AttributeSelectorController = function() {
             self.attributeDropDown.node().value = self.currentAttribute;
             updateSelectedAttribute(self.currentAttribute);
         }
+
+        // console.log("disable")
     }
 
 

@@ -16,6 +16,7 @@ let KaplanMeierPatientModel = function() {
        only be called once - when load the patient data */
     function initPatients(patients, attribute) {
         self.patients = patients;
+        // console.log(self.patients)
         self.selectedAttribute = attribute;
 
         updateData();

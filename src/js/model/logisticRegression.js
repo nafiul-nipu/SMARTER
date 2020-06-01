@@ -16,20 +16,20 @@ let logisticRegression = function(){
     }
 
     let main_function = function(data){
-        console.log("from main function", data)
+        // console.log("from main function", data)
         // data should be provided as such the last column is the
         // target and the first to last - 1 are features
         // differentiate feature and target
         let split_data = differentiate(data)
         self.features = split_data[0]
         self.target = split_data[1]
-        console.log(self.features, self.target)
+        // console.log(self.features, self.target)
     }
 
     function differentiate(data){
-        console.log(Object.keys(data[0]))
+        // console.log(Object.keys(data[0]))
         for(let i = 0 ; i < data[0].length ; i++){
-            console.log(i)
+            // console.log(i)
         }
 
         return [5, 6]

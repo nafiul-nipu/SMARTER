@@ -144,7 +144,7 @@ let KaplanMeierView = function(targetID) {
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
-        // console.log("KMDATA" + KMData[0])
+        // console.log("KMDATA" , KMData)
         d3.selectAll(".kmVar").remove();
         // d3.selectAll(".kmPlots").remove();
         d3.selectAll(".legend").remove();

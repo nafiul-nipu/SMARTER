@@ -22,7 +22,7 @@ let predictiveAnalysis = function(){
             // console.log("from get_data", self.test)
             // self.data = App.models.patients.getPatients();
             // console.log("i am called")
-            console.log(self.data.length)
+            // console.log(self.data.length)
             self.logistic_regression.main_function(self.data)
         });
 
