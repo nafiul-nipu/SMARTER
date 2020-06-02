@@ -59,7 +59,8 @@ let DataUpdateController = function() {
         App.views.nomogram.updateFilterData(Object.values(updatedData));
 
         // update attribute selector controller to update the nomogram view and kaplan-meier view
-        App.controllers.attributeSelector.updateAttributeDropDown();
+        // App.controllers.attributeSelector.updateAttributeDropDown();
+        App.controllers.attributeSelectorUpdated.updateAttributeDropDown();
 
         // assign the new values to the priviate variables
         self.data = updatedData;

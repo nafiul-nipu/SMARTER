@@ -75,7 +75,7 @@ less.pageLoadFinished.then(function() {
 
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
-        App.controllers.attributeSelector = new AttributeSelectorController();
+        // App.controllers.attributeSelector = new AttributeSelectorController();
         App.controllers.attributeSelectorUpdated = new AttributeSelectorControllerUpdated();
         App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
         App.controllers.filters = new FilterController();
@@ -122,7 +122,7 @@ less.pageLoadFinished.then(function() {
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");
                 App.controllers.landingFormController.setSubmitButton(".submitButton");
                 App.controllers.landingFormController.setShowFormButton("#add-patient-button");
-                App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
+                // App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
                 App.controllers.attributeSelectorUpdated.attachToSelect("#updated_dropdown")
                 App.views.stats.updatePatientsCount();
                 App.views.nomogram.setNomogramSelector("#nomogram-selector");

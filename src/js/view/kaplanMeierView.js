@@ -64,7 +64,8 @@ let KaplanMeierView = function(targetID) {
             // .style("stroke-width", "0.6px")
             .style("font-size", "6px")
             .attr("text-anchor", "end")
-            .text("Survival Probability");
+            .text("Survival Probability")
+            .style("opacity", 0.7);;
     }
 
     function drawXAxisLabels() {
@@ -84,6 +85,7 @@ let KaplanMeierView = function(targetID) {
             // .attr("font-weight", "bold")
             .attr("text-anchor", "middle")
             .text("Duration (in months) ")
+            .style("opacity", 0.7);
     }
 
     function drawLegend(attrVal, attrValNum, color) {
@@ -95,13 +97,13 @@ let KaplanMeierView = function(targetID) {
             .attr("height", 5)
             .style("fill", color)
             .style("opacity", 0.5)
-            .style("cursor", "pointer")
+            // .style("cursor", "context-menu")
+            /*
             .on("click", function(d){
                 // console.log(color);
                 // console.log("I am clicked");
                 highlight(attrVal)
             });
-            /*
              .on("mouseover", function(d){
                     // console.log("mouse overed")
                     // console.log(attrVal)
@@ -111,7 +113,7 @@ let KaplanMeierView = function(targetID) {
                     // console.log("mouse leave")
                     noHighlight(attrVal);
                 });
-             */
+                */
             
 
         self.targetSvg.append("text")
@@ -119,12 +121,12 @@ let KaplanMeierView = function(targetID) {
             .attr("x", 85)
             .attr("y", 4 + attrValNum * 5)
             .style("font-size", "4px")
-            .style("cursor", "pointer")
+            // .style("cursor", "context-menu")
             .text(attrVal)
+            /*
             .on("click", function(d){
                 highlight(attrVal)
             });
-            /*
             .on("mouseover", function(d){
                 highlight(attrVal);
             })
@@ -132,6 +134,7 @@ let KaplanMeierView = function(targetID) {
                 noHighlight(attrVal);
             });
             */
+            
 
         d3.select("#reset_kaplan").on("click", function(d){
             noHighlight();
