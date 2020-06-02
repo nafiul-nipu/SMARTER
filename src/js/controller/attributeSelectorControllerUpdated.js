@@ -100,14 +100,14 @@ let AttributeSelectorControllerUpdated = function() {
                         //only removing the highlight will do so
                         // console.log("select all", "self == parent", self.parent, parentName)
                         App.views.kaplanMeier.noHighlight();
-                        d3.select("#dropdownMenu1").text(parentName);
+                        htmlTextChange(parentName);
                     }else{
                         //meaning we selected one attribute from another cohort
                         //therefore we need to create the kaplan meier 
                         //and then make it the parent in self.parent
                         self.parent = parentName;
                         updateSelectedAttribute(parentName);
-                        d3.select("#dropdownMenu1").text(parentName);
+                        htmlTextChange(parentName);       
                         // console.log("select all", "self != parent", self.parent, parentName)
                     }
                 }else{  
@@ -116,9 +116,9 @@ let AttributeSelectorControllerUpdated = function() {
                     if(self.parent == parentName){
                         //meaning we already selected this parent cohort
                         //therefore we only need to highlight the selected attribute
-                        // console.log("attribute", "self == parent", self.parent, parentName)
-                        d3.select("#dropdownMenu1").text(d);
+                        // console.log("attribute", "self == parent", self.parent, parentName)                        
                         App.views.kaplanMeier.highlight(d);
+                        htmlTextChange(d);
 
                     }else{
                         //meaning we selected another parent cohort
@@ -127,12 +127,18 @@ let AttributeSelectorControllerUpdated = function() {
                         // console.log("attribute" , "self != parent", self.parent, parentName)
                         self.parent = parentName;
                         updateSelectedAttribute(parentName);
-                        d3.select("#dropdownMenu1").text(d);
+                        htmlTextChange(d);
                         App.views.kaplanMeier.highlight(d);
                     }
                 }
                });
 
+    }
+
+    function htmlTextChange(text){
+        d3.select("#dropdownMenu1").text(text)
+                                .append("span")
+                                .attr("class", "caret");
 
     }
 
