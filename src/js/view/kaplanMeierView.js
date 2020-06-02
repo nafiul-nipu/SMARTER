@@ -268,6 +268,7 @@ let KaplanMeierView = function(targetID) {
             .attr("d", lineFunc(lineData))
             .style("stroke", color)
             .style("stroke-width", "0.8px")
+            .style("opacity", "0.5")
             .style("fill", "none");
     }
 
@@ -279,6 +280,8 @@ let KaplanMeierView = function(targetID) {
 
     return {
         update,
-        setMaxOS
+        setMaxOS,
+        highlight,
+        noHighlight
     };
 }
