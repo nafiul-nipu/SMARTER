@@ -168,6 +168,8 @@ let KiviatDiagramView = function(targetID) {
             console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
             self.subjectElement.select("svg").remove();
+            self.subjectElement.select("div").remove();
+            self.neighborsElement.selectAll("svg").remove();
             self.neighborsElement.selectAll("div").remove();
             self.legendElement.select("svg").remove();
             self.legendElement.selectAll("div").remove();
