@@ -130,7 +130,7 @@ let KiviatDiagramView = function(targetID) {
         // <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
         // <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
         // <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
-        self.legendElement.append("h5")
+        self.legendElement.append("div").append("h5")
             .text("Spatial Information")
             .attr("class", "viewTitleDiv")
 
@@ -168,8 +168,9 @@ let KiviatDiagramView = function(targetID) {
             console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
             self.subjectElement.select("svg").remove();
-            self.neighborsElement.selectAll("svg").remove();
+            self.neighborsElement.selectAll("div").remove();
             self.legendElement.select("svg").remove();
+            self.legendElement.selectAll("div").remove();
 
             init();
             commonMethodForKnnAndKiviat(patients);
@@ -318,7 +319,7 @@ let KiviatDiagramView = function(targetID) {
                 .on('mouseout', self.axisTip.hide);
         }
 
-        similarityHead.append("h5")
+        similarityHead.append("div").append("h5")
             .attr("class", "similarityScore")
             //.attr("x", 0)
             //.attr("y", 10)
