@@ -118,6 +118,8 @@ less.pageLoadFinished.then(function() {
                 App.createViews();
                 App.createControllers();
 
+                App.models.predictiveAnalysis.main()
+
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");
                 App.controllers.landingFormController.setSubmitButton(".submitButton");
@@ -126,8 +128,6 @@ less.pageLoadFinished.then(function() {
                 App.controllers.attributeSelectorUpdated.attachToSelect("#updated_dropdown")
                 App.views.stats.updatePatientsCount();
                 App.views.nomogram.setNomogramSelector("#nomogram-selector");
-
-                App.models.predictiveAnalysis.main()
 
                 App.controllers.dataUpdate.updateApplication();
 
