@@ -25,6 +25,8 @@ let predictiveAnalysis = function(){
         //data cleaning
         //making some adustment to the data
         //taking the features that is needed
+        //and the binary outcome, censor outcome variables
+        //making dummy variables for the categorical data as well
         let count = 0
         for(let index in self.data){
             // removing the feeding tube entries that does not have any value
@@ -40,7 +42,7 @@ let predictiveAnalysis = function(){
                 //ajcc stage 8th addition
                 // self.feature_data[count].ajcc_stage = self.data[index]["AJCC 8th edition"]
                 
-                //race - white/caucasion = white , rest = other
+                //race - white/caucasion = 1 , rest = 0
                 if(self.data[index]["Race"] == "White/Caucasion"){
                     self.feature_data[count].white = "White"
                 }else{
@@ -48,6 +50,7 @@ let predictiveAnalysis = function(){
                 }
                 
                 //smoke status - change - formar will be former
+                // dummy variables - two variables - Never , Current
                 if(self.data[index]["Smoking status at Diagnosis (Never/Former/Current)"] == "Formar"){
                     self.feature_data[count].smoke_status = "Former"
                 }else{
