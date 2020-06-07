@@ -10,7 +10,9 @@ let predictiveAnalysis = function(){
     let self = {
         logistic_regression : new logisticRegression(),
         data : {},
-        feature_data: []
+        feature_data: [],
+        binary_outcome: [], //feeding tube and aspiration
+        censor_outcome: [] //survival
     }
     function main(){
         //load data
@@ -28,11 +30,15 @@ let predictiveAnalysis = function(){
             // removing the feeding tube entries that does not have any value
             if(self.data[index]["Feeding tube 6m"] == "N" || self.data[index]["Feeding tube 6m"] == "Y"){
                 self.feature_data[count] = {}
+                self.binary_outcome[count] = {}
+                self.censor_outcome[count] = {}
                 //dummy id of all of the patients
                 self.feature_data[count].ID = self.data[index]["Dummy ID"]
+                self.binary_outcome[count].ID = self.data[index]["Dummy ID"]
+                self.censor_outcome[count].ID = self.data[index]["Dummy ID"]
                 
                 //ajcc stage 8th addition
-                self.feature_data[count].ajcc_stage = self.data[index]["AJCC 8th edition"]
+                // self.feature_data[count].ajcc_stage = self.data[index]["AJCC 8th edition"]
                 
                 //race - white/caucasion = white , rest = other
                 if(self.data[index]["Race"] == "White/Caucasion"){
@@ -80,20 +86,42 @@ let predictiveAnalysis = function(){
                 }
 
                 //n-category
-                self.feature_data[count].n_category = self.data[index]["N-category"]
+                self.feature_data[count].n_category = self.data[index]["N-category"];
 
                 //gender
+                self.feature_data[count].gender = self.data[index]["Gender"];
 
                 //hpv status
+                self.feature_data[count].hpv_status = self.data[index]["HPV/P16 status"];
 
                 //therapeutic combination
+                self.feature_data[count].therapeutic = self.data[index]["Therapeutic combination"];
+
+                //let's take the binary outcomes
+                // feeding tube 
+                // if feeding tube is N then set 0 otherwise 1
+                if(self.data[index]["Feeding tube 6m"] == "N"){
+                    self.binary_outcome[count].feeding_tube = 0;
+                }else{
+                    self.binary_outcome[count].feeding_tube = 1;
+
+                }
+
+                //aspiration
+                // aspiration is N then set 0 otherwise 1
+                if(self.data[index]["Aspiration rate(Y/N)"] == "N"){
+                    self.binary_outcome[count].aspiration = 0;
+                }else{
+                    self.binary_outcome[count].aspiration = 1;
+
+                }
                 
 
                 count++ ;
             }           
         }
 
-        // console.log(self.feature_data)
+        console.log(self.feature_data)
 
 
 
