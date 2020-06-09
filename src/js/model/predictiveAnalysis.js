@@ -315,7 +315,7 @@ let predictiveAnalysis = function(){
         // === Create the logistic regression === //
         // Note that the last column should be y the output
         let logistic = new jsregression.LogisticRegression({
-            alpha: 0.0001,
+            alpha: 0.001,
             iterations: 1000,
             lambda: 0.0
          });
@@ -328,25 +328,25 @@ let predictiveAnalysis = function(){
         // console.log(result);
          
          // === Testing the trained logistic regression === //
-         let probability = []
-         let predicted = []
-         for(var i=0; i < trainingData.length; ++i){
-            probability[i] = logistic.transform(trainingData[i]);
-            if(probability[i] >= logistic.threshold){
-                predicted[i] = 1;
-            }else{
-                predicted[i] = 0;
-            }
-         }
-        //  console.log(probability)
+        //  let probability = []
+        //  let predicted = []
+        //  for(var i=0; i < trainingData.length; ++i){
+        //     probability[i] = logistic.transform(trainingData[i]);
+        //     if(probability[i] >= logistic.threshold){
+        //         predicted[i] = 1;
+        //     }else{
+        //         predicted[i] = 0;
+        //     }
+        //  }
+        // //  console.log(probability)
 
-         let final_result = {
-             training_result : result,
-             testing_probability: probability,
-             predicted_value: predicted
-        }
+        //  let final_result = {
+        //      training_result : result,
+        //      testing_probability: probability,
+        //      predicted_value: predicted
+        // }
 
-        return final_result;
+        return result;
     }
 
     function create_dummy_variable(main_data, key, new_key, check_value){
