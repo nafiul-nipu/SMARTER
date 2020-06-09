@@ -163,9 +163,9 @@ let KiviatDiagramView = function(targetID) {
 
         // console.log(App.kiviatAttributes.length);
         if(App.controllers.kiviatAttrSelector.getKiviatTrigger()){
-            console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
+            // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
             App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
-            console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
+            // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
 
             self.subjectElement.select("svg").remove();
             self.subjectElement.select("div").remove();
@@ -405,6 +405,7 @@ let KiviatDiagramView = function(targetID) {
             let xPoint;
             //using ordinal scale for categorical values and linear scale for numbers
             if(isNaN(self.axes[attribute].domain[0])){
+                console.log(self.axes[attribute].name, self.axes[attribute].range)
                 self.attributeScales[attribute]
                     .domain(self.axes[attribute].domain)
                     .range(self.axes[attribute].range);

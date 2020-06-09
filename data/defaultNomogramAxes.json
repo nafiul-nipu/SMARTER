@@ -41,7 +41,6 @@
       "Other"
     ],
     "range":[5 , 35],
-
     "label": "Race",
     "type": "ordinal",
     "forKiviat": true,
@@ -109,9 +108,9 @@
     ],
     "domain": [
       "N0",
-      "N3",
       "N1",
-      "N2"
+      "N2",
+      "N3"
     ],
     "range":[5 , 15, 25, 35],
     "label": "N-category",
