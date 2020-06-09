@@ -309,7 +309,7 @@ let predictiveAnalysis = function(){
 
 
     function logistic_regression(trainingData){
-        console.log(trainingData)        
+        // console.log(trainingData)        
         //this is taken from https://github.com/chen0040/js-regression
 
         // === Create the logistic regression === //
