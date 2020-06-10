@@ -16,6 +16,7 @@ let predictiveAnalysis = function(){
         final_ID : [],
         final_feeding_tube: [],
         final_aspiration : [], 
+        regression: new logisticRegressionTest()
     }
     function main(){
         //load data
@@ -138,13 +139,15 @@ let predictiveAnalysis = function(){
         let feeding_tube = feeding_tube_function(self.feature_data, self.feeding_tube)
         console.log("feeding tube result")
         console.log(feeding_tube)
-        self.final_feeding_tube = feeding_tube.threshold_prob;
+        self.final_feeding_tube = feeding_tube;
 
         console.log("calculating aspiration")
         let aspiration = aspiration_function(self.feature_data, self.aspiration)
         console.log("aspiration result")
         console.log(aspiration)
-        self.final_aspiration = aspiration.threshold_prob;
+        self.final_aspiration = aspiration;
+
+
         // survival_function(self.feature_data, self.censor_outcome)
 
     }
@@ -215,9 +218,13 @@ let predictiveAnalysis = function(){
             
         }
         // final_data.push(target)
-        // console.log(final_data)
-        return logistic_regression(final_data)
-
+        // console.log(final_data[0])
+        // return logistic_regression(final_data)
+        // return self.regression.init(final_data)
+        let regression1 = logistic_regression(final_data);
+        let regression2 = self.regression.init(final_data);
+        let regression = [regression1.probability, regression2.probability];
+        return regression;
     }
 
     function aspiration_function(data, target){
@@ -285,7 +292,11 @@ let predictiveAnalysis = function(){
         }
         // final_data.push(target)
         // console.log(final_data)
-        return logistic_regression(final_data)
+        // return logistic_regression(final_data)
+        let regression1 = logistic_regression(final_data);
+        let regression2 = self.regression.init(final_data);
+        let regression = [regression1.probability, regression2.probability];
+        return regression;
 
     }
 

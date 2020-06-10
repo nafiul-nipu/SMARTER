@@ -15,17 +15,17 @@ let predictionModalView = function(){
             let aspiration = App.models.predictiveAnalysis.get_aspiration_result();
 
             // console.log(id)
-            // console.log(feeding_tube)
+            console.log(feeding_tube[0][0])
             // console.log(aspiration)
 
             let table = `<table class = "table table-bordered">
             <thead>
             <tr>
               <th scope="col">Dummy Id</th>
-              <th scope="col">Feeding Tube</th>
-              <th scope="col">Aspiration</th>
-              <th scope="col">Overall Survival</th>
-              <th scope="col">Progression Free</th>
+              <th scope="col">Feeding Tube (1)</th>
+              <th scope="col">Feeding Tube (2)</th>
+              <th scope="col">Aspiration (1)</th>
+              <th scope="col">Aspiration (2)</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +33,7 @@ let predictionModalView = function(){
 
             for (let index in id) {                
 
-               table += `<tr> <td> ` + id[index] +`</td> <td>` + feeding_tube[index] + `</td> <td>` + aspiration[index] + `</td> <td>` + "OS" + `</td> <td>` + "PF" +  `</td></tr>`
+               table += `<tr> <td> ` + id[index] +`</td> <td>` + feeding_tube[0][index] + `</td> <td>` + feeding_tube[1][index] + `</td> <td>` + aspiration[0][index] + `</td> <td>` + aspiration[0][index] +  `</td></tr>`
 
             } 
             table += `</tbody></table>`

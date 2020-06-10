@@ -27,6 +27,7 @@
     <link rel="stylesheet/less" href="src/css/kaplanMeier.less">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js" charset="utf-8"></script>
+    <!-- MATH  library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.0/math.min.js"></script>
 
     <script src="lib/js/d3.v4.min.js" charset="utf-8"></script>
@@ -46,6 +47,7 @@
 
     <!-- regression libraries -->
     <script src="lib/js/jsregression.js"></script>   
+    <script src="lib/js/regression.js"></script>
     <!-- <script src="https://www.lactame.com/lib/ml/2.2.0/ml.min.js"></script> -->
 
 
@@ -597,7 +599,7 @@
         <!-- Modal -->
   <div class="modal fade" id="predictionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content" style="width: fit-content;">
         <div class="modal-header">
           <h3 class="modal-title">Prediction Analysis</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -885,7 +887,7 @@
         });
       </script>
 
-      
+
 </body>
 
 </html>
