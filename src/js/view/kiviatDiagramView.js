@@ -405,7 +405,7 @@ let KiviatDiagramView = function(targetID) {
             let xPoint;
             //using ordinal scale for categorical values and linear scale for numbers
             if(isNaN(self.axes[attribute].domain[0])){
-                console.log(self.axes[attribute].name, self.axes[attribute].range)
+                // console.log(self.axes[attribute].name, self.axes[attribute].range)
                 self.attributeScales[attribute]
                     .domain(self.axes[attribute].domain)
                     .range(self.axes[attribute].range);

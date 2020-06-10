@@ -9,30 +9,13 @@ var App = App || {};
 let predictiveAnalysis = function(){
     let self = {
         data : {},
-        feature_data:[], // {
-            // ID : [],
-            // white: [],
-            // smoke_status: [],
-            // pack_year: [],
-            // age: [],
-            // neck_boost: [],
-            // neck_dissection: [],
-            // tumor_subsite: [],
-            // t_category: [],
-            // n_category: [],
-            // gender: [],
-            // hpv_status: [],
-            // therapeutic:[]
-        // },
-        feeding_tube:[],  // {
-            // ID:[],
-            // feeding_tube: [],
-            // aspiration: []
-       // }, //feeding tube and aspiration
-       aspiration: [],
-        censor_outcome: {
-            // ID:[]
-        } //survival
+        feature_data:[],
+        feeding_tube:[],
+        aspiration: [],
+        censor_outcome:[],
+        final_ID : [],
+        final_feeding_tube: [],
+        final_aspiration : [], 
     }
     function main(){
         //load data
@@ -155,11 +138,13 @@ let predictiveAnalysis = function(){
         let feeding_tube = feeding_tube_function(self.feature_data, self.feeding_tube)
         console.log("feeding tube result")
         console.log(feeding_tube)
+        self.final_feeding_tube = feeding_tube.threshold_prob;
 
         console.log("calculating aspiration")
         let aspiration = aspiration_function(self.feature_data, self.aspiration)
         console.log("aspiration result")
         console.log(aspiration)
+        self.final_aspiration = aspiration.threshold_prob;
         // survival_function(self.feature_data, self.censor_outcome)
 
     }
@@ -214,8 +199,10 @@ let predictiveAnalysis = function(){
         // console.log(data)
         let final_data = [];
         let data_keys = Object.keys(data[0])
+        // console.log(data_keys)
         //not considering dummy id therefore starting from 1
         for(let i = 0 ; i < data.length; i++){
+            self.final_ID[i] = data[i]["ID"]
             final_data[i] = []
             for(let key of data_keys){
                 //adding the features that are number only
@@ -373,8 +360,23 @@ let predictiveAnalysis = function(){
         return mean;
     }
 
+    // this functions are for showing the data
+    function get_ID(){
+        return self.final_ID;
+    }
+
+    function get_feeding_tube_result(){
+        return self.final_feeding_tube;
+    }
+    function get_aspiration_result(){
+        return self.final_aspiration;
+    }
+
     return{
-        main
+        main,
+        get_ID,
+        get_aspiration_result,
+        get_feeding_tube_result
     };
    
 };

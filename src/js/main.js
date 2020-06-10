@@ -67,6 +67,8 @@ less.pageLoadFinished.then(function() {
         App.views.cancerDescriptorsForm = new CancerDescriptorsFormView();
 
         App.views.statisticsModalView = new StatisticsModalView();
+
+        
     }
 
     App.createControllers = function() {
@@ -119,6 +121,10 @@ less.pageLoadFinished.then(function() {
                 App.createControllers();
 
                 App.models.predictiveAnalysis.main()
+
+                //initializing here because we want the predictive data first 
+                //and then populate the modal table
+                App.views.predictionModalView = new predictionModalView();
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");

@@ -81,6 +81,7 @@
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/statisticsModalView.js" charset="utf-8"></script>
+    <script src="src/js/view/predictiveProbabilityView.js" charset="utf-8"></script>
 
     <script src="src/js/main.js" charset="utf-8"></script>
 
@@ -88,115 +89,119 @@
 
 <body>
 
-<!-- home page starts -->
-<div class="container-fluid landing-form align-top">
-    <h3 class=title>SMART Therapy Explorer</h3>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-            <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics</button>
-            <div id="demographics" class="collapse">
-                <label>Patient ID</label>
-                <select class="idSelect">
-                    <option>N/A</option>
-                </select>
-                <label>Age</label>
-                <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
-                <label>Gender</label>
-                <input type="radio" name="Gender" value="Male" id="male-radio">Male
-                <input type="radio" name="Gender" value="Female" id="female-radio">Female
-                <label>Race</label>
-                <input type="text" name="Race" placeholder="Race" id="race-element">
-                <label>Aspiration</label>
-                <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
-                <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
-                <label>HPV/P16</label>
-                <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
-                <label>Smoking Status</label>
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
-                <label>Packs/Year</label>
-                <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
-                <div>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
-            <div id="cancerDescriptors" class="collapse">
-                <label>Tumor Site</label>
-                <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
-                <label>Tumor Subsite</label>
-                <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
-                <label>AJCC 7th Edition</label>
-                <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
-                <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
-                <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
-                <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
-                <label>AJCC 8th Edition</label>
-                <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
-                <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
-                <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
-                <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
-                <label>T-category</label>
-                <input type="radio" name="T-category" value="T1" id="tcat1">T1
-                <input type="radio" name="T-category" value="T2" id="tcat2">T2
-                <input type="radio" name="T-category" value="T3" id="tcat3">T3
-                <input type="radio" name="T-category" value="T4" id="tcat4">T4
-                <label>N-Category</label>
-                <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A
-                <input type="radio" name="N-category" value="N0" id="ncat-0">N0
-                <input type="radio" name="N-category" value="N1" id="ncat-1">N1
-                <input type="radio" name="N-category" value="N2" id="ncat-2">N2
-                <input type="radio" name="N-category" value="N3" id="ncat-3">N3
-                <label>Pathological Grade</label>
-                <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
-                <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
-                <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
-                <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
-                <label>Affected Lymph Nodes</label>
-                <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="affected-lymph">
-                <div>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment</button>
-            <div id="treatment" class="collapse">
-                <div class="left">
-                    <label>Chemotherapy</label>
-                    <input type="text" name="Therapeutic combination" placeholder="Chemotherapy" id="chemo-element">
-                    <label>Local Therapy</label>
-                    <input type="text" name="Local_Therapy" placeholder="Local Therapy" id="local-therapy-element">
-                    <label>Treatment Duration</label>
-                    <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
-                    <label>Total Dose</label>
-                    <input type="text" name="Total dose" placeholder="Total Dose" id="total-dose-element">
-                </div>
-                <div class="right">
-                    <label>Total Fraction</label>
-                    <input type="text" name="Total fractions" placeholder="Total Fraction" id="total-fraction-element">
-                    <label>Dose/Day</label>
-                    <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
-                    <label>Neck Dissection after IMRT</label>
-                    <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="neck-dissection-element">
-                    <label>Neck Boost</label>
-                    <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
-                    <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
-</div>
-<!-- home page ends -->
+    <div id="loading">
+        <img id="loading-image" src="imgs/loading.gif" alt="Loading..." />
+      </div>
 
-<!-- help menu i suppose -->
-  <div class="info-overlay dashboard-help">
-    <img id="helpImg" src="imgs/help.png">
-  </div>
+    <!-- home page starts -->
+    <div class="container-fluid landing-form align-top">
+        <h3 class=title>SMART Therapy Explorer</h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics</button>
+                <div id="demographics" class="collapse">
+                    <label>Patient ID</label>
+                    <select class="idSelect">
+                        <option>N/A</option>
+                    </select>
+                    <label>Age</label>
+                    <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
+                    <label>Gender</label>
+                    <input type="radio" name="Gender" value="Male" id="male-radio">Male
+                    <input type="radio" name="Gender" value="Female" id="female-radio">Female
+                    <label>Race</label>
+                    <input type="text" name="Race" placeholder="Race" id="race-element">
+                    <label>Aspiration</label>
+                    <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
+                    <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
+                    <label>HPV/P16</label>
+                    <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
+                    <label>Smoking Status</label>
+                    <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
+                    <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
+                    <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
+                    <label>Packs/Year</label>
+                    <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
+                    <div>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
+                <div id="cancerDescriptors" class="collapse">
+                    <label>Tumor Site</label>
+                    <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
+                    <label>Tumor Subsite</label>
+                    <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
+                    <label>AJCC 7th Edition</label>
+                    <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
+                    <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
+                    <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
+                    <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
+                    <label>AJCC 8th Edition</label>
+                    <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
+                    <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
+                    <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
+                    <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
+                    <label>T-category</label>
+                    <input type="radio" name="T-category" value="T1" id="tcat1">T1
+                    <input type="radio" name="T-category" value="T2" id="tcat2">T2
+                    <input type="radio" name="T-category" value="T3" id="tcat3">T3
+                    <input type="radio" name="T-category" value="T4" id="tcat4">T4
+                    <label>N-Category</label>
+                    <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A
+                    <input type="radio" name="N-category" value="N0" id="ncat-0">N0
+                    <input type="radio" name="N-category" value="N1" id="ncat-1">N1
+                    <input type="radio" name="N-category" value="N2" id="ncat-2">N2
+                    <input type="radio" name="N-category" value="N3" id="ncat-3">N3
+                    <label>Pathological Grade</label>
+                    <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
+                    <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
+                    <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
+                    <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
+                    <label>Affected Lymph Nodes</label>
+                    <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="affected-lymph">
+                    <div>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment</button>
+                <div id="treatment" class="collapse">
+                    <div class="left">
+                        <label>Chemotherapy</label>
+                        <input type="text" name="Therapeutic combination" placeholder="Chemotherapy" id="chemo-element">
+                        <label>Local Therapy</label>
+                        <input type="text" name="Local_Therapy" placeholder="Local Therapy" id="local-therapy-element">
+                        <label>Treatment Duration</label>
+                        <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
+                        <label>Total Dose</label>
+                        <input type="text" name="Total dose" placeholder="Total Dose" id="total-dose-element">
+                    </div>
+                    <div class="right">
+                        <label>Total Fraction</label>
+                        <input type="text" name="Total fractions" placeholder="Total Fraction" id="total-fraction-element">
+                        <label>Dose/Day</label>
+                        <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
+                        <label>Neck Dissection after IMRT</label>
+                        <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="neck-dissection-element">
+                        <label>Neck Boost</label>
+                        <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
+                        <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
+    </div>
+    <!-- home page ends -->
+
+    <!-- help menu i suppose -->
+    <div class="info-overlay dashboard-help">
+        <img id="helpImg" src="imgs/help.png">
+    </div>
 
 
   <div class="container-fluid dashboard align-top">
@@ -216,6 +221,9 @@
                               </button>
                             <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
                             Cohort
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" id= "predictionButton" data-toggle="modal" data-target="#predictionModal">
+                                Prediction
                             </button>
                         <!-- </div> -->
                     <!-- </div> -->
@@ -585,6 +593,27 @@
   </div>
 
 
+      <!-- Prediction Modal -->
+        <!-- Modal -->
+  <div class="modal fade" id="predictionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Prediction Analysis</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="predictionModalBody">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- help information modals -->
 
   <!-- overall help modal -->  
@@ -848,6 +877,15 @@
 
         </div>
     </div>
+
+
+    <script>
+        $(window).load(function() {
+          $('#loading').hide();
+        });
+      </script>
+
+      
 </body>
 
 </html>

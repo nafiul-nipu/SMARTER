@@ -10,11 +10,11 @@ let StatisticsModalView = function(){
 
         $("#statButton").on("click", function(){
             $("#statisticsModalBody").empty();
-            console.log("statistics modal view is executed");
+            // console.log("statistics modal view is executed");
             let attributeData = App.models.attributeModel.getAttributeData();
             let meanAttributeData = App.models.attributeModel.getMeanAttributeData();
-            console.log(attributeData);
-            console.log(meanAttributeData)
+            // console.log(attributeData);
+            // console.log(meanAttributeData)
             // let test = attributeData["Gender"]["Male"];
             // $("table.statsTable").append(test);
 
