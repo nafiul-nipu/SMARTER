@@ -48,7 +48,7 @@ less.pageLoadFinished.then(function() {
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
         // App.models.logisticRegression = new logisticRegression();
         // App.models.logisticRegression.get_data();
-        App.models.predictiveAnalysis = new predictiveAnalysis()
+        // App.models.predictiveAnalysis = new predictiveAnalysis()
 
 
     }
@@ -120,11 +120,11 @@ less.pageLoadFinished.then(function() {
                 App.createViews();
                 App.createControllers();
 
-                App.models.predictiveAnalysis.main()
+                // App.models.predictiveAnalysis.main()
 
                 //initializing here because we want the predictive data first 
                 //and then populate the modal table
-                App.views.predictionModalView = new predictionModalView();
+                // App.views.predictionModalView = new predictionModalView();
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");

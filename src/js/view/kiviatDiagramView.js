@@ -134,7 +134,7 @@ let KiviatDiagramView = function(targetID) {
             .text("Spatial Information")
             .attr("class", "viewTitleDiv")
 
-        let textName = ["Dendrogram", "Lymph Node", "Camprt"]
+        let textName = ["Prediction", "Lymph Node", "Camprt"]
         let idName = ["dendrogramlinker", "lymphthingylinker", "camprtlinker"]
         
         let spatialInformation = self.legendElement.append("div")
