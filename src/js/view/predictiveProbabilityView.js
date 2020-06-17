@@ -8,37 +8,37 @@ let predictionModalView = function(){
     
     function init(){
 
-        //$("#predictionButton").on("click", function(){
+        $("#predictionButton").on("click", function(){
             $("#predictionModalBody").empty();
-            let id = App.models.predictiveAnalysis.get_ID();
-            let feeding_tube = App.models.predictiveAnalysis.get_feeding_tube_result();
-            let aspiration = App.models.predictiveAnalysis.get_aspiration_result();
+            let feature_name = App.models.r_to_js.get_result_name();
+            let prediction_result = App.models.r_to_js.get_prediction_result();
 
             // console.log(id)
-            console.log(feeding_tube[0][0])
+            console.log(feature_name)
+            console.log(prediction_result)
             // console.log(aspiration)
 
             let table = `<table class = "table table-bordered">
             <thead>
             <tr>
               <th scope="col">Dummy Id</th>
-              <th scope="col">Feeding Tube (1)</th>
-              <th scope="col">Feeding Tube (2)</th>
-              <th scope="col">Aspiration (1)</th>
-              <th scope="col">Aspiration (2)</th>
+              <th scope="col">Feeding Tube</th>
+              <th scope="col">Aspiration</th>
+              <th scope="col">Overall Survival</th>
+              <th scope="col">Progression Free</th>
             </tr>
           </thead>
           <tbody>
             `;
 
-            for (let index in id) {                
+            for (let index in prediction_result[0]) {                
 
-               table += `<tr> <td> ` + id[index] +`</td> <td>` + feeding_tube[0][index] + `</td> <td>` + feeding_tube[1][index] + `</td> <td>` + aspiration[0][index] + `</td> <td>` + aspiration[0][index] +  `</td></tr>`
+               table += `<tr> <td> ` + prediction_result[0][index] +`</td> <td>` + prediction_result[1][index] + `</td> <td>` + prediction_result[2][index] + `</td> <td>` + prediction_result[3][index] + `</td> <td>` + prediction_result[4][index] +  `</td></tr>`
 
             } 
             table += `</tbody></table>`
             $("#predictionModalBody").append(table);
-       // });
+       });
         
         
     }
