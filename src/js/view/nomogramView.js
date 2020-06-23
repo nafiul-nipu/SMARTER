@@ -49,6 +49,7 @@ let NomogramView = function (targetID) {
 
         const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
+        // console.log(self.axes)
 
         self.filteredAxes = Object.keys(axes);
         // console.log(self.filteredAxes);
@@ -243,7 +244,7 @@ let NomogramView = function (targetID) {
 
     /* update axes range */
     function updateAxesRange(newRange) {
-        console.log(newRange);
+        // console.log(newRange);
         _.forEach(newRange, (value, key) => {
             self.axes[key]["rangeShrink"] = value;
         });
