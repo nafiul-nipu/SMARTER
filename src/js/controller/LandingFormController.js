@@ -42,7 +42,7 @@ let LandingFormController = function() {
                     return;
                 else {
                     $(".landing-form").hide();
-                    $(".add-patient-form").hide();
+                    $(".add-patient-form").hide()
                     // $(".dashboard-help").css("display", "block");
                     // $(".dashboard").css("display", "block");
                     if(self.currentPatient !== null) {
@@ -61,7 +61,7 @@ let LandingFormController = function() {
     function setShowFormButton(element) {
         self.showFormButton = d3.select(element)
             .on("click", function() {
-                console.log(element)
+                // console.log(element)
                 // $(".landing-form").show();
                 $(".add-patient-form").show();
             })

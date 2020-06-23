@@ -75,6 +75,8 @@
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
+    <!-- add new patient -->
+    <script src="src/js/controller/addNewPatient.js" charset="utf-8"></script>
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
@@ -204,15 +206,13 @@
 
         <!-- add patient page starts -->
     <div class="container-fluid add-patient-form align-top" style="display: none;">
-      <h3 class=title>SMART Therapy Explorer</h3>
+      <h3 class=title>Add New Patient</h3>
       <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
               <button type="button" class="demoButton" data-toggle="collapse" data-target="#add-demographics">Add Demographics Info</button>
               <div id="add-demographics" class="collapse">
                   <label>Patient ID</label>
-                  <select class="idSelect">
-                      <option>N/A</option>
-                  </select>
+                  <input type="text" name="Dummy ID" id="age-element" placeholder="Patient ID">
                   <label>Age</label>
                   <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
                   <label>Gender</label>
@@ -303,8 +303,12 @@
               </div>
           </div>
       </div>
-      <button class="btn btn-primary submitButton" type="submit" value="Submit">Add Patient</button>
-  </div>
+      <div class="row">
+        <button class="btn btn-primary submitButton" id="add-patient" type="submit" value="Submit">Add Patient</button>
+        <!-- <button class="btn btn-primary submitButton" type="go-to-home" value="Submit">Go To Home</button> -->
+      </div>
+
+     </div>
   <!-- add page ends -->
 
     <!-- help menu i suppose -->

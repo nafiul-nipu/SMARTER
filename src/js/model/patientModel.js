@@ -72,6 +72,11 @@ let PatientModel = function() {
         return self.patients;
     }
 
+    // if new patient is added
+    function setPatients(new_patients){
+        self.patients = new_patients;
+    }
+
     /* get the total number of patients in the list */
     function getPatientNumber() {
         return Object.keys(self.patients).length;
@@ -329,6 +334,7 @@ let PatientModel = function() {
     return {
         loadPatients,
         getPatients,
+        setPatients,
         getPatientNumber,
         getPatientByID,
         getPatientIDFromDummyID,

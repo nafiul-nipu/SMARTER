@@ -178,7 +178,7 @@ input[type="radio"] {
   border: 0px;
   margin-right: 40%;
   margin-left: 35%;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
 }
 .submitButton:hover{
   background: grey;
@@ -188,5 +188,88 @@ input[type="radio"] {
 }
 .leftPart{
   width: 100%;
+}
+
+
+#add-demographics label{
+  /* display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 1; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+
+}
+#add-demographics{
+  text-align: center;
+    border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  /* margin-bottom: 30px; */
+}
+#add-demographics input{
+
+  border-radius: 100px;
+  border: 1px solid grey;
+
+  color: 	#A9A9A9;
+  text-align: center;
+}
+#add-demographics input:hover {
+  border: 1px solid #f0027f;
+}
+#add-cancerDescriptors label{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+}
+#add-cancerDescriptors input:hover{
+  border: 1.5px solid purple;
+}
+#add-cancerDescriptors{
+  text-align: center;
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  /* margin-bottom: 30px; */
+
+}
+#add-cancerDescriptors input{
+  border-radius: 100px;
+  border: 1px solid grey;
+
+  color: 	#A9A9A9;
+  text-align: center;
+
+}
+#add-treatment label{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+}
+#add-treatment{
+  text-align: center;
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  margin-bottom: 30px;
+}
+#add-treatment input{
+  border-radius: 50px;
+  border: 1px solid grey;
+  color: 	#A9A9A9;
+  text-align: center;
+}
+#add-treatment input:hover{
+  border: 1px solid #163f7f;
 }
 

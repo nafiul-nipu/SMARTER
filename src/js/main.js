@@ -102,6 +102,9 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
         App.controllers.nomogramAxis.attachToDomainRangeToggle(".nomogramAxisButton");
 
+        App.controllers.newPatient = new AddNewPatient();
+        App.controllers.newPatient.addNewPatient();
+
     };
 
     App.init = function() {
