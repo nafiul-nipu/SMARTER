@@ -16,7 +16,7 @@ let AddNewPatient = function() {
             //will take the values from the form 
             // console.log(self.all_patients);
             let keys = Object.keys(self.all_patients)
-            let length = keys.length;
+            let initial_length = keys.length;
             //demographics
             //dummy id
             self.patientInfo[$('#add-id').attr('name')] = $('#add-id').val();
@@ -86,8 +86,8 @@ let AddNewPatient = function() {
             self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
 
             // console.log(self.patientInfo)
-            self.all_patients[length] = self.patientInfo
-            // console.log(self.all_patients)
+            self.all_patients[initial_length] = self.patientInfo
+            console.log(self.all_patients)
             //add the patient to the patients list
             App.models.patients.setPatients(self.all_patients)
             //update the landing form dropdown
@@ -106,11 +106,18 @@ let AddNewPatient = function() {
 
             // console.log(length)
             let value_name = Object.keys(self.all_patients[0])
+            let new_keys = Object.keys(self.all_patients)
+            let new_length = keys.length;
             // console.log(value_name)
             //add the names first to the csvcontent
             let string = ""
             for(let i = 0 ; i < value_name.length - 1 ; i++){
-                string += value_name[i] + ","
+                if(value_name[i].includes(",")){
+                    string += '"' + value_name[i] + '",' ;
+                }else{
+                    string += value_name[i] + "," ;
+                }
+                
             }
             string += value_name[value_name.length - 1]
             // console.log(string)
@@ -118,7 +125,7 @@ let AddNewPatient = function() {
             // console.log(typeof row)
             csvContent += string + "\r\n"
             // console.log(csvContent)
-            for(let index = 0 ; index < length ; index++){
+            for(let index = 0 ; index < new_length ; index++){
                 let rowArray = []
                 for(let value of value_name){
                     rowArray.push(self.all_patients[index][value])
@@ -126,14 +133,24 @@ let AddNewPatient = function() {
                 // console.log(rowArray)
                 let row = ""
                 for(let i = 0 ; i < rowArray.length - 1 ; i++){
-                    row += rowArray[i] + ",";
+                    let type = typeof rowArray[i];
+                    // console.log(type)
+                    if(type == "string"){
+                        if(rowArray[i].includes(",")){
+                            row += '"' + rowArray[i] + '",';
+                        }else{
+                            row += rowArray[i] + ",";
+                        }
+                    }else{
+                        row += rowArray[i] + ",";
+                    }
                 }
                 row += rowArray[rowArray.length - 1];
 
                 csvContent += row + "\r\n"
             }
 
-            console.log(csvContent)
+            // console.log(csvContent)
             
             
             // rows.forEach(function(rowArray) {
@@ -144,11 +161,12 @@ let AddNewPatient = function() {
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "my_data.csv");
+            link.setAttribute("download", "newdata.csv");
             document.body.appendChild(link); // Required for FF
 
             link.click(); // This will download the data file named "my_data.csv".
 
+            // location.reload();
 
             // $(".landing-form").show();
             // $(".add-patient-form").hide();
