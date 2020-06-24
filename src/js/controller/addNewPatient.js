@@ -17,6 +17,7 @@ let AddNewPatient = function() {
             // console.log(self.all_patients);
             let keys = Object.keys(self.all_patients)
             let initial_length = keys.length;
+            // console.log(initial_length)
             //demographics
             //dummy id
             self.patientInfo[$('#add-id').attr('name')] = $('#add-id').val();
@@ -86,8 +87,9 @@ let AddNewPatient = function() {
             self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
 
             // console.log(self.patientInfo)
+            // console.log(self.all_patients[initial_length])
             self.all_patients[initial_length] = self.patientInfo
-            console.log(self.all_patients)
+            // console.log(self.all_patients)
             //add the patient to the patients list
             App.models.patients.setPatients(self.all_patients)
             //update the landing form dropdown
@@ -107,8 +109,8 @@ let AddNewPatient = function() {
             // console.log(length)
             let value_name = Object.keys(self.all_patients[0])
             let new_keys = Object.keys(self.all_patients)
-            let new_length = keys.length;
-            // console.log(value_name)
+            let new_length = new_keys.length;
+            console.log(new_length)
             //add the names first to the csvcontent
             let string = ""
             for(let i = 0 ; i < value_name.length - 1 ; i++){
@@ -164,9 +166,20 @@ let AddNewPatient = function() {
             link.setAttribute("download", "newdata.csv");
             document.body.appendChild(link); // Required for FF
 
+            // console.log(self.patientInfo)
+
             link.click(); // This will download the data file named "my_data.csv".
 
             // location.reload();
+
+
+            $(document).ready(function(){
+                $.ajax({url: "http://127.0.0.1:5000/", success: function(result){
+                  //   console.log(result)
+                    location.reload()
+                  //   console.log("prediciotn", self.prediction)
+                }});
+            });
 
             // $(".landing-form").show();
             // $(".add-patient-form").hide();
