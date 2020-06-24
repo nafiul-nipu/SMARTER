@@ -136,8 +136,8 @@
               <div class="col-xs-12 col-sm-6 col-md-4">
                   <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
                   <div id="cancerDescriptors" class="collapse">
-                      <label>Tumor Site</label>
-                      <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
+                      <label>Tm Laterality (R/L)</label>
+                      <input type="text" name="Site" placeholder="R/L/Bilateral" id="tumor-site">
                       <label>Tumor Subsite</label>
                       <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
                       <label>AJCC 7th Edition</label>
@@ -178,9 +178,9 @@
                   <div id="treatment" class="collapse">
                       <div class="left">
                           <label>Chemotherapy</label>
-                          <input type="text" name="Therapeutic combination" placeholder="Chemotherapy" id="chemo-element">
-                          <label>Local Therapy</label>
-                          <input type="text" name="Local_Therapy" placeholder="Local Therapy" id="local-therapy-element">
+                          <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="chemo-element">
+                          <label>Censor</label>
+                          <input type="text" name="Censor" placeholder="0/1" id="local-therapy-element">
                           <label>Treatment Duration</label>
                           <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
                           <label>Total Dose</label>
@@ -212,25 +212,25 @@
               <button type="button" class="demoButton" data-toggle="collapse" data-target="#add-demographics">Add Demographics Info</button>
               <div id="add-demographics" class="collapse">
                   <label>Patient ID</label>
-                  <input type="text" name="Dummy ID" id="age-element" placeholder="Patient ID">
+                  <input type="number" name="Dummy ID" id="add-id" placeholder="Patient ID">
                   <label>Age</label>
-                  <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
-                  <label>Gender</label>
-                  <input type="radio" name="Gender" value="Male" id="male-radio">Male
-                  <input type="radio" name="Gender" value="Female" id="female-radio">Female
+                  <input type="number" name="Age at Diagnosis (Calculated)" id="add-age" placeholder="Age">
+                  <label id="add-gender" name="Gender">Gender</label>
+                  <input type="radio" name="Gender" value="Male" id="add-male">Male
+                  <input type="radio" name="Gender" value="Female" id="add-female">Female
                   <label>Race</label>
-                  <input type="text" name="Race" placeholder="Race" id="race-element">
+                  <input type="text" name="Race" placeholder="Race" id="add-race">
                   <label>Aspiration</label>
-                  <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
-                  <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
+                  <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="add-aspiration-y">Yes
+                  <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="add-aspiration-n">No
                   <label>HPV/P16</label>
-                  <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
+                  <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="add-hpvp16">
                   <label>Smoking Status</label>
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
+                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="add-smoking-never">Never
+                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="add-smoking-former">Former
+                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="add-smoking-current">Current
                   <label>Packs/Year</label>
-                  <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
+                  <input type="number" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="add-packs-per-year">
                   <div>
                       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
                   </div>
@@ -239,38 +239,38 @@
           <div class="col-xs-12 col-sm-6 col-md-4">
               <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#add-cancerDescriptors">Add Cancer Descriptors Info</button>
               <div id="add-cancerDescriptors" class="collapse">
-                  <label>Tumor Site</label>
-                  <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
+                  <label>Tm Laterality (R/L)</label>
+                  <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="add-tumor-site">
                   <label>Tumor Subsite</label>
-                  <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
+                  <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="add-tumor-subsite">
                   <label>AJCC 7th Edition</label>
-                  <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
-                  <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
-                  <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
-                  <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
+                  <input type="radio" name="AJCC 7th edition" value="I" id="add-ajcc7-1">I
+                  <input type="radio" name="AJCC 7th edition" value="II" id="add-ajcc7-2">II
+                  <input type="radio" name="AJCC 7th edition" value="III" id="add-ajcc7-3">III
+                  <input type="radio" name="AJCC 7th edition" value="IV" id="add-ajcc7-4">IV
                   <label>AJCC 8th Edition</label>
-                  <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
-                  <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
-                  <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
-                  <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
+                  <input type="radio" name="AJCC 8th edition" value="I" id="add-ajcc8-1">I
+                  <input type="radio" name="AJCC 8th edition" value="II" id="add-ajcc8-2">II
+                  <input type="radio" name="AJCC 8th edition" value="III" id="add-ajcc8-3">III
+                  <input type="radio" name="AJCC 8th edition" value="IV" id="add-ajcc8-4">IV
                   <label>T-category</label>
-                  <input type="radio" name="T-category" value="T1" id="tcat1">T1
-                  <input type="radio" name="T-category" value="T2" id="tcat2">T2
-                  <input type="radio" name="T-category" value="T3" id="tcat3">T3
-                  <input type="radio" name="T-category" value="T4" id="tcat4">T4
+                  <input type="radio" name="T-category" value="T1" id="add-tcat1">T1
+                  <input type="radio" name="T-category" value="T2" id="add-tcat2">T2
+                  <input type="radio" name="T-category" value="T3" id="add-tcat3">T3
+                  <input type="radio" name="T-category" value="T4" id="add-tcat4">T4
                   <label>N-Category</label>
-                  <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A
-                  <input type="radio" name="N-category" value="N0" id="ncat-0">N0
-                  <input type="radio" name="N-category" value="N1" id="ncat-1">N1
-                  <input type="radio" name="N-category" value="N2" id="ncat-2">N2
-                  <input type="radio" name="N-category" value="N3" id="ncat-3">N3
+                  <input type="radio" name="N-category" value="N/A" id="add-ncat-na">N/A
+                  <input type="radio" name="N-category" value="N0" id="add-ncat-0">N0
+                  <input type="radio" name="N-category" value="N1" id="add-ncat-1">N1
+                  <input type="radio" name="N-category" value="N2" id="add-ncat-2">N2
+                  <input type="radio" name="N-category" value="N3" id="add-ncat-3">N3
                   <label>Pathological Grade</label>
-                  <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
-                  <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
-                  <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
-                  <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
+                  <input type="radio" name="Pathological Grade" value="I" id="add-pgrade1">I
+                  <input type="radio" name="Pathological Grade" value="II" id="add-pgrade2">II
+                  <input type="radio" name="Pathological Grade" value="III" id="add-pgrade3">III
+                  <input type="radio" name="Pathological Grade" value="IV" id="add-pgrade4">IV
                   <label>Affected Lymph Nodes</label>
-                  <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="affected-lymph">
+                  <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="add-affected-lymph">
                   <div>
                       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
                   </div>
@@ -281,24 +281,26 @@
               <div id="add-treatment" class="collapse">
                   <div class="left">
                       <label>Chemotherapy</label>
-                      <input type="text" name="Therapeutic combination" placeholder="Chemotherapy" id="chemo-element">
-                      <label>Local Therapy</label>
-                      <input type="text" name="Local_Therapy" placeholder="Local Therapy" id="local-therapy-element">
+                      <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="add-chemo">
+                      <label>Censor</label>
+                      <input type="text" name="Censor" placeholder="0/1" id="add-local-therapy">
                       <label>Treatment Duration</label>
-                      <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
+                      <input type="number" name="Treatment duration (Days)" placeholder="Duration" id="add-duration">
                       <label>Total Dose</label>
-                      <input type="text" name="Total dose" placeholder="Total Dose" id="total-dose-element">
+                      <input type="number" name="Total dose" placeholder="Total Dose" id="add-total-dose">
                   </div>
                   <div class="right">
                       <label>Total Fraction</label>
-                      <input type="text" name="Total fractions" placeholder="Total Fraction" id="total-fraction-element">
+                      <input type="number" name="Total fractions" placeholder="Total Fraction" id="add-total-fraction">
                       <label>Dose/Day</label>
-                      <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
+                      <input type="number" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="add-dose">
                       <label>Neck Dissection after IMRT</label>
-                      <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="neck-dissection-element">
+                      <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="add-neck-dissection">
                       <label>Neck Boost</label>
-                      <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
-                      <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
+                      <input type="radio" name="Neck boost (Y/N)" value="Y" id="add-neck-boost-y">Yes
+                      <input type="radio" name="Neck boost (Y/N)" value="N" id="add-neck-boost-n">No
+                      <label>OS (Calculated)</label>
+                      <input type="number" name="OS (Calculated)" placeholder="OS" id="add-os-calculated">
                   </div>
               </div>
           </div>

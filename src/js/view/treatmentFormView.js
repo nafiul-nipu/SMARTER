@@ -19,7 +19,7 @@ let TreatmentFormView = function () {
     }
 
     function updateForm(data) {
-        let {Chemotherapy: chemo, Local_Therapy: local_therapy, "Neck boost (Y/N)":neck_boost,
+        let {"Therapeutic combination": chemo, "Censor": local_therapy, "Neck boost (Y/N)":neck_boost,
         "Dose/fraction (Gy)":dose_per_day, "Total dose":total_dose, "Total fractions":total_fractions, "Treatment duration (Days)":duration,
         "Neck Disssection after IMRT (Y/N)":neck_dissection} = data;
         setChemoElement(chemo);
