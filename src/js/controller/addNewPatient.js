@@ -95,15 +95,28 @@ let AddNewPatient = function() {
             //update the landing form dropdown
             //need to find a way to save the data to the file
             App.controllers.landingFormController.setPatientDropdown(".idSelect");
+
             // location.reload();
+            $(".landing-form").show();
+            $(".add-patient-form").hide();
+            $('.add-patient-form input').val('');
 
 
-            //lets try to write the values to a file
-            // const rows = [
-            //     ["name1", "city1", "some other info"],
-            //     ["name2", "city2", "more info"]
-            // ];
-            
+            /*
+            //server connection
+
+            $(document).ready(function(){
+                $.ajax({url: "http://127.0.0.1:5000/", success: function(result){
+                  //   console.log(result)
+                    // location.reload()
+                  //   console.log("prediciotn", self.prediction)
+                }});
+            });
+            */            
+
+            /*
+            // saving the values to a csv file
+            // not necessary now
             let csvContent = "data:text/csv;charset=utf-8,";
 
             // console.log(length)
@@ -123,8 +136,6 @@ let AddNewPatient = function() {
             }
             string += value_name[value_name.length - 1]
             // console.log(string)
-            // let row = value_name.join(",")
-            // console.log(typeof row)
             csvContent += string + "\r\n"
             // console.log(csvContent)
             for(let index = 0 ; index < new_length ; index++){
@@ -152,14 +163,6 @@ let AddNewPatient = function() {
                 csvContent += row + "\r\n"
             }
 
-            // console.log(csvContent)
-            
-            
-            // rows.forEach(function(rowArray) {
-            //     let row = rowArray.join(",");
-            //     csvContent += row + "\r\n";
-            // });
-
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
@@ -170,20 +173,7 @@ let AddNewPatient = function() {
 
             link.click(); // This will download the data file named "my_data.csv".
 
-            // location.reload();
-
-
-            $(document).ready(function(){
-                $.ajax({url: "http://127.0.0.1:5000/", success: function(result){
-                  //   console.log(result)
-                    location.reload()
-                  //   console.log("prediciotn", self.prediction)
-                }});
-            });
-
-            // $(".landing-form").show();
-            // $(".add-patient-form").hide();
-            // $(':input').val('');
+            */
         });
 
     }
