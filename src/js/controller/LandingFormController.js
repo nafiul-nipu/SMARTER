@@ -13,6 +13,8 @@ let LandingFormController = function() {
 
     function setPatientDropdown(element) {
         let patients = App.models.patients.filterPatients();
+        // console.log(patients)
+        // console.log(Object.keys(patients))
 
         self.patientDropDown = d3.select(element)
             .selectAll("option")
@@ -42,7 +44,7 @@ let LandingFormController = function() {
                     return;
                 else {
                     $(".landing-form").hide();
-                    $(".add-patient-form").hide()
+                    // $(".add-patient-form").hide()
                     // $(".dashboard-help").css("display", "block");
                     // $(".dashboard").css("display", "block");
                     if(self.currentPatient !== null) {
@@ -62,8 +64,8 @@ let LandingFormController = function() {
         self.showFormButton = d3.select(element)
             .on("click", function() {
                 // console.log(element)
-                // $(".landing-form").show();
-                $(".add-patient-form").show();
+                $(".landing-form").show();
+                // $(".add-patient-form").show();
             })
     }
 

@@ -73,8 +73,14 @@ let PatientModel = function() {
     }
 
     // if new patient is added
-    function setPatients(new_patients){
-        self.patients = new_patients;
+    function updatePatient(patientInfo){
+        let keys = Object.keys(self.patients)
+        for(let key in keys){
+            if(self.patients[key]["Dummy ID"] == patientInfo["Dummy ID"]){
+                self.patients[key] = patientInfo;
+            }
+        }
+        console.log("updated")
     }
 
     /* get the total number of patients in the list */
@@ -334,7 +340,7 @@ let PatientModel = function() {
     return {
         loadPatients,
         getPatients,
-        setPatients,
+        updatePatient,
         getPatientNumber,
         getPatientByID,
         getPatientIDFromDummyID,

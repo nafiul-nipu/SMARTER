@@ -8,7 +8,7 @@ from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/output", methods=['GET', 'POST'])
 @cross_origin()
 def output():    
     robjects.r('''

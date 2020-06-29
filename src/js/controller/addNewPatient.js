@@ -6,101 +6,180 @@ let AddNewPatient = function() {
 
     let self = {
         patientInfo:{},
-        all_patients: App.models.patients.getPatients()
-
+        all_patients: App.models.patients.getPatients(),
+        patientID : 0,
+        change_made : false
     };
 
     function addNewPatient(){
-        $('#add-patient').on('click', function(){
-            //test patient.
-            //will take the values from the form 
-            // console.log(self.all_patients);
-            let keys = Object.keys(self.all_patients)
-            let initial_length = keys.length;
-            // console.log(initial_length)
-            //demographics
-            //dummy id
-            self.patientInfo[$('#add-id').attr('name')] = $('#add-id').val();
+        $('.submitButton').on('click', function(){
+            // console.log($('.idSelect').val())
+            self.patientID = $('.idSelect').val();
+            //getting the index number of the patient from the dataset using the dummy ID
+            let patient_index = App.models.patients.getPatientIDFromDummyID(self.patientID);
+            // console.log(patient_index)
+            //getting the patients data using the index
+            self.patientInfo = App.models.patients.getPatientByID(patient_index);
+            console.log(self.patientInfo)
+
+            //check if the value is changed.. if chaged update the value
             //age
-            self.patientInfo[$('#add-age').attr('name')] = $('#add-age').val();
+            if(self.patientInfo[$('#age-element').attr('name')] != $('#age-element').val()){
+                self.patientInfo[$('#age-element').attr('name')] = $('#age-element').val();
+                self.patientInfo.AgeAtTx = +(self.patientInfo["Age at Diagnosis (Calculated)"]);
+                self.change_made = true;
+                console.log("age",self.patientInfo[$('#age-element').attr('name')] , $('#age-element').val())
+            }
             //Gender
-            self.patientInfo[$('#add-gender').attr('name')] = $("input:radio[name=Gender]:checked").val();
+            if(self.patientInfo[$('#male-radio').attr('name')] != $("input:radio[name=Gender]:checked").val()){
+                self.patientInfo[$('#male-radio').attr('name')] = $("input:radio[name=Gender]:checked").val();
+                self.change_made = true;
+                console.log("gender", self.patientInfo[$('#male-radio').attr('name')] , $("input:radio[name=Gender]:checked").val())
+            }
             //Race
-            self.patientInfo[$('#add-race').attr('name')] = $('#add-race').val();
+            if(self.patientInfo[$('#race-element').attr('name')] != $('#race-element').val()){
+                self.patientInfo[$('#race-element').attr('name')] = $('#race-element').val();
+                self.change_made = true;
+                console.log("race", self.patientInfo[$('#race-element').attr('name')],$('#race-element').val())
+            }
             //Aspiration
-            self.patientInfo[$('#add-aspiration-y').attr('name')] = $("input:radio[name='Aspiration rate Pre-therapy']:checked").val();
+            if(self.patientInfo[$('#aspiration-y-radio').attr('name')] != $("input:radio[name='Aspiration rate Pre-therapy']:checked").val()){
+                self.patientInfo[$('#aspiration-y-radio').attr('name')] = $("input:radio[name='Aspiration rate Pre-therapy']:checked").val();
+                self.change_made = true;
+                console.log("aspiration",self.patientInfo[$('#aspiration-y-radio').attr('name')],$("input:radio[name='Aspiration rate Pre-therapy']:checked").val())
+            }
             //HPV/P16
-            self.patientInfo[$('#add-hpvp16').attr('name')] = $('#add-hpvp16').val();
+            if(self.patientInfo[$('#hpvp16-element').attr('name')] != $('#hpvp16-element').val()){
+                self.patientInfo[$('#hpvp16-element').attr('name')] = $('#hpvp16-element').val();
+                self.change_made = true;
+                console.log("hpv",self.patientInfo[$('#hpvp16-element').attr('name')], $('#hpvp16-element').val())
+            }
             //smoking status
-            self.patientInfo[$('#add-smoking-never').attr('name')] = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
+            if(self.patientInfo[$('#smoking-never-radio').attr('name')] != $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val()){
+                self.patientInfo[$('#smoking-never-radio').attr('name')] = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
+                self.change_made = true;
+                console.log("smoking status",self.patientInfo[$('#smoking-never-radio').attr('name')], $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val())
+            }
             //packs per year
-            self.patientInfo[$('#add-packs-per-year').attr('name')] = $('#add-packs-per-year').val();
+            if(self.patientInfo[$('#packs-per-year-element').attr('name')] != $('#packs-per-year-element').val()){
+                self.patientInfo[$('#packs-per-year-element').attr('name')] = $('#packs-per-year-element').val();
+                self.patientInfo.SmokeStatusPacksYear = +self.patientInfo["Smoking status (Packs/Year)"];
+                self.change_made = true;
+                console.log("packs per year",self.patientInfo[$('#packs-per-year-element').attr('name')], $('#packs-per-year-element').val())
+            }
             
             //cancer descriptors
             //tumoe site
-            self.patientInfo[$('#add-tumor-site').attr('name')] = $('#add-tumor-site').val();
+            if(self.patientInfo[$('#tumor-site').attr('name')] != $('#tumor-site').val()){
+                self.patientInfo[$('#tumor-site').attr('name')] = $('#tumor-site').val();
+                self.change_made = true;
+                console.log("tumor site",self.patientInfo[$('#tumor-site').attr('name')], $('#tumor-site').val())
+            }
             // tumor sub site
-            self.patientInfo[$('#add-tumor-subsite').attr('name')] = $('#add-tumor-subsite').val();
+            if(self.patientInfo[$('#tumor-subsite').attr('name')] != $('#tumor-subsite').val()){
+                self.patientInfo[$('#tumor-subsite').attr('name')] = $('#tumor-subsite').val();
+                self.change_made = true;
+                console.log("tumor subsite",self.patientInfo[$('#tumor-subsite').attr('name')], $('#tumor-subsite').val())
+            }
             //AJCC 7th
-            self.patientInfo[$('#add-ajcc7-1').attr('name')] = $("input:radio[name='AJCC 7th edition']:checked").val();
+            if(self.patientInfo[$('#ajcc7-1').attr('name')] != $("input:radio[name='AJCC 7th edition']:checked").val()){
+                self.patientInfo[$('#ajcc7-1').attr('name')] = $("input:radio[name='AJCC 7th edition']:checked").val();
+                self.change_made = true;
+                console.log("ajcc 7th",self.patientInfo[$('#ajcc7-1').attr('name')], $("input:radio[name='AJCC 7th edition']:checked").val())
+            }
             //AJCC 8th
-            self.patientInfo[$('#add-ajcc8-1').attr('name')] = $("input:radio[name='AJCC 8th edition']:checked").val();
+            if(self.patientInfo[$('#ajcc8-1').attr('name')] != $("input:radio[name='AJCC 8th edition']:checked").val()){
+                self.patientInfo[$('#ajcc8-1').attr('name')] = $("input:radio[name='AJCC 8th edition']:checked").val();
+                self.change_made = true;
+                console.log("ajcc 8th", self.patientInfo[$('#ajcc8-1').attr('name')], $("input:radio[name='AJCC 8th edition']:checked").val())
+            }
             //T-cat
-            self.patientInfo[$('#add-tcat1').attr('name')] = $("input:radio[name='T-category']:checked").val();
+            if(self.patientInfo[$('#tcat1').attr('name')] != $("input:radio[name='T-category']:checked").val()){
+                self.patientInfo[$('#tcat1').attr('name')] = $("input:radio[name='T-category']:checked").val();
+                self.change_made = true;
+                console.log("t category", self.patientInfo[$('#tcat1').attr('name')], $("input:radio[name='T-category']:checked").val())
+            }
             //N-cat
-            self.patientInfo[$('#add-ncat-na').attr('name')] = $("input:radio[name='N-category']:checked").val();
+            if(self.patientInfo[$('#ncat-na').attr('name')] != $("input:radio[name='N-category']:checked").val()){
+                self.patientInfo[$('#ncat-na').attr('name')] = $("input:radio[name='N-category']:checked").val();
+                self.change_made = true;
+                console.log("n category", self.patientInfo[$('#ncat-na').attr('name')], $("input:radio[name='N-category']:checked").val())
+            }
             //Pathological Grade
-            self.patientInfo[$('#add-pgrade1').attr('name')] = $("input:radio[name='Pathological Grade']:checked").val();
+            if(self.patientInfo[$('#pgrade1').attr('name')] != $("input:radio[name='Pathological Grade']:checked").val()){
+                self.patientInfo[$('#pgrade1').attr('name')] = $("input:radio[name='Pathological Grade']:checked").val();
+                self.change_made = true;
+                console.log("pathological grade", self.patientInfo[$('#pgrade1').attr('name')], $("input:radio[name='Pathological Grade']:checked").val())
+            }
             //affected lymph nodes
-            self.patientInfo[$('#add-affected-lymph').attr('name')] = $('#add-affected-lymph').val();
+            if(self.patientInfo[$('#affected-lymph').attr('name')] != $('#affected-lymph').val()){
+                self.patientInfo[$('#affected-lymph').attr('name')] = $('#affected-lymph').val();
+                self.change_made = true;
+                console.log("lymph node", self.patientInfo[$('#affected-lymph').attr('name')], $('#affected-lymph').val())
+            }
 
             // treatment info
             //chemotherapy
-            self.patientInfo[$('#add-chemo').attr('name')] = $('#add-chemo').val();
+            if(self.patientInfo[$('#chemo-element').attr('name')] != $('#chemo-element').val()){
+                self.patientInfo[$('#chemo-element').attr('name')] = $('#chemo-element').val();
+                self.change_made = true;
+                console.log("therapeutic combination", self.patientInfo[$('#chemo-element').attr('name')], $('#chemo-element').val())
+            }
             //local therapy
-            self.patientInfo[$('#add-local-therapy').attr('name')] = $('#add-local-therapy').val();
+            if(self.patientInfo[$('#local-therapy-element').attr('name')] != $('#local-therapy-element').val()){
+                self.patientInfo[$('#local-therapy-element').attr('name')] = $('#local-therapy-element').val();
+                self.patientInfo.Censor = +self.patientInfo.Censor;
+                self.change_made = true;
+                console.log("censor", self.patientInfo[$('#local-therapy-element').attr('name')], $('#local-therapy-element').val())
+            }
             //treatment duration
-            self.patientInfo[$('#add-duration').attr('name')] = $('#add-duration').val();
+            if(self.patientInfo[$('#duration-element').attr('name')] != $('#duration-element').val()){
+                self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();
+                self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+                self.change_made = true;
+                console.log("treatment duration", self.patientInfo[$('#duration-element').attr('name')], $('#duration-element').val())
+            }
             //total dose
-            self.patientInfo[$('#add-total-dose').attr('name')] = $('#add-total-dose').val();
+            if(self.patientInfo[$('#total-dose-element').attr('name')] != $('#total-dose-element').val()){
+                self.patientInfo[$('#total-dose-element').attr('name')] = $('#total-dose-element').val();
+                self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
+                self.change_made = true;
+                console.log("total dose", self.patientInfo[$('#total-dose-element').attr('name')], $('#total-dose-element').val())
+            }
             //total fraction
-            self.patientInfo[$('#add-total-fraction').attr('name')] = $('#add-total-fraction').val();
+            if(self.patientInfo[$('#total-fraction-element').attr('name')] != $('#total-fraction-element').val()){
+                self.patientInfo[$('#total-fraction-element').attr('name')] = $('#total-fraction-element').val();
+                self.change_made = true;
+                console.log("total fraction", self.patientInfo[$('#total-fraction-element').attr('name')], $('#total-fraction-element').val())
+            }
             //dose/fraction
-            self.patientInfo[$('#add-dose').attr('name')] = $('#add-dose').val();
+            if(self.patientInfo[$('#dose-element').attr('name')] != $('#dose-element').val()){
+                self.patientInfo[$('#dose-element').attr('name')] = $('#dose-element').val();
+                self.change_made = true;
+                console.log("total dose", self.patientInfo[$('#dose-element').attr('name')], $('#dose-element').val())
+            }
             //neck dissection
-            self.patientInfo[$('#add-neck-dissection').attr('name')] = $('#add-neck-dissection').val();
+            if(self.patientInfo[$('#neck-dissection-element').attr('name')] != $('#neck-dissection-element').val()){
+                self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
+                self.change_made = true;
+                console.log("neck dissection", self.patientInfo[$('#neck-dissection-element').attr('name')], $('#neck-dissection-element').val())
+            }
             //Neck boost
-            self.patientInfo[$('#add-neck-boost-y').attr('name')] = $("input:radio[name='Neck boost (Y/N)']:checked").val();
-            //neck dissection
-            self.patientInfo[$('#add-os-calculated').attr('name')] = $('#add-os-calculated').val();
+            if(self.patientInfo[$('#neck-boost-y-radio').attr('name')] != $("input:radio[name='Neck boost (Y/N)']:checked").val()){
+                self.patientInfo[$('#neck-boost-y-radio').attr('name')] = $("input:radio[name='Neck boost (Y/N)']:checked").val();
+                self.change_made = true;
+                console.log("neck boost", self.patientInfo[$('#neck-boost-y-radio').attr('name')], $("input:radio[name='Neck boost (Y/N)']:checked").val())
+            }
 
-            // from patient model adding this values
-            // self.patients[i] = d;
-            self.patientInfo.AgeAtTx = +(self.patientInfo["Age at Diagnosis (Calculated)"]);
-            self.patientInfo["Probability of Survival"] = 0.86568 //+(self.patientInfo["overall_survival_5yr_prob"]);
-            self.patientInfo.ID = self.patientInfo["Dummy ID"];
-            self.patientInfo.OS = +self.patientInfo["OS (Calculated)"];
-            self.patientInfo.Censor = +self.patientInfo.Censor;
-            //for attribute statistics
-            self.patientInfo.SmokeStatusPacksYear = +self.patientInfo["Smoking status (Packs/Year)"];
-            self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
-            self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+            console.log(self.patientInfo)
+            if(self.change_made == true){
+                App.models.patients.updatePatient(self.patientInfo);
+            }
 
-            // console.log(self.patientInfo)
-            // console.log(self.all_patients[initial_length])
-            self.all_patients[initial_length] = self.patientInfo
+            // self.all_patients[initial_length] = self.patientInfo
             // console.log(self.all_patients)
             //add the patient to the patients list
-            App.models.patients.setPatients(self.all_patients)
-            //update the landing form dropdown
-            //need to find a way to save the data to the file
-            App.controllers.landingFormController.setPatientDropdown(".idSelect");
-
-            // location.reload();
-            $(".landing-form").show();
-            $(".add-patient-form").hide();
-            $('.add-patient-form input').val('');
-
+            // App.models.patients.setPatients(self.all_patients)
 
             /*
             //server connection
