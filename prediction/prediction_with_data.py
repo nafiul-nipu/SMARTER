@@ -24,9 +24,9 @@ def output():
         ## Adds therapy as a predictor
 
         ## load libraries
-        #library(survival)
-        #library(dplyr)
-        #library(purrr)
+        # library(survival)
+        # library(tidyverse)
+        # library(purrr)
 
 
         if(!require("pacman")) install.packages("pacman")
@@ -55,10 +55,10 @@ def output():
 
         for(row in row.names(OPC_final)){
             if(OPC_final[row, "Dummy.ID"] == result["Dummy.ID"]){
+                faltu <- result
                 for(column in colnames(OPC_final)){
-                    OPC_final[row,column] = result[column]
+                    OPC_final[row,column] <- result[column]
                 }
-                break
             }
         }
         
@@ -267,28 +267,30 @@ def output():
         ##### Compile Output #####
         ##########################
 
-        final_preds <- data.frame(ID=OPC_final_clinic$Dummy.ID, 
+        id_list_data <- OPC[OPC$Feeding.tube.6m!="",]
+        id_list <- id_list_data$Dummy.ID
+
+        final_preds <- data.frame(ID=id_list, 
                                   feeding_tube_prob = fit_ft$fitted.values,
                                   aspiration_prob = fit_asp$fitted.values,
                                   overall_survival_5yr_prob = preds_os,
                                   progression_free_5yr_prob = preds_pfs)
         #write.csv(final_preds, file="Risk_preds.csv")
 
-        # final_matrix = data.matrix(final_preds)
-        return(final_preds)
+        final_preds
 
         #write.csv(final_weights, file="Risk_pred_model_coefficients.csv")
-
 
     }
 
     ''')
 
-    prediction_function = robjects.r['test']
     # converting to R dataframe
     val = robjects.DataFrame(new_data)
+    prediction_function = robjects.r['test']
     result = prediction_function(val)
-
+    # ty = str(type(result))    
+    # converting the dataframe to a multi-dimentional array
     # initialize multi-array  
     prediction = [ [ 0 for y in range(len(result[0])) ] for x in range( len(result)) ]     
     # print(len(result[0]))

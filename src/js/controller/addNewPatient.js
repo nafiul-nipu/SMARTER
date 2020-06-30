@@ -8,7 +8,9 @@ let AddNewPatient = function() {
         patientInfo:{},
         all_patients: App.models.patients.getPatients(),
         patientID : 0,
-        change_made : false
+        change_made : false,
+        name : ["ID", "Feeding Tube", "Aspiration", "Overall Survival", "Progression Free"],
+        prediction: []
     };
 
     function addNewPatient(){
@@ -174,18 +176,27 @@ let AddNewPatient = function() {
             console.log(self.patientInfo)
             if(self.change_made == true){
                 App.models.patients.updatePatient(self.patientInfo);
+                //send data to the server to get the result
+                // making the data type according to R
+                self.patientInfo["Age at Diagnosis (Calculated)"] = +self.patientInfo["Age at Diagnosis (Calculated)"] 
+                self.patientInfo["Smoking status (Packs/Year)"] = +self.patientInfo["Smoking status (Packs/Year)"] 
+                self.patientInfo["Overall Survival (1=alive, 0=dead)"] = +self.patientInfo["Overall Survival (1=alive, 0=dead)"]
+                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = +self.patientInfo["Distant Control (1=no DM, 0=DM)"]
+                self.patientInfo["OS (Calculated)"] = +self.patientInfo["OS (Calculated)"]
+                self.patientInfo["Locoregional control (Time)"] = +self.patientInfo["Locoregional control (Time)"]
+                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = +self.patientInfo["Locoregional Control(1=Control,0=Failure)"]
+                self.patientInfo["FDM (months)"] = +self.patientInfo["FDM (months)"]
+
+
+                axios.post('http://127.0.0.1:5000/output', self.patientInfo)
+                .then(function (response) {
+                    console.log(response.data);
+                    self.prediction = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             }
-
-            //send data to the server to get the result
-            const data = self.patientInfo;
-
-            axios.post('http://127.0.0.1:5000/output', self.patientInfo)
-              .then(function (response) {
-                console.log(response.data);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
 
             // self.all_patients[initial_length] = self.patientInfo
             // console.log(self.all_patients)
@@ -268,8 +279,18 @@ let AddNewPatient = function() {
 
     }
 
+    function get_result_name(){
+        return self.name;
+    }
+
+    function get_prediction_result(){
+        return self.prediction;
+    }
+
     return {
-        addNewPatient
+        addNewPatient,
+        get_prediction_result,
+        get_result_name
 
     }
 }

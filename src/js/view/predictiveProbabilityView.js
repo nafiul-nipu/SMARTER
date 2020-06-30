@@ -10,8 +10,8 @@ let predictionModalView = function(){
 
         $("#predictionButton").on("click", function(){
             $("#predictionModalBody").empty();
-            let feature_name = App.models.r_to_js.get_result_name();
-            let prediction_result = App.models.r_to_js.get_prediction_result();
+            let feature_name = App.controllers.newPatient.get_result_name();
+            let prediction_result = App.controllers.newPatient.get_prediction_result();
 
             // console.log(id)
             console.log(feature_name)
