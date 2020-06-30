@@ -13,13 +13,13 @@ let R_to_JS = function(){
 
     }
     function main(){
-        $(document).ready(function(){
-              $.ajax({url: "http://127.0.0.1:5000/output", success: function(result){
-                //   console.log(result)
-                  self.prediction = result
-                //   console.log("prediciotn", self.prediction)
-              }});
-          });
+        // $(document).ready(function(){
+        //       $.ajax({url: "http://127.0.0.1:5000/output", success: function(result){
+        //         //   console.log(result)
+        //           self.prediction = result
+        //         //   console.log("prediciotn", self.prediction)
+        //       }});
+        //   });
 
     }
 

@@ -176,6 +176,17 @@ let AddNewPatient = function() {
                 App.models.patients.updatePatient(self.patientInfo);
             }
 
+            //send data to the server to get the result
+            const data = self.patientInfo;
+
+            axios.post('http://127.0.0.1:5000/output', self.patientInfo)
+              .then(function (response) {
+                console.log(response.data);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
             // self.all_patients[initial_length] = self.patientInfo
             // console.log(self.all_patients)
             //add the patient to the patients list
