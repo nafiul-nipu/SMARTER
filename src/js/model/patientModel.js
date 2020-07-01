@@ -10,7 +10,7 @@ let PatientModel = function() {
         attributeDomains: {},
         axes: {},
         commonAttributeValues: {},
-        commonKaplanAttributeValues: {},
+        commonKaplanAttributeValues: {}
         // statisticsOfAllPatients:{}
     };
 
@@ -81,7 +81,7 @@ let PatientModel = function() {
             }
         }
         console.log("single patient info updated")
-        console.log(patientInfo)
+        // console.log(patientInfo)
     }
 
     // if new patient added update the predictions
@@ -101,7 +101,6 @@ let PatientModel = function() {
         }
         console.log("prediction updated");
         // console.log(self.patients)
-        return true;
     }
 
     /* get the total number of patients in the list */
