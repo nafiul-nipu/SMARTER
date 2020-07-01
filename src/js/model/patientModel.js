@@ -80,7 +80,28 @@ let PatientModel = function() {
                 self.patients[key] = patientInfo;
             }
         }
-        console.log("updated")
+        console.log("single patient info updated")
+        // console.log(self.patients)
+    }
+
+    // if new patient added update the predictions
+    function update_prediction_values(predictedValues){
+        let keys = Object.keys(self.patients)
+        for(let key in keys){
+            for(let i = 0; i < predictedValues[0].length; i++){
+                if(self.patients[key]["Dummy ID"] == predictedValues[0][i]){
+                    // let attribute =  ["Dummy ID", "aspiration_prob", "feeding_tube_prob", "overall_survival_5yr_prob", "progression_free_5yr_prob"];
+                    self.patients[key]["aspiration_prob"] = predictedValues[1][i];
+                    self.patients[key]["feeding_tube_prob"] = predictedValues[2][i];
+                    self.patients[key]["overall_survival_5yr_prob"] = predictedValues[3][i];
+                    self.patients[key]["Probability of Survival"] = +(self.patients[key]["overall_survival_5yr_prob"]);
+                    self.patients[key]["progression_free_5yr_prob"] = predictedValues[4][i];
+                }
+            }
+        }
+        console.log("prediction updated");
+        // console.log(self.patients)
+        return true;
     }
 
     /* get the total number of patients in the list */
@@ -341,6 +362,7 @@ let PatientModel = function() {
         loadPatients,
         getPatients,
         updatePatient,
+        update_prediction_values,
         getPatientNumber,
         getPatientByID,
         getPatientIDFromDummyID,

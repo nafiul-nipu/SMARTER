@@ -55,7 +55,6 @@ def output():
 
         for(row in row.names(OPC_final)){
             if(OPC_final[row, "Dummy.ID"] == result["Dummy.ID"]){
-                faltu <- result
                 for(column in colnames(OPC_final)){
                     OPC_final[row,column] <- result[column]
                 }
@@ -267,10 +266,10 @@ def output():
         ##### Compile Output #####
         ##########################
 
-        id_list_data <- OPC[OPC$Feeding.tube.6m!="",]
-        id_list <- id_list_data$Dummy.ID
+        # id_list_data <- OPC[OPC$Feeding.tube.6m!="",]
+        # id_list <- id_list_data$Dummy.ID
 
-        final_preds <- data.frame(ID=id_list, 
+        final_preds <- data.frame(ID=OPC_final_clinic$Dummy.ID, 
                                   feeding_tube_prob = fit_ft$fitted.values,
                                   aspiration_prob = fit_asp$fitted.values,
                                   overall_survival_5yr_prob = preds_os,

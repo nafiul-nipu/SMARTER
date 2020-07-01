@@ -22,7 +22,7 @@ let AddNewPatient = function() {
             // console.log(patient_index)
             //getting the patients data using the index
             self.patientInfo = App.models.patients.getPatientByID(patient_index);
-            console.log(self.patientInfo)
+            // console.log(self.patientInfo)
 
             //check if the value is changed.. if chaged update the value
             //age
@@ -173,108 +173,54 @@ let AddNewPatient = function() {
                 console.log("neck boost", self.patientInfo[$('#neck-boost-y-radio').attr('name')], $("input:radio[name='Neck boost (Y/N)']:checked").val())
             }
 
-            console.log(self.patientInfo)
+            // console.log(self.patientInfo)
             if(self.change_made == true){
+                console.log(self.patientInfo)
                 App.models.patients.updatePatient(self.patientInfo);
                 //send data to the server to get the result
                 // making the data type according to R
-                self.patientInfo["Age at Diagnosis (Calculated)"] = +self.patientInfo["Age at Diagnosis (Calculated)"] 
-                self.patientInfo["Smoking status (Packs/Year)"] = +self.patientInfo["Smoking status (Packs/Year)"] 
-                self.patientInfo["Overall Survival (1=alive, 0=dead)"] = +self.patientInfo["Overall Survival (1=alive, 0=dead)"]
-                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = +self.patientInfo["Distant Control (1=no DM, 0=DM)"]
-                self.patientInfo["OS (Calculated)"] = +self.patientInfo["OS (Calculated)"]
-                self.patientInfo["Locoregional control (Time)"] = +self.patientInfo["Locoregional control (Time)"]
-                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = +self.patientInfo["Locoregional Control(1=Control,0=Failure)"]
-                self.patientInfo["FDM (months)"] = +self.patientInfo["FDM (months)"]
+                //making a deep copy of the patientInfo object
+                //so that change in post_data does not affect self.patientInfo
+                let post_data = JSON.parse(JSON.stringify(self.patientInfo));
+                // let post_data = self.patientInfo;
+                post_data["Dummy ID"] = +post_data["Dummy ID"] 
+                post_data["Age at Diagnosis (Calculated)"] = +post_data["Age at Diagnosis (Calculated)"] 
+                post_data["Smoking status (Packs/Year)"] = +post_data["Smoking status (Packs/Year)"] 
+                post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
+                post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
+                post_data["OS (Calculated)"] = +post_data["OS (Calculated)"]
+                post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
+                post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
+                post_data["FDM (months)"] = +post_data["FDM (months)"]
 
 
-                axios.post('http://127.0.0.1:5000/output', self.patientInfo)
+                axios.post('http://127.0.0.1:5000/output', post_data)
                 .then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     self.prediction = response.data;
+                    //update all the values
+                    App.models.patients.update_prediction_values(self.prediction);
+                    // console.log(self.update_complete);
+
+
+                    let data = consolidateData();
+                    // console.log(data);
+                    if (data.age === null)
+                        return;
+                    else {
+                        $(".landing-form").hide();
+                        let currentPatient = $('.idSelect').val();
+                        console.log(currentPatient)
+                        App.controllers.patientSelector.updatePateintDropDown();
+                        App.controllers.patientSelector.setPatient(currentPatient);
+                    }
+
+
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
             }
-
-            // self.all_patients[initial_length] = self.patientInfo
-            // console.log(self.all_patients)
-            //add the patient to the patients list
-            // App.models.patients.setPatients(self.all_patients)
-
-            /*
-            //server connection
-
-            $(document).ready(function(){
-                $.ajax({url: "http://127.0.0.1:5000/", success: function(result){
-                  //   console.log(result)
-                    // location.reload()
-                  //   console.log("prediciotn", self.prediction)
-                }});
-            });
-            */            
-
-            /*
-            // saving the values to a csv file
-            // not necessary now
-            let csvContent = "data:text/csv;charset=utf-8,";
-
-            // console.log(length)
-            let value_name = Object.keys(self.all_patients[0])
-            let new_keys = Object.keys(self.all_patients)
-            let new_length = new_keys.length;
-            console.log(new_length)
-            //add the names first to the csvcontent
-            let string = ""
-            for(let i = 0 ; i < value_name.length - 1 ; i++){
-                if(value_name[i].includes(",")){
-                    string += '"' + value_name[i] + '",' ;
-                }else{
-                    string += value_name[i] + "," ;
-                }
-                
-            }
-            string += value_name[value_name.length - 1]
-            // console.log(string)
-            csvContent += string + "\r\n"
-            // console.log(csvContent)
-            for(let index = 0 ; index < new_length ; index++){
-                let rowArray = []
-                for(let value of value_name){
-                    rowArray.push(self.all_patients[index][value])
-                }
-                // console.log(rowArray)
-                let row = ""
-                for(let i = 0 ; i < rowArray.length - 1 ; i++){
-                    let type = typeof rowArray[i];
-                    // console.log(type)
-                    if(type == "string"){
-                        if(rowArray[i].includes(",")){
-                            row += '"' + rowArray[i] + '",';
-                        }else{
-                            row += rowArray[i] + ",";
-                        }
-                    }else{
-                        row += rowArray[i] + ",";
-                    }
-                }
-                row += rowArray[rowArray.length - 1];
-
-                csvContent += row + "\r\n"
-            }
-
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "newdata.csv");
-            document.body.appendChild(link); // Required for FF
-
-            // console.log(self.patientInfo)
-
-            link.click(); // This will download the data file named "my_data.csv".
-
-            */
         });
 
     }
@@ -287,10 +233,18 @@ let AddNewPatient = function() {
         return self.prediction;
     }
 
+    function consolidateData() {
+        return {
+            ...App.views.demographForm.consolidateData(),
+            ...App.views.treatmentForm.consolidateData(),
+            ...App.views.cancerDescriptorsForm.consolidateData()
+        }
+    }
+
     return {
         addNewPatient,
         get_prediction_result,
-        get_result_name
-
+        get_result_name,
+        consolidateData
     }
 }
