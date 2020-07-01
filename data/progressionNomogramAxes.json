@@ -145,7 +145,7 @@
     "forKiviat": true
   },
   "Predictive Probability": {
-    "name": "feeding_tube_prob",
+    "name": "progression_free_5yr_prob",
     "label": "Predictive Probability",
     "domain":[0,1],
     "rangeShrink": [0,1],

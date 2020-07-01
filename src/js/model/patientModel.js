@@ -81,7 +81,7 @@ let PatientModel = function() {
             }
         }
         console.log("single patient info updated")
-        // console.log(self.patients)
+        console.log(patientInfo)
     }
 
     // if new patient added update the predictions
@@ -91,8 +91,8 @@ let PatientModel = function() {
             for(let i = 0; i < predictedValues[0].length; i++){
                 if(self.patients[key]["Dummy ID"] == predictedValues[0][i]){
                     // let attribute =  ["Dummy ID", "aspiration_prob", "feeding_tube_prob", "overall_survival_5yr_prob", "progression_free_5yr_prob"];
-                    self.patients[key]["aspiration_prob"] = predictedValues[1][i];
-                    self.patients[key]["feeding_tube_prob"] = predictedValues[2][i];
+                    self.patients[key]["feeding_tube_prob"] = predictedValues[1][i];
+                    self.patients[key]["aspiration_prob"] = predictedValues[2][i];
                     self.patients[key]["overall_survival_5yr_prob"] = predictedValues[3][i];
                     self.patients[key]["Probability of Survival"] = +(self.patients[key]["overall_survival_5yr_prob"]);
                     self.patients[key]["progression_free_5yr_prob"] = predictedValues[4][i];

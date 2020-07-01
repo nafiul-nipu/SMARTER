@@ -145,7 +145,7 @@
     "forKnn": true
   },
   "Predictive Probability": {
-    "name": "feeding_tube_prob",
+    "name": "aspiration_prob",
     "label": "Predictive Probability",
     "domain":[0,1],
     "rangeShrink": [0,1],
