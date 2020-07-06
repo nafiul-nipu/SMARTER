@@ -49,7 +49,7 @@ less.pageLoadFinished.then(function() {
         // App.models.logisticRegression = new logisticRegression();
         // App.models.logisticRegression.get_data();
         // App.models.predictiveAnalysis = new predictiveAnalysis()
-        App.models.r_to_js = new R_to_JS()
+        // App.models.r_to_js = new R_to_JS()
 
 
     }
@@ -125,11 +125,11 @@ less.pageLoadFinished.then(function() {
                 App.createControllers();
 
                 // App.models.predictiveAnalysis.main()
-                App.models.r_to_js.main();
+                // App.models.r_to_js.main();
 
                 //initializing here because we want the predictive data first 
                 //and then populate the modal table
-                App.views.predictionModalView = new predictionModalView();
+                // App.views.predictionModalView = new predictionModalView();
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");

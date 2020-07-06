@@ -101,6 +101,10 @@ let PatientSelectorController = function() {
     function updateViews(updatedPatients) {
         App.views.kiviatDiagram.update(updatedPatients);
         App.views.nomogram.updateKnnData(updatedPatients);
+        //update the kaplan meier
+        let KMData = App.models.kaplanMeierPatient.getKaplanMeierPatients();      
+        App.views.kaplanMeier.update(KMData);
+        // console.log("i am called")
     }
 
     function getPatientWithGroup(){

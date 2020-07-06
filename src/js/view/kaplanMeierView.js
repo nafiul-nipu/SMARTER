@@ -176,13 +176,37 @@ let KaplanMeierView = function(targetID) {
             .domain([0, 1])
             .range([90, 10]);
 
+
+        //we want to make the selected patient cohort's color more opaque
+        //let's get the selected patient ID and information
+        //get the Dummy ID from the drop down
+        let patientID = App.controllers.patientSelector.getCurrentPatient();
+        console.log(patientID)
+        // get the index of the dummy ID
+        let indexID = 0;
+        if(patientID == null || patientID == 0){ //as we don't have null and 0 indexed patient
+            indexID = 2;            
+        }else{
+            indexID = App.models.patients.getPatientIDFromDummyID(patientID);
+        }
+        console.log(indexID)
+        //get that patient's information
+        let patientInfo = App.models.patients.getPatientByID(indexID);
+        // console.log(patientInfo)
+        // get the selected attribute from kaplan dropdown
+        let selectedAttribute = App.models.kaplanMeierPatient.getSelectedAttribute();
+        // console.log(selectedAttribute)
+        // console.log(patientInfo[selectedAttribute])
+        // get the cohort of the selected patients
+        let patient_attribute = patientInfo[selectedAttribute];
+
         // draw kaplan-meier plots
         let attrValNum = 0;
         for (let attrKey of Object.keys(KMData)) {
             // console.log(attrKey)
             // console.log(KMData[attrKey])
             if (KMData[attrKey].length > 0) {  // have patients in the group
-                drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey), attrKey);
+                drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey), attrKey, patient_attribute);
                 drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));
                 attrValNum++;
             }
@@ -204,12 +228,11 @@ let KaplanMeierView = function(targetID) {
     }
 
     /* draw the kaplan-meier plot */
-    function drawKMPlot(data, xScale, yScale, color, attrVal) {
-
-        // console.log(attrVal)
+    function drawKMPlot(data, xScale, yScale, color, attrVal, patient_attribute) {
 
         // remove the special symbols
         let value = attrVal.replace(/[^a-zA-Z0-9]/g, '');
+        let opaqued_attribute = patient_attribute.replace(/[^a-zA-Z0-9]/g, '');
         // console.log(attrVal.replace(/[^a-zA-Z ]/g, ""));
         // console.log(value)
         // console.log(attrVal)
@@ -234,7 +257,15 @@ let KaplanMeierView = function(targetID) {
                 .attr("height", y1 - y2)
                 .style("stroke", "none")
                 .style("fill", color)
-                .style("opacity", 0.5);
+                .style("opacity", function(d){
+                    // selected patient's cohort will be 0.7
+                    // other will be 0.5
+                    if(value == opaqued_attribute){
+                        return 1
+                    }else{
+                        return 0.4
+                    }
+                });
         }
 
         // draw line

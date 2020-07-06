@@ -125,12 +125,17 @@ let KaplanMeierPatientModel = function() {
         return self.maxOS;
     }
 
+    function getSelectedAttribute(){
+        return self.selectedAttribute;
+    }
+
 
     return {
         initPatients,
         updatePatients,
         updateSelectedAttribute,
         getKaplanMeierPatients,
-        getMaxOS
+        getMaxOS,
+        getSelectedAttribute
     };
 }
