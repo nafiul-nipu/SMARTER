@@ -178,6 +178,7 @@ let AttributeSelectorControllerUpdated = function() {
 
     /* get the selected attribute and update views */
     function updateSelectedAttribute(selectedAttribute) {
+        // console.log(selectedAttribute)
         // update the application state
         App.models.applicationState.setSelectedAttribute(selectedAttribute);
 

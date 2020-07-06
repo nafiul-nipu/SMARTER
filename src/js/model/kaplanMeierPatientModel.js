@@ -18,6 +18,7 @@ let KaplanMeierPatientModel = function() {
         self.patients = patients;
         // console.log(self.patients)
         self.selectedAttribute = attribute;
+        // console.log(self.selectedAttribute)
 
         updateData();
     }
@@ -32,6 +33,7 @@ let KaplanMeierPatientModel = function() {
     /* update the selected attribute */
     function updateSelectedAttribute(attribute) {
         self.selectedAttribute = attribute;
+        // console.log(self.selectedAttribute)
 
         updateData();
     }
@@ -42,6 +44,7 @@ let KaplanMeierPatientModel = function() {
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
         let groups = attributeDomains[self.selectedAttribute];
         // console.log("groups from kaplan meier " + groups)
+        // console.log(attributeDomains)
 
         // reset
         self.patientGroups = {};
@@ -51,15 +54,22 @@ let KaplanMeierPatientModel = function() {
         for (let i = 0; i < groups.length; i++) {
             let filter = {};
             filter[self.selectedAttribute] = groups[i];
+            // console.log(filter)
 
             // filter patients by values of the selected attribute
+            // all patients data with filter i.e. all male patients with their all data
             let thisGroupPateint = _.filter(self.patients, filter);
+            // console.log(thisGroupPateint)
             self.patientGroups[groups[i]] = _.sortBy(thisGroupPateint, ["OS"]);
+            // console.log(self.patientGroups[groups[i]])
+            // console.log(groups[i])
 
             // calculate the data for kaplan-meier plots
             calculateKaplanMeierData(self.patientGroups[groups[i]], groups[i]);
         }
+        // console.log("self.patienGroups")
         // console.log(self.patientGroups);
+        // console.log("self.kaplanMeierPatientGroups")
         // console.log(self.kaplanMeierPatientGroups);
 
         self.maxOS = Math.ceil(self.maxOS);
@@ -68,6 +78,8 @@ let KaplanMeierPatientModel = function() {
 
     /* calculate the data used for kaplan-meier plots */
     function calculateKaplanMeierData(currentPatientGroup, selectedAttributeValue) {
+        // console.log(currentPatientGroup)
+        // console.log(selectedAttributeValue)
         let CensorsAtOS = {}; // {OS: [censor], OS: [censor, censor, censor], OS: [], ...}
 
         for (let patientInd in currentPatientGroup) {
@@ -79,6 +91,7 @@ let KaplanMeierPatientModel = function() {
         }
 
         let sortedOSKeys = Object.keys(CensorsAtOS).sort((a, b) => parseFloat(a) - parseFloat(b));
+        // console.log(sortedOSKeys)
 
         let probAtOS = []; // [{OS, prob, variance}, {OS, ...}, ...]
         let previousProb = 1;
@@ -112,7 +125,10 @@ let KaplanMeierPatientModel = function() {
         }
 
         // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
+        console.log(probAtOS)
+        // console.log(CensorsAtOS)
         self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
+        console.log(self.kaplanMeierPatientGroups)
     }
 
     /* get the data for kaplan-meier plots */

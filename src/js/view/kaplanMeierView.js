@@ -181,7 +181,7 @@ let KaplanMeierView = function(targetID) {
         //let's get the selected patient ID and information
         //get the Dummy ID from the drop down
         let patientID = App.controllers.patientSelector.getCurrentPatient();
-        console.log(patientID)
+        // console.log(patientID)
         // get the index of the dummy ID
         let indexID = 0;
         if(patientID == null || patientID == 0){ //as we don't have null and 0 indexed patient
@@ -189,7 +189,7 @@ let KaplanMeierView = function(targetID) {
         }else{
             indexID = App.models.patients.getPatientIDFromDummyID(patientID);
         }
-        console.log(indexID)
+        // console.log(indexID)
         //get that patient's information
         let patientInfo = App.models.patients.getPatientByID(indexID);
         // console.log(patientInfo)
@@ -203,8 +203,8 @@ let KaplanMeierView = function(targetID) {
         // draw kaplan-meier plots
         let attrValNum = 0;
         for (let attrKey of Object.keys(KMData)) {
-            // console.log(attrKey)
-            // console.log(KMData[attrKey])
+            console.log(attrKey)
+            console.log(KMData[attrKey])
             if (KMData[attrKey].length > 0) {  // have patients in the group
                 drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey), attrKey, patient_attribute);
                 drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));
