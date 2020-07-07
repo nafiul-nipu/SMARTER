@@ -98,37 +98,44 @@ let KaplanMeierPatientModel = function() {
         let sumForVar = 0;
         let pateintAtRisk = currentPatientGroup.length;
 
-        for (let keyID in sortedOSKeys) {
-            probAtOS[keyID] = {};
-
-            probAtOS[keyID].OS = sortedOSKeys[keyID];
-
-            // compute the number of patients died at the current OS
-            let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
-            for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
-                patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
+        if($('#kmcheckbox').is(":checked")){
+            //true means use KM estimator prediction
+            for (let keyID in sortedOSKeys) {
+                probAtOS[keyID] = {};
+    
+                probAtOS[keyID].OS = sortedOSKeys[keyID];
+    
+                // compute the number of patients died at the current OS
+                let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
+                for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
+                    patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
+                }
+    
+                // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
+                probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
+                // compute its variance using the Greenwood's formula
+                sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
+                probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
+    
+                // assign the prob and number of patients at risk at the current OS as the previous ones for next step
+                previousProb = probAtOS[keyID].prob;
+                pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
             }
+    
+            if (sortedOSKeys.length > 0) {
+              self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
+            }
+    
+            // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
+            // console.log(probAtOS)
+            // console.log(CensorsAtOS)
+            self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
+            // console.log(self.kaplanMeierPatientGroups)
 
-            // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
-            probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
-            // compute its variance using the Greenwood's formula
-            sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
-            probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
-
-            // assign the prob and number of patients at risk at the current OS as the previous ones for next step
-            previousProb = probAtOS[keyID].prob;
-            pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
+        }else{
+            // use feeding tube , progression etc
+            self.kaplanMeierPatientGroups = probAtOS;
         }
-
-        if (sortedOSKeys.length > 0) {
-          self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
-        }
-
-        // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
-        // console.log(probAtOS)
-        // console.log(CensorsAtOS)
-        self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
-        // console.log(self.kaplanMeierPatientGroups)
     }
 
     /* get the data for kaplan-meier plots */

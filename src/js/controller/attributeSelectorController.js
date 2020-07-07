@@ -37,7 +37,7 @@ let AttributeSelectorControllerUpdated = function() {
             .attr("data-toggle", "dropdown")
             .attr("aria-haspopup", "true")
             .attr("aria-expanded" ,"false")
-            .style("width", "65%")
+            .style("width", "100%")
             .text(self.currentAttribute)
             .append("span")
             .attr("class", "caret")
@@ -146,6 +146,7 @@ let AttributeSelectorControllerUpdated = function() {
     function attachToSelect(element) {
         self.attributeDropDown = d3.select(element).append("div")
                                                    .attr("class", "dropdown")
+                                                   .attr("width", "max-content")
             .on("change", function() {
                 let selectedAttribute = d3.select(this).node().value;
                 // console.log(selectedAttribute)

@@ -145,7 +145,7 @@ let KaplanMeierView = function(targetID) {
 
     // What to do when one group is hovered
     function highlight(d){
-        console.log("highlight", d)
+        // console.log("highlight", d)
         //both rect and path are named as kmVar Class
         //remove the special characters if have any 
         let value = d.replace(/[^a-zA-Z0-9]/g, '');

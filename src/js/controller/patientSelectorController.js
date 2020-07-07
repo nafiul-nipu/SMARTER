@@ -99,6 +99,7 @@ let PatientSelectorController = function() {
 
     /* update relative views */
     function updateViews(updatedPatients) {
+        // console.log("updateview")
         App.views.kiviatDiagram.update(updatedPatients);
         App.views.nomogram.updateKnnData(updatedPatients);
         //update the kaplan meier

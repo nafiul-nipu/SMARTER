@@ -79,6 +79,7 @@
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
+    <script src="src/js/controller/kaplanMeierCheckboxController.js" charset="utf-8"></script>
     <!-- add new patient -->
     <script src="src/js/controller/addNewPatient.js" charset="utf-8"></script>
 
@@ -391,24 +392,14 @@
                                 <!-- </button> -->
                             </div>
                             <div class="row patient-dropdown-wrapper">
-                            <!-- 
-                                <div class="col-md-6 form-inline">
-                                    <div class="form-group">
-                                        
-                                        <select class="attribute-dropdown form-control input-sm" id="attributeSel">
-                                        </select>
-                                        <button class="btn btn-default" id="reset_kaplan">
-                                            <span class="glyphicon glyphicon-refresh"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            -->
-                                <div id="updated_dropdown">
 
-                                    <!-- <div class="dropdown" id="updated_dropdown">
-                                    </div> -->
-
+                                <div class="col-md-8" id="updated_dropdown">
                                 </div>
+
+                                <div class="col-md-4" style="font-size: 12px;">
+                                  <input id="kmcheckbox" type="checkbox" style="display:inline" checked> KM Estimator
+                                </div>
+
                             </div>
                         </div>
                         <div id="kaplanMeier">
