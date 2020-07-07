@@ -177,6 +177,9 @@ let AddNewPatient = function() {
             if(self.change_made == true){
                 // console.log(self.patientInfo)
                 App.models.patients.updatePatient(self.patientInfo);
+                //update the kaplan meier
+                App.models.kaplanMeierPatient.updateData()
+                
                 //send data to the server to get the result
                 // making the data type according to R
                 //making a deep copy of the patientInfo object

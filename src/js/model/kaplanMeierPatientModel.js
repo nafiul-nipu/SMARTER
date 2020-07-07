@@ -97,45 +97,55 @@ let KaplanMeierPatientModel = function() {
         let previousProb = 1;
         let sumForVar = 0;
         let pateintAtRisk = currentPatientGroup.length;
+      
+        //true means use KM estimator prediction
+        // console.log("true")
+        for (let keyID in sortedOSKeys) {
+            probAtOS[keyID] = {};
 
-        if($('#kmcheckbox').is(":checked")){
-            //true means use KM estimator prediction
-            for (let keyID in sortedOSKeys) {
-                probAtOS[keyID] = {};
-    
-                probAtOS[keyID].OS = sortedOSKeys[keyID];
-    
-                // compute the number of patients died at the current OS
-                let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
-                for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
-                    patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
-                }
-    
+            probAtOS[keyID].OS = sortedOSKeys[keyID];
+
+            // compute the number of patients died at the current OS
+            let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
+            for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
+                patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
+            }
+
+            if($('#kmcheckbox').is(":checked")){
+                //using KM estimator
                 // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
                 probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
                 // compute its variance using the Greenwood's formula
-                sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
-                probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
-    
-                // assign the prob and number of patients at risk at the current OS as the previous ones for next step
-                previousProb = probAtOS[keyID].prob;
-                pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
-            }
-    
-            if (sortedOSKeys.length > 0) {
-              self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
-            }
-    
-            // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
-            // console.log(probAtOS)
-            // console.log(CensorsAtOS)
-            self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
-            // console.log(self.kaplanMeierPatientGroups)
+            }else{
 
-        }else{
-            // use feeding tube , progression etc
-            self.kaplanMeierPatientGroups = probAtOS;
+                // use feeding tube , progression etc
+                // console.log('false')
+                // let nomogram = $('#nomogram-selector').val()
+                let nomogram_data = App.models.axesModel.getAxesData();
+                let predictionToShow = nomogram_data["Predictive Probability"].name
+                probAtOS[keyID].prob = +(currentPatientGroup[keyID][predictionToShow]);
+                // console.log(currentPatientGroup[keyID])
+                // console.log(currentPatientGroup[keyID][predictionToShow])
+                // console.log(nomogram)
+                // console.log(predictionToShow)
+            }
+            sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
+            probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
+
+            // assign the prob and number of patients at risk at the current OS as the previous ones for next step
+            previousProb = probAtOS[keyID].prob;
+            pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
         }
+
+        if (sortedOSKeys.length > 0) {
+            self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
+        }
+
+        // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
+        // console.log(probAtOS)
+        // console.log(CensorsAtOS)
+        self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
+        console.log(self.kaplanMeierPatientGroups)
     }
 
     /* get the data for kaplan-meier plots */
@@ -157,6 +167,7 @@ let KaplanMeierPatientModel = function() {
         initPatients,
         updatePatients,
         updateSelectedAttribute,
+        updateData,
         getKaplanMeierPatients,
         getMaxOS,
         getSelectedAttribute

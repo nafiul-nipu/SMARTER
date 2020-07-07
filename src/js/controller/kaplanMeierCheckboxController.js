@@ -13,8 +13,9 @@ let kaplanCheckbox = function() {
         $('#kmcheckbox').change(function(){
             // console.log($('#kmcheckbox').is(":checked"))
             //update the kaplan meier
+            App.models.kaplanMeierPatient.updateData()
             let KMData = App.models.kaplanMeierPatient.getKaplanMeierPatients();      
-            console.log(KMData)
+            // console.log(KMData)
             App.views.kaplanMeier.update(KMData);
         })
     }
