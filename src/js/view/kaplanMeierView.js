@@ -105,16 +105,16 @@ let KaplanMeierView = function(targetID) {
                 // console.log("I am clicked");
                 highlight(attrVal)
             });
-             .on("mouseover", function(d){
-                    // console.log("mouse overed")
-                    // console.log(attrVal)
-                    highlight(attrVal);
-                })
-                .on("mouseleave", function(d,i){
-                    // console.log("mouse leave")
-                    noHighlight(attrVal);
-                });
-                */
+            */
+            .on("mouseover", function(d){
+                // console.log("mouse overed")
+                // console.log(attrVal)
+                highlight(attrVal);
+            })
+            .on("mouseleave", function(d,i){
+                // console.log("mouse leave")
+                noHighlight();
+            });
             
 
         self.targetSvg.append("text")
@@ -128,13 +128,14 @@ let KaplanMeierView = function(targetID) {
             .on("click", function(d){
                 highlight(attrVal)
             });
+            */
             .on("mouseover", function(d){
                 highlight(attrVal);
             })
             .on("mouseleave", function(d,i){
-                noHighlight(attrVal);
+                noHighlight();
             });
-            */
+            
             
 
         // d3.select("#reset_kaplan").on("click", function(d){
