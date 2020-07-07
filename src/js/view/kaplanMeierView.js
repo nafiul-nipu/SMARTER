@@ -7,7 +7,8 @@ let KaplanMeierView = function(targetID) {
     let self = {
         targetElement: null,
         targetSvg: null,
-        maxOS: null
+        maxOS: null,
+        features: App.mosaicAttributeOrder
     };
 
     init();
@@ -158,11 +159,27 @@ let KaplanMeierView = function(targetID) {
 
     // And when it is not hovered anymore
     function noHighlight(){
+        //there is two cases 
+        // one one particular cohort is selected
+         // one all of them are selected
+
+         //for all of them
+        let dropdown = $('#dropdownMenu1').text()
+        if(self.features.includes(dropdown)){ 
+            d3.select("#kaplanMeier").select("svg").selectAll(".kmVar").style("opacity", function(){
+                let value = $(this).attr('id');
+                return opaque(value);
+            });
+        }else{
+            let value = dropdown.replace(/[^a-zA-Z0-9]/g, '');
+            // reduce opacity of all groups
+            d3.select("#kaplanMeier").select("svg").selectAll(".kmVar").style("opacity", .05)
+            // except the one that is hovered
+            d3.select("#kaplanMeier").select("svg").selectAll("."+value).style("opacity", opaque(value))
+        }
         // console.log(d3.select("#kaplanMeier").select("svg").selectAll(".kmVar").id)
-        d3.select("#kaplanMeier").select("svg").selectAll(".kmVar").style("opacity", function(){
-            let value = $(this).attr('id');
-            return opaque(value);
-        });
+        // console.log($('#dropdownMenu1').text())
+        
         // d3.select("#kaplanMeier").select("svg").select(".kmPlots").style("opacity", 0.5)
     }
 

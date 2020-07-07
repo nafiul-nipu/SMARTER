@@ -145,7 +145,7 @@ let KaplanMeierPatientModel = function() {
         // console.log(probAtOS)
         // console.log(CensorsAtOS)
         self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
-        console.log(self.kaplanMeierPatientGroups)
+        // console.log(self.kaplanMeierPatientGroups)
     }
 
     /* get the data for kaplan-meier plots */
