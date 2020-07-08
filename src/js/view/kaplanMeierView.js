@@ -247,6 +247,7 @@ let KaplanMeierView = function(targetID) {
             let y1 = yScale(Math.max(0, data[j].prob - areaPercent95 * Math.sqrt(data[j].var)));
             let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
 
+            
             self.targetSvg.append("rect")
                 .attr("class", "kmVar " + value)
                 .attr("id", value)
@@ -263,6 +264,7 @@ let KaplanMeierView = function(targetID) {
                 .on("mouseleave", function(d,i){
                     noHighlight(value);
                 });
+                
         }
 
         // draw line
@@ -293,7 +295,7 @@ let KaplanMeierView = function(targetID) {
                 return d.y;
             });
 
-        self.targetSvg.append("path")
+       self.targetSvg.append("path")
             .attr("class", "kmVar " + value)
             .attr("id", value)
             .attr("d", lineFunc(lineData))

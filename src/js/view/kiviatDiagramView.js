@@ -191,7 +191,7 @@ let KiviatDiagramView = function(targetID) {
         let currentPatientByIndex = App.models.patients.getPatientIDFromDummyID(currentPatient)
         // console.log(currentPatientByIndex)
 
-        // sets the mist similar patients buttons' links.
+        // sets the most similar patients buttons' links.
         App.views.stats.updateButtons(currentPatientByIndex);
 
         // console.log(patients.subject)

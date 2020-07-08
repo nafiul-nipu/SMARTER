@@ -329,33 +329,33 @@
   <div class="container-fluid dashboard align-top">
     <!-- navigation bar on the top -->
     <div class="row" id="title">
-        <nav class="navbar">
+        <!-- <nav class="navbar"> -->
             <div class="container-fluid navbar-grey">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
+                <div class="col-md-5"> <!--  navbar-header"> -->  
+                    <a href="#">SMARTer Therapy Explorer</a>  <!-- class="navbar-brand"-->
+                    
+                    <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
+                          Statistics
+                        </button>
+                      <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
+                      Cohort
+                      </button>  
+                    <button class="btn btn-default navbar-btn" id="add-patient-button">
+                      <span class="glyphicon glyphicon-plus"></span>
+                      Add Patient
+                    </button>
                 </div>
-                <!-- <div id="nomosaic" class="white-bg text-center"> -->
-                    <!-- <div class="row dropdown-control-row"> -->
-                        <!-- <div class=""> -->
-                            <!-- <a href="#" target="_blank" id="statisticsPatients"><button class="btn btn-default btn-sm">Statistics</button></a> -->
-                            <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
-                                Statistics
-                              </button>
-                            <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
-                            Cohort
-                            </button>
-                            <!-- <button type="button" class="btn btn-default btn-sm" id= "predictionButton" data-toggle="modal" data-target="#predictionModal">
-                                Prediction
-                            </button> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
+                <!-- patient dropdown menu -->
+                <div class="col-md-4 patient-dropdown-wrapper" id="similarPatientList" style="text-align: left; padding-left: 3%;">
+                  <div class="form-inline">
+                      <div class="form-group">
+                          <label for="patientSel">Patient:</label>
+                          <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
+                      </div>
+                  </div>
+              </div>
 
-                <button class="btn btn-default navbar-btn" id="add-patient-button">
-                  <span class="glyphicon glyphicon-plus"></span>
-                  Add Patient
-                </button>
-
+              <div class="col-md-3">
                 <ul class="nav navbar-nav navbar-right">
                     <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
                       <span class="glyphicon glyphicon-info-sign"></span>
@@ -365,11 +365,10 @@
                       <span class="glyphicon glyphicon-question-sign"></span>
                       Help
                     </button>
-
-
                 </ul>
+              </div>
             </div>
-        </nav>
+        <!-- </nav> -->
     </div>
     <!-- nav bar ends -->
 
@@ -432,16 +431,7 @@
                                     <!-- </button> -->
                                 </div>
                                 <div class="row">
-                                   <!-- patient dropdown menu -->
-                                    <div class="col-lg-4 patient-dropdown-wrapper" id="similarPatientList" style="bottom: 15px;">
-                                      <div class="form-inline">
-                                          <div class="form-group">
-                                              <label for="patientSel">Patient:</label>
-                                              <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
-                                          </div>
-                                      </div>
-                                  </div>
-                                    <div class="col-lg-4 col-lg-4" style="bottom: 10px;  width: 25%;">
+                                    <div class="col-lg-8 col-lg-8" style="bottom: 10px;padding-left: 30%;width: 50%;">
                                         <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
                                     </div>
                                     <div class="col-lg-4 knnCheckBox" style="bottom: 10px;">
