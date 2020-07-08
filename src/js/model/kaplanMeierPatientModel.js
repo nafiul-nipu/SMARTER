@@ -101,6 +101,7 @@ let KaplanMeierPatientModel = function() {
         //true means use KM estimator prediction
         // console.log("true")
         for (let keyID in sortedOSKeys) {
+            // let previousProb = currentPatientGroup[keyID]["Probability of Survival"]
             probAtOS[keyID] = {};
 
             probAtOS[keyID].OS = sortedOSKeys[keyID];

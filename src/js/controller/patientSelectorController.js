@@ -125,6 +125,7 @@ let PatientSelectorController = function() {
         setPatient,
         getCurrentPatient, // used in kiviatDiagramView for setting dendrogram links.
         getPatientWithGroup,
-        setPatientWithGroup
+        setPatientWithGroup,
+        getUpdatedData
     };
 }

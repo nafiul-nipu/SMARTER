@@ -269,6 +269,15 @@ let NomogramView = function (targetID) {
         let nomogramSelector = d3.select(element)
             .on("change", function () {
                 updateNomogram(d3.select(this).property("value"));
+                // let updatedPatients = {};
+                //update the color of the kiviat diagrams 
+                let patientID = $('.idSelect').val();
+                let kiviatPatients = App.controllers.patientSelector.getUpdatedData(patientID);
+                // console.log(kiviatPatients)
+                //change the color
+                //subject
+                App.views.kiviatDiagram.updateColor(kiviatPatients)
+
             })
             .selectAll("option")
             .data(nomogramsTypes)

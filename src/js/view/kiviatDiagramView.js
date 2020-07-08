@@ -157,6 +157,7 @@ let KiviatDiagramView = function(targetID) {
 
 
     function update(patients) {
+        // console.log(patients)
         // console.log("i am update")
         // console.log(patients.subject);
         // console.log(patients.neighbors);
@@ -234,6 +235,7 @@ let KiviatDiagramView = function(targetID) {
             .each(updateKiviatPatient);
 
         self.neighborsSvgs = d3.selectAll(".patientNeighborSVG");
+        // console.log("#################")
         
     }
 
@@ -251,7 +253,7 @@ let KiviatDiagramView = function(targetID) {
         let SVG = d3.select(this);
         let similarityHead = d3.select(this.parentNode)
 
-        creatToolTips();
+        creatToolTips(d);
 
         SVG.call(self.axisTip);
         SVG.call(self.centerTip);
@@ -329,6 +331,10 @@ let KiviatDiagramView = function(targetID) {
     }
 
     function creatToolTips() {
+        // console.log("hello")
+        // d3.selectAll('#center').remove()
+        // console.log(predictionToShow)
+
         self.axisTip = d3.tip()
             .attr("class", "d3-tip")
             .direction("e")
@@ -339,24 +345,25 @@ let KiviatDiagramView = function(targetID) {
 
         self.centerTip = d3.tip()
             .attr("class", "d3-tip")
+            .attr("id", "center")
             .direction("e")
             .html(function(d) {
-                return "ID: " + d.ID + "<br>Age: " + d.AgeAtTx + "<br>5y Sur. Pb.: " + d["Probability of Survival"];
+                // console.log(d.ID, d.AgeAtTx, d[predictionToShow], predictionToShow)
+                return "ID: " + d.ID + "<br>Age: " + d.AgeAtTx + "<br>" + d.predictionToShow + ": " + d["Probability of Survival"];
             });
     }
 
     /* draw the kiviat diagram for each patient */
-    function updateKiviatPatient(d, i) {
+    function updateKiviatPatient(d) {
 
         // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
         // console.log(i)
-
         let SVG = d3.select(this);
-        let similarityHead = d3.select(this.parentNode)
+        let similarityHead = d3.select(this.parentNode)       
 
         SVG.select(".kiviatPath")
             .attr("d", calculatePath)
-            .style("fill", self.colorScale(d["Probability of Survival"]))
+            .style("fill", kiviatColor(d))
             // .style("fill", "black")
             .style("opacity", 0.75);
 
@@ -369,11 +376,12 @@ let KiviatDiagramView = function(targetID) {
         SVG.selectAll(".axesGroup")
             .selectAll(".axisTooltipCircle")
             .datum(function(data) {
+                // console.log(data)
                 let newData = data;
                 // "name" : d[self.axes[App.kiviatAttributes[j]].name]
                 data.name = self.axes[data.attr].name;
                 data.val = d[data.name]; //getting the values from name
-                // console.log(data)
+                // console.log(newData)
 
                 return newData;
             });
@@ -381,7 +389,47 @@ let KiviatDiagramView = function(targetID) {
         // update info for the center tool tip
         SVG.selectAll(".axesGroup")
             .selectAll(".centerTooltipCircle")
-            .datum(d);
+            .datum(function(){
+                // console.log(d);
+                let newData = d;
+                let nomogram_data = App.models.axesModel.getAxesData();
+                d.predictionToShow = nomogram_data["Predictive Probability"].name;
+                d["Probability of Survival"] = +(d[d.predictionToShow])
+                return newData
+            });
+    }
+
+    function updateColor(data){
+        // update the kiviat diagram of the subject
+        //need to create for axes control
+        // d3.selectAll('.d3-tip').remove()
+        // let nomogram_data = App.models.axesModel.getAxesData();
+        // let predictionToShow = nomogram_data["Predictive Probability"].name
+        // console.log(predictionToShow)
+        self.subjectSvg
+            .datum(data.subject)
+            // .each(createKiviatDiagram)
+            .each(updateKiviatPatient)
+        
+        d3.selectAll(".patientNeighborSVG")
+        .data(data.neighbors)
+        .each(updateKiviatPatient)
+
+        // creatToolTips()
+
+        // console.log($('#cente').html())
+
+        // $('#center').innerHTML = "hello"
+
+
+
+    }
+
+    function kiviatColor(d){
+        let nomogram_data = App.models.axesModel.getAxesData();
+        let predictionToShow = nomogram_data["Predictive Probability"].name
+        // console.log(predictionToShow, d[predictionToShow])
+        return self.colorScale(d[predictionToShow])
     }
 
     /* calculate the path */
@@ -478,7 +526,8 @@ let KiviatDiagramView = function(targetID) {
 
     return {
         update,
-        updateAttributeDomains
+        updateAttributeDomains,
+        updateColor
     };
 
 }
