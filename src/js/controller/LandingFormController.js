@@ -87,6 +87,7 @@ let LandingFormController = function() {
         setPatientDropdown,
         consolidateData,
         setSubmitButton,
-        setShowFormButton
+        setShowFormButton,
+        updateLandingForms
     }
 }

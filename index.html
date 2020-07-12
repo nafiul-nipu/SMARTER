@@ -209,117 +209,6 @@
       </div>
       <!-- home page ends -->
 
-      
-    <!-- add patient page starts -->
-    <!--
-    <div class="container-fluid add-patient-form align-top" style="display: none;">
-      <h3 class=title>Add New Patient</h3>
-      <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-              <button type="button" class="demoButton" data-toggle="collapse" data-target="#add-demographics">Add Demographics Info</button>
-              <div id="add-demographics" class="collapse">
-                  <label>Patient ID</label>
-                  <input type="number" name="Dummy ID" id="add-id" placeholder="Patient ID">
-                  <label>Age</label>
-                  <input type="number" name="Age at Diagnosis (Calculated)" id="add-age" placeholder="Age">
-                  <label id="add-gender" name="Gender">Gender</label>
-                  <input type="radio" name="Gender" value="Male" id="add-male">Male
-                  <input type="radio" name="Gender" value="Female" id="add-female">Female
-                  <label>Race</label>
-                  <input type="text" name="Race" placeholder="Race" id="add-race">
-                  <label>Aspiration</label>
-                  <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="add-aspiration-y">Yes
-                  <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="add-aspiration-n">No
-                  <label>HPV/P16</label>
-                  <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="add-hpvp16">
-                  <label>Smoking Status</label>
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="add-smoking-never">Never
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="add-smoking-former">Former
-                  <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="add-smoking-current">Current
-                  <label>Packs/Year</label>
-                  <input type="number" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="add-packs-per-year">
-                  <div>
-                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
-                  </div>
-              </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-4">
-              <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#add-cancerDescriptors">Add Cancer Descriptors Info</button>
-              <div id="add-cancerDescriptors" class="collapse">
-                  <label>Tm Laterality (R/L)</label>
-                  <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="add-tumor-site">
-                  <label>Tumor Subsite</label>
-                  <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="add-tumor-subsite">
-                  <label>AJCC 7th Edition</label>
-                  <input type="radio" name="AJCC 7th edition" value="I" id="add-ajcc7-1">I
-                  <input type="radio" name="AJCC 7th edition" value="II" id="add-ajcc7-2">II
-                  <input type="radio" name="AJCC 7th edition" value="III" id="add-ajcc7-3">III
-                  <input type="radio" name="AJCC 7th edition" value="IV" id="add-ajcc7-4">IV
-                  <label>AJCC 8th Edition</label>
-                  <input type="radio" name="AJCC 8th edition" value="I" id="add-ajcc8-1">I
-                  <input type="radio" name="AJCC 8th edition" value="II" id="add-ajcc8-2">II
-                  <input type="radio" name="AJCC 8th edition" value="III" id="add-ajcc8-3">III
-                  <input type="radio" name="AJCC 8th edition" value="IV" id="add-ajcc8-4">IV
-                  <label>T-category</label>
-                  <input type="radio" name="T-category" value="T1" id="add-tcat1">T1
-                  <input type="radio" name="T-category" value="T2" id="add-tcat2">T2
-                  <input type="radio" name="T-category" value="T3" id="add-tcat3">T3
-                  <input type="radio" name="T-category" value="T4" id="add-tcat4">T4
-                  <label>N-Category</label>
-                  <input type="radio" name="N-category" value="N/A" id="add-ncat-na">N/A
-                  <input type="radio" name="N-category" value="N0" id="add-ncat-0">N0
-                  <input type="radio" name="N-category" value="N1" id="add-ncat-1">N1
-                  <input type="radio" name="N-category" value="N2" id="add-ncat-2">N2
-                  <input type="radio" name="N-category" value="N3" id="add-ncat-3">N3
-                  <label>Pathological Grade</label>
-                  <input type="radio" name="Pathological Grade" value="I" id="add-pgrade1">I
-                  <input type="radio" name="Pathological Grade" value="II" id="add-pgrade2">II
-                  <input type="radio" name="Pathological Grade" value="III" id="add-pgrade3">III
-                  <input type="radio" name="Pathological Grade" value="IV" id="add-pgrade4">IV
-                  <label>Affected Lymph Nodes</label>
-                  <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="add-affected-lymph">
-                  <div>
-                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
-                  </div>
-              </div>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-              <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#add-treatment">Add Treatment Info</button>
-              <div id="add-treatment" class="collapse">
-                  <div class="left">
-                      <label>Chemotherapy</label>
-                      <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="add-chemo">
-                      <label>Censor</label>
-                      <input type="text" name="Censor" placeholder="0/1" id="add-local-therapy">
-                      <label>Treatment Duration</label>
-                      <input type="number" name="Treatment duration (Days)" placeholder="Duration" id="add-duration">
-                      <label>Total Dose</label>
-                      <input type="number" name="Total dose" placeholder="Total Dose" id="add-total-dose">
-                  </div>
-                  <div class="right">
-                      <label>Total Fraction</label>
-                      <input type="number" name="Total fractions" placeholder="Total Fraction" id="add-total-fraction">
-                      <label>Dose/Day</label>
-                      <input type="number" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="add-dose">
-                      <label>Neck Dissection after IMRT</label>
-                      <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="add-neck-dissection">
-                      <label>Neck Boost</label>
-                      <input type="radio" name="Neck boost (Y/N)" value="Y" id="add-neck-boost-y">Yes
-                      <input type="radio" name="Neck boost (Y/N)" value="N" id="add-neck-boost-n">No
-                      <label>OS (Calculated)</label>
-                      <input type="number" name="OS (Calculated)" placeholder="OS" id="add-os-calculated">
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-        <button class="btn btn-primary submitButton" id="add-patient" type="submit" value="Submit">Add Patient</button>
-      </div>
-
-     </div>
-    -->
-  <!-- add page ends -->
-
     <!-- help menu i suppose -->
     <div class="info-overlay dashboard-help">
         <img id="helpImg" src="imgs/help.png">
@@ -349,7 +238,7 @@
                 <div class="col-md-4 patient-dropdown-wrapper" id="similarPatientList" style="text-align: left; padding-left: 3%;">
                   <div class="form-inline">
                       <div class="form-group">
-                          <label for="patientSel">Patient:</label>
+                          <label for="patientSel">Patient ID:</label>
                           <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
                       </div>
                   </div>

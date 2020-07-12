@@ -56,7 +56,14 @@ let PatientSelectorController = function() {
             .on("change", function(d) {
                 let selectedID = d3.select(this).node().value;
                 self.currentPatient = selectedID;
-                // console.log("check me which controller i am " + selectedID);
+                // console.log(self.currentPatient);
+                //update the landing form as well
+                //change the dropdown value to the changed patient id
+                $(".idSelect").val(self.currentPatient);
+                // update the patient's information
+                let index = App.models.patients.getPatientIDFromDummyID(self.currentPatient)
+                let patient = App.models.patients.getPatientByID(index)
+                App.controllers.landingFormController.updateLandingForms(patient)
                 updateSelectedPatients(selectedID);
             })
     }
