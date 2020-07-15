@@ -60,7 +60,7 @@ let KiviatDiagramView = function(targetID) {
 
         self.colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
-            .domain([0, 1])
+            // .domain([1,0])
             .range(["#d18161", "#70a4c2"]); // #ba89b9 middle color
         // .range(['#d73027','#fc8d59','#fee090','#ffffbf','#e0f3f8','#91bfdb','#4575b4']);
 
@@ -105,15 +105,21 @@ let KiviatDiagramView = function(targetID) {
             .attr("height", self.legendHeight)
             .style("opacity", 0.75);
 
-        let survivalRateText = ["1", "Surv. Rate", "0"];
+        let survivalRateText = ["0", "Toxicity", "1"];
+        legendText(survivalRateText)
 
-        for (let i = 0; i < 3; i++) {
-            self.legendSvg.append("text")
-                .attr("x", 30)
-                .attr("y", 20 + 40 * i)
-                .style("font-size", "10px")
-                .style("font-weight", "bold")
-                .text(survivalRateText[i]);
+        }
+
+        function legendText(survivalRateText){
+            d3.selectAll('#dynamic-legend').remove();
+            for (let i = 0; i < 3; i++) {
+                self.legendSvg.append("text")
+                    .attr('id', 'dynamic-legend')
+                    .attr("x", 30)
+                    .attr("y", 20 + 40 * i)
+                    .style("font-size", "10px")
+                    .style("font-weight", "bold")
+                    .text(survivalRateText[i]);
         }
         
         // console.log(App.kiviatAttributes)
@@ -358,6 +364,7 @@ let KiviatDiagramView = function(targetID) {
 
         // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
         // console.log(i)
+        // console.log(d)
         let SVG = d3.select(this);
         let similarityHead = d3.select(this.parentNode)       
 
@@ -429,7 +436,22 @@ let KiviatDiagramView = function(targetID) {
         let nomogram_data = App.models.axesModel.getAxesData();
         let predictionToShow = nomogram_data["Predictive Probability"].name
         // console.log(predictionToShow, d[predictionToShow])
-        return self.colorScale(d[predictionToShow])
+        if(predictionToShow == 'feeding_tube_prob' || predictionToShow == 'aspiration_prob'){
+            //domain 1, 0
+            self.colorScale.domain([1,0])
+            // legend toxicity
+            let survivalRateText = ["0", "Toxicity", "1"];
+            legendText(survivalRateText)
+            return self.colorScale(d[predictionToShow])
+        }else if(predictionToShow == 'overall_survival_5yr_prob' || predictionToShow == 'progression_free_5yr_prob'){
+            //domain 0, 1
+            self.colorScale.domain([0,1])
+            //legend surv.prob
+            let survivalRateText = ["1", "Surv. Rate", "0"];
+            legendText(survivalRateText)
+            return self.colorScale(d[predictionToShow])
+        }
+        // return self.colorScale(d[predictionToShow])
     }
 
     /* calculate the path */
