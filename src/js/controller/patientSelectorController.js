@@ -62,6 +62,7 @@ let PatientSelectorController = function() {
                 $(".idSelect").val(self.currentPatient);
                 // update the patient's information
                 let index = App.models.patients.getPatientIDFromDummyID(self.currentPatient)
+                $('#index-text').html('Patient Index: ' + index);
                 let patient = App.models.patients.getPatientByID(index)
                 App.controllers.landingFormController.updateLandingForms(patient)
                 updateSelectedPatients(selectedID);

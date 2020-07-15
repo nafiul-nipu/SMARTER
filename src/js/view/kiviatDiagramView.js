@@ -108,37 +108,15 @@ let KiviatDiagramView = function(targetID) {
         let survivalRateText = ["0", "Toxicity", "1"];
         legendText(survivalRateText)
 
-        }
-
-        function legendText(survivalRateText){
-            d3.selectAll('#dynamic-legend').remove();
-            for (let i = 0; i < 3; i++) {
-                self.legendSvg.append("text")
-                    .attr('id', 'dynamic-legend')
-                    .attr("x", 30)
-                    .attr("y", 20 + 40 * i)
-                    .style("font-size", "10px")
-                    .style("font-weight", "bold")
-                    .text(survivalRateText[i]);
-        }
-        
-        // console.log(App.kiviatAttributes)
-        // // axis labels
-        // for (let attributeInd in App.kiviatAttributes) {
-        //     self.legendSvg.append("text")
-        //         .attr("class", "kiviatLegendText")
-        //         .attr("x", 15)
-        //         .attr("y", 70 + attributeInd * 7)
-        //         // .style("font-size", "8px") //changed in the style.less
-        //         .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
-        // }
-        // //adding the spatial information and button here
-        // <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
-        // <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
-        // <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
         self.legendElement.append("div").append("h5")
             .text("Spatial Information")
             .attr("class", "viewTitleDiv")
+
+        //initially it will be N/A
+        self.legendElement.append('p')
+            .attr('class', 'text-center')
+            .attr('id','index-text')
+            .text("Patient Index: 666")
 
         let textName = ["Dendrogram", "Lymph Node", "Camprt"]
         let idName = ["dendrogramlinker", "lymphthingylinker", "camprtlinker"]
@@ -159,6 +137,19 @@ let KiviatDiagramView = function(targetID) {
                 .text(textName[i])        
         }
         
+    }
+
+    function legendText(survivalRateText){
+        d3.selectAll('#dynamic-legend').remove();
+        for (let i = 0; i < 3; i++) {
+            self.legendSvg.append("text")
+                .attr('id', 'dynamic-legend')
+                .attr("x", 30)
+                .attr("y", 20 + 40 * i)
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .text(survivalRateText[i]);
+        }
     }
 
 

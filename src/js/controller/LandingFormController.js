@@ -50,6 +50,8 @@ let LandingFormController = function() {
                     if(self.currentPatient !== null) {
                         App.controllers.patientSelector.updatePateintDropDown();
                         App.controllers.patientSelector.setPatient(self.currentPatient);
+                        let index = App.models.patients.getPatientIDFromDummyID(self.currentPatient);
+                        $('#index-text').html('Patient Index: ' + index);
 
                     }else {
                         // Check if there is newly entered data.
