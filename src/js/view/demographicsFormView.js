@@ -53,14 +53,16 @@ let DemographicsFormView = function () {
     }
 
     function getAgeElement() {
+        // console.log(self.ageElement.attr('text'))
         return self.ageElement.attr("value");
     }
 
     function setAgeElement(age) {
+        // console.log(Math.round(age))
         if (age !== undefined) {
             self.ageElement
-                .attr("value", age)
-                .text(age);
+                .attr("value", Math.round(age))
+                .text(Math.round(age));
         }
     }
 

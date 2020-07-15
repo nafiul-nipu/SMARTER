@@ -24,9 +24,9 @@ let AddNewPatient = function() {
             self.patientInfo = App.models.patients.getPatientByID(patient_index);
             // console.log(self.patientInfo)
 
-            //check if the value is changed.. if chaged update the value
+            //check if the value is changed.. if changed update the value
             //age
-            if(self.patientInfo[$('#age-element').attr('name')] != $('#age-element').val()){
+            if(Math.round(self.patientInfo[$('#age-element').attr('name')]) != $('#age-element').val()){
                 self.patientInfo[$('#age-element').attr('name')] = $('#age-element').val();
                 self.patientInfo.AgeAtTx = +(self.patientInfo["Age at Diagnosis (Calculated)"]);
                 self.change_made = true;
@@ -102,8 +102,8 @@ let AddNewPatient = function() {
                 // console.log("t category", self.patientInfo[$('#tcat1').attr('name')], $("input:radio[name='T-category']:checked").val())
             }
             //N-cat
-            if(self.patientInfo[$('#ncat-na').attr('name')] != $("input:radio[name='N-category']:checked").val()){
-                self.patientInfo[$('#ncat-na').attr('name')] = $("input:radio[name='N-category']:checked").val();
+            if(self.patientInfo[$('#ncat-0').attr('name')] != $("input:radio[name='N-category']:checked").val()){
+                self.patientInfo[$('#ncat-0').attr('name')] = $("input:radio[name='N-category']:checked").val();
                 self.change_made = true;
                 // console.log("n category", self.patientInfo[$('#ncat-na').attr('name')], $("input:radio[name='N-category']:checked").val())
             }
@@ -175,6 +175,7 @@ let AddNewPatient = function() {
 
             // console.log(self.patientInfo)
             if(self.change_made == true){
+                self.change_made = false;
                 // console.log(self.patientInfo)
                 App.models.patients.updatePatient(self.patientInfo);
                 //update the kaplan meier

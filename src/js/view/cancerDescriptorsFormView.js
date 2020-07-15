@@ -21,7 +21,7 @@ let CancerDescriptorsFormView = function() {
         self.tcat2Radio = d3.select("#tcat2");
         self.tcat3Radio = d3.select("#tcat3");
         self.tcat4Radio = d3.select("#tcat4");
-        self.ncatNARadio = d3.select("#ncat-na");
+        // self.ncatNARadio = d3.select("#ncat-na");
         self.ncat0Radio = d3.select("#ncat-0");
         self.ncat1Radio = d3.select("#ncat-1");
         self.ncat2Radio = d3.select("#ncat-2");
@@ -265,7 +265,7 @@ let CancerDescriptorsFormView = function() {
 
     function setNcatElement(data) {
         if (data !== undefined) {
-            if (data === "N/A") {
+            /* if (data === "N/A") {
                 self.ncatNARadio
                     .property("checked", true);
                 self.ncat0Radio
@@ -276,9 +276,9 @@ let CancerDescriptorsFormView = function() {
                     .property("checked", false);
                 self.ncat3Radio
                     .property("checked", false);
-            } else if (data === "N0") {
-                self.ncatNARadio
-                    .property("checked", false);
+            } else */ if (data === "N0") {
+                // self.ncatNARadio
+                //     .property("checked", false);
                 self.ncat0Radio
                     .property("checked", true);
                 self.ncat1Radio
@@ -288,8 +288,8 @@ let CancerDescriptorsFormView = function() {
                 self.ncat3Radio
                     .property("checked", false);
             } else if (data === "N1") {
-                self.ncatNARadio
-                    .property("checked", false);
+                // self.ncatNARadio
+                //     .property("checked", false);
                 self.ncat0Radio
                     .property("checked", false);
                 self.ncat1Radio
@@ -299,8 +299,8 @@ let CancerDescriptorsFormView = function() {
                 self.ncat3Radio
                     .property("checked", false);
             } else if (data === "N2") {
-                self.ncatNARadio
-                    .property("checked", false);
+                // self.ncatNARadio
+                //     .property("checked", false);
                 self.ncat0Radio
                     .property("checked", false);
                 self.ncat1Radio
@@ -310,8 +310,8 @@ let CancerDescriptorsFormView = function() {
                 self.ncat3Radio
                     .property("checked", false);
             } else if (data === "N3") {
-                self.ncatNARadio
-                    .property("checked", false);
+                // self.ncatNARadio
+                //     .property("checked", false);
                 self.ncat0Radio
                     .property("checked", false);
                 self.ncat1Radio
@@ -325,14 +325,15 @@ let CancerDescriptorsFormView = function() {
     }
 
     function getNcatElement() {
-        let nna = self.ncatNARadio.property("checked");
+        // let nna = self.ncatNARadio.property("checked");
         let n0 = self.ncat0Radio.property("checked");
         let n1 = self.ncat1Radio.property("checked");
         let n2 = self.ncat2Radio.property("checked");
         let n3 = self.ncat3Radio.property("checked");
 
+        /*
         if (nna)
-            return "N/A";
+            return "N/A"; */
         if (n0)
             return "N0";
         if (n1)

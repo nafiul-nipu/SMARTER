@@ -89,6 +89,8 @@ body{
   grid-column: 1/ span 2;
   font-weight: bold;
   font-size: 10px;
+  margin-top: 7px;
+  margin-bottom: 0px;
 
 }
 #demographics{
@@ -116,6 +118,8 @@ body{
   grid-column: 1/ span 2;
   font-weight: bold;
   font-size: 10px;
+  margin-top: 7px;
+  margin-bottom: 0px;
 }
 #cancerDescriptors input:hover{
   border: 1.5px solid purple;
@@ -143,6 +147,8 @@ body{
   grid-column: 1/ span 2;
   font-weight: bold;
   font-size: 10px;
+  margin-top: 7px;
+  margin-bottom: 0px;
 }
 #treatment{
   text-align: center;
