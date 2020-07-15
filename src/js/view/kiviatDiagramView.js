@@ -131,6 +131,7 @@ let KiviatDiagramView = function(targetID) {
                 .attr("id", idName[i])
                 .append("button")
                 .attr("class", "btn btn-default btn-sm")
+                .attr('id', idName[i] + '-class')
                 .style("font-size", "10px")
                 .style("display", "block")
                 .style("margin-bottom", "5px")

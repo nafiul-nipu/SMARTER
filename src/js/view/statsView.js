@@ -43,6 +43,7 @@ let StatsView = function () {
         // Tim's work currently hosted using GH pages.
         let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
         // let url = `test.html`
+        document.getElementById("dendrogramlinker").removeAttribute("class");
         self.dendrogramButton
             .attr("href", url);
     }
@@ -58,6 +59,20 @@ let StatsView = function () {
         let url = `https://uic-evl.github.io/CAMP-RT/?id=${pid}`;
         self.camprtButton
             .attr("href", url);
+    }
+
+    function disableLink() {
+        document.getElementById("dendrogramlinker-class").disabled = true;
+        document.getElementById("lymphthingylinker-class").disabled = true;
+        document.getElementById("camprtlinker-class").disabled = true;
+
+    }
+
+    function enableLink(){
+        document.getElementById("dendrogramlinker-class").disabled = false;
+        document.getElementById("lymphthingylinker-class").disabled = false;
+        document.getElementById("camprtlinker-class").disabled = false;
+
     }
 
     function updatePatientsCount() {
@@ -127,10 +142,16 @@ let StatsView = function () {
 
     function updateButtons(currentPatient) {
         // console.log("stats view current patient " + currentPatient)
-        
-        setDendrogramButtons(currentPatient);
-        setLymphButton(currentPatient);
-        setCamprtButton(currentPatient);
+        // console.log(currentPatient > 200)
+        if(currentPatient != 0 && currentPatient <= 356){ //lymph node has 356 patients
+            // console.log("update link")
+            enableLink()
+            setDendrogramButtons(currentPatient);
+            setLymphButton(currentPatient);
+            setCamprtButton(currentPatient);
+        }else{
+            disableLink()
+        }       
         setStatisticsPatients();
         // console.log("current patient " + currentPatient)
 
