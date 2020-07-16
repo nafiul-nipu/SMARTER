@@ -116,7 +116,7 @@ let KiviatDiagramView = function(targetID) {
         self.legendElement.append('p')
             .attr('class', 'text-center')
             .attr('id','index-text')
-            .text("Patient Index: 666")
+            .text("Patient Index: 312")
 
         let textName = ["Dendrogram", "Lymph Node", "Camprt"]
         let idName = ["dendrogramlinker", "lymphthingylinker", "camprtlinker"]
@@ -172,9 +172,14 @@ let KiviatDiagramView = function(targetID) {
             self.neighborsElement.selectAll("div").remove();
             self.legendElement.select("svg").remove();
             self.legendElement.selectAll("div").remove();
+            self.legendElement.select("p").remove();
 
             init();
             commonMethodForKnnAndKiviat(patients);
+            let p = $(".idSelect").val();
+            // update the patient's information
+            let index = App.models.patients.getPatientIDFromDummyID(p)
+            $('#index-text').html('Patient Index: ' + index);
         }else{
             commonMethodForKnnAndKiviat(patients);
         }        
