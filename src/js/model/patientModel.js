@@ -10,7 +10,8 @@ let PatientModel = function() {
         attributeDomains: {},
         axes: {},
         commonAttributeValues: {},
-        commonKaplanAttributeValues: {}
+        commonKaplanAttributeValues: {},
+        addnewPatient: 0
         // statisticsOfAllPatients:{}
     };
 
@@ -74,14 +75,22 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
+        let existing_patient = false;
         let keys = Object.keys(self.patients)
         for(let key in keys){
             if(self.patients[key]["Dummy ID"] == patientInfo["Dummy ID"]){
                 self.patients[key] = patientInfo;
+                existing_patient = true;
             }
         }
+        if(existing_patient == false){
+            self.patients[self.addnewPatient] = patientInfo;
+            self.addnewPatient = self.addnewPatient + 1
+            
+        }
         console.log("single patient info updated")
-        // console.log(patientInfo)
+        // console.log(existing_patient, keys.length, self.patients[self.addnewPatient], self.addnewPatient)
+        // console.log(self.patients)
     }
 
     // if new patient added update the predictions
@@ -117,6 +126,7 @@ let PatientModel = function() {
     /**get the total number of patients in the dataset */
     function getTotalPatients(){
         let total = Object.keys(self.patients).length;
+        self.addnewPatient = total;
         return total;
     }
 
