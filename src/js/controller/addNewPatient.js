@@ -300,17 +300,17 @@ let AddNewPatient = function() {
                     //update all the values
                     App.models.patients.update_prediction_values(self.prediction);
 
-                    let data = consolidateData();
+                    // let data = consolidateData();
                     // console.log(data);
-                    if (data.age === null)
-                        return;
-                    else {
+                    // if (data.age === null)
+                    //     return;
+                    // else {
                         $(".landing-form").hide();
                         let currentPatient = $('.idSelect').val();
                         // console.log(currentPatient)
                         App.controllers.patientSelector.updatePateintDropDown();
                         App.controllers.patientSelector.setPatient(currentPatient);
-                    }
+                    // }
 
                 })
                 .catch(function (error) {

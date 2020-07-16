@@ -26,11 +26,11 @@ let LandingFormController = function() {
         d3.select(element)
             .on("change", function () {
                 let selectedID = d3.select(this).node().value;
-                if (selectedID !== "N/A") { // updates the patients information in the form
+                // if (selectedID !== "N/A") { // updates the patients information in the form
                     self.currentPatient = selectedID;
                     // console.log(selectedID);
                     updateLandingForms(patients[selectedID]);
-                }
+                // }
                 // else{
                 //     console.log(selectedID)
                 // }
@@ -64,11 +64,11 @@ let LandingFormController = function() {
                     }                   
                 }
                 else{
-                    let data = consolidateData();
+                    // let data = consolidateData();
                     // console.log(data);
-                    if (data.age === null)
-                        return;
-                    else {
+                    // if (data.age === null)
+                        // return;
+                    // else {
                         $(".landing-form").hide();
                         // $(".add-patient-form").hide()
                         // $(".dashboard-help").css("display", "block");
@@ -80,11 +80,11 @@ let LandingFormController = function() {
                             let index = App.models.patients.getPatientIDFromDummyID(self.currentPatient);
                             $('#index-text').html('Patient Index: ' + index);
 
-                        }else {
+                        // }else {
                             // Check if there is newly entered data.
                             // Figure out what all has to be done to.
                             // console.log(self.currentPatient)
-                        }
+                        // }
                     }
 
                 }

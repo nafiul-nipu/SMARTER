@@ -105,6 +105,7 @@ let DemographicsFormView = function () {
 
     function setRaceElement(race) {
         if (race !== undefined) {
+            console.log(race)
             self.raceElement
                 .attr("value", race)
                 .text(race);
