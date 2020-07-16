@@ -19,9 +19,29 @@ let TreatmentFormView = function () {
     }
 
     function updateForm(data) {
-        let {"Therapeutic combination": chemo, "Censor": local_therapy, "Neck boost (Y/N)":neck_boost,
-        "Dose/fraction (Gy)":dose_per_day, "Total dose":total_dose, "Total fractions":total_fractions, "Treatment duration (Days)":duration,
-        "Neck Disssection after IMRT (Y/N)":neck_dissection} = data;
+        let chemo, local_therapy, neck_boost, dose_per_day, total_dose, total_fractions, duration, neck_dissection = ""
+        if(data === undefined){
+            chemo = $('#chemo-element').val();
+            local_therapy = $('#local-therapy-element').val();
+            neck_boost = $("input:radio[name='Neck boost (Y/N)']:checked").val();
+            dose_per_day = $('#dose-element').val();
+            total_dose = $('#total-dose-element').val();
+            total_fractions = $('#total-fraction-element').val();
+            duration = $('#duration-element').val();
+            neck_dissection = $('#neck-dissection-element').val();
+        }else{
+            chemo = data["Therapeutic combination"];
+            local_therapy = data["Censor"];
+            neck_boost = data["Neck boost (Y/N)"];
+            dose_per_day = data["Dose/fraction (Gy)"];
+            total_dose = data["Total dose"];
+            total_fractions = data["Total fractions"]
+            duration = data["Treatment duration (Days)"]
+            neck_dissection = data["Neck Disssection after IMRT (Y/N)"]
+        }
+        // let {"Therapeutic combination": chemo, "Censor": local_therapy, "Neck boost (Y/N)":neck_boost,
+        // "Dose/fraction (Gy)":dose_per_day, "Total dose":total_dose, "Total fractions":total_fractions, "Treatment duration (Days)":duration,
+        // "Neck Disssection after IMRT (Y/N)":neck_dissection} = data;
         setChemoElement(chemo);
         setLocalTherapyElement(local_therapy);
         setNeckBoostElement(neck_boost);

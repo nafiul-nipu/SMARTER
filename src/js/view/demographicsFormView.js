@@ -26,8 +26,32 @@ let DemographicsFormView = function () {
 
     function updateForm(data) {
         // Update attributes
-        let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
-        "HPV/P16 status":hpv_stat, "Aspiration rate(Y/N)":aspiration, "Smoking status (Packs/Year)":packsperyear} = data;
+        let age, eth, gender, id, smoking_stat, hpv_stat, aspiration, packsperyear = "";
+        // console.log(data)
+        if(data === undefined){ //then the values will be the previous value
+            // console.log(getGenderElement())
+            age = $('#age-element').val();
+            eth = $('#race-element').val();
+            gender = $("input:radio[name=Gender]:checked").val();
+            // id = data["ID"];
+            smoking_stat = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
+            hpv_stat = $('#hpvp16-element').val();
+            aspiration = $("input:radio[name='Aspiration rate Pre-therapy']:checked").val();
+            packsperyear = $('#packs-per-year-element').val();
+            
+        }else{
+            age = data["AgeAtTx"];
+            eth = data["Race"];
+            gender = data["Gender"];
+            id = data["ID"];
+            smoking_stat = data["Smoking status at Diagnosis (Never/Former/Current)"];
+            hpv_stat = data["HPV/P16 status"];
+            aspiration = data["Aspiration rate(Y/N)"];
+            packsperyear = data["Smoking status (Packs/Year)"];
+        //     let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
+        // "HPV/P16 status":hpv_stat, "Aspiration rate(Y/N)":aspiration, "Smoking status (Packs/Year)":packsperyear} = data;
+                        
+        }
         setAgeElement(age);
         setRaceElement(eth);
         setGenderElement(gender);

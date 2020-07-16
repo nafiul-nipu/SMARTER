@@ -34,8 +34,29 @@ let CancerDescriptorsFormView = function() {
     }
 
     function updateForm(data) {
-        let {"Tm Laterality (R/L)":tmlateral,"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)": tumorsubSite, "T-category": tcat, "N-category":ncat,
-        "AJCC 7th edition":ajcc7, "AJCC 8th edition":ajcc8, "Affected Lymph node cleaned":affected_lymph_node, "Pathological Grade":pgrade} = data;
+        let tmlateral, tumorsubSite, tcat, ncat, ajcc7, ajcc8, affected_lymph_node, pgrade = ""
+        if(data === undefined){
+            tmlateral = $('#tumor-site').val();
+            tumorsubSite = $('#tumor-subsite').val();
+            tcat = $("input:radio[name='T-category']:checked").val();
+            ajcc7 = $("input:radio[name='AJCC 7th edition']:checked").val();
+            ajcc8 = $("input:radio[name='AJCC 8th edition']:checked").val();
+            affected_lymph_node = $('#affected-lymph').val(); 
+            ncat = $("input:radio[name='N-category']:checked").val();
+            pgrade = $("input:radio[name='Pathological Grade']:checked").val();
+
+        }else{
+            tmlateral = data["Tm Laterality (R/L)"];
+            tumorsubSite = data["Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)"];
+            tcat = data["T-category"];
+            ajcc7 = data["AJCC 7th edition"];
+            ajcc8 = data["AJCC 8th edition"];
+            affected_lymph_node = data["Affected Lymph node cleaned"];
+            ncat = data["N-category"];
+            pgrade = data["Pathological Grade"];
+        }
+        // let {"Tm Laterality (R/L)":tmlateral,"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)": tumorsubSite, "T-category": tcat, "N-category":ncat,
+        // "AJCC 7th edition":ajcc7, "AJCC 8th edition":ajcc8, "Affected Lymph node cleaned":affected_lymph_node, "Pathological Grade":pgrade} = data;
         setTumorSiteElement(tmlateral)
         setTumorSubsiteElement(tumorsubSite);
         setTcatElement(tcat);
