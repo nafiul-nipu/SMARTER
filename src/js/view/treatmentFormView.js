@@ -51,9 +51,10 @@ let TreatmentFormView = function () {
 
     function setChemoElement(data) {
         if (data !== undefined) {
-            self.chemoElement
-                .attr("value", data)
-                .text(data);
+            // self.chemoElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("chemo-element").value = data;
         }
     }
 
@@ -63,9 +64,10 @@ let TreatmentFormView = function () {
 
     function setLocalTherapyElement(data) {
         if (data !== undefined) {
-            self.localTherapyElement
-                .attr("value", data)
-                .text(data);
+            // self.localTherapyElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("local-therapy-element").value = data;
         }
     }
 
@@ -75,9 +77,11 @@ let TreatmentFormView = function () {
 
     function setDurationElement(data) {
         if (data !== undefined) {
-            self.durationElement
-                .attr("value", data)
-                .text(data);
+            // self.durationElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("duration-element").value = data;
+
         }
     }
 
@@ -87,9 +91,11 @@ let TreatmentFormView = function () {
 
     function setTotalDoseElement(data) {
         if (data !== undefined) {
-            self.totalDoseElement
-                .attr("value", data)
-                .text(data);
+            // self.totalDoseElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("total-dose-element").value = data;
+
         }
     }
 
@@ -99,9 +105,11 @@ let TreatmentFormView = function () {
 
     function setDosePerDayElement(data) {
         if (data !== undefined) {
-            self.dosePerDayElement
-                .attr("value", data)
-                .text(data);
+            // self.dosePerDayElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("dose-element").value = data;
+
         }
     }
 
@@ -111,9 +119,11 @@ let TreatmentFormView = function () {
 
     function setTotalFractionElement(data) {
         if (data !== undefined) {
-            self.totalFractionElement
-                .attr("value", data)
-                .text(data);
+            // self.totalFractionElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("total-fraction-element").value = data;
+
         }
     }
 
@@ -123,9 +133,11 @@ let TreatmentFormView = function () {
 
     function setNeckElement(data) {
         if (data !== undefined) {
-            self.neckElement
-                .attr("value", data)
-                .text(data);
+            // self.neckElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("neck-dissection-element").value = data;
+
         }
     }
 

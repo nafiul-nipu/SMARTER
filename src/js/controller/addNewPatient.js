@@ -272,6 +272,7 @@ let AddNewPatient = function() {
             if(self.change_made == true){
                 self.change_made = false;
                 // console.log(self.patientInfo)
+                App.controllers.landingFormController.updateLandingForms(self.patientInfo)
                 App.models.patients.updatePatient(self.patientInfo);
                 //update the kaplan meier
                 App.models.kaplanMeierPatient.updateData()

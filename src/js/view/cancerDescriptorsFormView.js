@@ -61,9 +61,10 @@ let CancerDescriptorsFormView = function() {
 
     function setTumorSiteElement(data) {
         if (data !== undefined) {
-            self.tumorSiteElement
-                .attr("value", data)
-                .text(data);
+            // self.tumorSiteElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("tumor-site").value = data;
         }
     }
 
@@ -73,9 +74,10 @@ let CancerDescriptorsFormView = function() {
 
     function setTumorSubsiteElement(data) {
         if (data !== undefined) {
-            self.tumorSubsiteElement
-                .attr("value", data)
-                .text(data);
+            // self.tumorSubsiteElement
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("tumor-subsite").value = data;
         }
     }
 
@@ -408,9 +410,10 @@ let CancerDescriptorsFormView = function() {
 
     function setAffectedLymphNodeElement(data) {
         if (data !== undefined) {
-            self.affectedLymph
-                .attr("value", data)
-                .text(data);
+            // self.affectedLymph
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("affected-lymph").value = data;
         }
     }
 

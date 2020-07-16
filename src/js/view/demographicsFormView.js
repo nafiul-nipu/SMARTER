@@ -60,9 +60,10 @@ let DemographicsFormView = function () {
     function setAgeElement(age) {
         // console.log(Math.round(age))
         if (age !== undefined) {
-            self.ageElement
-                .attr("value", Math.round(age))
-                .text(Math.round(age));
+            // self.ageElement
+            //     .attr("value", Math.round(age))
+            //     .text(Math.round(age));
+            document.getElementById("age-element").value = Math.round(age);
         }
     }
 
@@ -105,10 +106,12 @@ let DemographicsFormView = function () {
 
     function setRaceElement(race) {
         if (race !== undefined) {
-            console.log(race)
-            self.raceElement
-                .attr("value", race)
-                .text(race);
+            // console.log(race)
+            // $('form :input').val('');
+            document.getElementById("race-element").value = race;
+            // self.raceElement
+            //     .attr("value", race)
+            //     .text(race);
         }
     }
 
@@ -118,9 +121,10 @@ let DemographicsFormView = function () {
 
     function setHpvp16Element(data) {
         if (data !== undefined) {
-            self.hpvp16Element
-                .attr("value", data)
-                .text(data);
+            // self.hpvp16Element
+            //     .attr("value", data)
+            //     .text(data);
+            document.getElementById("hpvp16-element").value = data;
         }
     }
 
@@ -233,9 +237,7 @@ let DemographicsFormView = function () {
 
     function setPacksPerYearElement(data) {
         if (data !== undefined) {
-            self.packsPerYearElement
-                .attr("value", data)
-                .text(data);
+            document.getElementById("packs-per-year-element").value = data;
         }
     }
 
