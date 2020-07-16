@@ -77,6 +77,36 @@ let AddNewPatient = function() {
                 //neck boost
                 self.patientInfo[$('#neck-boost-y-radio').attr('name')] = $("input:radio[name='Neck boost (Y/N)']:checked").val();
 
+                // static values needs to make dynamic later
+                // these are the predictive initial values... no need to change
+                //as our prediction analysis will provide the values and they will be updated
+                self.patientInfo["feeding_tube_prob"] = self.all_patients[0]["feeding_tube_prob"];
+                self.patientInfo["aspiration_prob"] = self.all_patients[0]["aspiration_prob"];
+                self.patientInfo["overall_survival_5yr_prob"] = self.all_patients[0]["overall_survival_5yr_prob"];
+                self.patientInfo["Probability of Survival"] = +(self.patientInfo["overall_survival_5yr_prob"]);
+                self.patientInfo["progression_free_5yr_prob"] = self.all_patients[0]["progression_free_5yr_prob"];
+
+                //overal survival days calculated
+                self.patientInfo["OS (Calculated)"] = self.all_patients[0]["OS (Calculated)"];
+                self.patientInfo.OS = +self.patientInfo["OS (Calculated)"];
+
+                //these values are needed for R prediction
+                self.patientInfo["Overall Survival (1=alive, 0=dead)"] = self.all_patients[0]["Overall Survival (1=alive, 0=dead)"]
+                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
+                self.patientInfo["Locoregional control (Time)"] = self.all_patients[0]["Locoregional control (Time)"]
+                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
+                self.patientInfo["FDM (months)"] = self.all_patients[0]["FDM (months)"]
+
+                // console.log(Object.keys(self.patientInfo).length)
+                //just adding this staticly
+                //needs to be dynamic
+                for(let key of Object.keys(self.all_patients[0])){
+                    if( (key in self.patientInfo) == false ){
+                        self.patientInfo[key] = self.all_patients[0][key]
+                    }
+                }
+                // console.log(Object.keys(self.patientInfo).length)
+
                 self.change_made = true;
 
             }else{

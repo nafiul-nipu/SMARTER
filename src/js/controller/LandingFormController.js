@@ -42,7 +42,7 @@ let LandingFormController = function() {
         self.submitButton = d3.select(element)
             .on("click", function() {
                 if($('.idSelect').val() == "N/A"){ //adding new patient
-                    console.log(App.controllers.newPatient.get_result_name()) 
+                    // console.log(App.controllers.newPatient.get_result_name()) 
                     let new_patient = App.controllers.newPatient.get_result_name();
                     if(new_patient["Dummy ID"] != "N/A"){
                         //landing form drop down fix

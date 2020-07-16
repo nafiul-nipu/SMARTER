@@ -53,10 +53,25 @@ def output():
         # taking the value as a data frame
         result <- as.data.frame(value)
 
+        existing_patient <- FALSE
         for(row in row.names(OPC_final)){
             if(OPC_final[row, "Dummy.ID"] == result["Dummy.ID"]){
+                existing_patient <- TRUE
                 for(column in colnames(OPC_final)){
                     OPC_final[row,column] <- result[column]
+                }
+            }
+        }
+
+        if(existing_patient == FALSE){
+            new_row <- as.numeric(row) + 1
+            for(column in colnames(OPC_final)){
+                if(column %in% names(result)){
+                    OPC_final[as.character(new_row) , column] <- result[column]
+                }else{
+                    #manually adding value.. need to find a way to fix it
+                    #already checked this once in the js code.. double check
+                    OPC_final[as.character(new_row), column] <- OPC_final["1", column]
                 }
             }
         }

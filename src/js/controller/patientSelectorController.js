@@ -13,7 +13,7 @@ let PatientSelectorController = function() {
     /* display the patient drop down list */
     function populatePateintDropDown() {
         let patients = App.models.patients.filterPatients();
-        console.log(patients)
+        // console.log(patients)
 
         let patientList = self.patientDropDown
             .selectAll("option")
