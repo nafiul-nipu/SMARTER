@@ -43,7 +43,7 @@ let StatsView = function () {
         // Tim's work currently hosted using GH pages.
         // let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
         let url = `dendrogram.html`
-        document.getElementById("dendrogramlinker").removeAttribute("class");
+        // document.getElementById("dendrogramlinker").removeAttribute("class");
         self.dendrogramButton
             .attr("href", url);
     }
@@ -62,14 +62,14 @@ let StatsView = function () {
     }
 
     function disableLink() {
-        document.getElementById("dendrogramlinker-class").disabled = true;
+        // document.getElementById("dendrogramlinker-class").disabled = true;
         document.getElementById("lymphthingylinker-class").disabled = true;
         document.getElementById("camprtlinker-class").disabled = true;
 
     }
 
     function enableLink(){
-        document.getElementById("dendrogramlinker-class").disabled = false;
+        // document.getElementById("dendrogramlinker-class").disabled = false;
         document.getElementById("lymphthingylinker-class").disabled = false;
         document.getElementById("camprtlinker-class").disabled = false;
 
@@ -151,6 +151,7 @@ let StatsView = function () {
             setCamprtButton(currentPatient);
         }else{
             disableLink()
+            setDendrogramButtons(currentPatient);
         }       
         setStatisticsPatients();
         // console.log("current patient " + currentPatient)
