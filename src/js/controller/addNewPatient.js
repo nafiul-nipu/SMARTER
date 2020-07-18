@@ -96,13 +96,15 @@ let AddNewPatient = function() {
                 self.patientInfo["Locoregional control (Time)"] = self.all_patients[0]["Locoregional control (Time)"]
                 self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
                 self.patientInfo["FDM (months)"] = self.all_patients[0]["FDM (months)"]
+                self.patientInfo["Feeding tube 6m"] = self.all_patients[0]["Feeding tube 6m"]
 
                 // console.log(Object.keys(self.patientInfo).length)
                 //just adding this staticly
                 //needs to be dynamic
                 for(let key of Object.keys(self.all_patients[0])){
                     if( (key in self.patientInfo) == false ){
-                        self.patientInfo[key] = self.all_patients[0][key]
+                        // console.log(key)
+                        self.patientInfo[key] =  "N/A" // self.all_patients[0][key]
                     }
                 }
                 // console.log(Object.keys(self.patientInfo).length)

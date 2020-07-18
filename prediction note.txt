@@ -1,0 +1,4 @@
+1. The values that were taken into consideration for prediction
+in the R code, must not have any N/A values. It shows error
+2. The remaining values can be N/A as the prediction analysis
+does not take them into consideration

@@ -68,11 +68,12 @@ def output():
             for(column in colnames(OPC_final)){
                 if(column %in% names(result)){
                     OPC_final[as.character(new_row) , column] <- result[column]
-                }else{
-                    #manually adding value.. need to find a way to fix it
-                    #already checked this once in the js code.. double check
-                    OPC_final[as.character(new_row), column] <- OPC_final["1", column]
                 }
+                # else{
+                #     #manually adding value.. need to find a way to fix it
+                #     #already checked this once in the js code.. double check
+                #     OPC_final[as.character(new_row), column] <- 'N/A'  #OPC_final["1", column]
+                # }
             }
         }
         
