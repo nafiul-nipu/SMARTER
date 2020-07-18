@@ -96,7 +96,7 @@ let StatsView = function () {
         let currentPatientAttributes = App.models.patients.getPatientByID(currentPatient);
         // console.log(currentPatientAttributes)
         //group of the kaplam view
-        let kaplanMeierGroup = App.mosaicAttributeOrder;
+        let kaplanMeierGroup = App.mosaicAttributeOrderForCohortTable;
         // console.log(kaplanMeierGroup)
         
         let allPatients = App.models.patients.getPatients();

@@ -16,10 +16,13 @@ less.pageLoadFinished.then(function() {
     App.kiviatAttributes = [];
 
     // hard code the order of attributes for drawing the mosaic viewBox
-    App.mosaicAttributeOrder = ["Therapeutic combination", "Race", "T-category", "Gender",
+    App.mosaicAttributeOrder = ["Therapeutic combination", /*"Race",*/ "T-category", /*"Gender",*/ 
         "N-category"
     ];
 
+    App.mosaicAttributeOrderForCohortTable = ["Therapeutic combination", "Race", "T-category", "Gender",
+        "N-category"
+    ];
     // need to find better colors
     App.category10colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
         "#393b79", "#637939", "#7f7f7f", "#bcbd22", "#843c39"
