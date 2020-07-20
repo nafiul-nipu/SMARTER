@@ -128,7 +128,7 @@
     "range":[5 , 35],
     "label": "Neck boost",
     "type": "ordinal",
-    "forKiviat": true,
+    "forKiviat": false,
     "forKnn": true
   },
   "Neck dissection": {
@@ -141,7 +141,7 @@
     "range":[5 , 35],
     "label": "Neck dissection",
     "type": "ordinal",
-    "forKiviat": true,
+    "forKiviat": false,
     "forKnn": true
   },
   "Predictive Probability": {

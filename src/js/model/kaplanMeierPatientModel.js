@@ -91,6 +91,7 @@ let KaplanMeierPatientModel = function() {
         }
 
         let sortedOSKeys = Object.keys(CensorsAtOS).sort((a, b) => parseFloat(a) - parseFloat(b));
+        // console.log(CensorsAtOS)
         // console.log(sortedOSKeys)
 
         let probAtOS = []; // [{OS, prob, variance}, {OS, ...}, ...]
@@ -108,7 +109,9 @@ let KaplanMeierPatientModel = function() {
 
             // compute the number of patients died at the current OS
             let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
+            // console.log(patientDied)
             for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
+                // console.log(CensorsAtOS[sortedOSKeys[keyID]][i])
                 patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
             }
 

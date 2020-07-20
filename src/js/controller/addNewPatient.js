@@ -60,8 +60,8 @@ let AddNewPatient = function() {
                 //therapeutic
                 self.patientInfo[$('#chemo-element').attr('name')] = $('#chemo-element').val();
                 //censor
-                self.patientInfo[$('#local-therapy-element').attr('name')] = $('#local-therapy-element').val();
-                self.patientInfo.Censor = +self.patientInfo.Censor;
+                // self.patientInfo[$('#local-therapy-element').attr('name')] = $('#local-therapy-element').val();
+                // self.patientInfo.Censor = +self.patientInfo.Censor;
                 //treatment days
                 self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();
                 self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
@@ -89,6 +89,12 @@ let AddNewPatient = function() {
                 //overal survival days calculated
                 self.patientInfo["OS (Calculated)"] = self.all_patients[0]["OS (Calculated)"];
                 self.patientInfo.OS = +self.patientInfo["OS (Calculated)"];
+
+                //we need censor value for KM
+                // in KM censor is used for patient died... i suppose it means
+                //censor 1 - patient died, censor 0 - patient alive
+                // i am assuming new patient will be alive hence censor is given 0
+                self.patientInfo.Censor = 0;
 
                 //these values are needed for R prediction
                 self.patientInfo["Overall Survival (1=alive, 0=dead)"] = self.all_patients[0]["Overall Survival (1=alive, 0=dead)"]
@@ -222,6 +228,8 @@ let AddNewPatient = function() {
                     self.change_made = true;
                     // console.log("therapeutic combination", self.patientInfo[$('#chemo-element').attr('name')], $('#chemo-element').val())
                 }
+
+                /*
                 //local therapy
                 if(self.patientInfo[$('#local-therapy-element').attr('name')] != $('#local-therapy-element').val()){
                     self.patientInfo[$('#local-therapy-element').attr('name')] = $('#local-therapy-element').val();
@@ -229,6 +237,8 @@ let AddNewPatient = function() {
                     self.change_made = true;
                     // console.log("censor", self.patientInfo[$('#local-therapy-element').attr('name')], $('#local-therapy-element').val())
                 }
+                */
+
                 //treatment duration
                 if(self.patientInfo[$('#duration-element').attr('name')] != $('#duration-element').val()){
                     self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();

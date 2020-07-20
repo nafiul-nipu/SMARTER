@@ -8,7 +8,7 @@ let TreatmentFormView = function () {
 
     function init() {
         self.chemoElement = d3.select("#chemo-element");
-        self.localTherapyElement = d3.select("#local-therapy-element");
+        // self.localTherapyElement = d3.select("#local-therapy-element");
         self.durationElement = d3.select("#duration-element");
         self.totalDoseElement = d3.select("#total-dose-element");
         self.dosePerDayElement = d3.select("#dose-element");
@@ -19,10 +19,10 @@ let TreatmentFormView = function () {
     }
 
     function updateForm(data) {
-        let chemo, local_therapy, neck_boost, dose_per_day, total_dose, total_fractions, duration, neck_dissection = ""
+        let chemo, /*local_therapy, */ neck_boost, dose_per_day, total_dose, total_fractions, duration, neck_dissection = ""
         if(data === undefined){
             chemo = $('#chemo-element').val();
-            local_therapy = $('#local-therapy-element').val();
+            // local_therapy = $('#local-therapy-element').val();
             neck_boost = $("input:radio[name='Neck boost (Y/N)']:checked").val();
             dose_per_day = $('#dose-element').val();
             total_dose = $('#total-dose-element').val();
@@ -31,7 +31,7 @@ let TreatmentFormView = function () {
             neck_dissection = $('#neck-dissection-element').val();
         }else{
             chemo = data["Therapeutic combination"];
-            local_therapy = data["Censor"];
+            // local_therapy = data["Censor"];
             neck_boost = data["Neck boost (Y/N)"];
             dose_per_day = data["Dose/fraction (Gy)"];
             total_dose = data["Total dose"];
@@ -43,7 +43,7 @@ let TreatmentFormView = function () {
         // "Dose/fraction (Gy)":dose_per_day, "Total dose":total_dose, "Total fractions":total_fractions, "Treatment duration (Days)":duration,
         // "Neck Disssection after IMRT (Y/N)":neck_dissection} = data;
         setChemoElement(chemo);
-        setLocalTherapyElement(local_therapy);
+        // setLocalTherapyElement(local_therapy);
         setNeckBoostElement(neck_boost);
         setTotalDoseElement(total_dose);
         setDosePerDayElement(dose_per_day);
@@ -55,7 +55,7 @@ let TreatmentFormView = function () {
     function consolidateData() {
         return {
             "chemo": getChemoElement(),
-            "local_therapy": getLocalTherapyElement(),
+            // "local_therapy": getLocalTherapyElement(),
             "duration": getDurationElement(),
             "total_dose": getTotalDoseElement(),
             "dose_per_day": getDosePerDayElement(),
@@ -78,6 +78,7 @@ let TreatmentFormView = function () {
         }
     }
 
+    /*
     function getLocalTherapyElement() {
         return self.localTherapyElement.attr("value");
     }
@@ -90,6 +91,7 @@ let TreatmentFormView = function () {
             document.getElementById("local-therapy-element").value = data;
         }
     }
+    */
 
     function getDurationElement() {
         return self.durationElement.attr("value");

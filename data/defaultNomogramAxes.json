@@ -147,7 +147,7 @@
   },
   "Neck boost": {
     "name": "Neck boost (Y/N)",
-    "forKiviat": true,
+    "forKiviat": false,
     "rangeShrink": [
       0.08,
       0
@@ -163,7 +163,7 @@
   },
   "Neck dissection": {
     "name": "Neck Disssection after IMRT (Y/N)",
-    "forKiviat": true,
+    "forKiviat": false,
     "rangeShrink": [
       0,
       0.1499

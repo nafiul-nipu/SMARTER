@@ -129,7 +129,7 @@
     "label": "Neck boost",
     "type": "ordinal",
     "forKnn": true,
-    "forKiviat": true
+    "forKiviat": false
   },
   "Neck dissection": {
     "name":"Neck Disssection after IMRT (Y/N)",
@@ -142,7 +142,7 @@
     "label": "Neck dissection",
     "type": "ordinal",
     "forKnn": true,
-    "forKiviat": true
+    "forKiviat": false
   },
   "Predictive Probability": {
     "name": "overall_survival_5yr_prob",
