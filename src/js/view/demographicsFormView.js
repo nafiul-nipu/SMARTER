@@ -11,6 +11,7 @@ let DemographicsFormView = function () {
         self.genderMaleElement = d3.select("#male-radio");
         self.genderFemaleElement = d3.select("#female-radio");
         self.raceElement = d3.select("#race-element");
+        self.raceSelect = d3.select("#race")
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
         self.hpvp16Element = d3.select("#hpvp16-element");
@@ -26,12 +27,13 @@ let DemographicsFormView = function () {
 
     function updateForm(data) {
         // Update attributes
-        let age, eth, gender, id, smoking_stat, hpv_stat, aspiration, packsperyear = "";
+        let age, eth,race_select, gender, id, smoking_stat, hpv_stat, aspiration, packsperyear = "";
         // console.log(data)
         if(data === undefined){ //then the values will be the previous value
             // console.log(getGenderElement())
             age = $('#age-element').val();
             eth = $('#race-element').val();
+            race_select = $('#race').val();
             gender = $("input:radio[name=Gender]:checked").val();
             // id = data["ID"];
             smoking_stat = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
@@ -42,6 +44,7 @@ let DemographicsFormView = function () {
         }else{
             age = data["AgeAtTx"];
             eth = data["Race"];
+            race_select = data["Race"]
             gender = data["Gender"];
             id = data["ID"];
             smoking_stat = data["Smoking status at Diagnosis (Never/Former/Current)"];
@@ -54,6 +57,7 @@ let DemographicsFormView = function () {
         }
         setAgeElement(age);
         setRaceElement(eth);
+        setRaceSelect(race_select);
         setGenderElement(gender);
         // setEcogValue(ecog);
         setSmokingStatus(smoking_stat);
@@ -67,6 +71,7 @@ let DemographicsFormView = function () {
         return {
             age: getAgeElement(),
             race: getRaceElement(),
+            race_t : getRaceSelect(),
             gender: getGenderElement(),
             // ecog: getEcogValue(),
             aspiration: getAspirationElement(),
@@ -133,6 +138,21 @@ let DemographicsFormView = function () {
             // console.log(race)
             // $('form :input').val('');
             document.getElementById("race-element").value = race;
+            // self.raceElement
+            //     .attr("value", race)
+            //     .text(race);
+        }
+    }
+
+    function getRaceSelect() {
+        return self.raceSelect.attr("value");
+    }
+
+    function setRaceSelect(race_select) {
+        if (race !== undefined) {
+            // console.log(race)
+            // $('form :input').val('');
+            $('#race').val(race_select);;
             // self.raceElement
             //     .attr("value", race)
             //     .text(race);

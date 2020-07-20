@@ -58,7 +58,7 @@ let PatientModel = function() {
                     self.patients[i].TreatmentDays = +d["Treatment duration (Days)"];
                 });
 
-                // console.log(self.patients)
+                console.log(self.patients)
                 // calculatePatientAttributeDomains();
 
                 // resolve within await callback after data finished processing
