@@ -123,6 +123,11 @@ let PatientModel = function() {
         return self.patients[patientID];
     }
 
+    // get the dummy ID of the patient
+    function getDummyID(index){
+        return self.patients[index]["Dummy ID"];
+    }
+
     /**get the total number of patients in the dataset */
     function getTotalPatients(){
         let total = Object.keys(self.patients).length;
@@ -375,6 +380,7 @@ let PatientModel = function() {
         getPatientNumber,
         getPatientByID,
         getPatientIDFromDummyID,
+        getDummyID,
         getPatientAttirbuteDomains,
         getPatientKnnAttributeDomains,
         getCommonAttributeValues,
