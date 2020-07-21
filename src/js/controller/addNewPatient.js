@@ -73,7 +73,8 @@ let AddNewPatient = function() {
                 //dose element
                 self.patientInfo[$('#dose-element').attr('name')] = $('#dose-element').val();
                 //neck dissection
-                self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
+                self.patientInfo[$('#neck-dissect-y-radio').attr('name')] = $("input:radio[name='Neck Disssection after IMRT (Y/N)']:checked").val();
+                // self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
                 //neck boost
                 self.patientInfo[$('#neck-boost-y-radio').attr('name')] = $("input:radio[name='Neck boost (Y/N)']:checked").val();
 
@@ -143,7 +144,7 @@ let AddNewPatient = function() {
                 if(self.patientInfo[$('#race-element').attr('name')] != $('#race-element').val()){
                     self.patientInfo[$('#race-element').attr('name')] = $('#race-element').val();
                     self.change_made = true;
-                    // console.log("race", self.patientInfo[$('#race-element').attr('name')],$('#race-element').val())
+                    console.log("race", $('#race-element').attr('name'), $('#race-element').val())
                 }
                 //Aspiration
                 if(self.patientInfo[$('#aspiration-y-radio').attr('name')] != $("input:radio[name='Aspiration rate Pre-therapy']:checked").val()){
@@ -266,8 +267,9 @@ let AddNewPatient = function() {
                     // console.log("total dose", self.patientInfo[$('#dose-element').attr('name')], $('#dose-element').val())
                 }
                 //neck dissection
-                if(self.patientInfo[$('#neck-dissection-element').attr('name')] != $('#neck-dissection-element').val()){
-                    self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
+                if(self.patientInfo[$('#neck-dissect-y-radio').attr('name')] != $("input:radio[name='Neck Disssection after IMRT (Y/N)']:checked").val()){
+                    // self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
+                    self.patientInfo[$('#neck-dissect-y-radio').attr('name')] = $("input:radio[name='Neck Disssection after IMRT (Y/N)']:checked").val();
                     self.change_made = true;
                     // console.log("neck dissection", self.patientInfo[$('#neck-dissection-element').attr('name')], $('#neck-dissection-element').val())
                 }
@@ -280,7 +282,7 @@ let AddNewPatient = function() {
 
             }
 
-            // console.log(self.patientInfo)
+            console.log(self.patientInfo)
             if(self.change_made == true){
                 self.change_made = false;
                 // console.log(self.patientInfo)

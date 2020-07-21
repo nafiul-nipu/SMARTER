@@ -121,17 +121,23 @@
                       <input type="radio" name="Gender" value="Male" id="male-radio">Male
                       <input type="radio" name="Gender" value="Female" id="female-radio">Female
                       <label>Race</label>
-                      <!-- <select id="race">
-                        <option value="" disabled selected>Race: </option>
+                      <select id="race-element" name="Race">
+                        <option value="" disabled selected>Race </option>
                         <option value="White/Caucasion">White/Caucasion</option>
                         <option value="Other">Other</option>
-                      </select> -->
-                      <input type="text" name="Race" placeholder="Race" id="race-element">
+                      </select>
+                      <!-- <input type="text" name="Race" placeholder="Race" id="race-element"> -->
                       <label>Aspiration</label>
                       <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
                       <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
                       <label>HPV/P16</label>
-                      <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
+                      <select id="hpvp16-element" name="HPV/P16 status">
+                        <option value="" disabled selected>HPV/P16</option>
+                        <option value="Positive">Positive</option>
+                        <option value="Negative">Negative</option>
+                        <option value="Unknown">Unknown</option>
+                      </select>
+                      <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
                       <label>Smoking Status</label>
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
@@ -147,9 +153,21 @@
                   <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
                   <div id="cancerDescriptors" class="collapse">
                       <label>Tm Laterality (R/L)</label>
-                      <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="tumor-site">
+                      <select id="tumor-site" name="Tm Laterality (R/L)">
+                        <option value="" disabled selected>R/L/Bilateral</option>
+                        <option value="R">R</option>
+                        <option value="L">L</option>
+                        <option value="Bilateral">Bilateral</option>
+                      </select>
+                      <!-- <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="tumor-site"> -->
                       <label>Tumor Subsite</label>
-                      <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
+                      <select id="tumor-subsite" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)">
+                        <option value="" disabled selected>Tumor Subsite</option>
+                        <option value="BOT">BOT</option>
+                        <option value="Tonsil">Tonsil</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <!-- <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite"> -->
                       <label>AJCC 7th Edition</label>
                       <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
                       <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
@@ -188,7 +206,14 @@
                   <div id="treatment" class="collapse">
                       <div class="left">
                           <label>Chemotherapy</label>
-                          <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="chemo-element">
+                          <select id="chemo-element" name="Therapeutic combination">
+                            <option value="" disabled selected>Therapeutic combination</option>
+                            <option value="CC">CC</option>
+                            <option value="IC+CC">IC+CC</option>
+                            <option value="IC+Radiation alone">IC+Radiation alone</option>
+                            <option value="Radiation alone">Radiation alone</option>
+                          </select>
+                          <!-- <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="chemo-element"> -->
                           <!-- <label>Censor</label> -->
                           <!-- <input type="text" name="Censor" placeholder="0/1" id="local-therapy-element"> -->
                           <label>Treatment Duration</label>
@@ -202,7 +227,9 @@
                           <label>Dose/Day</label>
                           <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
                           <label>Neck Dissection after IMRT</label>
-                          <input type="text" name="Neck Disssection after IMRT (Y/N)" placeholder="Neck Dissection" id="neck-dissection-element">
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="Y" id="neck-dissect-y-radio">Yes
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="N" id="neck-dissect-n-radio">No
+                          <!-- <input type="text" name="Neck Disssection after IMRT (Y/N)" placeholder="Neck Dissection" id="neck-dissection-element"> -->
                           <label>Neck Boost</label>
                           <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
                           <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No

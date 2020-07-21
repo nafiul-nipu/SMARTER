@@ -13,7 +13,9 @@ let TreatmentFormView = function () {
         self.totalDoseElement = d3.select("#total-dose-element");
         self.dosePerDayElement = d3.select("#dose-element");
         self.totalFractionElement = d3.select("#total-fraction-element");
-        self.neckElement = d3.select("#neck-dissection-element");
+        // self.neckElement = d3.select("#neck-dissection-element");
+        self.neckDissectYesRadio = d3.select("#neck-dissect-y-radio");
+        self.neckDissectNoRadio = d3.select("#neck-dissect-n-radio");
         self.neckBoostYesRadio = d3.select("#neck-boost-y-radio");
         self.neckBoostNoRadio = d3.select("#neck-boost-n-radio");
     }
@@ -28,7 +30,7 @@ let TreatmentFormView = function () {
             total_dose = $('#total-dose-element').val();
             total_fractions = $('#total-fraction-element').val();
             duration = $('#duration-element').val();
-            neck_dissection = $('#neck-dissection-element').val();
+            neck_dissection = $("input:radio[name='Neck Disssection after IMRT (Y/N)']:checked").val();
         }else{
             chemo = data["Therapeutic combination"];
             // local_therapy = data["Censor"];
@@ -150,16 +152,32 @@ let TreatmentFormView = function () {
     }
 
     function getNeckElement() {
-        return self.neckElement.attr("value");
+        // return self.neckElement.attr("value");
+        let neckDissectYesRadio = self.neckDissectYesRadio.property("checked");
+        let neckDissectNoRadio = self.neckDissectNoRadio.property("checked");
+
+        if (neckDissectYesRadio)
+            return "yes";
+        if (neckDissectNoRadio)
+            return "no";
+
+        return null;
     }
 
     function setNeckElement(data) {
+        data = data.toLowerCase();
         if (data !== undefined) {
-            // self.neckElement
-            //     .attr("value", data)
-            //     .text(data);
-            document.getElementById("neck-dissection-element").value = data;
-
+            if (data === "yes" || data==="y") {
+                self.neckDissectYesRadio
+                    .property("checked", true);
+                self.neckDissectNoRadio
+                    .property("checked", false);
+            } else if (data === "no" || data === "n") {
+                self.neckDissectYesRadio
+                    .property("checked", false);
+                self.neckDissectNoRadio
+                    .property("checked", true);
+            }
         }
     }
 

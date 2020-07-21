@@ -11,7 +11,7 @@ let DemographicsFormView = function () {
         self.genderMaleElement = d3.select("#male-radio");
         self.genderFemaleElement = d3.select("#female-radio");
         self.raceElement = d3.select("#race-element");
-        // self.raceSelect = d3.select("#race")
+        // self.raceSelect = d3.select("#race-element")
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
         self.hpvp16Element = d3.select("#hpvp16-element");
@@ -137,7 +137,8 @@ let DemographicsFormView = function () {
         if (race !== undefined) {
             // console.log(race)
             // $('form :input').val('');
-            document.getElementById("race-element").value = race;
+            // document.getElementById("race-element").value = race;
+            $('#race-element').val(race)
             // self.raceElement
             //     .attr("value", race)
             //     .text(race);
