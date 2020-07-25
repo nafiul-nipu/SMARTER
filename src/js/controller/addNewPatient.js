@@ -282,7 +282,7 @@ let AddNewPatient = function() {
 
             }
 
-            console.log(self.patientInfo)
+            // console.log(self.patientInfo)
             if(self.change_made == true){
                 self.change_made = false;
                 // console.log(self.patientInfo)
