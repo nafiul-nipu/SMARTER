@@ -227,6 +227,7 @@ let PatientModel = function() {
             }
 
 
+            // console.log(self.commonKaplanAttributeValues)
 
 
             return self.commonKaplanAttributeValues;

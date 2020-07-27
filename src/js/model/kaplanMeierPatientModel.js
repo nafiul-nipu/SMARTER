@@ -9,7 +9,8 @@ let KaplanMeierPatientModel = function() {
         selectedAttribute: null,
         patientGroups: {},
         kaplanMeierPatientGroups: {},
-        maxOS: 0
+        maxOS: 0,
+        medianOS:{}
     };
 
     /* initialize the patient list when first launching the application, and
@@ -74,6 +75,9 @@ let KaplanMeierPatientModel = function() {
 
         self.maxOS = Math.ceil(self.maxOS);
         // console.log(self.maxOS);
+
+        self.medianOS = findMedianProbabilityOS(self.kaplanMeierPatientGroups)
+        // console.log(self.medianOS)
     }
 
     /* calculate the data used for kaplan-meier plots */
@@ -81,10 +85,13 @@ let KaplanMeierPatientModel = function() {
         // console.log(currentPatientGroup)
         // console.log(selectedAttributeValue)
         let CensorsAtOS = {}; // {OS: [censor], OS: [censor, censor, censor], OS: [], ...}
+        let calculateMedian = {};
 
         for (let patientInd in currentPatientGroup) {
             CensorsAtOS[currentPatientGroup[patientInd].OS] = [];
+            // calculateMedian[currentPatientGroup[patientInd].OS] = 0;
         }
+        // console.log(calculateMedian)
 
         for (let patientInd in currentPatientGroup) {
             CensorsAtOS[currentPatientGroup[patientInd].OS].push(currentPatientGroup[patientInd].Censor);
@@ -102,6 +109,7 @@ let KaplanMeierPatientModel = function() {
         //true means use KM estimator prediction
         // console.log("true")
         for (let keyID in sortedOSKeys) {
+            // console.log(keyID)
             // let previousProb = currentPatientGroup[keyID]["Probability of Survival"]
             probAtOS[keyID] = {};
 
@@ -152,6 +160,48 @@ let KaplanMeierPatientModel = function() {
         // console.log(self.kaplanMeierPatientGroups)
     }
 
+    // get the median survival
+    function findMedianProbabilityOS(groups){
+        if(groups !== undefined){
+            let result = {}
+            let key = Object.keys(groups)
+            for(let k of key){
+                result[k] = 0
+                let sum = 0
+                let count = 0
+                // let group = groups[k]
+                // console.log(group)
+                // console.log(groups[k][5])
+                if(groups[k].length != 0){
+                    // console.log(groups[k])
+                    for(let i = 0 ; i < groups[k].length; i++){
+                        let value = groups[k][i]
+                        value.OS = +(value.OS)
+                        // console.log(value.prob)
+                        if(value.prob >= 0.5 && value.prob < 0.6){
+                            sum = sum + value.OS;
+                            count = count + 1;
+                        }
+                    }
+
+                }
+                // console.log(k, sum, count)
+                if(sum == 0 || count == 0){ // not to get NaN or infinity
+                    result[k] = 0;
+                }else{
+                    result[k] = sum / count;
+                }
+            }
+            
+            return result
+        }
+    }
+
+    // get the median OS
+    function getMedianOS(){
+        return self.medianOS;
+    }
+
     /* get the data for kaplan-meier plots */
     function getKaplanMeierPatients() {
         return self.kaplanMeierPatientGroups;
@@ -174,6 +224,7 @@ let KaplanMeierPatientModel = function() {
         updateData,
         getKaplanMeierPatients,
         getMaxOS,
-        getSelectedAttribute
+        getSelectedAttribute,
+        getMedianOS
     };
 }

@@ -8,7 +8,10 @@ let KaplanMeierView = function(targetID) {
         targetElement: null,
         targetSvg: null,
         maxOS: null,
-        features: App.mosaicAttributeOrder
+        features: App.mosaicAttributeOrder,
+        tipBox: null,
+        tipLine: null,
+        xScale: null,
     };
 
     init();
@@ -32,9 +35,16 @@ let KaplanMeierView = function(targetID) {
             .style("margin-left", "30px")
             .attr("preserveAspectRatio", "xMidYMin");
 
+        self.tipBox = self.targetElement.append('div')
+                        .attr('id', 'tooltip_kaplan')
+                        .attr('position', 'absolute')
+                        .attr('background-color', 'lightgray')
+                        .attr('padding', '5px')
+
         drawXAxis();
         drawYAxis();
         drawXAxisLabels();
+        
     }
 
     function drawXAxis() {
@@ -196,6 +206,8 @@ let KaplanMeierView = function(targetID) {
             .domain([0, self.maxOS])
             .range([10, 110]);
 
+        self.xScale = x;
+
         let y = d3.scaleLinear()
             .domain([0, 1])
             .range([90, 10]);
@@ -225,10 +237,62 @@ let KaplanMeierView = function(targetID) {
                 .style("opacity", 0.7)
                 .text(i);
         }
+        
+        //creating the tooltip
+        //thi will create the tipline 
+        self.tipLine = self.targetSvg.append('line')
+
+        //hovering will create tipline and tooltip
+        self.targetSvg.on('mousemove', drawTooltip)
+                    .on('mouseout', removeTooltip)
+
     }
+
+    function drawTooltip(){
+        // console.log("draw tool tip")
+        // console.log(self.xScale)
+        // console.log(xScale)
+        // console.log(d3.mouse(self.targetSvg.node()))
+        // console.log(d3.mouse(self.tipBox.node()))
+        // console.log(Math.floor((self.xScale.invert(d3.mouse(self.tipBox.node())[0]) + 5) / 10) * 10)
+        // console.log(Math.floor((self.xScale.invert(d3.mouse(self.targetSvg.node())[0]) + 5) / 10) * 10)
+        // let value = Math.floor((self.xScale.invert(d3.mouse(self.tipBox.node())[0]) + 5) / 10) * 10;
+        let value = Math.floor((self.xScale.invert(d3.mouse(self.targetSvg.node())[0]) + 5) / 10) * 10
+
+        if(value >= 0 && value <= 150){
+            self.tipLine.attr('stroke','black')
+                    .attr('x1', self.xScale(value))
+                    .attr('x2', self.xScale(value))
+                    .attr('y1', 5)
+                    .attr('y2', 90)
+            // console.log(event.clientX)
+            // (d3.select(this).attr("cx") + 20) + 'px')
+            // console.log(d3.select(this).clientHeight)
+            self.tipBox.html("OS : " + value)
+                .style('display', 'block')
+                .style('left', event.clientX+'px')
+                .style('top', event.clientY+'px')
+        }else{
+            self.tipLine.attr('stroke', 'none')
+            self.tipBox.style('display', 'none')
+        }
+
+    }
+
+    function removeTooltip(){
+        // console.log("remove tool tip")
+        if(self.tipLine){
+            self.tipLine.attr('stroke', 'none')
+        }
+        if(self.tipBox){
+            self.tipBox.style('display', 'none')
+        }
+    }
+
 
     /* draw the kaplan-meier plot */
     function drawKMPlot(data, xScale, yScale, color, attrVal) {
+        // console.log("drawKMplot")
 
         // remove the special symbols
         let value = attrVal.replace(/[^a-zA-Z0-9]/g, '');
@@ -248,22 +312,22 @@ let KaplanMeierView = function(targetID) {
             let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
 
             
-            self.targetSvg.append("rect")
-                .attr("class", "kmVar " + value)
-                .attr("id", value)
-                .attr("x", x1)
-                .attr("y", y2)
-                .attr("width", x2 - x1)
-                .attr("height", y1 - y2)
-                .style("stroke", "none")
-                .style("fill", color)
-                .style("opacity", opaque(value))
-                .on("mouseover", function(d){
-                    highlight(value);
-                })
-                .on("mouseleave", function(d,i){
-                    noHighlight(value);
-                });
+            // self.targetSvg.append("rect")
+            //     .attr("class", "kmVar " + value)
+            //     .attr("id", value)
+            //     .attr("x", x1)
+            //     .attr("y", y2)
+            //     .attr("width", x2 - x1)
+            //     .attr("height", y1 - y2)
+            //     .style("stroke", "none")
+            //     .style("fill", color)
+            //     .style("opacity", opaque(value))
+            //     .on("mouseover", function(d){
+            //         highlight(value);
+            //     })
+            //     .on("mouseleave", function(d,i){
+            //         noHighlight(value);
+            //     });
                 
         }
 
@@ -305,10 +369,14 @@ let KaplanMeierView = function(targetID) {
             .style("fill", "none")
             .on("mouseover", function(d){
                 highlight(value);
+                // console.log("over")
             })
             .on("mouseleave", function(d,i){
                 noHighlight(value);
+                // console.log("out")
             });
+        
+        // self.targetSvg.appedn("line")
     }
 
     //  opacity 
