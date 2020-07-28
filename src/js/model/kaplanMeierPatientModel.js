@@ -186,7 +186,7 @@ let KaplanMeierPatientModel = function() {
 
                 }
                 // console.log(k, sum, count)
-                if(sum == 0 || count == 0){ // not to get NaN or infinity
+                if(count == 0){ // not to get NaN or infinity
                     result[k] = 0;
                 }else{
                     result[k] = sum / count;
@@ -195,6 +195,42 @@ let KaplanMeierPatientModel = function() {
             
             return result
         }
+    }
+
+    //get the value of a particular OS i.e. OS 10 mean all that are >= 10 and < 11
+    //result sum / count 
+    function getProbValue(roundOS, groupPatients){
+        if(groupPatients !== undefined){
+            let result = {}
+            let key = Object.keys(groupPatients)
+            for(let k of key){
+                result[k] = 0
+                let sum = 0
+                let count = 0
+                if(groupPatients[k].length != 0){
+                    // console.log(groups[k])
+                    for(let i = 0 ; i < groupPatients[k].length; i++){
+                        let value = groupPatients[k][i]
+                        value.OS = +(value.OS)
+                        console.log(value, value.prob, 'prob')
+                        if(value.OS >= roundOS && value.OS < roundOS + 10){
+                            sum = sum + value.prob;
+                            count = count + 1;
+                        }
+                    }
+
+                }
+                console.log(k, sum, count)
+                if(count == 0){ // not to get NaN or infinity
+                    result[k] = 'N/A';
+                }else{
+                    result[k] = sum / count;
+                }
+            }
+            
+            return result
+        }
+
     }
 
     // get the median OS
@@ -225,6 +261,7 @@ let KaplanMeierPatientModel = function() {
         getKaplanMeierPatients,
         getMaxOS,
         getSelectedAttribute,
-        getMedianOS
+        getMedianOS,
+        getProbValue
     };
 }

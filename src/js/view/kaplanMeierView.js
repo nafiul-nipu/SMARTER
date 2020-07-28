@@ -37,9 +37,7 @@ let KaplanMeierView = function(targetID) {
 
         self.tipBox = self.targetElement.append('div')
                         .attr('id', 'tooltip_kaplan')
-                        .attr('position', 'absolute')
-                        .attr('background-color', 'lightgray')
-                        .attr('padding', '5px')
+                        .style('opacity', 0);
 
         drawXAxis();
         drawYAxis();
@@ -243,12 +241,14 @@ let KaplanMeierView = function(targetID) {
         self.tipLine = self.targetSvg.append('line')
 
         //hovering will create tipline and tooltip
-        self.targetSvg.on('mousemove', drawTooltip)
+        self.targetSvg.on('mousemove', function(){
+            drawTooltip(KMData)
+        })
                     .on('mouseout', removeTooltip)
 
     }
 
-    function drawTooltip(){
+    function drawTooltip(KMData){
         // console.log("draw tool tip")
         // console.log(self.xScale)
         // console.log(xScale)
@@ -258,8 +258,12 @@ let KaplanMeierView = function(targetID) {
         // console.log(Math.floor((self.xScale.invert(d3.mouse(self.targetSvg.node())[0]) + 5) / 10) * 10)
         // let value = Math.floor((self.xScale.invert(d3.mouse(self.tipBox.node())[0]) + 5) / 10) * 10;
         let value = Math.floor((self.xScale.invert(d3.mouse(self.targetSvg.node())[0]) + 5) / 10) * 10
+        // console.log(KMData)
+        // console.log(result)
 
         if(value >= 0 && value <= 150){
+            let result = App.models.kaplanMeierPatient.getProbValue(value, KMData);
+            let result_key = Object.keys(result);
             self.tipLine.attr('stroke','black')
                     .attr('x1', self.xScale(value))
                     .attr('x2', self.xScale(value))
@@ -268,13 +272,31 @@ let KaplanMeierView = function(targetID) {
             // console.log(event.clientX)
             // (d3.select(this).attr("cx") + 20) + 'px')
             // console.log(d3.select(this).clientHeight)
-            self.tipBox.html("OS : " + value)
-                .style('display', 'block')
-                .style('left', event.clientX+'px')
-                .style('top', event.clientY+'px')
+            self.tipBox.transition()
+                        .duration(200)
+                        .style('opacity', 0.9);
+            self.tipBox.html(function(){
+                let text = 'OS: ' + value + '<br>'
+                for(let key of result_key){
+                    let number;
+                    // console.log(result[key])
+                    if(result[key] != 'N/A'){
+                        number = Math.round(result[key] * 100) / 100
+                    }else{
+                        number = 'N/A'
+                    }
+                    text += key + ' : ' + number + '<br>'
+                }
+                return text
+
+            })
+                .style('left', (d3.event.pageX) + "px")
+                .style('top', (d3.event.pageY - 28) + "px")
         }else{
             self.tipLine.attr('stroke', 'none')
-            self.tipBox.style('display', 'none')
+            self.tipBox.transition()
+                        .duration(500)
+                        .style('opacity', 0);
         }
 
     }
@@ -285,7 +307,9 @@ let KaplanMeierView = function(targetID) {
             self.tipLine.attr('stroke', 'none')
         }
         if(self.tipBox){
-            self.tipBox.style('display', 'none')
+            self.tipBox.transition()
+                        .duration(500)
+                        .style('opacity', 0);
         }
     }
 
@@ -312,22 +336,22 @@ let KaplanMeierView = function(targetID) {
             let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
 
             
-            // self.targetSvg.append("rect")
-            //     .attr("class", "kmVar " + value)
-            //     .attr("id", value)
-            //     .attr("x", x1)
-            //     .attr("y", y2)
-            //     .attr("width", x2 - x1)
-            //     .attr("height", y1 - y2)
-            //     .style("stroke", "none")
-            //     .style("fill", color)
-            //     .style("opacity", opaque(value))
-            //     .on("mouseover", function(d){
-            //         highlight(value);
-            //     })
-            //     .on("mouseleave", function(d,i){
-            //         noHighlight(value);
-            //     });
+            self.targetSvg.append("rect")
+                .attr("class", "kmVar " + value)
+                .attr("id", value)
+                .attr("x", x1)
+                .attr("y", y2)
+                .attr("width", x2 - x1)
+                .attr("height", y1 - y2)
+                .style("stroke", "none")
+                .style("fill", color)
+                .style("opacity", opaque(value))
+                .on("mouseover", function(d){
+                    highlight(value);
+                })
+                .on("mouseleave", function(d,i){
+                    noHighlight(value);
+                });
                 
         }
 
