@@ -276,7 +276,7 @@ let KaplanMeierView = function(targetID) {
                         .duration(200)
                         .style('opacity', 0.9);
             self.tipBox.html(function(){
-                let text = 'OS: ' + value + '<br>'
+                let text = 'OS: ' + value + ' - ' + (value + 9) + '<br>' 
                 for(let key of result_key){
                     let number;
                     // console.log(result[key])
@@ -429,17 +429,23 @@ let KaplanMeierView = function(targetID) {
         // get the cohort of the selected patients
         let patient_attribute = patientInfo[selectedAttribute];
 
-        let opaqued_attribute = patient_attribute.replace(/[^a-zA-Z0-9]/g, '');
-        // console.log(opaqued_attribute)
-
-        // selected patient's cohort will be 0.8
-        // other will be 0.4
-        if(value == opaqued_attribute){
-            // console.log("equal")
-            return 0.8
-        }else{
-            // console.log("not equal")
+        //if we have null values
+        if(patient_attribute == null){
             return 0.4
+        }else{
+            let opaqued_attribute = patient_attribute.replace(/[^a-zA-Z0-9]/g, '');
+            // console.log(opaqued_attribute)
+    
+            // selected patient's cohort will be 0.8
+            // other will be 0.4
+            if(value == opaqued_attribute){
+                // console.log("equal")
+                return 0.8
+            }else{
+                // console.log("not equal")
+                return 0.4
+            }
+
         }
 
     }

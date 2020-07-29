@@ -87,7 +87,7 @@ let AddNewPatient = function() {
                 self.patientInfo["Probability of Survival"] = +(self.patientInfo["overall_survival_5yr_prob"]);
                 self.patientInfo["progression_free_5yr_prob"] = self.all_patients[0]["progression_free_5yr_prob"];
 
-                //overal survival days calculated
+                //overal survival days calculated - needed in the R code and in the Kaplan meier
                 self.patientInfo["OS (Calculated)"] = self.all_patients[0]["OS (Calculated)"];
                 self.patientInfo.OS = +self.patientInfo["OS (Calculated)"];
 
@@ -98,16 +98,19 @@ let AddNewPatient = function() {
                 self.patientInfo.Censor = 0;
 
                 //these values are needed for R prediction
+                //these are needed in survuval
                 self.patientInfo["Overall Survival (1=alive, 0=dead)"] = self.all_patients[0]["Overall Survival (1=alive, 0=dead)"]
                 self.patientInfo["Distant Control (1=no DM, 0=DM)"] = self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
                 self.patientInfo["Locoregional control (Time)"] = self.all_patients[0]["Locoregional control (Time)"]
                 self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
                 self.patientInfo["FDM (months)"] = self.all_patients[0]["FDM (months)"]
+                // feeding tube is needed as the R code removes those who 
+                // does not have feeding tube
                 self.patientInfo["Feeding tube 6m"] = self.all_patients[0]["Feeding tube 6m"]
 
                 // console.log(Object.keys(self.patientInfo).length)
-                //just adding this staticly
-                //needs to be dynamic
+                
+                //making other values N/A
                 for(let key of Object.keys(self.all_patients[0])){
                     if( (key in self.patientInfo) == false ){
                         // console.log(key)

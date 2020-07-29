@@ -75,17 +75,23 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
+        // console.log(self.addnewPatient)
         let existing_patient = false;
         let keys = Object.keys(self.patients)
+        console.log(keys.length)
+        // let key = 0
         for(let key in keys){
             if(self.patients[key]["Dummy ID"] == patientInfo["Dummy ID"]){
                 self.patients[key] = patientInfo;
                 existing_patient = true;
             }
         }
+        // self.addnewPatient = +(key) + 1;
+        // let att = +(key) + 1;
+        // console.log(keys.length)
         if(existing_patient == false){
-            self.patients[self.addnewPatient] = patientInfo;
-            self.addnewPatient = self.addnewPatient + 1
+            self.patients[keys.length] = patientInfo;
+            // self.addnewPatient = self.addnewPatient + 1
             
         }
         console.log("single patient info updated")
@@ -95,6 +101,7 @@ let PatientModel = function() {
 
     // if new patient added update the predictions
     function update_prediction_values(predictedValues){
+        console.log(predictedValues)
         let keys = Object.keys(self.patients)
         for(let key in keys){
             for(let i = 0; i < predictedValues[0].length; i++){
