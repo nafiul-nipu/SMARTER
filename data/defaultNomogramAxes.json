@@ -138,8 +138,8 @@
   "Therapeutic combination": {
     "name":"Therapeutic combination",
     "rangeShrink": [0,0.15211864],
-    "domain": ["IC+Radiation alone","CC","IC+CC","Radiation alone"],
-    "range":[5 , 15, 25, 35],
+    "domain": ["IC+Radiation alone","CC", "IC+CC","Radiation alone","N/A" ],
+    "range":[5 , 12.5, 20, 27.5, 35],
     "label": "Therapeutic combination",
     "type": "ordinal",
     "forKiviat": true,
@@ -154,9 +154,11 @@
     ],
     "domain": [
       "N",
-      "Y"
+      "Y",
+      "N/A"
+      
     ],
-    "range":[5 , 35],
+    "range":[5 , 20, 35],
     "label": "Neck boost",
     "type": "ordinal",
     "forKnn": true
@@ -170,9 +172,10 @@
     ],
     "domain": [
       "N",
-      "Y"
+      "Y",
+      "N/A"
     ],
-    "range":[5 , 35],
+    "range":[5 , 20, 35],
     "label": "Neck dissection",
     "type": "ordinal",
     "forKnn": true

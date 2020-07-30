@@ -75,10 +75,10 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
-        // console.log(self.addnewPatient)
+        // console.log(patientInfo)
         let existing_patient = false;
         let keys = Object.keys(self.patients)
-        console.log(keys.length)
+        // console.log(keys.length)
         // let key = 0
         for(let key in keys){
             if(self.patients[key]["Dummy ID"] == patientInfo["Dummy ID"]){
@@ -101,7 +101,7 @@ let PatientModel = function() {
 
     // if new patient added update the predictions
     function update_prediction_values(predictedValues){
-        console.log(predictedValues)
+        // console.log(predictedValues)
         let keys = Object.keys(self.patients)
         for(let key in keys){
             for(let i = 0; i < predictedValues[0].length; i++){
@@ -285,6 +285,22 @@ let PatientModel = function() {
 
         let knnExcludedAttributes = App.models.applicationState.getKnnExcludedAttributes();
         // console.log("knn excluded attributes " + knnExcludedAttributes)
+
+        //exclude attribute if the values are N/A 
+        for(let attr of patientAttributes){
+            // let id = "#knnAttrCheck"+attr;
+            // console.log($(id).val())
+            if(self.patients[subjectIndexID][self.axes[attr].name] == "N/A"){
+                // console.log($("#knnAttrCheck"+attr).val())
+                // $("#knnAttrCheck"+attr).prop('checked', false);
+                document.getElementById(attr).disabled = true;
+                if(!knnExcludedAttributes.includes(attr)){
+                    knnExcludedAttributes.push(attr)
+                }
+            }else{
+                document.getElementById(attr).disabled = false;
+            }
+        }
 
         // get the actual patient attributes used for calculating knn
         let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);

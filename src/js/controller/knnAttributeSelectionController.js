@@ -32,11 +32,12 @@ let KNNAttributeSelectionController = function(listID) {
                     .attr("checked", true)
                     .attr("type", "checkbox")
                     .attr("value", d)
-                    .attr("id", "knnAttrCheck" + d)
+                    .attr("id", d)
+                    .attr("disabled", false)
                     .on("click", checkboxOnChange);
 
                 div.append("label")
-                    .attr("for", "knnAttrCheck" + d)
+                    .attr("for", d)
                     .on("click", function() {
                         d3.event.stopPropagation(); // prevent menu close on label click
                     })

@@ -16,8 +16,10 @@ let TreatmentFormView = function () {
         // self.neckElement = d3.select("#neck-dissection-element");
         self.neckDissectYesRadio = d3.select("#neck-dissect-y-radio");
         self.neckDissectNoRadio = d3.select("#neck-dissect-n-radio");
+        self.neckDissectNARadio = d3.select("#neck-dissect-na-radio")
         self.neckBoostYesRadio = d3.select("#neck-boost-y-radio");
         self.neckBoostNoRadio = d3.select("#neck-boost-n-radio");
+        self.neckBoostNARadio = d3.select("#neck-boost-na-radio");
     }
 
     function updateForm(data) {
@@ -159,11 +161,14 @@ let TreatmentFormView = function () {
         // return self.neckElement.attr("value");
         let neckDissectYesRadio = self.neckDissectYesRadio.property("checked");
         let neckDissectNoRadio = self.neckDissectNoRadio.property("checked");
+        let neckDissectNARadio = self.neckDissectNARadio.property("checked");
 
         if (neckDissectYesRadio)
             return "yes";
         if (neckDissectNoRadio)
             return "no";
+        if(neckDissectNARadio)
+            return "N/A";
 
         return null;
     }
@@ -177,11 +182,23 @@ let TreatmentFormView = function () {
                     .property("checked", true);
                 self.neckDissectNoRadio
                     .property("checked", false);
+                self.neckDissectNARadio
+                    .property("checked", false);
             } else if (data === "no" || data === "n") {
                 self.neckDissectYesRadio
                     .property("checked", false);
                 self.neckDissectNoRadio
                     .property("checked", true);
+                self.neckDissectNARadio
+                    .property("checked", false);
+            }else if (data == "N/A"){
+                self.neckDissectYesRadio
+                    .property("checked", false);
+                self.neckDissectNoRadio
+                    .property("checked", false);
+                self.neckDissectNARadio
+                    .property("checked", true);
+
             }
         }
     }
@@ -189,11 +206,13 @@ let TreatmentFormView = function () {
     function getNeckBoostElement() {
         let neckBoostYes = self.neckBoostYesRadio.property("checked");
         let neckBoostNo = self.neckBoostNoRadio.property("checked");
-
+        let neckBoostNA = self.neckBoostNARadio.property("checked");
         if (neckBoostYes)
             return "yes";
         if (neckBoostNo)
             return "no";
+        if(neckBoostNA)
+            return "N/A";
 
         return null;
     }
@@ -206,11 +225,23 @@ let TreatmentFormView = function () {
                     .property("checked", true);
                 self.neckBoostNoRadio
                     .property("checked", false);
+                self.neckBoostNARadio
+                    .property("checked", false);
             } else if (data === "no" || data === "n") {
                 self.neckBoostYesRadio
                     .property("checked", false);
                 self.neckBoostNoRadio
                     .property("checked", true);
+                self.neckBoostNARadio
+                    .property("checked", false);
+            } else if(data == "N/A"){
+                self.neckBoostYesRadio
+                    .property("checked", false);
+                self.neckBoostNoRadio
+                    .property("checked", false);
+                self.neckBoostNARadio
+                    .property("checked", true);
+
             }
         }
     }
