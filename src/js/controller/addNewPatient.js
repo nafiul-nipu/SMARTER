@@ -81,15 +81,15 @@ let AddNewPatient = function() {
                 // static values needs to make dynamic later
                 // these are the predictive initial values... no need to change
                 //as our prediction analysis will provide the values and they will be updated
-                self.patientInfo["feeding_tube_prob"] = self.all_patients[0]["feeding_tube_prob"];
-                self.patientInfo["aspiration_prob"] = self.all_patients[0]["aspiration_prob"];
-                self.patientInfo["overall_survival_5yr_prob"] = self.all_patients[0]["overall_survival_5yr_prob"];
-                self.patientInfo["Probability of Survival"] = +(self.patientInfo["overall_survival_5yr_prob"]);
-                self.patientInfo["progression_free_5yr_prob"] = self.all_patients[0]["progression_free_5yr_prob"];
+                self.patientInfo["feeding_tube_prob"] = 0.5; // self.all_patients[0]["feeding_tube_prob"];
+                self.patientInfo["aspiration_prob"] = 0.5; // self.all_patients[0]["aspiration_prob"];
+                self.patientInfo["overall_survival_5yr_prob"] = 0.5; // self.all_patients[0]["overall_survival_5yr_prob"];
+                self.patientInfo["Probability of Survival"] = 0.5; // +(self.patientInfo["overall_survival_5yr_prob"]);
+                self.patientInfo["progression_free_5yr_prob"] = 0.5; // self.all_patients[0]["progression_free_5yr_prob"];
 
                 //overal survival days calculated - needed in the R code and in the Kaplan meier
-                self.patientInfo["OS (Calculated)"] = self.all_patients[0]["OS (Calculated)"];
-                self.patientInfo.OS = +self.patientInfo["OS (Calculated)"];
+                self.patientInfo["OS (Calculated)"] = 0.5; //self.all_patients[0]["OS (Calculated)"];
+                self.patientInfo.OS = 0.5; // +self.patientInfo["OS (Calculated)"];
 
                 //we need censor value for KM
                 // in KM censor is used for patient died... i suppose it means
@@ -99,7 +99,7 @@ let AddNewPatient = function() {
 
                 //these values are needed for R prediction
                 //these are needed in survuval
-                self.patientInfo["Overall Survival (1=alive, 0=dead)"] = self.all_patients[0]["Overall Survival (1=alive, 0=dead)"]
+                self.patientInfo["Overall Survival (1=alive, 0=dead)"] = 1; //assuming the new patient will be alive
                 self.patientInfo["Distant Control (1=no DM, 0=DM)"] = self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
                 self.patientInfo["Locoregional control (Time)"] = self.all_patients[0]["Locoregional control (Time)"]
                 self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
