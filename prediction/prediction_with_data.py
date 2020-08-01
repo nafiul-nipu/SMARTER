@@ -17,6 +17,7 @@ def output():
 
     robjects.r('''
     test <- function(value){
+        # this is the prediction R code
         ## Toxicities: survival, feeding tube, aspiration
         # Outputs: predicted toxicity probability for each patient, 
         # predicted survival probability for each patient, 
@@ -53,6 +54,8 @@ def output():
         # taking the value as a data frame
         result <- as.data.frame(value)
 
+        # if this is an existing patient adding to the existing list
+
         existing_patient <- FALSE
         for(row in row.names(OPC_final)){
             if(OPC_final[row, "Dummy.ID"] == result["Dummy.ID"]){
@@ -63,6 +66,7 @@ def output():
             }
         }
 
+        #if not adding a new patient
         if(existing_patient == FALSE){
             new_row <- as.numeric(row) + 1
             for(column in colnames(OPC_final)){
@@ -70,7 +74,7 @@ def output():
                     OPC_final[as.character(new_row) , column] <- result[column]
                 }
                 # else{
-                #     #manually adding value.. need to find a way to fix it
+                #     #adding N/A for missing values
                 #     #already checked this once in the js code.. double check
                 #     OPC_final[as.character(new_row), column] <- 'N/A'  #OPC_final["1", column]
                 # }

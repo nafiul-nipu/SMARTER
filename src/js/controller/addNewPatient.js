@@ -100,13 +100,13 @@ let AddNewPatient = function() {
                 //these values are needed for R prediction
                 //these are needed in survuval
                 self.patientInfo["Overall Survival (1=alive, 0=dead)"] = 1; //assuming the new patient will be alive
-                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
-                self.patientInfo["Locoregional control (Time)"] = self.all_patients[0]["Locoregional control (Time)"]
-                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
-                self.patientInfo["FDM (months)"] = self.all_patients[0]["FDM (months)"]
+                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = "N/A" // self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
+                self.patientInfo["Locoregional control (Time)"] = "N/A" //self.all_patients[0]["Locoregional control (Time)"]
+                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = "N/A" // self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
+                self.patientInfo["FDM (months)"] = "N/A" //self.all_patients[0]["FDM (months)"]
                 // feeding tube is needed as the R code removes those who 
                 // does not have feeding tube
-                self.patientInfo["Feeding tube 6m"] = self.all_patients[0]["Feeding tube 6m"]
+                self.patientInfo["Feeding tube 6m"] = "N/A" // self.all_patients[0]["Feeding tube 6m"]
 
                 // console.log(Object.keys(self.patientInfo).length)
                 

@@ -75,7 +75,7 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
-        // console.log(patientInfo)
+        console.log(patientInfo)
         let existing_patient = false;
         let keys = Object.keys(self.patients)
         // console.log(keys.length)
@@ -290,6 +290,7 @@ let PatientModel = function() {
         for(let attr of patientAttributes){
             // let id = "#knnAttrCheck"+attr;
             // console.log($(id).val())
+            // document.getElementById(attr).disabled = true;
             if(self.patients[subjectIndexID][self.axes[attr].name] == "N/A"){
                 // console.log($("#knnAttrCheck"+attr).val())
                 // $("#knnAttrCheck"+attr).prop('checked', false);
