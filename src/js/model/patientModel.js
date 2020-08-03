@@ -75,7 +75,7 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
-        console.log(patientInfo)
+        // console.log(patientInfo)
         let existing_patient = false;
         let keys = Object.keys(self.patients)
         // console.log(keys.length)

@@ -63,15 +63,35 @@ let AddNewPatient = function() {
                 // self.patientInfo[$('#local-therapy-element').attr('name')] = $('#local-therapy-element').val();
                 // self.patientInfo.Censor = +self.patientInfo.Censor;
                 //treatment days
-                self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();
-                self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+                if($('#duration-element').val() == ""){
+                    self.patientInfo[$('#duration-element').attr('name')] = 0;
+                    self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+                }else{
+                    self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();
+                    self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+                }
+                
                 //total dose
-                self.patientInfo[$('#total-dose-element').attr('name')] = $('#total-dose-element').val();
-                self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
+                if($('#total-dose-element').val() == ""){
+                    self.patientInfo[$('#total-dose-element').attr('name')] = 0 ;
+                    self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
+                }else{
+                    self.patientInfo[$('#total-dose-element').attr('name')] = $('#total-dose-element').val();
+                    self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
+                }
                 //total fraction
-                self.patientInfo[$('#total-fraction-element').attr('name')] = $('#total-fraction-element').val();
+                if($('#total-fraction-element').val() == ""){
+                    self.patientInfo[$('#total-fraction-element').attr('name')] = 0;
+                }else{
+                    self.patientInfo[$('#total-fraction-element').attr('name')] = $('#total-fraction-element').val();
+                }
                 //dose element
-                self.patientInfo[$('#dose-element').attr('name')] = $('#dose-element').val();
+                if($('#dose-element').val() == ""){
+                    self.patientInfo[$('#dose-element').attr('name')] = 0;
+                }else{
+                    self.patientInfo[$('#dose-element').attr('name')] = $('#dose-element').val();
+                }
+                
                 //neck dissection
                 self.patientInfo[$('#neck-dissect-y-radio').attr('name')] = $("input:radio[name='Neck Disssection after IMRT (Y/N)']:checked").val();
                 // self.patientInfo[$('#neck-dissection-element').attr('name')] = $('#neck-dissection-element').val();
@@ -88,8 +108,8 @@ let AddNewPatient = function() {
                 self.patientInfo["progression_free_5yr_prob"] = 0.5; // self.all_patients[0]["progression_free_5yr_prob"];
 
                 //overal survival days calculated - needed in the R code and in the Kaplan meier
-                self.patientInfo["OS (Calculated)"] = 0.5; //self.all_patients[0]["OS (Calculated)"];
-                self.patientInfo.OS = 0.5; // +self.patientInfo["OS (Calculated)"];
+                self.patientInfo["OS (Calculated)"] = 0; //self.all_patients[0]["OS (Calculated)"];
+                self.patientInfo.OS = 0; // +self.patientInfo["OS (Calculated)"];
 
                 //we need censor value for KM
                 // in KM censor is used for patient died... i suppose it means
@@ -100,13 +120,13 @@ let AddNewPatient = function() {
                 //these values are needed for R prediction
                 //these are needed in survuval
                 self.patientInfo["Overall Survival (1=alive, 0=dead)"] = 1; //assuming the new patient will be alive
-                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = "N/A" // self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
-                self.patientInfo["Locoregional control (Time)"] = "N/A" //self.all_patients[0]["Locoregional control (Time)"]
-                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = "N/A" // self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
-                self.patientInfo["FDM (months)"] = "N/A" //self.all_patients[0]["FDM (months)"]
+                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = "NA" // self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
+                self.patientInfo["Locoregional control (Time)"] = "NA" //self.all_patients[0]["Locoregional control (Time)"]
+                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = "NA" // self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
+                self.patientInfo["FDM (months)"] = "NA" //self.all_patients[0]["FDM (months)"]
                 // feeding tube is needed as the R code removes those who 
                 // does not have feeding tube
-                self.patientInfo["Feeding tube 6m"] = "N/A" // self.all_patients[0]["Feeding tube 6m"]
+                self.patientInfo["Feeding tube 6m"] = "NA" // self.all_patients[0]["Feeding tube 6m"]
 
                 // console.log(Object.keys(self.patientInfo).length)
                 
@@ -114,7 +134,7 @@ let AddNewPatient = function() {
                 for(let key of Object.keys(self.all_patients[0])){
                     if( (key in self.patientInfo) == false ){
                         // console.log(key)
-                        self.patientInfo[key] =  "N/A" // self.all_patients[0][key]
+                        self.patientInfo[key] =  "NA" // self.all_patients[0][key]
                     }
                 }
                 // console.log(Object.keys(self.patientInfo).length)
@@ -303,17 +323,19 @@ let AddNewPatient = function() {
                 post_data["Dummy ID"] = +post_data["Dummy ID"] 
                 post_data["Age at Diagnosis (Calculated)"] = +post_data["Age at Diagnosis (Calculated)"] 
                 post_data["Smoking status (Packs/Year)"] = +post_data["Smoking status (Packs/Year)"] 
-                post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
-                post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
+                // post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
+                // post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
                 post_data["OS (Calculated)"] = +post_data["OS (Calculated)"]
-                post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
-                post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
-                post_data["FDM (months)"] = +post_data["FDM (months)"]
+                // post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
+                // post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
+                // post_data["FDM (months)"] = +post_data["FDM (months)"]
+
+                console.log(post_data)
 
 
                 axios.post('http://127.0.0.1:5000/output', post_data)
                 .then(function (response) {
-                    // console.log(response.data);
+                    console.log(response.data);
                     self.prediction = response.data;
                     //update all the values
                     App.models.patients.update_prediction_values(self.prediction);
