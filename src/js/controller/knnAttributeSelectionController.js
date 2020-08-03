@@ -33,7 +33,7 @@ let KNNAttributeSelectionController = function(listID) {
                     .attr("type", "checkbox")
                     .attr("value", d)
                     .attr("id", d)
-                    .attr("disabled", false)
+                    // .attr("disabled", false)
                     .on("click", checkboxOnChange);
 
                 div.append("label")

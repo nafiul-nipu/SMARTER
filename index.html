@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lib/css/laptopLayout.css">
     <link rel="stylesheet" href="lib/css/controls.css">
     <!-- <link rel="stylesheet" href="https://rawgithub.com/Caged/d3-tip/master/examples/example-styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <!-- bootstrap select -->
@@ -109,7 +110,7 @@
           <h3 class=title>SMART Therapy Explorer</h3>
           <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                  <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics</button>
+                  <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics <sup><i class="fa fa-asterisk" style="color: black;"></i></sup></button>
                   <div id="demographics" class="collapse">
                       <label>Patient ID</label>
                       <select class="idSelect">
@@ -150,7 +151,7 @@
                   </div>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                  <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
+                  <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors <sup><i class="fa fa-asterisk" style="color: black;"></i></sup></button>
                   <div id="cancerDescriptors" class="collapse">
                       <label>Tm Laterality (R/L)</label>
                       <select id="tumor-site" name="Tm Laterality (R/L)">
@@ -202,7 +203,7 @@
                   </div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                  <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment</button>
+                  <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment <sup>If Any (Optional)</sup></button>
                   <div id="treatment" class="collapse">
                       <div class="left">
                           <label>Chemotherapy</label>

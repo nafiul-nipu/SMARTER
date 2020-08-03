@@ -11,7 +11,8 @@ let PatientModel = function() {
         axes: {},
         commonAttributeValues: {},
         commonKaplanAttributeValues: {},
-        addnewPatient: 0
+        addnewPatient: 0,
+        previous_chemo : false
         // statisticsOfAllPatients:{}
     };
 
@@ -282,26 +283,30 @@ let PatientModel = function() {
 
         let patientAttributes = App.patientKnnAttributes;
         // console.log("patient Knn Attributes " + patientAttributes)
-
         let knnExcludedAttributes = App.models.applicationState.getKnnExcludedAttributes();
-        // console.log("knn excluded attributes " + knnExcludedAttributes)
+        // if(self.previous_chemo){
+        //     knnExcludedAttributes = [];  
+        //     self.previous_chemo = false;          
+        // }
+        // // console.log("knn excluded attributes " + knnExcludedAttributes)
 
-        //exclude attribute if the values are N/A 
-        for(let attr of patientAttributes){
-            // let id = "#knnAttrCheck"+attr;
-            // console.log($(id).val())
-            // document.getElementById(attr).disabled = true;
-            if(self.patients[subjectIndexID][self.axes[attr].name] == "NA"){
-                // console.log($("#knnAttrCheck"+attr).val())
-                // $("#knnAttrCheck"+attr).prop('checked', false);
-                document.getElementById(attr).disabled = true;
-                if(!knnExcludedAttributes.includes(attr)){
-                    knnExcludedAttributes.push(attr)
-                }
-            }else{
-                document.getElementById(attr).disabled = false;
-            }
-        }
+        // //exclude attribute if the values are N/A 
+        // for(let attr of patientAttributes){
+        //     // let id = "#knnAttrCheck"+attr;
+        //     // console.log($(id).val())
+        //     // document.getElementById(attr).disabled = true;
+        //     if(self.patients[subjectIndexID][self.axes[attr].name] == "NA"){
+        //         // console.log($("#knnAttrCheck"+attr).val())
+        //         // $("#knnAttrCheck"+attr).prop('checked', false);
+        //         self.previous_chemo = true;
+        //         document.getElementById(attr).disabled = true;
+        //         if(!knnExcludedAttributes.includes(attr)){
+        //             knnExcludedAttributes.push(attr)
+        //         }
+        //     }else{
+        //         document.getElementById(attr).disabled = false;
+        //     }
+        // }
 
         // get the actual patient attributes used for calculating knn
         let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);
