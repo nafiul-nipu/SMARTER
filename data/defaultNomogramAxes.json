@@ -138,7 +138,7 @@
   "Therapeutic combination": {
     "name":"Therapeutic combination",
     "rangeShrink": [0,0.15211864],
-    "domain": ["IC+Radiation alone","CC", "IC+CC","Radiation alone","N/A" ],
+    "domain": ["IC+Radiation alone","CC", "IC+CC","Radiation alone","NA" ],
     "range":[5 , 12.5, 20, 27.5, 35],
     "label": "Therapeutic combination",
     "type": "ordinal",
@@ -155,7 +155,7 @@
     "domain": [
       "N",
       "Y",
-      "N/A"
+      "NA"
       
     ],
     "range":[5 , 20, 35],
@@ -173,7 +173,7 @@
     "domain": [
       "N",
       "Y",
-      "N/A"
+      "NA"
     ],
     "range":[5 , 20, 35],
     "label": "Neck dissection",

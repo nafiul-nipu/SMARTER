@@ -59,6 +59,7 @@ def output():
             result <- mutate(result, OS..Calculated. = as.numeric(OS..Calculated.),
                             Overall.Survival..1.alive..0.dead. = as.numeric(Overall.Survival..1.alive..0.dead.),
                             Regional.control..Time. = as.numeric(Regional.control..Time.),
+                            Total.dose = as.numeric(Total.dose),
                             Locoregional.control..Time. = as.numeric(Locoregional.control..Time.),
                             FDM..months. = as.numeric(FDM..months.),
                             Locoregional.Control.1.Control.0.Failure. = as.numeric( Locoregional.Control.1.Control.0.Failure.),

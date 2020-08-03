@@ -322,13 +322,36 @@ let AddNewPatient = function() {
                 // let post_data = self.patientInfo;
                 post_data["Dummy ID"] = +post_data["Dummy ID"] 
                 post_data["Age at Diagnosis (Calculated)"] = +post_data["Age at Diagnosis (Calculated)"] 
-                post_data["Smoking status (Packs/Year)"] = +post_data["Smoking status (Packs/Year)"] 
-                // post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
-                // post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
-                post_data["OS (Calculated)"] = +post_data["OS (Calculated)"]
-                // post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
-                // post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
-                // post_data["FDM (months)"] = +post_data["FDM (months)"]
+                if(post_data["Smoking status (Packs/Year)"] != "NA"){
+                    post_data["Smoking status (Packs/Year)"] = +post_data["Smoking status (Packs/Year)"] 
+                }    
+                if(post_data["Overall Survival (1=alive, 0=dead)"] != "NA"){
+                    post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
+                }  
+                if(post_data["Distant Control (1=no DM, 0=DM)"] != "NA"){
+                    post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
+                }  
+                if(post_data["OS (Calculated)"] != "NA"){
+                    post_data["OS (Calculated)"] = +post_data["OS (Calculated)"]
+                }   
+                if(post_data["Locoregional control (Time)"] != "NA"){
+                    post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
+                } 
+                if(post_data["Locoregional Control(1=Control,0=Failure)"] != "NA"){
+                    post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
+                }   
+                if(post_data["FDM (months)"] != "NA"){
+                    post_data["FDM (months)"] = +post_data["FDM (months)"]
+                }
+
+                //deleting the values that are not in the dataset
+                delete post_data.AgeAtTx;
+                delete post_data.ID;
+                delete post_data.OS;
+                delete post_data["Probability of Survival"];
+                delete post_data.SmokeStatusPacksYear;
+                delete post_data.TotalDose;
+                delete post_data.TreatmentDays;
 
                 console.log(post_data)
 

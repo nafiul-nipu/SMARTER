@@ -291,7 +291,7 @@ let PatientModel = function() {
             // let id = "#knnAttrCheck"+attr;
             // console.log($(id).val())
             // document.getElementById(attr).disabled = true;
-            if(self.patients[subjectIndexID][self.axes[attr].name] == "N/A"){
+            if(self.patients[subjectIndexID][self.axes[attr].name] == "NA"){
                 // console.log($("#knnAttrCheck"+attr).val())
                 // $("#knnAttrCheck"+attr).prop('checked', false);
                 document.getElementById(attr).disabled = true;

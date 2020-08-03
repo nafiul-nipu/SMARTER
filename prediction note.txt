@@ -1,4 +1,10 @@
-1. The values that were taken into consideration for prediction
-in the R code, must not have any N/A values. It shows error
-2. The remaining values can be N/A as the prediction analysis
-does not take them into consideration
+changing existing patient/adding new patient with therapeutic
+Error in (as.matrix(design.OPC)) %*% (matrix(fit_os$coefficients)) :
+  requires numeric/complex matrix/vector arguments
+
+the reason was.. total dose was sending as character.. fixed that
+
+
+adding new patient with therapeutic NA
+Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels) :
+  factor Therapeutic.combination has new levels NA
