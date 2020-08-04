@@ -119,7 +119,8 @@ def output():
 
             #renaming the values 
             ###GC: ADD Made therapeutic combination a factor to avoid droplevel/relevel errors
-            OPC_final_clinic <- mutate(OPC_final_clinic, Therapeutic.combination = as.factor(Therapeutic.combination))
+            OPC_final_clinic <- mutate(OPC_final_clinic, Therapeutic.combination = factor(Therapeutic.combination, 
+                                                                                 levels = c("Radiation alone", "IC+Radiation alone", "CC", "IC+CC", "NA")))
             ###GC: end of ADD 
             
             levels(OPC_final_clinic$smoke )[levels(OPC_final_clinic$smoke )=="Formar"] <- "Former"
