@@ -117,11 +117,7 @@ def output():
 
             #write.csv(OPC_final_clinic, file="opc_final_clinic_after_mutation.csv")
 
-            #renaming the values 
-            ###GC: ADD Made therapeutic combination a factor to avoid droplevel/relevel errors
-            OPC_final_clinic <- mutate(OPC_final_clinic, Therapeutic.combination = factor(Therapeutic.combination, 
-                                                                                 levels = c("Radiation alone", "IC+Radiation alone", "CC", "IC+CC", "NA")))
-            ###GC: end of ADD 
+             
             
             levels(OPC_final_clinic$smoke )[levels(OPC_final_clinic$smoke )=="Formar"] <- "Former"
             levels(OPC_final_clinic$T.category)[levels(OPC_final_clinic$T.category)=="Tis"] <- "T1"
@@ -136,7 +132,7 @@ def output():
             OPC_final_clinic <- OPC_final_clinic[OPC_final_clinic$Feeding.tube.6m!="",]
             #write.csv(OPC_final_clinic, file="omitting.csv")
             #as we removed some values above, we fixed the counter for therapeutic combination
-            OPC_final_clinic$Therapeutic.combination <- droplevels(OPC_final_clinic$Therapeutic.combination)
+            #OPC_final_clinic$Therapeutic.combination <- droplevels(OPC_final_clinic$Therapeutic.combination)
             #write.csv(OPC_final_clinic, file="theraputicCombination.csv")
             OPC_final_clinic <- mutate(OPC_final_clinic,
                                     #if feedind tube is N then set 0 otherwise 1
@@ -178,8 +174,6 @@ def output():
             ########################################
 
             ## Relevel factor variables to yield positive coefficients
-            #releveling - making the IC+R as the first level
-            OPC_final_clinic$Therapeutic.combination <- relevel(OPC_final_clinic$Therapeutic.combination,"IC+Radiation alone")
             #levels(OPC_final_clinic$Therapeutic.combination)
             #write.csv(OPC_final_clinic, file="feedingTubeBinaryOutcome.csv")
             #factoring gender
@@ -194,6 +188,15 @@ def output():
             #making Tonsile and Y as first levels
             OPC_final_clinic$tumor_subsite <- relevel(OPC_final_clinic$tumor_subsite,"Tonsil")
             OPC_final_clinic$neck_boost <- relevel(OPC_final_clinic$neck_boost,"Y")
+
+            if(!is.na(pp$Therapeutic.combination)){
+                #renaming the values 
+                ###GC: ADD Made therapeutic combination a factor to avoid droplevel/relevel errors
+                OPC_final_clinic <- mutate(OPC_final_clinic, Therapeutic.combination = as.factor(Therapeutic.combination))
+                ###GC: end of ADD
+                #releveling - making the IC+R as the first level
+                OPC_final_clinic$Therapeutic.combination <- relevel(OPC_final_clinic$Therapeutic.combination,"IC+Radiation alone")
+            }
 
             ## Logistic regression for feeding tube outcome
             ## Logistic regression model with main effects
@@ -213,7 +216,9 @@ def output():
             ##### Aspiration: binary outcome #####
             ######################################
             #releveling and factoring
-            OPC_final_clinic$Therapeutic.combination <- relevel(OPC_final_clinic$Therapeutic.combination,"Radiation alone")
+            if(!is.na(pp$Therapeutic.combination)){
+                OPC_final_clinic$Therapeutic.combination <- relevel(OPC_final_clinic$Therapeutic.combination,"Radiation alone")
+            }
             OPC_final_clinic$white <- factor(OPC_final_clinic$white,levels=c("Other","White"))
             OPC_final_clinic$tumor_subsite <- relevel(OPC_final_clinic$tumor_subsite,"BOT")
             ## Logistic regression model with main effects
@@ -241,7 +246,9 @@ def output():
             #OPC_final_surv <- select(OPC_final_surv, Dummy.ID, rel_vars,survtime,survind)
 
             ## Relevel factor variables to yield positive coefficients
-            OPC_final_surv$Therapeutic.combination <- relevel(OPC_final_surv$Therapeutic.combination,"IC+Radiation alone")
+            if(!is.na(pp$Therapeutic.combination)){
+                OPC_final_surv$Therapeutic.combination <- relevel(OPC_final_surv$Therapeutic.combination,"IC+Radiation alone")
+            }
             OPC_final_surv$white <- factor(OPC_final_surv$white,levels=c("White","Other"))
             OPC_final_surv$Gender <- relevel(OPC_final_surv$Gender,"Female")
             OPC_final_surv$HPV.P16.status <- relevel(OPC_final_surv$HPV.P16.status,"Unknown")
@@ -332,7 +339,9 @@ def output():
             #OPC_final_pfs <- select(OPC_final_pfs, Dummy.ID, rel_vars,survtime,survind)
 
             ## Relevel factor variables to yield positive coefficients
-            OPC_final_pfs$Therapeutic.combination <- relevel(OPC_final_pfs$Therapeutic.combination,"IC+Radiation alone")
+            if(!is.na(pp$Therapeutic.combination)){
+                OPC_final_pfs$Therapeutic.combination <- relevel(OPC_final_pfs$Therapeutic.combination,"IC+Radiation alone")
+            }
             OPC_final_pfs$Gender <- relevel(OPC_final_pfs$Gender,"Female")
             OPC_final_pfs$white <- relevel(OPC_final_pfs$white,"White")
             OPC_final_pfs$HPV.P16.status <- relevel(OPC_final_pfs$HPV.P16.status,"Unknown")
