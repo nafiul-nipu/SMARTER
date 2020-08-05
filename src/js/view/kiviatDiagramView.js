@@ -133,7 +133,7 @@ let KiviatDiagramView = function(targetID) {
                 .attr("class", "btn btn-default btn-sm")
                 .attr('id', idName[i] + '-class')
                 .style("font-size", "10px")
-                .style("display", "block")
+                // .style("display", "block")
                 .style("margin-bottom", "5px")
                 .text(textName[i])        
         }
