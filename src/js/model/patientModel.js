@@ -11,7 +11,7 @@ let PatientModel = function() {
         axes: {},
         commonAttributeValues: {},
         commonKaplanAttributeValues: {},
-        addnewPatient: 0,
+        // addnewPatient: 0,
         previous_chemo : false
         // statisticsOfAllPatients:{}
     };
@@ -76,7 +76,7 @@ let PatientModel = function() {
 
     // if new patient is added
     function updatePatient(patientInfo){
-        // console.log(patientInfo)
+        // console.log(getPatientNumber())
         let existing_patient = false;
         let keys = Object.keys(self.patients)
         // console.log(keys.length)
@@ -84,14 +84,18 @@ let PatientModel = function() {
         for(let key in keys){
             if(self.patients[key]["Dummy ID"] == patientInfo["Dummy ID"]){
                 self.patients[key] = patientInfo;
+                // console.log("this is a existing patient")
+                // console.log(patientInfo["Dummy ID"])
                 existing_patient = true;
             }
         }
         // self.addnewPatient = +(key) + 1;
         // let att = +(key) + 1;
-        // console.log(keys.length)
+        // console.log(existing_patient)
         if(existing_patient == false){
-            self.patients[keys.length] = patientInfo;
+            let total_patient = getPatientNumber();
+            console.log(total_patient, patientInfo["Dummy ID"])
+            self.patients[total_patient] = patientInfo;
             // self.addnewPatient = self.addnewPatient + 1
             
         }
@@ -102,6 +106,7 @@ let PatientModel = function() {
 
     // if new patient added update the predictions
     function update_prediction_values(predictedValues){
+        
         // console.log(predictedValues)
         let keys = Object.keys(self.patients)
         for(let key in keys){
@@ -116,6 +121,7 @@ let PatientModel = function() {
                 }
             }
         }
+        
         console.log("prediction updated");
         // console.log(self.patients)
     }
@@ -139,7 +145,7 @@ let PatientModel = function() {
     /**get the total number of patients in the dataset */
     function getTotalPatients(){
         let total = Object.keys(self.patients).length;
-        self.addnewPatient = total;
+        // self.addnewPatient = total;
         return total;
     }
 
@@ -372,6 +378,8 @@ let PatientModel = function() {
        over a subset of patientAttributes */
     function similarityScore(patientID, subjectID, knnAttributes) {
         let score = 0;
+
+        // console.log("Subject iD" , subjectID)
         
         //giving error 
         // if(self.patients[patientID].AgeAtTx && self.patients[subjectID].AgeAtTx){

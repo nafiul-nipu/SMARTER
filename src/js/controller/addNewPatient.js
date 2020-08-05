@@ -46,9 +46,9 @@ let AddNewPatient = function() {
                 //sub site
                 self.patientInfo[$('#tumor-subsite').attr('name')] = $('#tumor-subsite').val();
                 // ajcc 7th
-                self.patientInfo[$('#ajcc7-1').attr('name')] = $("input:radio[name='AJCC 7th edition']:checked").val();
+                // self.patientInfo[$('#ajcc7-1').attr('name')] = $("input:radio[name='AJCC 7th edition']:checked").val();
                 //ajcc 8th
-                self.patientInfo[$('#ajcc8-1').attr('name')] = $("input:radio[name='AJCC 8th edition']:checked").val();
+                // self.patientInfo[$('#ajcc8-1').attr('name')] = $("input:radio[name='AJCC 8th edition']:checked").val();
                 //t-cat
                 self.patientInfo[$('#tcat1').attr('name')] = $("input:radio[name='T-category']:checked").val();
                 //n-cat
@@ -308,9 +308,12 @@ let AddNewPatient = function() {
             // console.log(self.patientInfo)
             if(self.change_made == true){
                 self.change_made = false;
-                // console.log(self.patientInfo)
-                App.controllers.landingFormController.updateLandingForms(self.patientInfo)
-                App.models.patients.updatePatient(self.patientInfo);
+                //new object
+                let update_data = JSON.parse(JSON.stringify(self.patientInfo));
+                console.log(self.patientInfo)
+                console.log(update_data)
+                App.controllers.landingFormController.updateLandingForms(update_data)
+                App.models.patients.updatePatient(update_data);
                 //update the kaplan meier
                 App.models.kaplanMeierPatient.updateData()
                 
@@ -353,7 +356,7 @@ let AddNewPatient = function() {
                 delete post_data.TotalDose;
                 delete post_data.TreatmentDays;
 
-                console.log(post_data)
+                // console.log(post_data)
                 //assume we have therapeutic value
                 let therapeutic_bool = true;
                 // if not we will make it false

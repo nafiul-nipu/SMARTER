@@ -56,6 +56,7 @@ let AttributeSelectorControllerUpdated = function() {
                 .attr("tabindex", "-1")
                 .attr("href", "#")
                 .text(function(d){
+                    // console.log(d)
                     return d
                 })
                 .each(addSubmenues)
@@ -86,7 +87,10 @@ let AttributeSelectorControllerUpdated = function() {
                .append("a")
                .attr("href", "#")
                .text(function(d){
-                   return d;
+                   if(d != "NA"){
+                       return d;
+                   }
+                //    return d;
                 //    console.log(self.axesData[d].domain)
                })
                .on("click", function(d){
