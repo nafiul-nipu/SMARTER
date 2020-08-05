@@ -281,11 +281,10 @@ let KaplanMeierView = function(targetID) {
                     let number;
                     // console.log(result[key])
                     if(result[key] != 'N/A'){
-                        number = Math.round(result[key] * 100) / 100
-                    }else{
-                        number = 'N/A'
+                        number = Math.round(result[key] * 100) / 100;
+                        text += key + ' : ' + number + '<br>'
                     }
-                    text += key + ' : ' + number + '<br>'
+                    
                 }
                 return text
 

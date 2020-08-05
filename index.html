@@ -131,13 +131,6 @@
                       <label>Aspiration</label>
                       <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
                       <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
-                      <label>HPV/P16</label>
-                      <select id="hpvp16-element" name="HPV/P16 status">
-                        <option value="" disabled selected>HPV/P16</option>
-                        <option value="Positive">Positive</option>
-                        <option value="Negative">Negative</option>
-                        <option value="Unknown">Unknown</option>
-                      </select>
                       <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
                       <label>Smoking Status</label>
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
@@ -168,8 +161,17 @@
                         <option value="Tonsil">Tonsil</option>
                         <option value="Other">Other</option>
                       </select>
+
+                      <label>HPV/P16</label>
+                      <select id="hpvp16-element" name="HPV/P16 status">
+                        <option value="" disabled selected>HPV/P16</option>
+                        <option value="Positive">Positive</option>
+                        <option value="Negative">Negative</option>
+                        <option value="Unknown">Unknown</option>
+                      </select>
+
                       <!-- <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite"> -->
-                      <label>AJCC 7th Edition</label>
+                      <!-- <label>AJCC 7th Edition</label>
                       <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
                       <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
                       <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
@@ -178,7 +180,9 @@
                       <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
                       <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
                       <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
-                      <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
+                      <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV -->
+
+
                       <label>T-category</label>
                       <input type="radio" name="T-category" value="T1" id="tcat1">T1
                       <input type="radio" name="T-category" value="T2" id="tcat2">T2
@@ -195,6 +199,7 @@
                       <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
                       <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
                       <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
+                      <input type="radio" name="Pathological Grade" value="NA" id="pgradeNA">NA
                       <label>Affected Lymph Nodes</label>
                       <input type="text" name="Affected Lymph node" placeholder="Affected Lymph Node" id="affected-lymph">
                       <div>
@@ -208,12 +213,12 @@
                       <div class="left">
                           <label>Chemotherapy</label>
                           <select id="chemo-element" name="Therapeutic combination">
-                            <option value="" disabled selected>Therapeutic combination</option>
+                            <!-- <option value="" disabled selected>Therapeutic combination</option> -->
                             <option value="CC">CC</option>
                             <option value="IC+CC">IC+CC</option>
                             <option value="IC+Radiation alone">IC+Radiation alone</option>
                             <option value="Radiation alone">Radiation alone</option>
-                            <option value="NA">N/A</option>
+                            <option value="NA" selected>N/A</option>
                           </select>
                           <!-- <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="chemo-element"> -->
                           <!-- <label>Censor</label> -->
@@ -231,12 +236,12 @@
                           <label>Neck Dissection after IMRT</label>
                           <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="Y" id="neck-dissect-y-radio">Yes
                           <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="N" id="neck-dissect-n-radio">No
-                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="NA" id="neck-dissect-na-radio">N/A
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="NA" id="neck-dissect-na-radio" checked>N/A
                           <!-- <input type="text" name="Neck Disssection after IMRT (Y/N)" placeholder="Neck Dissection" id="neck-dissection-element"> -->
                           <label>Neck Boost</label>
                           <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
                           <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
-                          <input type="radio" name="Neck boost (Y/N)" value="NA" id="neck-boost-na-radio">N/A
+                          <input type="radio" name="Neck boost (Y/N)" value="NA" id="neck-boost-na-radio" checked>N/A
                       </div>
                   </div>
               </div>

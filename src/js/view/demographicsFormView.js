@@ -14,7 +14,7 @@ let DemographicsFormView = function () {
         // self.raceSelect = d3.select("#race-element")
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
-        self.hpvp16Element = d3.select("#hpvp16-element");
+        // self.hpvp16Element = d3.select("#hpvp16-element");
         // self.ecog0Element = d3.select("#ecog-0-radio");
         // self.ecog1Element = d3.select("#ecog-1-radio");
         // self.ecog2Element = d3.select("#ecog-2-radio");
@@ -37,7 +37,7 @@ let DemographicsFormView = function () {
             gender = $("input:radio[name=Gender]:checked").val();
             // id = data["ID"];
             smoking_stat = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
-            hpv_stat = $('#hpvp16-element').val();
+            // hpv_stat = $('#hpvp16-element').val();
             aspiration = $("input:radio[name='Aspiration rate Pre-therapy']:checked").val();
             packsperyear = $('#packs-per-year-element').val();
             
@@ -48,7 +48,7 @@ let DemographicsFormView = function () {
             gender = data["Gender"];
             id = data["ID"];
             smoking_stat = data["Smoking status at Diagnosis (Never/Former/Current)"];
-            hpv_stat = data["HPV/P16 status"];
+            // hpv_stat = data["HPV/P16 status"];
             aspiration = data["Aspiration rate(Y/N)"];
             packsperyear = data["Smoking status (Packs/Year)"];
         //     let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
@@ -61,7 +61,7 @@ let DemographicsFormView = function () {
         setGenderElement(gender);
         // setEcogValue(ecog);
         setSmokingStatus(smoking_stat);
-        setHpvp16Element(hpv_stat);
+        // setHpvp16Element(hpv_stat);
         setAspirationElement(aspiration);
         setPacksPerYearElement(packsperyear);
         // console.log(data);
@@ -75,7 +75,7 @@ let DemographicsFormView = function () {
             gender: getGenderElement(),
             // ecog: getEcogValue(),
             aspiration: getAspirationElement(),
-            hpvp16: getHpvp16Element(),
+            // hpvp16: getHpvp16Element(),
             smokingStatus: getSmokingStatus(),
             packsPerYear: getPacksPerYearElement()
         }
@@ -162,18 +162,18 @@ let DemographicsFormView = function () {
     }
     */
 
-    function getHpvp16Element() {
-        return self.hpvp16Element.attr("value");
-    }
+    // function getHpvp16Element() {
+    //     return self.hpvp16Element.attr("value");
+    // }
 
-    function setHpvp16Element(data) {
-        if (data !== undefined) {
-            // self.hpvp16Element
-            //     .attr("value", data)
-            //     .text(data);
-            document.getElementById("hpvp16-element").value = data;
-        }
-    }
+    // function setHpvp16Element(data) {
+    //     if (data !== undefined) {
+    //         // self.hpvp16Element
+    //         //     .attr("value", data)
+    //         //     .text(data);
+    //         document.getElementById("hpvp16-element").value = data;
+    //     }
+    // }
 
     function getEcogValue() {
         let ecog0 = self.ecog0Element.property("checked");
