@@ -122,25 +122,11 @@ let KaplanMeierPatientModel = function() {
                 // console.log(CensorsAtOS[sortedOSKeys[keyID]][i])
                 patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
             }
-
-            if($('#kmcheckbox').is(":checked")){
-                //using KM estimator
-                // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
-                probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
-                // compute its variance using the Greenwood's formula
-            }else{
-
-                // use feeding tube , progression etc
-                // console.log('false')
-                // let nomogram = $('#nomogram-selector').val()
-                let nomogram_data = App.models.axesModel.getAxesData();
-                let predictionToShow = nomogram_data["Predictive Probability"].name
-                probAtOS[keyID].prob = +(currentPatientGroup[keyID][predictionToShow]);
-                // console.log(currentPatientGroup[keyID])
-                // console.log(currentPatientGroup[keyID][predictionToShow])
-                // console.log(nomogram)
-                // console.log(predictionToShow)
-            }
+        
+            //using KM estimator
+            // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
+            probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
+            // compute its variance using the Greenwood's formula
             sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
             probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
 
