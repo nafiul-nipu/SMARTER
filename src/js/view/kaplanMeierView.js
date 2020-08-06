@@ -99,54 +99,55 @@ let KaplanMeierView = function(targetID) {
 
     function drawLegend(attrVal, attrValNum, color) {
         let value = attrVal.replace(/[^a-zA-Z0-9]/g, '');
-        self.targetSvg.append("rect")
-            .attr("class", "legend")
-            .attr("x", 80)
-            .attr("y", attrValNum * 5)
-            .attr("width", 5)
-            .attr("height", 5)
-            .style("fill", color)
-            .style("opacity", opaque(value))
-            // .style("cursor", "context-menu")
-            /*
-            .on("click", function(d){
-                // console.log(color);
-                // console.log("I am clicked");
-                highlight(attrVal)
-            });
-            */
-            .on("mouseover", function(d){
-                // console.log("mouse overed")
-                // console.log(attrVal)
-                highlight(attrVal);
-            })
-            .on("mouseleave", function(d,i){
-                // console.log("mouse leave")
-                noHighlight();
-            });
+        if(value != "NA"){
+
+            self.targetSvg.append("rect")
+                .attr("class", "legend")
+                .attr("x", 80)
+                .attr("y", attrValNum * 5)
+                .attr("width", 5)
+                .attr("height", 5)
+                .style("fill", color)
+                .style("opacity", opaque(value))
+                // .style("cursor", "context-menu")
+                /*
+                .on("click", function(d){
+                    // console.log(color);
+                    // console.log("I am clicked");
+                    highlight(attrVal)
+                });
+                */
+                .on("mouseover", function(d){
+                    // console.log("mouse overed")
+                    // console.log(attrVal)
+                    highlight(attrVal);
+                })
+                .on("mouseleave", function(d,i){
+                    // console.log("mouse leave")
+                    noHighlight();
+                });
             
 
-        self.targetSvg.append("text")
-            .attr("class", "legend")
-            .attr("x", 85)
-            .attr("y", 4 + attrValNum * 5)
-            .style("font-size", "4px")
-            // .style("cursor", "context-menu")
-            .text(attrVal)
-            /*
-            .on("click", function(d){
-                highlight(attrVal)
-            });
-            */
-            .on("mouseover", function(d){
-                highlight(attrVal);
-            })
-            .on("mouseleave", function(d,i){
-                noHighlight();
-            });
-            
-            
+            self.targetSvg.append("text")
+                .attr("class", "legend")
+                .attr("x", 85)
+                .attr("y", 4 + attrValNum * 5)
+                .style("font-size", "4px")
+                // .style("cursor", "context-menu")
+                .text(attrVal)
+                /*
+                .on("click", function(d){
+                    highlight(attrVal)
+                });
+                */
+                .on("mouseover", function(d){
+                    highlight(attrVal);
+                })
+                .on("mouseleave", function(d,i){
+                    noHighlight();
+                });
 
+            }      
         // d3.select("#reset_kaplan").on("click", function(d){
         //     noHighlight();
         // });
@@ -322,84 +323,85 @@ let KaplanMeierView = function(targetID) {
         // console.log(attrVal.replace(/[^a-zA-Z ]/g, ""));
         // console.log(value)
         // console.log(attrVal)
+        if(value != "NA"){
+            // 1.96 is the approximation for the 97.5 percentile for a normal distribution
+            //  => 95% of the area lies between -1.96 and 1.96
+            let areaPercent95 = 1.96;
 
-        // 1.96 is the approximation for the 97.5 percentile for a normal distribution
-        //  => 95% of the area lies between -1.96 and 1.96
-        let areaPercent95 = 1.96;
+            // draw rect for showing variances
+            for (let j = 0; j < data.length - 1; j++) {
+                let x1 = xScale(data[j].OS);
+                let x2 = xScale(data[j + 1].OS);
+                let y1 = yScale(Math.max(0, data[j].prob - areaPercent95 * Math.sqrt(data[j].var)));
+                let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
 
-        // draw rect for showing variances
-        for (let j = 0; j < data.length - 1; j++) {
-            let x1 = xScale(data[j].OS);
-            let x2 = xScale(data[j + 1].OS);
-            let y1 = yScale(Math.max(0, data[j].prob - areaPercent95 * Math.sqrt(data[j].var)));
-            let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
-
-            
-            self.targetSvg.append("rect")
-                .attr("class", "kmVar " + value)
-                .attr("id", value)
-                .attr("x", x1)
-                .attr("y", y2)
-                .attr("width", x2 - x1)
-                .attr("height", y1 - y2)
-                .style("stroke", "none")
-                .style("fill", color)
-                .style("opacity", opaque(value))
-                .on("mouseover", function(d){
-                    highlight(value);
-                })
-                .on("mouseleave", function(d,i){
-                    noHighlight(value);
-                });
                 
+                self.targetSvg.append("rect")
+                    .attr("class", "kmVar " + value)
+                    .attr("id", value)
+                    .attr("x", x1)
+                    .attr("y", y2)
+                    .attr("width", x2 - x1)
+                    .attr("height", y1 - y2)
+                    .style("stroke", "none")
+                    .style("fill", color)
+                    .style("opacity", opaque(value))
+                    .on("mouseover", function(d){
+                        highlight(value);
+                    })
+                    .on("mouseleave", function(d,i){
+                        noHighlight(value);
+                    });
+                    
+            }
+
+            // draw line
+            let lineData = [{
+                x: xScale(data[0].OS),
+                y: yScale(1)
+            }, {
+                x: xScale(data[0].OS),
+                y: yScale(data[0].prob)
+            }];
+
+            for (let i = 1; i < data.length; i++) {
+                lineData.push({
+                    x: xScale(data[i].OS),
+                    y: yScale(data[i - 1].prob)
+                });
+                lineData.push({
+                    x: xScale(data[i].OS),
+                    y: yScale(data[i].prob)
+                });
+            }
+
+            let lineFunc = d3.line()
+                .x(function(d) {
+                    return d.x;
+                })
+                .y(function(d) {
+                    return d.y;
+                });
+
+            self.targetSvg.append("path")
+                    .attr("class", "kmVar " + value)
+                    .attr("id", value)
+                    .attr("d", lineFunc(lineData))
+                    .style("stroke", color)
+                    .style("stroke-width", "0.8px")
+                    .style("opacity", opaque(value))
+                    .style("fill", "none")
+                    .on("mouseover", function(d){
+                        highlight(value);
+                        // console.log("over")
+                    })
+                    .on("mouseleave", function(d,i){
+                        noHighlight(value);
+                        // console.log("out")
+                    });
+            
+            // self.targetSvg.appedn("line")
         }
-
-        // draw line
-        let lineData = [{
-            x: xScale(data[0].OS),
-            y: yScale(1)
-        }, {
-            x: xScale(data[0].OS),
-            y: yScale(data[0].prob)
-        }];
-
-        for (let i = 1; i < data.length; i++) {
-            lineData.push({
-                x: xScale(data[i].OS),
-                y: yScale(data[i - 1].prob)
-            });
-            lineData.push({
-                x: xScale(data[i].OS),
-                y: yScale(data[i].prob)
-            });
-        }
-
-        let lineFunc = d3.line()
-            .x(function(d) {
-                return d.x;
-            })
-            .y(function(d) {
-                return d.y;
-            });
-
-       self.targetSvg.append("path")
-            .attr("class", "kmVar " + value)
-            .attr("id", value)
-            .attr("d", lineFunc(lineData))
-            .style("stroke", color)
-            .style("stroke-width", "0.8px")
-            .style("opacity", opaque(value))
-            .style("fill", "none")
-            .on("mouseover", function(d){
-                highlight(value);
-                // console.log("over")
-            })
-            .on("mouseleave", function(d,i){
-                noHighlight(value);
-                // console.log("out")
-            });
-        
-        // self.targetSvg.appedn("line")
     }
 
     //  opacity 
