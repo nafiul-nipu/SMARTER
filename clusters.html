@@ -7,44 +7,55 @@
 
     </header>
     <body>
-        <div class="container-fluid text-center">  
-              <!-- navigation bar on the top -->
-    <div class="row" id="title">
-      <!-- <nav class="navbar"> -->
-          <div class="container-fluid navbar-grey">
-              <div class="col-md-6"> <!--  navbar-header"> -->  
+      <div class="container-fluid text-center"> 
+        <!-- navigation bar on the top -->
+        <div class="row">
+          <!-- <nav class="navbar"> -->
+              <div class="container-fluid navbar-grey">
+                  <div class="col-md-6"> <!--  navbar-header"> -->  
 
-                <a href="index.html" class="btn btn-default navbar-btn" >
-                  <span class="glyphicon glyphicon-arrow-left"></span>
-                  Back to home
-                </a>
-                <a href="#">Lymphatic Cancer Clusters</a>  <!-- class="navbar-brand"-->
-              </div>
+                    <a href="index.html" class="btn btn-default navbar-btn" >
+                      <span class="glyphicon glyphicon-arrow-left"></span>
+                      Back to home
+                    </a>
+                    <a href="#">Lymphatic Cancer Clusters</a>  <!-- class="navbar-brand"-->
+                  </div>
 
-            <div class="col-md-6 my-6">
-              <a href="https://uic-evl.github.io/LymphaticCancerViz/?id=1" class="btn btn-default navbar-btn" target="_blank">
-                Lymph Node Interface
-                <span class="glyphicon glyphicon-arrow-right"></span>                
-              </a>
-            </div>
-          </div>
-      <!-- </nav> -->
-  </div>
-  <!-- nav bar ends -->
-            <div class="row page-header">
-                <h1>Lymphatic Cancer Clusters</h1>
-            </div>  
-            <!-- <div class="row content">
-              <div class="col"> 
-                <img src="imgs/Spatial-Metric Dendrogram.png" class="img-thumbnail" alt="Spatial-Metric Dendrogram" style="max-width: 120vh; max-height: 100vh;">            
+                <div class="col-md-6 my-6">
+                  <a href="https://uic-evl.github.io/LymphaticCancerViz/?id=1" class="btn btn-default navbar-btn" target="_blank">
+                    Lymph Node Interface
+                    <span class="glyphicon glyphicon-arrow-right"></span>                
+                  </a>
+                </div>
               </div>
-            </div> -->
-            <div class="row content">
-              <div class="col"> 
-                <img src="imgs/LN/neck_heatmaps_with_outcome_radar_v5.png" class="img-thumbnail" alt="Spatial-Metric Dendrogram" style="max-width: 120vh; max-height: 100vh;">            
-              </div>
+          <!-- </nav> -->
+        </div>
+        <!-- nav bar ends -->
+        <div class="row">
+          <h1>Lymphatic Cancer Clusters</h1>
+        </div>  
+        <div class="row content">
+            <div class="col"> 
+              <img src="imgs/LN/neck_heatmaps_with_outcome_radar_v5.png" class="img-thumbnail" alt="Spatial-Metric Dendrogram" style="max-width: 120vh; max-height: 100vh;">            
             </div>
+        </div>
+        <div class="row" style="margin-right: 15%; margin-left: 15%; margin-top: 1%;">
+          <div class="col">
+            <strong>Description : </strong>Visual representation of each cluster.  
+            (A) Heat map of nodal spread within each cluster.  
+            Left half of each map indicates % of patients in the cluster with 
+            at least one affected node on a specific level, while the right half encodes 
+            the percentage of patients with bilateral spread within a specific level.  
+            Regions outlined in black denote regions that are most discriminative for cluster membership, 
+            and could be used to determine if 99% of patients are within a given cluster.  
+            (B) Radar chart showing the % of patients in each cluster with a given toxicity or 
+            inclusion in a specific clinical staging category.  FT: Feeding Tube, AS: Aspiration, 
+            RAD: Radiation-associated dysphagia, T1-2: T-category 1 or 2, T3-T4: T-category 3 or 4, 
+            N0-N1: N-category 0 or 1, N2a-N2b: N-category 2a or 2b, N2c-N3: N-category 2c or 3
           </div>
+        </div>
+
+      </div>
 
 
         

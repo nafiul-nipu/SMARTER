@@ -15,7 +15,9 @@ let AddNewPatient = function() {
     };
 
     function addNewPatient(){
-        $('.submitButton').on('click', function(){
+        // calling it from landingFormController
+        //$('.submitButton').on('click', function(){
+            // console.log(App.controllers.landingFormController.getValidation())
             // console.log($('.idSelect').val())
             self.patientID = $('.idSelect').val();
             if(self.patientID == 'N/A'){
@@ -310,8 +312,8 @@ let AddNewPatient = function() {
                 self.change_made = false;
                 //new object
                 let update_data = JSON.parse(JSON.stringify(self.patientInfo));
-                console.log(self.patientInfo)
-                console.log(update_data)
+                // console.log(self.patientInfo)
+                // console.log(update_data)
                 App.controllers.landingFormController.updateLandingForms(update_data)
                 App.models.patients.updatePatient(update_data);
                 //update the kaplan meier
@@ -389,7 +391,7 @@ let AddNewPatient = function() {
                     console.log(error);
                 });
             }
-        });
+        //});
 
     }
 

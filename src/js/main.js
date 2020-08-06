@@ -106,7 +106,7 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramAxis.attachToDomainRangeToggle(".nomogramAxisButton");
 
         App.controllers.newPatient = new AddNewPatient();
-        App.controllers.newPatient.addNewPatient();
+        // App.controllers.newPatient.addNewPatient();
 
     };
 

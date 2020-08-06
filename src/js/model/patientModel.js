@@ -94,7 +94,7 @@ let PatientModel = function() {
         // console.log(existing_patient)
         if(existing_patient == false){
             let total_patient = getPatientNumber();
-            console.log(total_patient, patientInfo["Dummy ID"])
+            // console.log(total_patient, patientInfo["Dummy ID"])
             self.patients[total_patient] = patientInfo;
             // self.addnewPatient = self.addnewPatient + 1
             
