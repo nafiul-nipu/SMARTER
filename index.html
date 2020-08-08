@@ -374,10 +374,16 @@
                                     <!-- </button> -->
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-8 col-lg-8" style="bottom: 10px;padding-left: 30%;width: 50%;">
+                                    <div class="col-md-4" style = "padding-left: 8%;bottom: 10px;">
+                                        <!-- prediction model modal button -->
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
+                                          Attributes used in Models
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 col-md-4" style="bottom: 10px;padding-left: 5%;width: 30%;">
                                         <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
                                     </div>
-                                    <div class="col-lg-4 knnCheckBox" style="bottom: 10px;">
+                                    <div class="col-md-4 knnCheckBox" style="bottom: 10px;">
                                         <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
                                     </div>
                                 </div>
@@ -830,6 +836,30 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+<!-- Prediction Model Modal -->
+<div class="modal fade" id="featureModels" tabindex="-1" role="dialog" aria-labelledby="featureModelsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="featureModelsLabel">Value Used in Prediction Models</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
