@@ -118,7 +118,7 @@ let KiviatDiagramView = function(targetID) {
             .attr('id','index-text')
             .text("Patient Index: 312")
 
-    let textName = ["Clusters" /*, "Lymph Node", "Camprt" */]
+    let textName = ["Lymph Node Clusters" /*, "Lymph Node", "Camprt" */]
         let idName = ["dendrogramlinker" /*, "lymphthingylinker", "camprtlinker" */]
         
         let spatialInformation = self.legendElement.append("div")

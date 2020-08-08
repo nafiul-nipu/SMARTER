@@ -200,6 +200,7 @@ let KaplanMeierView = function(targetID) {
         // d3.selectAll(".kmPlots").remove();
         d3.selectAll(".legend").remove();
         d3.selectAll(".yAxisLabels").remove();
+        d3.selectAll("#tip-line").remove();
 
         let x = d3.scaleLinear()
             .domain([0, self.maxOS])
@@ -240,6 +241,7 @@ let KaplanMeierView = function(targetID) {
         //creating the tooltip
         //thi will create the tipline 
         self.tipLine = self.targetSvg.append('line')
+                            .attr('id', 'tip-line')
 
         //hovering will create tipline and tooltip
         self.targetSvg.on('mousemove', function(){

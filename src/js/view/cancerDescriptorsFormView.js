@@ -449,7 +449,7 @@ let CancerDescriptorsFormView = function() {
                     .property("checked", true);
                 self.pgradeNARadio
                     .property("checked", false);
-            } else if (data === "NA"){
+            } else if (data === "N/A"){
                 self.pgrade1Radio
                     .property("checked", false);
                 self.pgrade2Radio
@@ -481,7 +481,7 @@ let CancerDescriptorsFormView = function() {
         if (p4)
             return "IV";
         if (pNA)
-            return "NA";
+            return "N/A";
 
         return null;
     }

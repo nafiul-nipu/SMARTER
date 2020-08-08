@@ -122,13 +122,13 @@ let AddNewPatient = function() {
                 //these values are needed for R prediction
                 //these are needed in survuval
                 self.patientInfo["Overall Survival (1=alive, 0=dead)"] = 1; //assuming the new patient will be alive
-                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = "NA" // self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
-                self.patientInfo["Locoregional control (Time)"] = "NA" //self.all_patients[0]["Locoregional control (Time)"]
-                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = "NA" // self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
-                self.patientInfo["FDM (months)"] = "NA" //self.all_patients[0]["FDM (months)"]
+                self.patientInfo["Distant Control (1=no DM, 0=DM)"] = "N/A" // self.all_patients[0]["Distant Control (1=no DM, 0=DM)"]
+                self.patientInfo["Locoregional control (Time)"] = "N/A" //self.all_patients[0]["Locoregional control (Time)"]
+                self.patientInfo["Locoregional Control(1=Control,0=Failure)"] = "N/A" // self.all_patients[0]["Locoregional Control(1=Control,0=Failure)"]
+                self.patientInfo["FDM (months)"] = "N/A" //self.all_patients[0]["FDM (months)"]
                 // feeding tube is needed as the R code removes those who 
                 // does not have feeding tube
-                self.patientInfo["Feeding tube 6m"] = "NA" // self.all_patients[0]["Feeding tube 6m"]
+                self.patientInfo["Feeding tube 6m"] = "N/A" // self.all_patients[0]["Feeding tube 6m"]
 
                 // console.log(Object.keys(self.patientInfo).length)
                 
@@ -136,7 +136,7 @@ let AddNewPatient = function() {
                 for(let key of Object.keys(self.all_patients[0])){
                     if( (key in self.patientInfo) == false ){
                         // console.log(key)
-                        self.patientInfo[key] =  "NA" // self.all_patients[0][key]
+                        self.patientInfo[key] =  "N/A" // self.all_patients[0][key]
                     }
                 }
                 // console.log(Object.keys(self.patientInfo).length)
@@ -327,25 +327,25 @@ let AddNewPatient = function() {
                 // let post_data = self.patientInfo;
                 post_data["Dummy ID"] = +post_data["Dummy ID"] 
                 post_data["Age at Diagnosis (Calculated)"] = +post_data["Age at Diagnosis (Calculated)"] 
-                if(post_data["Smoking status (Packs/Year)"] != "NA"){
+                if(post_data["Smoking status (Packs/Year)"] != "N/A"){
                     post_data["Smoking status (Packs/Year)"] = +post_data["Smoking status (Packs/Year)"] 
                 }    
-                if(post_data["Overall Survival (1=alive, 0=dead)"] != "NA"){
+                if(post_data["Overall Survival (1=alive, 0=dead)"] != "N/A"){
                     post_data["Overall Survival (1=alive, 0=dead)"] = +post_data["Overall Survival (1=alive, 0=dead)"]
                 }  
-                if(post_data["Distant Control (1=no DM, 0=DM)"] != "NA"){
+                if(post_data["Distant Control (1=no DM, 0=DM)"] != "N/A"){
                     post_data["Distant Control (1=no DM, 0=DM)"] = +post_data["Distant Control (1=no DM, 0=DM)"]
                 }  
-                if(post_data["OS (Calculated)"] != "NA"){
+                if(post_data["OS (Calculated)"] != "N/A"){
                     post_data["OS (Calculated)"] = +post_data["OS (Calculated)"]
                 }   
-                if(post_data["Locoregional control (Time)"] != "NA"){
+                if(post_data["Locoregional control (Time)"] != "N/A"){
                     post_data["Locoregional control (Time)"] = +post_data["Locoregional control (Time)"]
                 } 
-                if(post_data["Locoregional Control(1=Control,0=Failure)"] != "NA"){
+                if(post_data["Locoregional Control(1=Control,0=Failure)"] != "N/A"){
                     post_data["Locoregional Control(1=Control,0=Failure)"] = +post_data["Locoregional Control(1=Control,0=Failure)"]
                 }   
-                if(post_data["FDM (months)"] != "NA"){
+                if(post_data["FDM (months)"] != "N/A"){
                     post_data["FDM (months)"] = +post_data["FDM (months)"]
                 }
                 console.log(post_data)
@@ -363,7 +363,7 @@ let AddNewPatient = function() {
                 //assume we have therapeutic value
                 let therapeutic_bool = true;
                 // if not we will make it false
-                if(post_data["Therapeutic combination"] == "NA"){
+                if(post_data["Therapeutic combination"] == "N/A"){
                     therapeutic_bool = false;
                 }
 

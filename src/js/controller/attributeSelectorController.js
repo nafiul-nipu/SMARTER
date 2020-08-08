@@ -87,7 +87,7 @@ let AttributeSelectorControllerUpdated = function() {
                .append("a")
                .attr("href", "#")
                .text(function(d){
-                   if(d != "NA"){
+                   if(d != "N/A"){
                        return d;
                    }
                 //    return d;

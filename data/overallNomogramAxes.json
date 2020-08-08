@@ -25,10 +25,11 @@
     "name":"Race",
     "rangeShrink": [0,0.2159],
     "domain": [
+      "N/A",
       "White/Caucasion",
       "Other"
     ],
-    "range":[5 , 35],
+    "range":[5 ,20, 35],
     "label": "Race",
     "type": "ordinal",
     "forKnn": true,
@@ -111,7 +112,7 @@
   "Therapeutic combination": {
     "name":"Therapeutic combination",
     "rangeShrink": [0,0.42002699],
-    "domain": ["IC+Radiation alone","CC","IC+CC","Radiation alone", "NA"],
+    "domain": ["IC+Radiation alone","CC","IC+CC","Radiation alone", "N/A"],
     "range":[5 , 12.5, 20, 27.5, 35],
     "label": "Therapeutic combination",
     "type": "ordinal",
@@ -124,7 +125,7 @@
     "domain": [
       "N",
       "Y",
-      "NA"
+      "N/A"
     ],
     "range":[5 , 20, 35],
     "label": "Neck boost",
@@ -138,7 +139,7 @@
     "domain": [
       "N",
       "Y",
-      "NA"
+      "N/A"
     ],
     "range":[5 , 20, 35],
     "label": "Neck dissection",
