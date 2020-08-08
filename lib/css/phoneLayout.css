@@ -106,7 +106,7 @@ body{
   border-radius: 100px;
   border: 1px solid grey;
 
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 }
 #demographics input:hover {
@@ -137,7 +137,7 @@ body{
   border-radius: 100px;
   border: 1px solid grey;
 
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 
 }
@@ -161,7 +161,7 @@ body{
 #treatment input{
   border-radius: 50px;
   border: 1px solid grey;
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 }
 #treatment input:hover{
