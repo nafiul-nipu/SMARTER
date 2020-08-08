@@ -101,7 +101,8 @@ let LandingFormController = function() {
 
     //get the validation
     function getValidation(){
-        let input_count = 0
+        let input_count = 12
+        /*
         if(!$('#age-element').val()){
             $('#age-validation').show();
             // alert("Please provide age")
@@ -186,6 +187,7 @@ let LandingFormController = function() {
             $('#pathological-validation').hide();
             input_count = input_count + 1
         }
+        */
         return input_count;
     }
 

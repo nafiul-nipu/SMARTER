@@ -312,7 +312,7 @@ let AddNewPatient = function() {
                 self.change_made = false;
                 //new object
                 let update_data = JSON.parse(JSON.stringify(self.patientInfo));
-                // console.log(self.patientInfo)
+                console.log(self.patientInfo)
                 // console.log(update_data)
                 App.controllers.landingFormController.updateLandingForms(update_data)
                 App.models.patients.updatePatient(update_data);
@@ -348,6 +348,7 @@ let AddNewPatient = function() {
                 if(post_data["FDM (months)"] != "NA"){
                     post_data["FDM (months)"] = +post_data["FDM (months)"]
                 }
+                console.log(post_data)
 
                 //deleting the values that are not in the dataset
                 delete post_data.AgeAtTx;

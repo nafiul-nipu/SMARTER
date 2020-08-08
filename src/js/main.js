@@ -108,6 +108,9 @@ less.pageLoadFinished.then(function() {
         App.controllers.newPatient = new AddNewPatient();
         // App.controllers.newPatient.addNewPatient();
 
+        // App.controllers.kaplanCheckbox = new kaplanCheckbox();
+        // App.controllers.kaplanCheckbox.controlCheckbox();
+
     };
 
     App.init = function() {
