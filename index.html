@@ -95,6 +95,8 @@
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/statisticsModalView.js" charset="utf-8"></script>
     <!-- <script src="src/js/view/predictiveProbabilityView.js" charset="utf-8"></script> -->
+    <script src="src/js/view/predictionAttributeModal.js" charset="utf-8"></script>
+
 
     <script src="src/js/main.js" charset="utf-8"></script>
 
@@ -376,8 +378,8 @@
                                 <div class="row">
                                     <div class="col-md-4" style = "padding-left: 8%;bottom: 10px;">
                                         <!-- prediction model modal button -->
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
-                                          Attributes used in Models
+                                        <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
+                                          Prediction Attributes
                                         </button>
                                     </div>
                                     <div class="col-md-4 col-md-4" style="bottom: 10px;padding-left: 5%;width: 30%;">
@@ -846,13 +848,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="featureModelsLabel">Value Used in Prediction Models</h5>
+        <h5 class="modal-title" id="featureModelsLabel">Attributes Used in Predicting The Outcomes</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body" id="featureModels">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
