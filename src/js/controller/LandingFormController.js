@@ -45,7 +45,7 @@ let LandingFormController = function() {
                 // console.log(getValidation())
                 let count = getValidation()
                 if(count == self.mustInput){
-                    App.controllers.newPatient.addNewPatient();                   
+                    App.controllers.newPatient.addNewPatient();                
                     if($('.idSelect').val() == "N/A"){ //adding new patient
                         // console.log(App.controllers.newPatient.get_result_name())
                         let new_patient = App.controllers.newPatient.get_result_name();
@@ -65,7 +65,7 @@ let LandingFormController = function() {
                             App.controllers.patientSelector.updatePateintDropDown();
                             App.controllers.patientSelector.setPatient(new_patient["Dummy ID"]);
                             let index = App.models.patients.getPatientIDFromDummyID(new_patient["Dummy ID"]);
-                            $('#index-text').html('Patient Index: ' + index);
+                            $('#index-text').html('Patient Index: ' + index);  
                         }                   
                     }
                     else{
@@ -93,6 +93,8 @@ let LandingFormController = function() {
                         }
 
                     }
+                    // makeing list of attributes used in the prediction
+                    App.views.predictionAttributeModal.attribute_List();  
 
                 }
 

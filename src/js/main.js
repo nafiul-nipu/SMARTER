@@ -72,6 +72,9 @@ less.pageLoadFinished.then(function() {
 
         App.views.statisticsModalView = new StatisticsModalView();
 
+        App.views.predictionAttributeModal = new PreditictionAttributeModal();
+        // App.views.predictionAttributeModal.attribute_List()
+
         
     }
 
@@ -155,8 +158,6 @@ less.pageLoadFinished.then(function() {
                 // App.views.statisticsModalView.testMethod();
 
                 // App.models.attributeModel.loadAttributes();
-
-                App.view.predictionAttributeModal = new PreditictionAttributeModal();
             })
             .catch(function(err) {
                 console.log("Promise Error", err);

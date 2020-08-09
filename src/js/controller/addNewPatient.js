@@ -66,8 +66,8 @@ let AddNewPatient = function() {
                 // self.patientInfo.Censor = +self.patientInfo.Censor;
                 //treatment days
                 if($('#duration-element').val() == ""){
-                    self.patientInfo[$('#duration-element').attr('name')] = 0;
-                    self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
+                    self.patientInfo[$('#duration-element').attr('name')] = "N/A";
+                    // self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
                 }else{
                     self.patientInfo[$('#duration-element').attr('name')] = $('#duration-element').val();
                     self.patientInfo.TreatmentDays = +self.patientInfo["Treatment duration (Days)"];
@@ -75,21 +75,21 @@ let AddNewPatient = function() {
                 
                 //total dose
                 if($('#total-dose-element').val() == ""){
-                    self.patientInfo[$('#total-dose-element').attr('name')] = 0 ;
-                    self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
+                    self.patientInfo[$('#total-dose-element').attr('name')] = "N/A" ;
+                    // self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
                 }else{
                     self.patientInfo[$('#total-dose-element').attr('name')] = $('#total-dose-element').val();
                     self.patientInfo.TotalDose = +self.patientInfo["Total dose"];
                 }
                 //total fraction
                 if($('#total-fraction-element').val() == ""){
-                    self.patientInfo[$('#total-fraction-element').attr('name')] = 0;
+                    self.patientInfo[$('#total-fraction-element').attr('name')] = "N/A";
                 }else{
                     self.patientInfo[$('#total-fraction-element').attr('name')] = $('#total-fraction-element').val();
                 }
                 //dose element
                 if($('#dose-element').val() == ""){
-                    self.patientInfo[$('#dose-element').attr('name')] = 0;
+                    self.patientInfo[$('#dose-element').attr('name')] = "N/A";
                 }else{
                     self.patientInfo[$('#dose-element').attr('name')] = $('#dose-element').val();
                 }
