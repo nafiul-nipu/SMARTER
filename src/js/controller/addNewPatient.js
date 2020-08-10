@@ -41,8 +41,12 @@ let AddNewPatient = function() {
                 //smoking status
                 self.patientInfo[$('#smoking-never-radio').attr('name')] = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
                 //packsper year
-                self.patientInfo[$('#packs-per-year-element').attr('name')] = $('#packs-per-year-element').val();
-                self.patientInfo.SmokeStatusPacksYear = +self.patientInfo["Smoking status (Packs/Year)"];
+                if($('#packs-per-year-element').val() == ""){
+                    self.patientInfo[$('#packs-per-year-element').attr('name')] = "N/A"
+                }else{
+                    self.patientInfo[$('#packs-per-year-element').attr('name')] = $('#packs-per-year-element').val();
+                    self.patientInfo.SmokeStatusPacksYear = +self.patientInfo["Smoking status (Packs/Year)"];
+                }
                 //tumor-site
                 self.patientInfo[$('#tumor-site').attr('name')] = $('#tumor-site').val();
                 //sub site

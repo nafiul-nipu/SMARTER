@@ -9,7 +9,7 @@ let LandingFormController = function() {
         currentPatient: null,
         submitButton: null,
         showFormButton: null,
-        mustInput : 12
+        mustInput : 5
     };
 
     function setPatientDropdown(element) {
@@ -103,8 +103,8 @@ let LandingFormController = function() {
 
     //get the validation
     function getValidation(){
-        let input_count = 12
-        /*
+        let input_count = 0
+        
         if(!$('#age-element').val()){
             $('#age-validation').show();
             // alert("Please provide age")
@@ -119,6 +119,7 @@ let LandingFormController = function() {
             $('#gender-validation').hide();
             input_count = input_count + 1
         }
+        /*
         if(!$('#race-element').val()){
             $('#race-validation').show();
             // alert("Please provide race")
@@ -140,6 +141,7 @@ let LandingFormController = function() {
             $('#hpvp16-validation').hide();
             input_count = input_count + 1
         }
+        */
         if(!$("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val()){
             $('#smoking-validation').show();
             // alert("Please provide smoking status")
@@ -147,6 +149,7 @@ let LandingFormController = function() {
             $('#smoking-validation').hide();
             input_count = input_count + 1
         }
+        /*
         if(!$('#packs-per-year-element').val()){
             $('#packs-validation').show();
             // alert("Please provide packs per year")
@@ -154,6 +157,7 @@ let LandingFormController = function() {
             $('#packs-validation').hide();
             input_count = input_count + 1
         }
+        
         if(!$('#tumor-site').val()){
             $('#site-validation').show();
             // alert("Please provide tm laterity")
@@ -168,6 +172,7 @@ let LandingFormController = function() {
             $('#subsite-validation').hide();
             input_count = input_count + 1
         }
+        */
         if(!$("input:radio[name='T-category']:checked").val()){
             $('#t-validation').show();
             // alert("Please provide T-category")
@@ -182,6 +187,7 @@ let LandingFormController = function() {
             $('#n-validation').hide();
             input_count = input_count + 1
         }
+        /*
         if(!$("input:radio[name='Pathological Grade']:checked").val()){
             $('#pathological-validation').show();
             // alert("Please provide pathological grade")
@@ -190,6 +196,7 @@ let LandingFormController = function() {
             input_count = input_count + 1
         }
         */
+        
         return input_count;
     }
 

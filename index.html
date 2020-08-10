@@ -128,17 +128,18 @@
                       <div id="gender-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Gender</div>
                       <label>Race</label>
                       <select id="race-element" name="Race">
-                        <option value="" disabled selected>Race </option>
+                        <!-- <option value="" disabled selected>Race </option> -->
                         <option value="White/Caucasion">White/Caucasion</option>
                         <option value="Other">Other</option>
-                        <option value="N/A">N/A</option>
+                        <option value="N/A" selected>N/A</option>
                       </select>
-                      <div id="race-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Race</div>
+                      <!-- <div id="race-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Race</div> -->
                       <!-- <input type="text" name="Race" placeholder="Race" id="race-element"> -->
                       <label>Aspiration</label>
                       <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
                       <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
-                      <div id="aspiration-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Aspiration</div>
+                      <input type="radio" name="Aspiration rate Pre-therapy" value="N/A" id="aspiration-na-radio" checked>N/A
+                      <!-- <div id="aspiration-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Aspiration</div> -->
                       <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
                       <label>Smoking Status</label>
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
@@ -147,7 +148,7 @@
                       <div id="smoking-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Smoking Status</div>
                       <label>Packs/Year</label>
                       <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
-                      <div id="packs-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Packs/Year</div>
+                      <!-- <div id="packs-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Packs/Year</div> -->
                       <div>
                           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
                       </div>
@@ -162,25 +163,26 @@
                         <option value="R">R</option>
                         <option value="L">L</option>
                         <option value="Bilateral">Bilateral</option>
+                        <option value="N/A" selected>N/A</option>
                       </select>
-                      <div id="site-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tm Laterality</div>
+                      <!-- <div id="site-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tm Laterality</div> -->
                       <!-- <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="tumor-site"> -->
                       <label>Tumor Subsite</label>
                       <select id="tumor-subsite" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)">
                         <option value="" disabled selected>Tumor Subsite</option>
                         <option value="BOT">BOT</option>
                         <option value="Tonsil">Tonsil</option>
-                        <option value="Other">Other</option>
+                        <option value="Other" selected>Other</option>
                       </select>
-                      <div id="subsite-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tumor Subsite</div>
+                      <!-- <div id="subsite-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tumor Subsite</div> -->
                       <label>HPV/P16</label>
                       <select id="hpvp16-element" name="HPV/P16 status">
                         <option value="" disabled selected>HPV/P16</option>
                         <option value="Positive">Positive</option>
                         <option value="Negative">Negative</option>
-                        <option value="Unknown">Unknown</option>
+                        <option value="Unknown" selected>Unknown</option>
                       </select>
-                      <div id="hpvp16-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide HPV/P16</div>
+                      <!-- <div id="hpvp16-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide HPV/P16</div> -->
 
                       <!-- <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite"> -->
                       <!-- <label>AJCC 7th Edition</label>
@@ -213,8 +215,8 @@
                       <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
                       <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
                       <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
-                      <input type="radio" name="Pathological Grade" value="N/A" id="pgradeNA">N/A
-                      <div id="pathological-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Pathological Grade</div>
+                      <input type="radio" name="Pathological Grade" value="N/A" id="pgradeNA" checked>N/A
+                      <!-- <div id="pathological-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Pathological Grade</div> -->
                       <label>Affected Lymph Nodes</label>
                       <input type="text" name="Affected Lymph node" placeholder="Affected Lymph Node" id="affected-lymph">
                       <div>

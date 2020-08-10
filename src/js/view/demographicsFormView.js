@@ -14,6 +14,7 @@ let DemographicsFormView = function () {
         // self.raceSelect = d3.select("#race-element")
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
+        self.aspirationNARadio = d3.select('#aspiration-na-radio');
         // self.hpvp16Element = d3.select("#hpvp16-element");
         // self.ecog0Element = d3.select("#ecog-0-radio");
         // self.ecog1Element = d3.select("#ecog-1-radio");
@@ -296,10 +297,21 @@ let DemographicsFormView = function () {
                     .property("checked", true);
                 self.aspirationNoRadio
                     .property("checked", false);
+                self.aspirationNARadio
+                    .property("checked", false);
             } else if (data === "n" || data === "no") {
                 self.aspirationYesRadio
                     .property("checked", false);
                 self.aspirationNoRadio
+                    .property("checked", true);
+                self.aspirationNARadio
+                    .property("checked", false);
+            } else if(data === "n/a"){
+                self.aspirationYesRadio
+                    .property("checked", false);
+                self.aspirationNoRadio
+                    .property("checked", false);
+                self.aspirationNARadio
                     .property("checked", true);
             }
         }
@@ -308,6 +320,7 @@ let DemographicsFormView = function () {
     function getAspirationElement() {
         let yes = self.aspirationYesRadio.property("checked");
         let no = self.aspirationNoRadio.property("checked");
+        let na = self.aspirationNARadio.property("checked");
 
         if (yes) {
             return "Yes";
@@ -315,6 +328,10 @@ let DemographicsFormView = function () {
 
         if (no) {
             return "No";
+        }
+
+        if(na){
+            return "N/A";
         }
 
         return undefined;
