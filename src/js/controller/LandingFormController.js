@@ -106,17 +106,17 @@ let LandingFormController = function() {
         let input_count = 0
         
         if(!$('#age-element').val()){
-            $('#age-validation').show();
+            // $('#age-validation').show();
             // alert("Please provide age")
         }else{
-            $('#age-validation').hide();
+            // $('#age-validation').hide();
             input_count = input_count + 1
         }
         if(!$("input:radio[name=Gender]:checked").val()){
-            $('#gender-validation').show();
+            // $('#gender-validation').show();
             // alert("Please provide gender")
         }else{
-            $('#gender-validation').hide();
+            // $('#gender-validation').hide();
             input_count = input_count + 1
         }
         /*
@@ -143,10 +143,10 @@ let LandingFormController = function() {
         }
         */
         if(!$("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val()){
-            $('#smoking-validation').show();
+            // $('#smoking-validation').show();
             // alert("Please provide smoking status")
         }else{
-            $('#smoking-validation').hide();
+            // $('#smoking-validation').hide();
             input_count = input_count + 1
         }
         /*
@@ -174,17 +174,17 @@ let LandingFormController = function() {
         }
         */
         if(!$("input:radio[name='T-category']:checked").val()){
-            $('#t-validation').show();
+            // $('#t-validation').show();
             // alert("Please provide T-category")
         }else{
-            $('#t-validation').hide();
+            // $('#t-validation').hide();
             input_count = input_count + 1
         }
         if(!$("input:radio[name='N-category']:checked").val()){
-            $('#n-validation').show();
+            // $('#n-validation').show();
             // alert("Please provide N-category")
         }else{
-            $('#n-validation').hide();
+            // $('#n-validation').hide();
             input_count = input_count + 1
         }
         /*

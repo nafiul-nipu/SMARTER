@@ -119,13 +119,13 @@
                       <select class="idSelect">
                           <option>N/A</option>
                       </select>
-                      <label>Age</label>
+                      <label><span>Age<sup><i class="fa fa-asterisk" id="age-validation"></i></sup></span></label>
                       <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
-                      <div id="age-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Age</div>
-                      <label>Gender</label>
+                      <!-- <div id="age-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Age</div> -->
+                      <label><span>Gender<sup><i class="fa fa-asterisk" id="gender-validation"></i></sup></span></label>
                       <input type="radio" name="Gender" value="Male" id="male-radio">Male
                       <input type="radio" name="Gender" value="Female" id="female-radio">Female
-                      <div id="gender-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Gender</div>
+                      <!-- <div id="gender-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Gender</div> -->
                       <label>Race</label>
                       <select id="race-element" name="Race">
                         <!-- <option value="" disabled selected>Race </option> -->
@@ -141,11 +141,11 @@
                       <input type="radio" name="Aspiration rate Pre-therapy" value="N/A" id="aspiration-na-radio" checked>N/A
                       <!-- <div id="aspiration-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Aspiration</div> -->
                       <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
-                      <label>Smoking Status</label>
+                      <label><span>Smoking Status<sup><i class="fa fa-asterisk" id="smoking-validation"></i></sup></span></label>
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
-                      <div id="smoking-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Smoking Status</div>
+                      <!-- <div id="smoking-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Smoking Status</div> -->
                       <label>Packs/Year</label>
                       <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
                       <!-- <div id="packs-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Packs/Year</div> -->
@@ -197,19 +197,19 @@
                       <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV -->
 
 
-                      <label>T-category</label>
+                      <label><span>T-category<sup><i class="fa fa-asterisk" id="t-validation"></i></sup></span></label>
                       <input type="radio" name="T-category" value="T1" id="tcat1">T1
                       <input type="radio" name="T-category" value="T2" id="tcat2">T2
                       <input type="radio" name="T-category" value="T3" id="tcat3">T3
                       <input type="radio" name="T-category" value="T4" id="tcat4">T4
-                      <div id="t-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide T-Category</div>
-                      <label>N-Category</label>
+                      <!-- <div id="t-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide T-Category</div> -->
+                      <label><span>N-Category<sup><i class="fa fa-asterisk" id="n-validation"></i></sup></span></label>
                       <!-- <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A -->
                       <input type="radio" name="N-category" value="N0" id="ncat-0">N0
                       <input type="radio" name="N-category" value="N1" id="ncat-1">N1
                       <input type="radio" name="N-category" value="N2" id="ncat-2">N2
                       <input type="radio" name="N-category" value="N3" id="ncat-3">N3
-                      <div id="n-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide N-Category</div>
+                      <!-- <div id="n-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide N-Category</div> -->
                       <label>Pathological Grade</label>
                       <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
                       <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
@@ -378,13 +378,13 @@
                                     <!-- </button> -->
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4" style = "padding-left: 8%;bottom: 10px;">
+                                    <!-- <div class="col-md-4" style = "padding-left: 8%;bottom: 10px;"> -->
                                         <!-- prediction model modal button -->
-                                        <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
+                                        <!-- <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
                                           Prediction Attributes
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 col-md-4" style="bottom: 10px;padding-left: 5%;width: 30%;">
+                                        </button> -->
+                                    <!-- </div> -->
+                                    <div class="col-md-6 col-md-6" style="bottom: 10px;padding-left: 38%;width: 60%;">
                                         <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
                                     </div>
                                     <div class="col-md-4 knnCheckBox" style="bottom: 10px;">

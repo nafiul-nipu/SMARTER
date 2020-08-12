@@ -126,6 +126,19 @@ let NomogramView = function (targetID) {
             .brushable(true)
             .onMouseOver("hide-other")
             .onMouseOut("reset-paths");
+
+        // <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
+        // <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
+        //                                   Prediction Attributes
+        //  </button>
+        d3.select("#nomogram")/*.append("div").style("padding-left", "95%")*/
+            .append("span")
+            .attr("class", "glyphicon glyphicon-question-sign")
+            .attr("id", "attributeModal")
+            .attr("data-toggle", "modal")
+            .attr("data-target" , "#featureModels")
+            .style("padding-left", "93%")
+            .attr("title", "Prediction Attributes")
     }
 
     /* update the nomogram based on the mode: knn or filter */
