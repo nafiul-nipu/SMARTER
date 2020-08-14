@@ -11,10 +11,10 @@ let StatsView = function () {
         totalPatientsText: null,
         commonAttributesTable: null,
         detailsStatistics: null,
+        index : 0
     };
 
     init();
-
     function init() {
         // Code to link the Tim's lymph repo
         self.dendrogramButton = d3.select("#dendrogramlinker");
@@ -42,7 +42,7 @@ let StatsView = function () {
     function setDendrogramButtons(pid) {
         // Tim's work currently hosted using GH pages.
         // let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
-        let url = `lymphnode.html`
+        let url = `Lymphnode.html`
         // document.getElementById("dendrogramlinker").removeAttribute("class");
         self.dendrogramButton
             .attr("href", url);
@@ -159,20 +159,18 @@ let StatsView = function () {
 
 
     function updateButtons(currentPatient) {
+        //getting the index for our lymphnode
 
-/*
-        // console.log("stats view current patient " + currentPatient)
         if(currentPatient !== undefined){
             // console.log(App.models.patients.getDummyID(currentPatient));
              // console.log(currentPatient > 200)
             if(currentPatient != 0 && currentPatient <= 356){ //lymph node has 356 patients
-                // console.log("update link")
-                enableLymphnode()
-                setLymphButton(currentPatient);
+                setIndex(currentPatient)
             }else{
-                disableLymphnode()
+                setIndex(1);
             } 
-
+        }
+            /*
             //camp rt 
             //get the dummy ID
             let campDummy = App.models.patients.getDummyID(currentPatient);
@@ -206,8 +204,17 @@ let StatsView = function () {
 
     }
 
+    function setIndex(index){
+        self.index = index;
+    }
+    function getIndex(){
+        return self.index;
+    }
+
     return {
         updateButtons,
-        updatePatientsCount
+        updatePatientsCount,
+        setIndex,
+        getIndex
     }
 };

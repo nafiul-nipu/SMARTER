@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
         <script src="lib/js/jquery.min.js" charset="utf-8"></script>
         <script src="lib/js/bootstrap.min.js" charset="utf-8"></script>
+        <!-- <script src="lib/js/d3.v4.min.js" charset="utf-8"></script> -->
+        <!-- <script src="src/js/view/statsView.js" charset="utf-8"></script> -->
 
     </header>
     <body>
@@ -14,7 +16,7 @@
               <div class="container-fluid navbar-grey">
                   <div class="col-md-6"> <!--  navbar-header"> -->  
 
-                    <a  class="btn btn-default navbar-btn" onclick="window.close()"> <!-- href="index.html" -->
+                    <a  class="btn btn-default navbar-btn" onclick="closeWindows()"> <!-- href="index.html" -->
                       <span class="glyphicon glyphicon-arrow-left"></span>
                       Back to home
                     </a>
@@ -22,7 +24,7 @@
                   </div>
 
                 <div class="col-md-6 my-6">
-                  <a href="https://uic-evl.github.io/LymphaticCancerViz/?id=1" class="btn btn-default navbar-btn" target="_blank">
+                  <a href="" class="btn btn-default navbar-btn" onclick="openWindow()" target="_blank">
                     Lymph Node Interface
                     <span class="glyphicon glyphicon-arrow-right"></span>                
                   </a>
@@ -60,4 +62,27 @@
 
         
     </body>
+
+    <script>
+      // let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`
+      // const statview = new StatsView();
+      // console.log(statview.getIndex())
+      let url = "https://uic-evl.github.io/LymphaticCancerViz/?id=1"
+      let lymph;
+      function openWindow(){
+        lymph = window.open(url, "_blank");
+        window.open(url, "_blank")
+      }
+      function closeWindows(){
+        // var lymph = window.open("https://uic-evl.github.io/LymphaticCancerViz/?id=1", "_blank")
+        if(lymph === undefined){
+          window.close()
+        }else{
+          lymph.close();
+          window.close();
+
+        }
+      }
+
+    </script>
 </html>
