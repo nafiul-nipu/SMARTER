@@ -378,6 +378,7 @@ let PatientModel = function() {
        over a subset of patientAttributes */
     function similarityScore(patientID, subjectID, knnAttributes) {
         let score = 0;
+        let outOf = 0;
 
         // console.log("Subject iD" , subjectID)
         
@@ -399,9 +400,14 @@ let PatientModel = function() {
             if (self.patients[patientID][self.axes[attribute].name] === self.patients[subjectID][self.axes[attribute].name]) {
                 score += 1;
             }
+            if (self.patients[patientID][self.axes[attribute].name] != "N/A" && self.patients[subjectID][self.axes[attribute].name]!= "N/A" ) {
+                outOf += 1;
+            }
         }
+        let twoDecimalScore = score.toFixed(2)
+        let result = twoDecimalScore + " / " + outOf
 
-        return score;
+        return result;
     }
 
     function setAxes(axes) {

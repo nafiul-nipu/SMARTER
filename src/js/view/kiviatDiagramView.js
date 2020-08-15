@@ -193,6 +193,7 @@ let KiviatDiagramView = function(targetID) {
     }
 
     function commonMethodForKnnAndKiviat(patients){
+        // console.log(patients.subject.score)
         if (patients.subject.score) {
             delete patients.subject.score;
         }
@@ -380,7 +381,7 @@ let KiviatDiagramView = function(targetID) {
 
         if (d.score) {
             similarityHead.select(".similarityScore")
-                .text("Score: " + d.score.toFixed(2));
+                .text("Score: " + d.score);
         }
 
         // update the attribute value for the axis tool tip
