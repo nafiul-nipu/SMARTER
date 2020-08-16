@@ -334,11 +334,18 @@ let KiviatDiagramView = function(targetID) {
                 .on('mouseout', self.axisTip.hide);
         }
 
-        similarityHead.append("div").append("h5")
+        similarityHead.append("div")/*.append("h5")*/
             .attr("class", "similarityScore")
             //.attr("x", 0)
             //.attr("y", 10)
-            .style("font-size", "10px");
+            .style("font-size", "10px")
+            .style("font-weight", "bold")
+            .style("text-align", "center");
+
+        similarityHead.append("div")
+            .attr("class", "predictionOutcome")
+            .style("font-size", "10px")
+            .style("text-align", "center")
     }
 
     function creatToolTips() {
@@ -366,6 +373,7 @@ let KiviatDiagramView = function(targetID) {
 
     /* draw the kiviat diagram for each patient */
     function updateKiviatPatient(d) {
+        // console.log("update kiviat patient is called")
 
         // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
         // console.log(i)
@@ -381,7 +389,34 @@ let KiviatDiagramView = function(targetID) {
 
         if (d.score) {
             similarityHead.select(".similarityScore")
-                .text("Score: " + d.score);
+                .html(function(){
+                    // console.log(d)
+                    let feed = +d["feeding_tube_prob"];
+                    let asp = +d["aspiration_prob"];
+                    let prog = +d["progression_free_5yr_prob"];
+                    let os = +d["overall_survival_5yr_prob"];
+                    let text = "Score: " + d.score /*+ "<br>" +
+                    "Feed: " + feed.toFixed(3) + "<br>" +
+                    "ASP: " + asp.toFixed(3) + "<br>" + 
+                    "PROG: " + prog.toFixed(3) + "<br>" +
+                    "OS: " + os.toFixed(3) */
+
+                    return text;
+                });
+            similarityHead.select(".predictionOutcome")
+                .html(function(){
+                    let feed = +d["feeding_tube_prob"];
+                    let asp = +d["aspiration_prob"];
+                    let prog = +d["progression_free_5yr_prob"];
+                    let os = +d["overall_survival_5yr_prob"];
+                    let text = /*"Score: " + d.score + "<br>" +*/
+                    "Feed: " + feed.toFixed(3) + "<br>" +
+                    "ASP: " + asp.toFixed(3) + "<br>" + 
+                    "PROG: " + prog.toFixed(3) + "<br>" +
+                    "OS: " + os.toFixed(3) 
+
+                    return text;
+                });
         }
 
         // update the attribute value for the axis tool tip
