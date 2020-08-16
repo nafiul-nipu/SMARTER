@@ -316,7 +316,7 @@ let AddNewPatient = function() {
                 self.change_made = false;
                 //new object
                 let update_data = JSON.parse(JSON.stringify(self.patientInfo));
-                console.log(self.patientInfo)
+                // console.log(self.patientInfo)
                 // console.log(update_data)
                 App.controllers.landingFormController.updateLandingForms(update_data)
                 App.models.patients.updatePatient(update_data);

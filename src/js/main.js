@@ -114,6 +114,8 @@ less.pageLoadFinished.then(function() {
         // App.controllers.kaplanCheckbox = new kaplanCheckbox();
         // App.controllers.kaplanCheckbox.controlCheckbox();
 
+        App.controllers.nomoPredictionInfo = new nomogramPredictionInfoController();
+
     };
 
     App.init = function() {

@@ -98,10 +98,12 @@ let PatientSelectorController = function() {
 
     /* get the updated selected patient and knn */
     function getUpdatedData(subjectID) {
+        // console.log("called me")
         let subjectIndex = App.models.patients.getPatientIDFromDummyID(subjectID);
         let updatedPatients = {};
         updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
+        App.controllers.nomoPredictionInfo.subjectPredictions(updatedPatients.subject);
 
         // console.log(updatedPatients)
         return updatedPatients;
@@ -109,7 +111,7 @@ let PatientSelectorController = function() {
 
     /* update relative views */
     function updateViews(updatedPatients) {
-        // console.log("updateview")
+        // console.log(updatedPatients.subject["Dummy ID"])
         App.views.kiviatDiagram.update(updatedPatients);
         App.views.nomogram.updateKnnData(updatedPatients);
         //update the kaplan meier
