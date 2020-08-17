@@ -16,7 +16,8 @@ let KiviatDiagramView = function(targetID) {
         legendHeight: null,
         axisTip: null,
         centerTip: null,
-        axes: {}
+        axes: {},
+        groupPatients:{}
     };
 
     function init() {
@@ -63,6 +64,11 @@ let KiviatDiagramView = function(targetID) {
             // .domain([1,0])
             .range(["#d18161", "#70a4c2"]); // #ba89b9 middle color
         // .range(['#d73027','#fc8d59','#fee090','#ffffbf','#e0f3f8','#91bfdb','#4575b4']);
+
+        self.ordinalColor = d3.scaleOrdinal()
+            // .interpolate(d3.interpolateHcl)
+            .range(["#d18161", "#70a4c2"])
+            .domain(["Y", "N"]);
 
         drawLegend();
     }
@@ -167,6 +173,7 @@ let KiviatDiagramView = function(targetID) {
         // console.log(patients.subject);
         // console.log(patients.neighbors);
 
+        self.groupPatients = patients;
         // console.log(App.kiviatAttributes.length);
         if(App.controllers.kiviatAttrSelector.getKiviatTrigger()){
             // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
@@ -449,6 +456,7 @@ let KiviatDiagramView = function(targetID) {
     function updateColor(data){
         // update the kiviat diagram of the subject
         //need to create for axes control
+        // calls when we change nomogram selections
         // d3.selectAll('.d3-tip').remove()
         // let nomogram_data = App.models.axesModel.getAxesData();
         // let predictionToShow = nomogram_data["Predictive Probability"].name
@@ -473,23 +481,48 @@ let KiviatDiagramView = function(targetID) {
     }
 
     function kiviatColor(d){
+        // console.log(self.groupPatients)
         let nomogram_data = App.models.axesModel.getAxesData();
         let predictionToShow = nomogram_data["Predictive Probability"].name
         // console.log(predictionToShow, d[predictionToShow])
         if(predictionToShow == 'feeding_tube_prob' || predictionToShow == 'aspiration_prob'){
-            //domain 1, 0
-            self.colorScale.domain([1,0])
             // legend toxicity
             let survivalRateText = ["0", "Toxicity", "1"];
             legendText(survivalRateText)
-            return self.colorScale(d[predictionToShow])
+            //color the subject by its prediction value 
+            // color the neighbours by yes no
+            if(self.groupPatients.subject["Dummy ID"] == d["Dummy ID"]){
+                //domain 1, 0
+                self.colorScale.domain([1,0])    
+                return self.colorScale(d[predictionToShow])
+            }else{
+                if(predictionToShow == 'feeding_tube_prob'){
+                    // console.log(self.colorScale(d["Feeding tube 6m"]))
+                    return self.ordinalColor(d["Feeding tube 6m"]);
+                }else{
+                    return self.ordinalColor(d["Aspiration rate(Y/N)"]);
+                }
+            }
+            // return "black"
         }else if(predictionToShow == 'overall_survival_5yr_prob' || predictionToShow == 'progression_free_5yr_prob'){
-            //domain 0, 1
-            self.colorScale.domain([0,1])
             //legend surv.prob
             let survivalRateText = ["1", "Surv. Rate", "0"];
             legendText(survivalRateText)
-            return self.colorScale(d[predictionToShow])
+
+            //color the subject by its prediction value 
+            // color the neighbours by yes no
+            if(self.groupPatients.subject["Dummy ID"] == d["Dummy ID"]){
+                //domain 1, 0
+                self.colorScale.domain([0,1])    
+                return self.colorScale(d[predictionToShow])
+            }else{
+                self.colorScale.domain([0,1])
+                if(predictionToShow == 'overall_survival_5yr_prob'){
+                    return self.colorScale(d["Overall Survival (1=alive, 0=dead)"]);
+                }else{
+                    return self.colorScale(d[predictionToShow]);
+                }
+            }
         }
         // return self.colorScale(d[predictionToShow])
     }
