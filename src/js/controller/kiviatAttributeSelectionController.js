@@ -21,6 +21,25 @@ let kiviatAttributeSelectionController = function(listID) {
         self.list = d3.select(listID);
 
         // console.log(self.list)
+        // self.list.text("hello")
+
+        // <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        //   <span aria-hidden="true">&times;</span>
+        // </button>
+
+        self.list.append("li")
+            .append("div")
+            .text("Axes Controller")
+            .style("text-align", "center")
+            .append("button")
+            .attr("class", "close")
+            .attr("type", "button")
+            .attr("data-toggle", "collapse")
+            .attr("data-target", "#kiviatAttributesControl")
+            .append("span")
+            .attr("aria-hidden", "true")
+            .style("border", "none")
+            .html("&times;");
 
         self.list.selectAll(".checkbox-li")
             .data(attributes)

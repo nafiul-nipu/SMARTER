@@ -19,6 +19,19 @@ let KNNAttributeSelectionController = function(listID) {
         self.list = d3.select(listID);
 
         // console.log(self.list)
+        self.list.append("li")
+            .append("div")
+            .text("Knn Checkboxes")
+            .style("text-align", "center")
+            .append("button")
+            .attr("class", "close")
+            .attr("type", "button")
+            .attr("data-toggle", "collapse")
+            .attr("data-target", "#knnAttributesControl")
+            .append("span")
+            .attr("aria-hidden", "true")
+            .style("border", "none")
+            .html("&times;");
 
         self.list.selectAll(".checkbox-li")
             .data(attributes)
