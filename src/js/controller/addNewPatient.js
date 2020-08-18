@@ -352,7 +352,7 @@ let AddNewPatient = function() {
                 if(post_data["FDM (months)"] != "N/A"){
                     post_data["FDM (months)"] = +post_data["FDM (months)"]
                 }
-                console.log(post_data)
+                // console.log(post_data)
 
                 //deleting the values that are not in the dataset
                 delete post_data.AgeAtTx;

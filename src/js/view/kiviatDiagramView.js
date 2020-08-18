@@ -17,7 +17,9 @@ let KiviatDiagramView = function(targetID) {
         axisTip: null,
         centerTip: null,
         axes: {},
-        groupPatients:{}
+        groupPatients:{},
+        attributes : ["AgeAtTx", "Gender", "Race","Smoking Status","HPV/P16",
+         "T-category", "N-category","Tumor Subsite","Therapeutic combination"]
     };
 
     function init() {
@@ -174,11 +176,20 @@ let KiviatDiagramView = function(targetID) {
         // console.log(patients.neighbors);
 
         self.groupPatients = patients;
-        // console.log(App.kiviatAttributes.length);
         if(App.controllers.kiviatAttrSelector.getKiviatTrigger()){
+            // console.log("kiviat axes control")
             // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
             App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
             // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
+
+            if(App.kiviatAttributes.includes("Therapeutic combination") && self.groupPatients.subject["Therapeutic combination"] == "N/A"){
+                let index = App.kiviatAttributes.indexOf("Therapeutic combination");
+                App.kiviatAttributes.splice(index, 1)
+            }
+            if(App.kiviatAttributes.includes("Race") && self.groupPatients.subject["Race"] == "N/A"){
+                let index = App.kiviatAttributes.indexOf("Race");
+                App.kiviatAttributes.splice(index, 1)
+            }
 
             self.subjectElement.select("svg").remove();
             self.subjectElement.select("div").remove();
@@ -195,7 +206,36 @@ let KiviatDiagramView = function(targetID) {
             let index = App.models.patients.getPatientIDFromDummyID(p)
             $('#index-text').html('Patient Index: ' + index);
         }else{
+            // console.log("other calls")
+            App.kiviatAttributes = ["AgeAtTx", "Gender", "Race","Smoking Status","HPV/P16",
+            "T-category", "N-category","Tumor Subsite","Therapeutic combination"]
+            if(self.groupPatients.subject != undefined){
+                for(let attr of App.kiviatAttributes){
+                    if(self.groupPatients.subject[self.axes[attr].name] == "N/A"){
+                        // kiviat = true;
+                        let index = App.kiviatAttributes.indexOf(attr);
+                        if (index >= 0) {
+                            App.kiviatAttributes.splice( index, 1 );
+                        }
+                    }
+                }
+            }
+
+            self.subjectElement.select("svg").remove();
+            self.subjectElement.select("div").remove();
+            self.neighborsElement.selectAll("svg").remove();
+            self.neighborsElement.selectAll("div").remove();
+            self.legendElement.select("svg").remove();
+            self.legendElement.selectAll("div").remove();
+            self.legendElement.select("p").remove();
+
+            init();
             commonMethodForKnnAndKiviat(patients);
+            let p = $(".idSelect").val();
+            // update the patient's information
+            let index = App.models.patients.getPatientIDFromDummyID(p)
+            $('#index-text').html('Patient Index: ' + index);
+            // console.log(App.kiviatAttributes)
         }        
     }
 
@@ -299,6 +339,7 @@ let KiviatDiagramView = function(targetID) {
             .on('mouseout', self.centerTip.hide);
 
         // draw axes
+        // console.log(App.kiviatAttributes)
         for (let j = 0; j < App.kiviatAttributes.length; j++) {
             let axisEndpoint = rotatePointOntoAxis(40, j);
 
@@ -318,7 +359,7 @@ let KiviatDiagramView = function(targetID) {
                 .style("font-size", "5px")
                 .style("text-anchor", "middle")
                 // .attr("transform", "rotate(0)")
-                // .text(j);
+                // .text("helo");
                 .text(App.kiviatAttributes[j]);
 
             // console.log("App.kiviatAttributes[j]" + App.kiviatAttributes[j])
@@ -536,6 +577,7 @@ let KiviatDiagramView = function(targetID) {
         // // console.log(test(55))
         // console.log(test())
         // console.log(d)
+        // console.log(App.kiviatAttributes)
         let pathCoord = [];
         for (let attributeInd in App.kiviatAttributes) {
             

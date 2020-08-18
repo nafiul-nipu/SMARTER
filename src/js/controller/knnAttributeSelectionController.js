@@ -4,22 +4,53 @@ let KNNAttributeSelectionController = function(listID) {
     let self = {
         list: null,
         checkboxStates: {},
+        attributes : ["AgeAtTx", "Gender", "Race","Smoking Status","HPV/P16",
+         "T-category", "N-category","Tumor Subsite","Therapeutic combination"],
         // patientWithGroups: {}
     };
 
-    init();
-
     function init() {
-        let attributes = App.patientKnnAttributes;
+        d3.selectAll("#kiviatKnnController").remove();
+        // console.log(App.controllers.patientSelector.getCurrentPatient())
+        let patientID = App.controllers.patientSelector.getCurrentPatient()
+        // console.log(patientID)
+        if(patientID == null || patientID == 0){
+            patientID = 1
+        }
+        // console.log(patientID)
+        let patientIndex = App.models.patients.getPatientIDFromDummyID(patientID);
+        let subject = App.models.patients.getPatientByID(patientIndex);
+        // console.log(subject)
+        let axesData = App.models.axesModel.getAxesData()
+        // console.log(axesData)
+
+        let attributesList = self.attributes;
+        // console.log(attributesList)
+        let attributes = []
+
+        for(let attr of attributesList){
+            if(subject[axesData[attr].name] != "N/A"){
+                attributes.push(attr)
+            }
+            // console.log(subject[axesData[attr].name])
+        }
+
+        // console.log(attributes)
+        let excluded = App.models.applicationState.getKnnExcludedAttributes();
 
         for (let attribute of attributes) {
-            self.checkboxStates[attribute] = true;
+            if(!excluded.includes(attribute)){
+                self.checkboxStates[attribute] = true;
+            }
         }
+
+        // console.log(self.checkboxStates)
 
         self.list = d3.select(listID);
 
         // console.log(self.list)
         self.list.append("li")
+            .attr("id", "kiviatKnnController")
             .append("div")
             .text("Knn Checkboxes")
             .style("text-align", "center")
@@ -36,13 +67,18 @@ let KNNAttributeSelectionController = function(listID) {
         self.list.selectAll(".checkbox-li")
             .data(attributes)
             .enter().append("li")
+            .attr("id", "kiviatKnnController")
             .attr("class", "checkbox-li")
             .each(function(d, i) {
                 let div = d3.select(this).append("div").attr("class", "checkbox");
 
                 div.append("input")
                     .attr("class", "separated-checkbox")
-                    .attr("checked", true)
+                    .attr("checked", function(d){
+                        if(!excluded.includes(d)){
+                            return true;
+                        }
+                    })
                     .attr("type", "checkbox")
                     .attr("value", d)
                     .attr("id", d)
@@ -57,7 +93,7 @@ let KNNAttributeSelectionController = function(listID) {
                     .text(d);
             });
 
-            let buttonDiv = d3.select(listID).append("div").attr("class", "modal-footer");
+            let buttonDiv = d3.select(listID).append("div").attr("class", "modal-footer").attr("id", "kiviatKnnController");
             buttonDiv.append("button")
                     .attr("class", "btn btn-default dropdown-toggle")
                     .attr("type", "button")
@@ -124,6 +160,7 @@ let KNNAttributeSelectionController = function(listID) {
     // }
 
     return {
+        init,
         updateSelectedCheckboxes,
         // getPatientsForKiviat
     };

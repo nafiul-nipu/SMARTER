@@ -4,19 +4,47 @@ let kiviatAttributeSelectionController = function(listID) {
     let self = {
         list: null,
         checkboxStates: {},
-        // initialChecked : ["AgeAtTx", "Gender", "Race", "T-category", "N-category"],
+        attributes : ["AgeAtTx", "Gender", "Race","Smoking Status","HPV/P16",
+         "T-category", "N-category","Tumor Subsite","Therapeutic combination"],
         kiviatTrigger: false
     };
     
 
-    init();
 
     function init() {
-        let attributes = App.kiviatAttributes;
+        d3.selectAll("#kiviatAxesController").remove();
+        // console.log(App.controllers.patientSelector.getCurrentPatient())
+        let patientID = App.controllers.patientSelector.getCurrentPatient()
+        // console.log(patientID)
+        if(patientID == null || patientID == 0){
+            patientID = 1
+        }
+        // console.log(patientID)
+        let patientIndex = App.models.patients.getPatientIDFromDummyID(patientID);
+        let subject = App.models.patients.getPatientByID(patientIndex);
+        // console.log(subject)
+        let axesData = App.models.axesModel.getAxesData()
+        // console.log(axesData)
+
+        let attributesList = self.attributes;
+        // console.log(attributesList)
+        let attributes = []
+
+        for(let attr of attributesList){
+            if(subject[axesData[attr].name] != "N/A"){
+                attributes.push(attr)
+            }
+            // console.log(subject[axesData[attr].name])
+        }
+
+        // console.log(attributes)
 
         for (let attribute of attributes) {
-            self.checkboxStates[attribute] = true;
+            if(App.kiviatAttributes.includes(attribute)){
+                self.checkboxStates[attribute] = true;
+            }
         }
+        // console.log(self.checkboxStates)
 
         self.list = d3.select(listID);
 
@@ -28,6 +56,7 @@ let kiviatAttributeSelectionController = function(listID) {
         // </button>
 
         self.list.append("li")
+            .attr("id", "kiviatAxesController")
             .append("div")
             .text("Axes Controller")
             .style("text-align", "center")
@@ -44,6 +73,7 @@ let kiviatAttributeSelectionController = function(listID) {
         self.list.selectAll(".checkbox-li")
             .data(attributes)
             .enter().append("li")
+            .attr("id", "kiviatAxesController")
             .attr("class", "checkbox-li")
             // .attr("height", "100%")
             .each(function(d, i) {
@@ -51,7 +81,12 @@ let kiviatAttributeSelectionController = function(listID) {
 
                 div.append("input")
                     .attr("class", "separated-checkbox")
-                    .attr("checked", true)
+                    .attr("checked", function(d){
+                        // console.log(d)
+                        if(subject[axesData[d].name] != "N/A"){
+                            return true;
+                        }
+                    })
                     .attr("type", "checkbox")
                     .attr("value", d)
                     .attr("id", "kiviatAttrCheck" + d)
@@ -65,7 +100,7 @@ let kiviatAttributeSelectionController = function(listID) {
                     .text(d);
             });
 
-            let buttonDiv = d3.select(listID).append("div").attr("class", "modal-footer");
+            let buttonDiv = d3.select(listID).append("div").attr("class", "modal-footer").attr("id", "kiviatAxesController");
             buttonDiv.append("button")
                     .attr("class", "btn btn-default dropdown-toggle")
                     .attr("type", "button")
@@ -143,6 +178,7 @@ let kiviatAttributeSelectionController = function(listID) {
 
     return {
         // updateSelectedCheckboxes
+        init,
         getKiviatTrigger,
         setKiviatTrigger
     };

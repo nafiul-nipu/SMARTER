@@ -104,6 +104,8 @@ let PatientSelectorController = function() {
         updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
         App.controllers.nomoPredictionInfo.subjectPredictions(updatedPatients.subject);
+        App.controllers.kiviatAttrSelector.init();
+        App.controllers.knnAttrSelector.init();
 
         // console.log(updatedPatients)
         return updatedPatients;

@@ -101,7 +101,9 @@ less.pageLoadFinished.then(function() {
         App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
 
         App.controllers.knnAttrSelector = new KNNAttributeSelectionController("#knnAttributesControl");
+        App.controllers.knnAttrSelector.init();
         App.controllers.kiviatAttrSelector = new kiviatAttributeSelectionController("#kiviatAttributesControl");
+        App.controllers.kiviatAttrSelector.init();
 
         App.controllers.nomogramAxis = new NomogramAxisController();
         App.controllers.nomogramAxis.attachToList("#nomogramVisibilityControl");
