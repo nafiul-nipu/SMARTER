@@ -107,7 +107,7 @@ let PatientModel = function() {
     // if new patient added update the predictions
     function update_prediction_values(predictedValues){
         
-        // console.log(predictedValues)
+        // console.log(predictedValues[0])
         let keys = Object.keys(self.patients)
         for(let key in keys){
             for(let i = 0; i < predictedValues[0].length; i++){

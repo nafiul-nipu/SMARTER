@@ -1,22 +1,5 @@
-from flask import Flask,jsonify, request
-from flask_cors import CORS, cross_origin
-import pandas as pd
-from pandas import DataFrame
-import rpy2
-import rpy2.robjects as robjects
-from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
-
-app = Flask(__name__)
-CORS(app)
-
-@app.route("/output", methods=['GET', 'POST'])
-@cross_origin()
-def output():
-    data = request.json
-    new_data = data
-
-    robjects.r('''
-    test <- function(value){
+robjects.r('''
+   with_therap <- function(value){
         # this is the prediction R code
         ## Toxicities: survival, feeding tube, aspiration
         # Outputs: predicted toxicity probability for each patient, 
@@ -28,64 +11,73 @@ def output():
         # library(survival)
         # library(tidyverse)
         # library(purrr)
-
-
         if(!require("pacman")) install.packages("pacman")
         pacman::p_load(pacman, survival, tidyverse)
 
         ### set file directory
-        ## Modify this to correct file location 
-        #file.dir <- "/users/shannonmck/Box/SMART/SMART database/Training set_version1.3/"
-
-        ### load data
-        #OPC <- read.csv(paste0(file.dir, 
-        #                       "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
-
-        OPC <- read.csv("../data/newdata.csv")
+	## Modify this to correct file location 
+	#file.dir <- "D:\\dblab\\research\\opc_validation\\data\\"
+	file.dir <- "../data/"     
+	### load data
+	#OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
+	        
+	
+	OPC <- read.csv("../data/newdata.csv")
         #length(unique(OPC$Dummy.ID))
+        OPC_rad <- read.csv(paste0(file.dir, "OPC_RADClusters.csv")) ##Read the clusters 
+        
+        OPC_merged <- merge(OPC, OPC_rad, by.x = "Dummy.ID", by.y="Dummy.ID", all.x=TRUE, sort=FALSE)                
+        OPC_merged$RAD <- as.factor(OPC_merged$RAD)
+        
 
         ###############################
         ##### Clean clinical data #####
         ###############################
         ## remove duplicates
         #take the values to a dataframe
-        OPC_final <- OPC
-
+        OPC_final <- OPC_merged[!is.na(OPC_merged$Dummy.ID),]
+        
         # taking the value as a data frame
         result <- as.data.frame(value)
-
-        # if this is an existing patient adding to the existing list
+        ##GC: added this mutate because the numeric values where coming in as characters
+        result <- mutate(result, OS..Calculated. = as.numeric(OS..Calculated.),
+                          Overall.Survival..1.alive..0.dead. = as.numeric(Overall.Survival..1.alive..0.dead.),
+                          Regional.control..Time. = as.numeric(Regional.control..Time.),
+                          Total.dose = as.numeric(Total.dose),
+                          Locoregional.control..Time. = as.numeric(Locoregional.control..Time.),
+                          FDM..months. = as.numeric(FDM..months.),
+                          Locoregional.Control.1.Control.0.Failure. = as.numeric( Locoregional.Control.1.Control.0.Failure.),
+                          Distant.Control..1.no.DM..0.DM. = as.numeric(Distant.Control..1.no.DM..0.DM.),
+                          Feeding.tube.6m = as.character(ifelse(is.na(Feeding.tube.6m),"N",Feeding.tube.6m)) )
+        result[is.na(result$OS..Calculated.),"OS..Calculated."] <- 0
+        result[is.na(result$Overall.Survival..1.alive..0.dead.),"Overall.Survival..1.alive..0.dead."] <- 1
+        # if this is an existing patient, remove it from the existing list
+        result[is.na(result$Regional.control..Time.),"Regional.control..Time."]<-0
+        result[is.na(result$Locoregional.control..Time.),"Locoregional.control..Time."]<-0
+        result[is.na(result$FDM..months.),"FDM..months."]<- 0
+        result[is.na(result$Locoregional.Control.1.Control.0.Failure. ),"Locoregional.Control.1.Control.0.Failure."]<-1
+        result[is.na(result$Distant.Control..1.no.DM..0.DM.),"Distant.Control..1.no.DM..0.DM."]<- 1
+        
+        result <- mutate(result, RAD=NA)
 
         existing_patient <- FALSE
-        for(row in row.names(OPC_final)){
-            if(OPC_final[row, "Dummy.ID"] == result["Dummy.ID"]){
-                existing_patient <- TRUE
-                for(column in colnames(OPC_final)){
-                    OPC_final[row,column] <- result[column]
-                }
-            }
+        if (result["Dummy.ID"] %in% OPC_final$Dummy.ID) {
+            existing_patient <- TRUE
+            OPC_final <- OPC_final[-which(OPC_final$Dummy.ID == result$Dummy.ID), ]
         }
 
-        #if not adding a new patient
-        if(existing_patient == FALSE){
-            new_row <- as.numeric(row) + 1
-            for(column in colnames(OPC_final)){
-                if(column %in% names(result)){
-                    OPC_final[as.character(new_row) , column] <- result[column]
-                }
-                # else{
-                #     #adding N/A for missing values
-                #     #already checked this once in the js code.. double check
-                #     OPC_final[as.character(new_row), column] <- 'N/A'  #OPC_final["1", column]
-                # }
-            }
-        }
-        
-        #takin first to forty colums
-        OPC_final_clinic <- OPC_final[, c(1:40)]
+        #taking first to forty colums
+        OPC_final_clinic <- OPC_final[, c(1:39, ncol(OPC_final))] ###Will change this for radiomics
+        result <- result[, colnames(result) %in% c(colnames(OPC_final_clinic),"RAD")] ##Only leave the matching columns
+        OPC_final_clinic <- rbind(OPC_final_clinic,result)
+
+        #OPC_final_clinic[nrow(OPC_final_clinic) + 1,1:25] = result[,1:25]
         #making some new values using mutate
         OPC_final_clinic <- mutate(OPC_final_clinic, 
                                    ajcc_stage = as.character(AJCC.8th.edition),
+                                   ###GC: ADD Change Tis and Tx to T1 so we end up with 4 levels of T.category
+                                   T.category = ifelse (T.category%in%c("Tis","Tx"),"T1",as.character(T.category)),
+                                   ##### End of ADD
                                    #t3 and t4 will be 1 and everything will be 0
                                    T.category34 = ifelse(T.category == "T3" | T.category == "T4", 1, 0),
                                    # n2 and n3 will be 1 and everything will be 0
@@ -111,7 +103,12 @@ def output():
         #write.csv(OPC_final_clinic, file="opc_final_clinic_after_mutation.csv")
 
         #renaming the values 
-
+        ###GC: ADD Made therapeutic combination a factor to avoid droplevel/relevel errors
+        OPC_final_clinic <- mutate(OPC_final_clinic, 
+                                   Therapeutic.combination = as.factor(Therapeutic.combination),
+                                   RAD = as.factor(RAD))
+        ###GC: end of ADD 
+        
         levels(OPC_final_clinic$smoke )[levels(OPC_final_clinic$smoke )=="Formar"] <- "Former"
         levels(OPC_final_clinic$T.category)[levels(OPC_final_clinic$T.category)=="Tis"] <- "T1"
         levels(OPC_final_clinic$T.category)[levels(OPC_final_clinic$T.category)=="Tx"] <- "T1"
@@ -120,6 +117,8 @@ def output():
 
         ## 6 blanks for feeding tube - omit
         #removing feeding tube that does not have any value
+        #GC: Commented this line so the patients are not removed from the master file but rather will filter 
+        #when building the model
         OPC_final_clinic <- OPC_final_clinic[OPC_final_clinic$Feeding.tube.6m!="",]
         #write.csv(OPC_final_clinic, file="omitting.csv")
         #as we removed some values above, we fixed the counter for therapeutic combination
@@ -137,9 +136,27 @@ def output():
 
         #levels(OPC_final_clinic$Therapeutic.combination)
         ## select covariates to include
-        rel_vars <- c("Therapeutic.combination","Gender", "age", "HPV.P16.status", "T.category", "N.category",
-                      "smoke", "white", "pack_year","tumor_subsite","neck_boost","neck_dissection")
+        pp <- result #OPC_final_clinic[nrow(OPC_final_clinic),]
+        all_vars <- c("Therapeutic.combination","Gender", "age", "HPV.P16.status", 
+                      "T.category", "N.category",
+                      "smoke", "white", "pack_year","tumor_subsite", "Total.dose")
+        #GC: Remove neck_boost and neck_dissection as they are not available before treatment;
+        # added Tota.dose
+        #,"neck_boost","neck_dissection")
+        sel_var <- c(!is.na(pp$Therapeutic.combination), !is.na(pp$Gender),
+                     !is.na(pp$Age.at.Diagnosis..Calculated.),!is.na(pp$HPV.P16.status),
+                     !is.na(pp$T.category),!is.na(pp$N.category),
+                     !is.na(pp$Smoking.status.at.Diagnosis..Never.Former.Current.),
+                     !is.na(pp$Race),
+                     !is.na(pp$Smoking.status.at.Diagnosis..Never.Former.Current.),
+                     !is.na(pp$Tumor.subsite..BOT.Tonsil.Soft.Palate.Pharyngeal.wall.GPS.NOS.),
+                     !is.na(pp$Total.dose))
+                     
+#                    !is.na(pp$age), !is.na(pp$HPV.P16.status), !is.na(pp$T.category), !is.na(pp$N.category),
+#                    !is.na(pp$smoke), !is.na(pp$white), !is.na(pp$pack_year), !is.na)
+        rel_vars <- all_vars[sel_var]
 
+        
         ########################################
         ##### Feeding tube: binary outcome #####
         ########################################
@@ -171,8 +188,20 @@ def output():
         #print(fmla_ft)
         #applying generalized linear model
         #glm(formula, data, family) -- need to find the mathemetics for JS
-        fit_ft <- glm(fmla_ft, data=OPC_final_clinic, family="binomial")
-
+        #GC: exclude the last patient when training the model...only used for prediction
+        fit_ft <- glm(fmla_ft, data=OPC_final_clinic[-nrow(OPC_final_clinic),], family="binomial")
+        preds_ft <- predict(fit_ft, newdata=OPC_final_clinic, type = "response")
+        
+        ##Predict for RAD clusters        
+        fmla_ftRAD <- as.formula(paste0("feeding_tube ~",paste0(rel_vars,collapse="+"),"+RAD"))
+        fit_ftRAD <- glm(fmla_ftRAD, data=OPC_final_clinic[-nrow(OPC_final_clinic),], family="binomial")
+        ##Predict for each cluster
+        testPatient <- OPC_final_clinic[nrow(OPC_final_clinic),]
+        testPatient <- rbind(testPatient, testPatient, testPatient)
+        testPatient$RAD <- as.factor(c(1,2,3))
+        preds_ftRAD <- predict(fit_ftRAD, newdata=testPatient, type = "response")
+        preds_ftRAD <- c(preds_ftRAD, preds_ft[length(preds_ft)])
+        
         ######################################
         ##### Aspiration: binary outcome #####
         ######################################
@@ -182,9 +211,24 @@ def output():
         OPC_final_clinic$tumor_subsite <- relevel(OPC_final_clinic$tumor_subsite,"BOT")
         ## Logistic regression model with main effects
         fmla_asp <- as.formula(paste0("aspiration ~",paste0(rel_vars,collapse="+")))
-        fit_asp <- glm(fmla_asp,data=OPC_final_clinic,family="binomial")
+        #GC: exclude the last patient when training the model...only used for prediction
+        fit_asp <- glm(fmla_asp,data=OPC_final_clinic[-nrow(OPC_final_clinic),],family="binomial")
+        preds_asp <- predict(fit_asp, newdata=OPC_final_clinic, type = "response")
+        
         ## note high correlation between 2 binary outcomes 
-
+        
+        ##Predict for RAD clusters       
+        fmla_aspRAD <- as.formula(paste0("aspiration ~",paste0(rel_vars,collapse="+"),"+RAD"))
+        fit_aspRAD <- glm(fmla_aspRAD, data=OPC_final_clinic[-nrow(OPC_final_clinic),], family="binomial")
+        ##Predict for each cluster
+        testPatient <- OPC_final_clinic[nrow(OPC_final_clinic),]
+        testPatient <- rbind(testPatient, testPatient, testPatient)
+        testPatient$RAD <- as.factor(c(1,2,3))
+        preds_aspRAD <- predict(fit_aspRAD, newdata=testPatient, type = "response")
+        preds_aspRAD <- c(preds_aspRAD, preds_asp[length(preds_asp)])
+        
+        
+        
         ######################################
         ##### Survival: censored outcome #####
         ######################################
@@ -195,10 +239,11 @@ def output():
         ## Add survival time and indicator variables to dataset for OS 
         OPC_final_surv <- OPC_final_clinic
         OPC_final_surv <- mutate(OPC_final_surv, 
-                                 survtime = OS..Calculated.,
+                                 survtime = as.numeric(OS..Calculated.),
                                  survind = 1 - Overall.Survival..1.alive..0.dead.)
         ## remove extraneous variables for analysis
-        OPC_final_surv <- select(OPC_final_surv, Dummy.ID, rel_vars,survtime,survind)
+        #GC: Commented out this line because now that rel_vars is computed I do not want to filter the rest
+        #OPC_final_surv <- select(OPC_final_surv, Dummy.ID, rel_vars,survtime,survind)
 
         ## Relevel factor variables to yield positive coefficients
         OPC_final_surv$Therapeutic.combination <- relevel(OPC_final_surv$Therapeutic.combination,"IC+Radiation alone")
@@ -228,30 +273,39 @@ def output():
 
         ### design matrix
         #model matrix make the factor values as values in a matrix
-        design.OPC <- data.frame(model.matrix(~Therapeutic.combination,data=OPC_final_surv)[,2:4],
-                                 t(t(model.matrix(~Gender, data=OPC_final_surv)[,2])),
-                                 OPC_final_surv$age, 
-                                 model.matrix(~HPV.P16.status+T.category+N.category+smoke+white, data=OPC_final_surv)[,2:12],
-                                 OPC_final_surv$pack_year,
-                                 model.matrix(~tumor_subsite+neck_boost+neck_dissection, data=OPC_final_surv)[,2:5])
+        # design.OPC <- data.frame(model.matrix(~Therapeutic.combination,data=OPC_final_surv)[,2:4],
+        #                          t(t(model.matrix(~Gender, data=OPC_final_surv)[,2])),
+        #                          OPC_final_surv$age, 
+        #                          model.matrix(~HPV.P16.status+T.category+N.category+smoke+white, data=OPC_final_surv)[,2:12],
+        #                          OPC_final_surv$pack_year,
+        #                          model.matrix(~tumor_subsite+neck_boost+neck_dissection, data=OPC_final_surv)[,2:5])
         #head(model.matrix(~Gender, data=OPC_final_surv)[,2])
         #head(t(t(model.matrix(~Gender, data=OPC_final_surv)[,2])))
-
-        ## predictions for each participant 
-        # %*% is matrix multiplication
-        # exp is exponential function
-        preds_os <- exp(-h0_5yr)^exp((as.matrix(design.OPC))%*%(matrix(fit_os$coefficients)))
-
+        
+        preds_os <- t(summary(survfit(fit_os, newdata = OPC_final_surv, se.fit = F, conf.int = F), 
+                               time = 60)$surv)
+        
+        ##Build the model using the radiomics cluster
+        fmla_survRAD <- as.formula(paste0("Surv(survtime, survind) ~",paste0(rel_vars,collapse="+"),"+RAD"))
+        fit_osRAD <- coxph(fmla_survRAD, data=OPC_final_surv)
+        ##Predict for each cluster
+        testPatient <- OPC_final_surv[nrow(OPC_final_surv),]
+        testPatient <- rbind(testPatient, testPatient, testPatient, testPatient)
+        testPatient$RAD <- as.factor(c(1,2,3,NA))
+        preds_osRAD <- t(summary(survfit(fit_osRAD, newdata = testPatient, 
+                                         se.fit = F, conf.int = F), 
+                                 time = 60)$surv)
+        preds_osRAD <- c(preds_osRAD, preds_os[length(preds_os)])
         #same process
         ## Repeat for progression-free survival outcome
         OPC_final_pfs <- OPC_final_clinic
-        OPC_final_pfs <- mutate(OPC_final_clinic, 
+        OPC_final_pfs <- mutate(OPC_final_pfs, 
                                 #pmin sends the minimum value between the two
                                 survtime = pmin(Locoregional.control..Time., FDM..months.),
                                 survind = ifelse((Locoregional.control..Time. == survtime)*
                                                    (1 - Locoregional.Control.1.Control.0.Failure.) +
                                                    (FDM..months. == survtime)*(1 - Distant.Control..1.no.DM..0.DM.) > 0 , 1, 0))
-        OPC_final_pfs <- select(OPC_final_pfs, Dummy.ID, rel_vars,survtime,survind)
+        #OPC_final_pfs <- select(OPC_final_pfs, Dummy.ID, rel_vars,survtime,survind)
 
         ## Relevel factor variables to yield positive coefficients
         OPC_final_pfs$Therapeutic.combination <- relevel(OPC_final_pfs$Therapeutic.combination,"IC+Radiation alone")
@@ -268,20 +322,21 @@ def output():
         ## fit Cox proportional hazards model
         fit_pfs <- coxph(fmla_surv, data=OPC_final_pfs)
 
-        ## baseline hazard 
-        h0_5yr_pfs <- max(basehaz(fit_pfs, centered=FALSE)[basehaz(fit_pfs)$time<=60,]$haz)
-        baseline_haz_pfs <- exp(-h0_5yr_pfs)
-
-        ### design matrix
-        design.OPC_pfs <- data.frame(model.matrix(~Therapeutic.combination,data=OPC_final_pfs)[,2:4],
-                                     t(t(model.matrix(~Gender, data=OPC_final_pfs)[,2])),
-                                     OPC_final_pfs$age, 
-                                     model.matrix(~HPV.P16.status+T.category+N.category+smoke+white, data=OPC_final_pfs)[,2:12],
-                                     OPC_final_pfs$pack_year,
-                                     model.matrix(~tumor_subsite+neck_boost+neck_dissection, data=OPC_final_pfs)[,2:5])
-        ## predictions for each participant
-        preds_pfs <- exp(-h0_5yr_pfs)^exp((as.matrix(design.OPC_pfs))%*%(matrix(fit_pfs$coefficients)))
-
+        preds_pfs <- t(summary(survfit(fit_pfs, newdata = OPC_final_pfs, se.fit = F, conf.int = F), 
+                                        time = 60)$surv)
+        
+        
+        ##Build the model using the radiomics cluster
+        fit_pfsRAD <- coxph(fmla_survRAD, data=OPC_final_pfs)
+        ##Predict for each cluster
+        testPatient <- OPC_final_pfs[nrow(OPC_final_pfs),]
+        testPatient <- rbind(testPatient, testPatient, testPatient, testPatient)
+        testPatient$RAD <- as.factor(c(1,2,3,NA))
+        preds_pfsRAD <- t(summary(survfit(fit_pfsRAD, newdata = testPatient, 
+                                         se.fit = F, conf.int = F), 
+                                 time = 60)$surv)
+        preds_pfsRAD <- c(preds_pfsRAD, preds_pfs[length(preds_pfs)])
+        
         ##########################
         ##### Compile Output #####
         ##########################
@@ -290,34 +345,47 @@ def output():
         # id_list <- id_list_data$Dummy.ID
 
         final_preds <- data.frame(ID=OPC_final_clinic$Dummy.ID, 
-                                  feeding_tube_prob = fit_ft$fitted.values,
-                                  aspiration_prob = fit_asp$fitted.values,
+                                  feeding_tube_prob = preds_ft,
+                                  aspiration_prob = preds_asp,
                                   overall_survival_5yr_prob = preds_os,
-                                  progression_free_5yr_prob = preds_pfs)
+                                  progression_free_5yr_prob = preds_pfs,
+                                  FT= OPC_final_clinic$Feeding.tube.6m,
+                                  AR=OPC_final_clinic$Aspiration.rate.Y.N.,
+                                  OStime = OPC_final_surv$survtime,
+                                  OSind = OPC_final_surv$survind,
+                                  PFStime = OPC_final_pfs$survtime,
+                                  PFSind = OPC_final_pfs$survind
+                                  )
         #write.csv(final_preds, file="Risk_preds.csv")
-
-        final_preds
+        rad_preds <- data.frame(ID=testPatient$Dummy.ID,
+                                RAD=testPatient$RAD,
+                                feeding_tube_prob = preds_ftRAD,
+                                aspiration_prob = preds_aspRAD,
+                                overall_survival_5yr_prob = preds_osRAD,
+                                progression_free_5yr_prob = preds_pfsRAD)
+        
+        ##These generate the cox odds ratio figure for OS and PFS
+        
+        png(filename=paste0(file.dir,"CoxForest_OS.png"), height = 1000, width = 750)
+	print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
+	dev.off()
+	png(filename=paste0(file.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
+	print(survminer::ggforest(fit_pfs, data=OPC_final_pfs, fontsize = 1.3))
+        dev.off()
+        # png(filename=paste0(file.dir,"CoxForest_OS_RAD.png"))#, height = 1000, width = 750)
+        # print(survminer::ggforest(fit_osRAD, data=OPC_final_surv, fontsize = .9))
+        # dev.off()
+        # png(filename=paste0(file.dir,"CoxForest_PFS_RAD.png"))#, height = 1000, width = 750)
+        # print(survminer::ggforest(fit_pfsRAD, data=OPC_final_pfs, fontsize = .9))
+        # dev.off()
+        
+        results<-list("final_preds"=final_preds, "RAD_preds"=rad_preds)
 
         #write.csv(final_weights, file="Risk_pred_model_coefficients.csv")
 
-    }
+  }
 
-    ''')
+  ''')
 
-    # converting to R dataframe
-    val = robjects.DataFrame(new_data)
-    prediction_function = robjects.r['test']
-    result = prediction_function(val)
-    # ty = str(type(result))    
-    # converting the dataframe to a multi-dimentional array
-    # initialize multi-array  
-    prediction = [ [ 0 for y in range(len(result[0])) ] for x in range( len(result)) ]     
-    # print(len(result[0]))
-    for i in range(len(result)):
-        for j in range(len(result[0])):
-            prediction[i][j] = result[i][j]
-    
-    return jsonify(prediction)
 
-if __name__ == "__main__":
-    app.run()
+ 
