@@ -176,7 +176,9 @@ let KiviatDiagramView = function(targetID) {
         // console.log(patients.neighbors);
 
         self.groupPatients = patients;
+        
         if(App.controllers.kiviatAttrSelector.getKiviatTrigger()){
+            console.log(App.kiviatAttributes)
             // console.log("kiviat axes control")
             // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
             App.controllers.kiviatAttrSelector.setKiviatTrigger(false);
@@ -220,6 +222,7 @@ let KiviatDiagramView = function(targetID) {
                     }
                 }
             }
+            console.log(App.kiviatAttributes)
 
             self.subjectElement.select("svg").remove();
             self.subjectElement.select("div").remove();

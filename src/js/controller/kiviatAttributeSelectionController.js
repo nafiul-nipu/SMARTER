@@ -40,9 +40,9 @@ let kiviatAttributeSelectionController = function(listID) {
         // console.log(attributes)
 
         for (let attribute of attributes) {
-            if(App.kiviatAttributes.includes(attribute)){
+            // if(App.kiviatAttributes.includes(attribute)){
                 self.checkboxStates[attribute] = true;
-            }
+            // }
         }
         // console.log(self.checkboxStates)
 
@@ -55,6 +55,7 @@ let kiviatAttributeSelectionController = function(listID) {
         //   <span aria-hidden="true">&times;</span>
         // </button>
 
+        // console.log(attributes)
         self.list.append("li")
             .attr("id", "kiviatAxesController")
             .append("div")
