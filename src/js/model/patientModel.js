@@ -378,7 +378,7 @@ let PatientModel = function() {
        over a subset of patientAttributes */
     function similarityScore(patientID, subjectID, knnAttributes) {
         let score = 0;
-        let outOf = 0;
+        let outOf = 1;
 
         // console.log("Subject iD" , subjectID)
         
