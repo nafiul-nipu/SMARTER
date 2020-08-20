@@ -12,7 +12,15 @@ conda install -c anaconda flask
 conda install -c anaconda flask-cors
      d. pandas
 conda install -c anaconda pandas
+ 	e. numpy
+conda install -c anaconda numpy
+	
 
+
+maybe ... pacman, survminer. broom
+https://anaconda.org/r/r-pacman
+https://anaconda.org/conda-forge/r-survminer
+https://anaconda.org/conda-forge/r-broom
 
 run this server
 

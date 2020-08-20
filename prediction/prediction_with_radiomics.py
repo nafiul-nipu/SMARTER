@@ -32,7 +32,7 @@ def output():
             # library(tidyverse)
             # library(purrr)
             if(!require("pacman")) install.packages("pacman")
-            pacman::p_load(pacman, survival, tidyverse,survminer)
+            pacman::p_load(pacman, survival, tidyverse)
 
             ### set file directory
             ## Modify this to correct file location 
@@ -412,7 +412,7 @@ def output():
             # library(tidyverse)
             # library(purrr)
             if(!require("pacman")) install.packages("pacman")
-            pacman::p_load(pacman, survival, tidyverse,survminer)
+            pacman::p_load(pacman, survival, tidyverse)
 
             ### set file directory
             ## Modify this to correct file location 
