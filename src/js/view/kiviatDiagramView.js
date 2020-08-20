@@ -120,6 +120,7 @@ let KiviatDiagramView = function(targetID) {
             // .append("h5")
             .style("text-align", "center")
             .text("Spatial Information")
+            .style("padding-top", "15%")
             // .attr("class", "viewTitleDiv")
 
         //initially it will be N/A
@@ -133,7 +134,7 @@ let KiviatDiagramView = function(targetID) {
         
         let spatialInformation = self.legendElement.append("div")
                                      .attr("preserveAspectRatio", "xMidYMid")
-                                     .style("padding-left", "25%")
+                                     .style("padding-left", "18%")
         for(let i = 0 ; i < textName.length ; i ++ ){
             spatialInformation.append("a")
                 .attr("href", "#")

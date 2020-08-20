@@ -366,9 +366,9 @@ def output():
             #             
             ##These generate the cox odds ratio figure for OS and PFS
             
-            #png(filename=paste0(file.dir,"CoxForest_OS.png"), height = 1000, width = 750)
-            #print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
-            #dev.off()
+            # png(filename=paste0(file.dir,"CoxForest_OS.png"), height = 1000, width = 750)
+            # print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
+            # dev.off()
             #png(filename=paste0(file.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
             #print(survminer::ggforest(fit_pfs, data=OPC_final_pfs, fontsize = 1.3))
             #dev.off()
