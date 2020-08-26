@@ -137,7 +137,7 @@ let KiviatDiagramView = function(targetID) {
                                      .style("padding-left", "18%")
         for(let i = 0 ; i < textName.length ; i ++ ){
             spatialInformation.append("a")
-                .attr("href", "#")
+                .attr("href", "Lymphnode.html")
                 .attr("target", "_blank")
                 .attr("id", idName[i])
                 .append("button")
@@ -223,7 +223,7 @@ let KiviatDiagramView = function(targetID) {
                     }
                 }
             }
-            console.log(App.kiviatAttributes)
+            // console.log(App.kiviatAttributes)
 
             self.subjectElement.select("svg").remove();
             self.subjectElement.select("div").remove();

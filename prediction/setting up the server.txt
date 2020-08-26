@@ -14,6 +14,9 @@ conda install -c anaconda flask-cors
 conda install -c anaconda pandas
  	e. numpy
 conda install -c anaconda numpy
+	f. add pacman
+	g. add survminer
+	h. add broom
 	
 
 

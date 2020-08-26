@@ -37,7 +37,8 @@ def output():
             ### set file directory
             ## Modify this to correct file location 
             #file.dir <- "D:\\dblab\\research\\opc_validation\\data\\"
-            file.dir <- "../data/"     
+            file.dir <- "../data/"    
+            png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
@@ -366,16 +367,16 @@ def output():
             #             
             ##These generate the cox odds ratio figure for OS and PFS
             
-            # png(filename=paste0(file.dir,"CoxForest_OS.png"), height = 1000, width = 750)
-            # print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
-            # dev.off()
-            #png(filename=paste0(file.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
+            png(filename=paste0(png.dir,"CoxForest_OS.png"), height = 1000, width = 750)
+            print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
+            dev.off()
+            #png(filename=paste0(png.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
             #print(survminer::ggforest(fit_pfs, data=OPC_final_pfs, fontsize = 1.3))
             #dev.off()
-            # png(filename=paste0(file.dir,"CoxForest_OS_RAD.png"))#, height = 1000, width = 750)
+            # png(filename=paste0(png.dir,"CoxForest_OS_RAD.png"))#, height = 1000, width = 750)
             # print(survminer::ggforest(fit_osRAD, data=OPC_final_surv, fontsize = .9))
             # dev.off()
-            # png(filename=paste0(file.dir,"CoxForest_PFS_RAD.png"))#, height = 1000, width = 750)
+            # png(filename=paste0(png.dir,"CoxForest_PFS_RAD.png"))#, height = 1000, width = 750)
             # print(survminer::ggforest(fit_pfsRAD, data=OPC_final_pfs, fontsize = .9))
             # dev.off()
 
@@ -418,6 +419,7 @@ def output():
             ## Modify this to correct file location 
             #file.dir <- "D:\\dblab\\research\\opc_validation\\data\\"
             file.dir <- "../data/"     
+            png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
@@ -731,16 +733,16 @@ def output():
             #             
             ##These generate the cox odds ratio figure for OS and PFS
             
-            #png(filename=paste0(file.dir,"CoxForest_OS.png"), height = 1000, width = 750)
-            #print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
-            #dev.off()
-            #png(filename=paste0(file.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
+            png(filename=paste0(png.dir,"CoxForest_OS.png"), height = 1000, width = 750)
+            print(survminer::ggforest(fit_os, data=OPC_final_surv, fontsize = 1.3))
+            dev.off()
+            #png(filename=paste0(png.dir,"CoxForest_PFS.png"), height = 1000, width = 750)
             #print(survminer::ggforest(fit_pfs, data=OPC_final_pfs, fontsize = 1.3))
             #dev.off()
-            # png(filename=paste0(file.dir,"CoxForest_OS_RAD.png"))#, height = 1000, width = 750)
+            # png(filename=paste0(png.dir,"CoxForest_OS_RAD.png"))#, height = 1000, width = 750)
             # print(survminer::ggforest(fit_osRAD, data=OPC_final_surv, fontsize = .9))
             # dev.off()
-            # png(filename=paste0(file.dir,"CoxForest_PFS_RAD.png"))#, height = 1000, width = 750)
+            # png(filename=paste0(png.dir,"CoxForest_PFS_RAD.png"))#, height = 1000, width = 750)
             # print(survminer::ggforest(fit_pfsRAD, data=OPC_final_pfs, fontsize = .9))
             # dev.off()
 

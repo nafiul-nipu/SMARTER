@@ -42,7 +42,7 @@ let StatsView = function () {
     function setDendrogramButtons(pid) {
         // Tim's work currently hosted using GH pages.
         // let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
-        let url = `Lymphnode.html`
+        let url = "Lymphnode.html"
         // document.getElementById("dendrogramlinker").removeAttribute("class");
         self.dendrogramButton
             .attr("href", url);

@@ -27,11 +27,9 @@ let PreditictionAttributeModal = function(){
                 list = list + "<li>" + attribute + "</li>"
             }
         }
-        list = list + "</ul>"
-
-        // let list = "<ul> <li>" + subjectID + "</li>"+
-        //                 "<li>" + subjectIndexID + "</li>" +
-        //                 "<li>" + patient + "</li>" + "</ul>" 
+        list = list + "</ul> <br>"
+        /* +
+        "<img src='file:///D:/01. PhD Research/Qubbd-smarter/png/CoxForest_OS.png' alt='PNG' width='500' height='600'>"*/
 
         $("#featureModelsBody").html(list);
         
