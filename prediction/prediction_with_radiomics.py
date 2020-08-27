@@ -836,11 +836,15 @@ def output():
 @app.route("/picture", methods=['GET', 'POST'])
 @cross_origin()
 def picture():
+    # data = request.json
     # response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     # response.headers['Cache-Control'] = 'public, max-age=0'
     CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
     app.config['CLIENT_IMAGES'] = CLIENT_IMAGES
     filename = 'CoxForest_OS.png'
+    print(send_from_directory(app.config['CLIENT_IMAGES'],
+                               filename, as_attachment=True))
+
     return send_from_directory(app.config['CLIENT_IMAGES'],
                                filename, as_attachment=True)
 
