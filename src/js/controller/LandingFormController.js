@@ -93,8 +93,8 @@ let LandingFormController = function() {
                         }
 
                     }
-                    // makeing list of attributes used in the prediction
-                    App.views.predictionAttributeModal.attribute_List();  
+                    // // makeing list of attributes used in the prediction
+                    // App.views.predictionAttributeModal.attribute_List();  
 
                 }
 

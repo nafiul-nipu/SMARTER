@@ -1,4 +1,4 @@
-from flask import Flask,jsonify, request, send_from_directory
+from flask import Flask,jsonify, request
 from flask_cors import CORS, cross_origin
 import pandas as pd
 import numpy as np
@@ -829,20 +829,6 @@ def output():
                 prediction[i][j] = list1[j]
     
     return jsonify(prediction)
-
-
-
-# this will be used for png
-@app.route("/picture", methods=['GET', 'POST'])
-@cross_origin()
-def picture():
-    # response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    # response.headers['Cache-Control'] = 'public, max-age=0'
-    CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
-    app.config['CLIENT_IMAGES'] = CLIENT_IMAGES
-    filename = 'CoxForest_OS.png'
-    return send_from_directory(app.config['CLIENT_IMAGES'],
-                               filename, as_attachment=True)
 
 if __name__ == "__main__":
     app.run()

@@ -28,10 +28,40 @@ let PreditictionAttributeModal = function(){
             }
         }
         list = list + "</ul> <br>"
-        /* +
-        "<img src='file:///D:/01. PhD Research/Qubbd-smarter/png/CoxForest_OS.png' alt='PNG' width='500' height='600'>"*/
 
-        $("#featureModelsBody").html(list);
+
+        // console.log(list)
+        
+            
+            
+            
+        axios({url: 'http://127.0.0.1:5000/picture',
+             method: 'get',
+             responseType: 'arraybuffer',
+             headers: {'cache-control': "public, max-age=0"}
+                })
+                .then(function (response) {
+                    console.log(response)
+                    // <img id="image">
+                    // let imageNode = document.getElementById('image');
+                    let blob = new Blob(
+                        [response.data], 
+                        {type: response.headers['content-type']}
+                    )
+                    let imgUrl = URL.createObjectURL(blob)
+                    console.log(imgUrl)
+                    list = list + "<img src = '" + imgUrl + "' >"
+                    // console.log(list)
+                    // imageNode.src = imgUrl
+                    $("#featureModelsBody").html(list);
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        // console.log(list)
+        
         
         
     }

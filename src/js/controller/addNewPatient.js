@@ -389,6 +389,9 @@ let AddNewPatient = function() {
                         // console.log(currentPatient)
                         App.controllers.patientSelector.updatePateintDropDown();
                         App.controllers.patientSelector.setPatient(currentPatient);
+
+                        // makeing list of attributes used in the prediction
+                         App.views.predictionAttributeModal.attribute_List(); 
                     // }
 
                 })
