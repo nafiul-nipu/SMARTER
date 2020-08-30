@@ -98,6 +98,7 @@
     <script src="src/js/view/statisticsModalView.js" charset="utf-8"></script>
     <!-- <script src="src/js/view/predictiveProbabilityView.js" charset="utf-8"></script> -->
     <script src="src/js/view/predictionAttributeModal.js" charset="utf-8"></script>
+    <script src="src/js/view/radiomicView.js" charset="utf-8"></script>
 
 
     <script src="src/js/main.js" charset="utf-8"></script>
@@ -406,7 +407,20 @@
             </div>
 
             <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
-              <div id="subjectPrediction"></div>
+              <div class="row">
+                <div class="col-md-4" style="padding-top: 20%;">
+                  <div class="row" style="padding-bottom: 100%;">
+                    <select id="radiomic_dropdown" name="radiomic">
+                      <!-- <option value="" disabled selected>Race </option> -->
+                      <option value="Cluster1">Cluster 1</option>
+                      <option value="Cluster2">Cluster 2</option>
+                      <option value="Cluster3">Cluster 3</option>
+                    </select>
+                  </div>
+                  <div class= "row" id="subjectPrediction"></div>
+                </div>
+                <div class="col-md-8" id="radiomics"></div>
+              </div>
           </div>
             <!-- nomogram control box -->
             <div class="col-md-2 contentWrapper controlDiv nomogramControlsBox">
