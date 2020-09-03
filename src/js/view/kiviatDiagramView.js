@@ -409,8 +409,13 @@ let KiviatDiagramView = function(targetID) {
             .attr("class", "d3-tip")
             .direction("e")
             .html(function(d) {
-                // console.log(d)
-                return d.attr + ": " + d.val;
+                // console.log(d.attr)
+                if(d.attr == "AgeAtTx"){
+                    let age = Math.round(d.val)
+                    return d.attr + ": " + age
+                }else{
+                    return d.attr + ": " + d.val;
+                }
             });
 
         self.centerTip = d3.tip()
@@ -418,8 +423,9 @@ let KiviatDiagramView = function(targetID) {
             .attr("id", "center")
             .direction("e")
             .html(function(d) {
+                let age = Math.round(d.AgeAtTx)
                 // console.log(d.ID, d.AgeAtTx, d[predictionToShow], predictionToShow)
-                return "ID: " + d.ID + "<br>Age: " + d.AgeAtTx + "<br>" + d.predictionToShow + ": " + d["Probability of Survival"];
+                return "ID: " + d.ID + "<br>Age: " + age + "<br>" + d.predictionToShow + ": " + d["Probability of Survival"].toFixed(3);
             });
     }
 

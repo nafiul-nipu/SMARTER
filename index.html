@@ -867,7 +867,14 @@
         </button>
       </div>
       <div class="modal-body" id="featureModelsBody">
-        <img src="imgs/CoxForest_OS_default.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+        <div class="row">
+          <select class="btn btn-outline btn-grey btn-block dropdown-toggle" style="width: 50%;">
+            <option value="OS">Overall Survival (5 year)</option>
+            <option value="PRG">Progression (5 Year)</option>
+          </select>
+        </div>
+        <div class="row" id="featurePicture"></div>
+        <!-- <img src="imgs/CoxForest_OS_default.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"> -->
       </div>
       <div class="modal-footer">
         

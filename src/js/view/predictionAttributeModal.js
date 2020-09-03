@@ -16,22 +16,14 @@ let PreditictionAttributeModal = function(){
     // init();
     
     function attribute_List(){
-        // console.log("prediction modal called")
-        $("#featureModelsBody").empty();
-        // let subjectID = $('.idSelect').val()
-        // let subjectIndexID = App.models.patients.getPatientIDFromDummyID(subjectID);
-        // let patient = App.models.patients.getPatientByID(subjectIndexID)
+        $("#featurePicture").empty();
+        // if(self.default == true){
+
+        // }else{
+
+        // }
 
         let list = ""
-        // for(let attribute of self.attributeList){
-        //     if(patient[attribute] != "N/A" && patient[attribute] != NaN){
-        //         list = list + "<li>" + attribute + "</li>"
-        //     }
-        // }
-        // list = list + "</ul> <br>"
-
-
-        // console.log(list)
         
             
             
@@ -57,7 +49,7 @@ let PreditictionAttributeModal = function(){
                     list = list + "<img src = '" + imgUrl + "' style='width: 100%; display: block; margin-left: auto; margin-right: auto;' >"
                     // console.log(list)
                     // imageNode.src = imgUrl
-                    $("#featureModelsBody").html(list);
+                    $("#featurePicture").html(list);
 
                 })
                 .catch(function (error) {
