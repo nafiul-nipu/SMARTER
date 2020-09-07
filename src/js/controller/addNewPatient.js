@@ -374,7 +374,7 @@ let AddNewPatient = function() {
                 
                 axios.post('http://127.0.0.1:5000/output', {patient: post_data, therap: therapeutic_bool})
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response.data);
                     self.prediction = response.data;
                     //update all the values
                     App.models.patients.update_prediction_values(self.prediction);
@@ -393,6 +393,14 @@ let AddNewPatient = function() {
                         // makeing list of attributes used in the prediction
                          App.views.predictionAttributeModal.attribute_List_Server(); 
                     // }
+
+                    console.log(self.prediction)
+                    let clusterData = []
+                    for(let i = 7 ; i <= 10; i++){
+                        //getting the cluster values
+                        clusterData.push(self.prediction[i])
+                    }
+                    App.views.radiomicView.populateClusterData(clusterData);
 
                 })
                 .catch(function (error) {
