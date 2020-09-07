@@ -53,9 +53,20 @@ let RadiomicView = function(){
 
         let name = ["FDT", "ASP", "PRG", "OS"]
         let full_name = ["feeding tube", "aspiration", "progression", "overall"]
-        // let data = [0.06494370649060044,0.0673236467699309,0.8702396477183327,0.9272890829277212]
-        // let data2 = [(1 - data[0]), (1 - data[1]), (1 - data[2]), (1 - data[3])]
-        // console.log(data2)
+        let colorScale = d3.scaleLinear()
+            .interpolate(d3.interpolateHcl)
+            // .domain([1,0])
+            .range(["#d18161", "#70a4c2"]); 
+
+         // Create the scale
+         let x = d3.scaleLinear()
+         .domain([0, 1])         // This is what is written on the Axis: from 0 to 100
+         .range([30, 120]);       // This is where the axis is placed: from 100px to 800px
+
+        let xAxis = d3
+            .axisBottom()
+            .scale(x)
+            .ticks(5);
 
         for(let i=0; i < 4; i++){
 
@@ -69,16 +80,6 @@ let RadiomicView = function(){
             let svg = bigSvg.append("svg").attr("width", 150)
 
             svg.call(tip)
-
-            // Create the scale
-            let x = d3.scaleLinear()
-                .domain([0, 1])         // This is what is written on the Axis: from 0 to 100
-                .range([30, 120]);       // This is where the axis is placed: from 100px to 800px
-
-            let xAxis = d3
-                .axisBottom()
-                .scale(x)
-                .ticks(5);
             
             svg.append("g").append("text")
             .attr("x", 0)
@@ -100,7 +101,14 @@ let RadiomicView = function(){
                 })
             .attr("cy", (50 + 60 * i) )
             .attr("r", 5)
-            .style("fill", "black")
+            .style("fill", function(){
+                if(name[i] == "FDT" || name[i] == "ASP"){
+                    colorScale.domain([1,0])
+                }else if(name[i] == "OS" || name[i] == "PRG"){
+                    colorScale.domain([0,1])
+                }
+                return colorScale(data[i])
+            })
             .on('mouseover', tip.show)
             .on('mouseout', tip.hide)
             
