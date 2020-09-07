@@ -73,6 +73,7 @@ less.pageLoadFinished.then(function() {
         App.views.statisticsModalView = new StatisticsModalView();
 
         App.views.predictionAttributeModal = new PreditictionAttributeModal();
+        App.views.predictionAttributeModal.attribute_List();
         App.views.radiomicView = new RadiomicView();
         App.views.radiomicView.drawRadiomic()
         // App.views.predictionAttributeModal.attribute_List()

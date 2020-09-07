@@ -10,60 +10,135 @@ let PreditictionAttributeModal = function(){
          "Smoking status (Packs/Year)", 
          "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)", 
          "Total dose"],
-         default: true
+         options: ["Overall Survival (5 year)", "Progression (5 Year)"],
+         values: ["OS", "PRG"]
     }
 
-    // init();
-    
+      //default
     function attribute_List(){
-        $("#featurePicture").empty();
-        // if(self.default == true){
-
-        // }else{
-
-        // }
-
-        let list = ""
+        // $("#featureModelsBody").empty();
+        d3.select("#featureModelSelect")
+            .on("change", function(){
+                console.log( $("#featureModelSelect").val())
+                let value = $("#featureModelSelect").val()
+                if(value == "OS"){
+                    d3.select("#predictionImage")
+                        .attr("src", "imgs/CoxForest_OS_default.png")
+                }else if(value == "PRG"){
+                    d3.select("#predictionImage")
+                        .attr("src", "imgs/CoxForest_PFS_default.png")
+                }
+            }) 
+            .selectAll("option")
+            .data(self.options)
+            .enter().append('option')
+            .attr("value", function(d,i){
+                return self.values[i];
+            })
+            .text(function(d){
+                return d;
+            });           
         
-            
+        d3.select("#featurePicture").append("img")
+            .attr("src", "imgs/CoxForest_OS_default.png")
+            .attr("id", "predictionImage")
+            .style("width", "100%")
+            .style("display", "block")
+            .style("margin-left", "auto")
+
+    }
+
+    //when server is called
+    function attribute_List_Server(){
+        $("#featureModelSelect").empty();
+        d3.select("#featureModelSelect")
+            .on("change", function(){
+                console.log( $("#featureModelSelect").val())
+                let value = $("#featureModelSelect").val()
+                if(value == "OS"){
+                    axios({url: 'http://127.0.0.1:5000/picture',
+                        method: 'post',
+                        responseType: 'arraybuffer',
+                        headers: {'cache-control': "public, max-age=0"},
+                        data: {name: "OS"}
+                            })
+                            .then(function (response) {
+                                // console.log(response)
+                                let blob = new Blob(
+                                    [response.data], 
+                                    {type: response.headers['content-type']}
+                                )
+                                let imgUrl = URL.createObjectURL(blob)
+                                // console.log(imgUrl)
+                                d3.select("#predictionImage")
+                                    .attr("src", imgUrl)
+
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                }else if(value == "PRG"){
+                    axios({url: 'http://127.0.0.1:5000/picture',
+                        method: 'post',
+                        responseType: 'arraybuffer',
+                        headers: {'cache-control': "public, max-age=0"},
+                        data: {name: "PRG"}
+                            })
+                            .then(function (response) {
+                                // console.log(response)
+                                let blob = new Blob(
+                                    [response.data], 
+                                    {type: response.headers['content-type']}
+                                )
+                                let imgUrl = URL.createObjectURL(blob)
+                                // console.log(imgUrl)
+                                d3.select("#predictionImage")
+                                    .attr("src", imgUrl)
+
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                }
+            }) 
+            .selectAll("option")
+            .data(self.options)
+            .enter().append('option')
+            .attr("value", function(d,i){
+                return self.values[i];
+            })
+            .text(function(d){
+                return d;
+            });   
             
             
         axios({url: 'http://127.0.0.1:5000/picture',
-             method: 'get',
+             method: 'post',
              responseType: 'arraybuffer',
              headers: {'cache-control': "public, max-age=0"},
-             data: self.default
+             data: {name: "OS"}
                 })
                 .then(function (response) {
-                    console.log(self.default)
-                    self.default = false
-                    console.log(response)
-                    // <img id="image">
-                    // let imageNode = document.getElementById('image');
+                    // console.log(response)
                     let blob = new Blob(
                         [response.data], 
                         {type: response.headers['content-type']}
                     )
                     let imgUrl = URL.createObjectURL(blob)
-                    console.log(imgUrl)
-                    list = list + "<img src = '" + imgUrl + "' style='width: 100%; display: block; margin-left: auto; margin-right: auto;' >"
-                    // console.log(list)
-                    // imageNode.src = imgUrl
-                    $("#featurePicture").html(list);
+                    // console.log(imgUrl)
+                    d3.select("#predictionImage")
+                        .attr("src", imgUrl)
 
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
 
-        // console.log(list)
-        
-        
-        
     }
 
     return{
-        attribute_List
+        attribute_List,
+        attribute_List_Server
     }
 
 };
