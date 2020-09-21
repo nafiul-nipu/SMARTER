@@ -51,7 +51,7 @@ let RadiomicView = function(){
             .attr("width", 150)
             .attr("height", 300)
 
-        let name = ["FDT", "ASP", "PRG", "OS"]
+        let name = ["FDT", "ASP", "PRS", "OS"]
         let full_name = ["feeding tube", "aspiration", "progression", "overall"]
         let colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)

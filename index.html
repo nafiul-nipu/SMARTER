@@ -408,9 +408,12 @@
 
             <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
               <div class="row">
-                <div class="col-md-4" style="padding-top: 20%;">
-                  <div class="row" style="padding-bottom: 100%;">
-                    <label>Radiomic Cluster</label>
+                <div class="col-md-4">
+                  <div class= "row" id="subjectPrediction"></div>
+                  <div class="row" style="padding-top: 100%;">
+                    <label>With Radiomics
+                      <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#WithRadiomics"></span>
+                    </label>
                     <select id="radiomic_dropdown" name="radiomic">
                       <!-- <option value="" disabled selected>Race </option> -->
                       <!-- <option value="Cluster1">Cluster 1</option>
@@ -418,7 +421,6 @@
                       <option value="Cluster3">Cluster 3</option> -->
                     </select>
                   </div>
-                  <div class= "row" id="subjectPrediction"></div>
                 </div>
                 <div class="col-md-8" id="radiomics"></div>
               </div>
@@ -879,6 +881,30 @@
       </div>
       <div class="modal-footer">
         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- With Radiomics Modal -->
+<div class="modal fade" id="WithRadiomics" tabindex="-1" role="dialog" aria-labelledby="WithRadiomicsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="WithRadiomicsLabel">Picture to be added</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="WithRadiomicsBody">
+        <div class="row">
+          With Radiomics
+        </div>
+        <div class="row" id="WithRadiomicsPicture"></div>
+        <img src="imgs/CoxForest_OS_default.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+      </div>
+      <div class="modal-footer">        
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

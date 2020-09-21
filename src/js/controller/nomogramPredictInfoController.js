@@ -22,7 +22,7 @@ let nomogramPredictionInfoController = function(listID) {
                 let text = /*"<strong>ID: " + id["Dummy ID"] + "</strong><br>" +*/
                 "FDT: " + feed.toFixed(3) + "<br>" +
                 "ASP: " + asp.toFixed(3) + "<br>" + 
-                "PRG:" + prog.toFixed(3) + "<br>" +
+                "PRS:" + prog.toFixed(3) + "<br>" +
                 "OS: " + os.toFixed(3) 
 
                 return text;
