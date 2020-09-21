@@ -404,8 +404,9 @@ let PatientModel = function() {
                 outOf += 1;
             }
         }
-        let twoDecimalScore = score.toFixed(2)
-        let result = twoDecimalScore + " / " + outOf
+        // let twoDecimalScore = score.toFixed(2)
+        let percentage = (score / outOf) * 100;
+        let result = percentage.toFixed(2) + " %"
 
         return result;
     }

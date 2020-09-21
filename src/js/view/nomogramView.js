@@ -295,7 +295,7 @@ let NomogramView = function (targetID) {
             .selectAll("option")
             .data(nomogramsTypes)
             .enter().append('option')
-            .property("selected", (d) => d === default_selected)
+            // .property("selected", (d) => d === default_selected)
             .attr("value", (d) => d)
             .attr("id", (d) => d + "-nomogram-selector")
             .text((d) => {

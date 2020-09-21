@@ -51,8 +51,8 @@ let RadiomicView = function(){
             .attr("width", 150)
             .attr("height", 300)
 
-        let name = ["FDT", "ASP", "PRS", "OS"]
-        let full_name = ["feeding tube", "aspiration", "progression", "overall"]
+        let name = ["OS","PRS", "FDT", "ASP" ]
+        let full_name = [ "overall","progression",  "feeding tube", "aspiration"]
         let colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
             // .domain([1,0])
@@ -63,9 +63,13 @@ let RadiomicView = function(){
          .domain([0, 1])         // This is what is written on the Axis: from 0 to 100
          .range([30, 120]);       // This is where the axis is placed: from 100px to 800px
 
+        let axisScale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([30, 120])
+
         let xAxis = d3
             .axisBottom()
-            .scale(x)
+            .scale(axisScale)
             .ticks(5);
 
         for(let i=0; i < 4; i++){

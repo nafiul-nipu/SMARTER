@@ -15,16 +15,15 @@ let nomogramPredictionInfoController = function(listID) {
             .style("font-size","10px")
             .style("right", "17px")
             .html(function(){
-                let feed = +id["feeding_tube_prob"];
-                let asp = +id["aspiration_prob"];
-                let prog = +id["progression_free_5yr_prob"];
-                let os = +id["overall_survival_5yr_prob"];
+                let feed = +id["feeding_tube_prob"] * 100;
+                let asp = +id["aspiration_prob"] * 100;
+                let prog = +id["progression_free_5yr_prob"] * 100;
+                let os = +id["overall_survival_5yr_prob"] * 100;
                 let text = /*"<strong>ID: " + id["Dummy ID"] + "</strong><br>" +*/
-                "FDT: " + feed.toFixed(3) + "<br>" +
-                "ASP: " + asp.toFixed(3) + "<br>" + 
-                "PRS:" + prog.toFixed(3) + "<br>" +
-                "OS: " + os.toFixed(3) 
-
+                "OS: " + os.toFixed(3)  + " %<br>" +
+                "PRS:" + prog.toFixed(3) + " %<br>" +
+                "FDT: " + feed.toFixed(3) + " %<br>" +
+                "ASP: " + asp.toFixed(3) + " %"
                 return text;
             })
 

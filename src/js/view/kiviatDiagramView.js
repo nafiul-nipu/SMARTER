@@ -425,7 +425,8 @@ let KiviatDiagramView = function(targetID) {
             .html(function(d) {
                 let age = Math.round(d.AgeAtTx)
                 // console.log(d.ID, d.AgeAtTx, d[predictionToShow], predictionToShow)
-                return "ID: " + d.ID + "<br>Age: " + age + "<br>" + d.predictionToShow + ": " + d["Probability of Survival"].toFixed(3);
+                let percentage = d["Probability of Survival"] * 100;
+                return "ID: " + d.ID + "<br>Age: " + age + "<br>" + d.predictionToShow + ": " + percentage.toFixed(3) + " %";
             });
     }
 
@@ -453,7 +454,7 @@ let KiviatDiagramView = function(targetID) {
                     let asp = +d["aspiration_prob"];
                     let prog = +d["progression_free_5yr_prob"];
                     let os = +d["overall_survival_5yr_prob"];
-                    let text = "Score: " + d.score /*+ "<br>" +
+                    let text = "Similarity Score: " + d.score /*+ "<br>" +
                     "Feed: " + feed.toFixed(3) + "<br>" +
                     "ASP: " + asp.toFixed(3) + "<br>" + 
                     "PROG: " + prog.toFixed(3) + "<br>" +
@@ -463,16 +464,15 @@ let KiviatDiagramView = function(targetID) {
                 });
             similarityHead.select(".predictionOutcome")
                 .html(function(){
-                    let feed = +d["feeding_tube_prob"];
-                    let asp = +d["aspiration_prob"];
-                    let prog = +d["progression_free_5yr_prob"];
-                    let os = +d["overall_survival_5yr_prob"];
+                    let feed = +d["feeding_tube_prob"] * 100;
+                    let asp = +d["aspiration_prob"] * 100;
+                    let prog = +d["progression_free_5yr_prob"] * 100;
+                    let os = +d["overall_survival_5yr_prob"] * 100;
                     let text = /*"Score: " + d.score + "<br>" +*/
-                    "FDT: " + feed.toFixed(3) + "<br>" +
-                    "ASP: " + asp.toFixed(3) + "<br>" + 
-                    "PRS: " + prog.toFixed(3) + "<br>" +
-                    "OS: " + os.toFixed(3) 
-
+                    "OS: " + os.toFixed(2) + " %<br>" +
+                    "PRS: " + prog.toFixed(2) + " %<br>" +
+                    "FDT: " + feed.toFixed(2) + " %<br>" +
+                    "ASP: " + asp.toFixed(2) + " %"
                     return text;
                 });
         }

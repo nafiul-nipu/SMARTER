@@ -5,14 +5,14 @@ var App = App || {};
 let AxesModel = function() {
 
     let self  = {
-        currentAxesType: "default"
+        currentAxesType: "overall"
     };
 
     let axes = {
-        aspiration: null,
-        default: null,
         overall: null,
-        progression: null
+        progression: null,
+        default: null,
+        aspiration: null       
     };
 
     let _constants = {
@@ -76,10 +76,10 @@ let AxesModel = function() {
     //  console.log(getAspirationAxes())
 
     let axesfunctions = {
-        "aspiration": getAspirationAxes,
-        "default": getDefaultAxes,
         "overall": getOverallAxes,
-        "progression": getProgressionAxes
+        "progression": getProgressionAxes,
+        "default": getDefaultAxes,
+        "aspiration": getAspirationAxes        
     };
 
     let getAxesData = function() {
