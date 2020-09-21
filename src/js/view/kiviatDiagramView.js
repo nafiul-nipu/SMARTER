@@ -119,15 +119,15 @@ let KiviatDiagramView = function(targetID) {
         self.legendElement.append("div")
             // .append("h5")
             .style("text-align", "center")
-            .text("Spatial Information")
+            .text("With Lymphnode")
             .style("padding-top", "15%")
             // .attr("class", "viewTitleDiv")
 
-        //initially it will be N/A
-        self.legendElement.append('p')
-            .attr('class', 'text-center')
-            .attr('id','index-text')
-            .text("Patient Index: 312")
+        // //initially it will be N/A
+        // self.legendElement.append('p')
+        //     .attr('class', 'text-center')
+        //     .attr('id','index-text')
+        //     .text("Patient Index: 312")
 
     let textName = ["Lymph Node Clusters" /*, "Lymph Node", "Camprt" */]
         let idName = ["dendrogramlinker" /*, "lymphthingylinker", "camprtlinker" */]
@@ -204,10 +204,10 @@ let KiviatDiagramView = function(targetID) {
 
             init();
             commonMethodForKnnAndKiviat(patients);
-            let p = $(".idSelect").val();
-            // update the patient's information
-            let index = App.models.patients.getPatientIDFromDummyID(p)
-            $('#index-text').html('Patient Index: ' + index);
+            // let p = $(".idSelect").val();
+            // // update the patient's information
+            // let index = App.models.patients.getPatientIDFromDummyID(p)
+            // $('#index-text').html('Patient Index: ' + index);
         }else{
             // console.log("other calls")
             App.kiviatAttributes = ["AgeAtTx", "Gender", "Race","Smoking Status","HPV/P16",
@@ -235,10 +235,10 @@ let KiviatDiagramView = function(targetID) {
 
             init();
             commonMethodForKnnAndKiviat(patients);
-            let p = $(".idSelect").val();
-            // update the patient's information
-            let index = App.models.patients.getPatientIDFromDummyID(p)
-            $('#index-text').html('Patient Index: ' + index);
+            // let p = $(".idSelect").val();
+            // // update the patient's information
+            // let index = App.models.patients.getPatientIDFromDummyID(p)
+            // $('#index-text').html('Patient Index: ' + index);
             // console.log(App.kiviatAttributes)
         }        
     }
