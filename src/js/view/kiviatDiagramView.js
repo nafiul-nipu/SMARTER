@@ -545,6 +545,7 @@ let KiviatDiagramView = function(targetID) {
             if(self.groupPatients.subject["Dummy ID"] == d["Dummy ID"]){
                 //domain 1, 0
                 self.colorScale.domain([1,0])    
+                // console.log(self.colorScale(d[predictionToShow]))
                 return self.colorScale(d[predictionToShow])
             }else{
                 if(predictionToShow == 'feeding_tube_prob'){

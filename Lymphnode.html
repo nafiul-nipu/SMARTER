@@ -22,13 +22,6 @@
                     </a>
                     <a href="#">Lymph Node Clusters</a>  <!-- class="navbar-brand"-->
                   </div>
-
-                <div class="col-md-6 my-6">
-                  <a href="" class="btn btn-default navbar-btn" onclick="openWindow()" target="_blank">
-                    Lymph Node Interface
-                    <span class="glyphicon glyphicon-arrow-right"></span>                
-                  </a>
-                </div>
               </div>
           <!-- </nav> -->
         </div>
@@ -64,25 +57,8 @@
     </body>
 
     <script>
-      // let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`
-      // const statview = new StatsView();
-      // console.log(statview.getIndex())
-      let url = "https://uic-evl.github.io/LymphaticCancerViz/?id=1"
-      let lymph;
-      function openWindow(){
-        lymph = window.open(url, "_blank");
-        window.open(url, "_blank")
-      }
       function closeWindows(){
-        // var lymph = window.open("https://uic-evl.github.io/LymphaticCancerViz/?id=1", "_blank")
-        if(lymph === undefined){
           window.close()
-        }else{
-          lymph.close();
-          window.close();
-
-        }
       }
-
     </script>
 </html>
