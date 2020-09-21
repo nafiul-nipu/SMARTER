@@ -116,6 +116,7 @@ let KiviatDiagramView = function(targetID) {
         let survivalRateText = ["0", "Toxicity", "1"];
         legendText(survivalRateText)
 
+        /*
         self.legendElement.append("div")
             // .append("h5")
             .style("text-align", "center")
@@ -123,14 +124,8 @@ let KiviatDiagramView = function(targetID) {
             .style("padding-top", "15%")
             // .attr("class", "viewTitleDiv")
 
-        // //initially it will be N/A
-        // self.legendElement.append('p')
-        //     .attr('class', 'text-center')
-        //     .attr('id','index-text')
-        //     .text("Patient Index: 312")
-
-    let textName = ["Lymph Node Clusters" /*, "Lymph Node", "Camprt" */]
-        let idName = ["dendrogramlinker" /*, "lymphthingylinker", "camprtlinker" */]
+        let textName = ["Lymph Node Clusters"]
+        let idName = ["dendrogramlinker"]
         
         let spatialInformation = self.legendElement.append("div")
                                      .attr("preserveAspectRatio", "xMidYMid")
@@ -146,13 +141,9 @@ let KiviatDiagramView = function(targetID) {
                 .style("font-size", "10px")
                 // .style("display", "block")
                 .style("margin-bottom", "5px")
-                .text(textName[i])   
-                // .on("click", function(){
-                //     let url = "Lymphnode.html"
-                //     let windowName = "Test"
-                //     window.open(url, windowName, "height=200,width=200");
-                // })     
+                .text(textName[i])      
         }
+        */     
         
     }
 

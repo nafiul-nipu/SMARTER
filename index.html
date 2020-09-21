@@ -411,16 +411,17 @@
                 <div class="col-md-4">
                   <div class= "row" id="subjectPrediction"></div>
                   <div class="row" style="padding-top: 100%;">
-                    <label>With Radiomics
+                    <label style="text-align: center;">With Radiomics
                       <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#WithRadiomics"></span>
                     </label>
-                    <select id="radiomic_dropdown" name="radiomic">
+                    <!-- <select id="radiomic_dropdown" name="radiomic"> -->
                       <!-- <option value="" disabled selected>Race </option> -->
                       <!-- <option value="Cluster1">Cluster 1</option>
                       <option value="Cluster2">Cluster 2</option>
                       <option value="Cluster3">Cluster 3</option> -->
-                    </select>
+                    <!-- </select> -->
                   </div>
+                  <div class="row" id="withLymphnode"></div>
                 </div>
                 <div class="col-md-8" id="radiomics"></div>
               </div>
@@ -581,7 +582,7 @@
                                         <span class="caret"></span>
                                     </button> -->
 
-                                    <ul class="dropdown-menu col-sm-12 col-md-4 scrollCollapse" id="kiviatAttributesControl" style="left:250px;">
+                                    <ul class="dropdown-menu col-sm-12 col-md-4 scrollCollapse" id="kiviatAttributesControl">
                                         <!-- populating list in controller -->
                                         <!-- <div class="modal-footer">
                                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >

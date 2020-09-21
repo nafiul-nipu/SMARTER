@@ -394,7 +394,7 @@ let AddNewPatient = function() {
                          App.views.predictionAttributeModal.attribute_List_Server(); 
                     // }
 
-                    console.log(self.prediction)
+                    // console.log(self.prediction)
                     let clusterData = []
                     for(let i = 7 ; i <= 10; i++){
                         //getting the cluster values

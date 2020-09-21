@@ -11,30 +11,33 @@ let RadiomicView = function(){
         cluster3: [],
     }
 
-    function createSelect(){
-        d3.select("#radiomic_dropdown")
-            .on("change", function(){
-                // console.log( $("#radiomic_dropdown").val())
-                let value = $("#radiomic_dropdown").val()
-                if(value == "cluster1" && Object.entries(self.cluster1).length != 0){ //checking if the object is empty or not
-                    // console.log(typeof self.cluster1)
-                    drawRadiomic(self.cluster1)                   
-                }else if(value == "cluster2" && Object.entries(self.cluster2).length != 0){
-                    // console.log(Object.entries(self.cluster2).length)
-                    drawRadiomic(self.cluster2)
-                }else if(value == "cluster3" && Object.entries(self.cluster3).length != 0){
-                    drawRadiomic(self.cluster3)
-                }
-            }) 
-            .selectAll("option")
-            .data(self.options)
-            .enter().append('option')
-            .attr("value", function(d,i){
-                return self.values[i];
-            })
-            .text(function(d){
-                return d;
-            }); 
+    function addLymphNode(){
+        d3.select("#withLymphnode").append("div")
+            // .append("h5")
+            .style("text-align", "center")
+            .text("With Lymphnode")
+            // .style("padding-left", "30%")
+            // .attr("class", "viewTitleDiv")
+
+        let textName = ["Lymph Node Clusters"]
+        let idName = ["dendrogramlinker"]
+        
+        let spatialInformation = d3.select("#withLymphnode").append("div")
+                                     .attr("preserveAspectRatio", "xMidYMid")
+                                    //  .style("padding-left", "18%")
+        for(let i = 0 ; i < textName.length ; i ++ ){
+            spatialInformation.append("a")
+                .attr("href", "Lymphnode.html")
+                .attr("target", "_blank")
+                .attr("id", idName[i])
+                .append("button")
+                .attr("class", "btn btn-default btn-sm")
+                .attr('id', idName[i] + '-class')
+                .style("font-size", "10px")
+                // .style("display", "block")
+                .style("margin-bottom", "5px")
+                .text(textName[i])      
+        }
     }
     
     function drawRadiomic(data){  
@@ -122,9 +125,13 @@ let RadiomicView = function(){
 
     function populateClusterData(data){
         // console.log(data)
-        self.cluster1 = [data[0][0] , data[1][0], data[3][0], data[2][0]];
-        self.cluster2 = [data[0][1] , data[1][1], data[3][1], data[2][1]];
-        self.cluster3 = [data[0][2] , data[1][2], data[3][2], data[2][2]];
+        // 0 - feed, 1- asp, 2 - ovr, 3 - prog
+        //our chronology will be ovr, prog, feed, asp
+        console.log(data)
+        self.cluster1 = [data[2][0] , data[3][0], data[0][0], data[1][0]];
+        self.cluster2 = [data[2][1] , data[3][1], data[0][1], data[1][1]];
+        self.cluster3 = [data[2][2] , data[3][2], data[0][2], data[1][2]];
+
         // console.log(self.cluster1, self.cluster2, self.cluster3)
 
         drawRadiomic(self.cluster1);
@@ -132,7 +139,7 @@ let RadiomicView = function(){
     }
 
     return{
-        createSelect,
+        addLymphNode,
         drawRadiomic,
         populateClusterData
         
