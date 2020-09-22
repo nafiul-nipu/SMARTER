@@ -5,10 +5,9 @@ var App = App || {};
 let RadiomicView = function(){
     let self = {
         options : ["Cluster 1", "Cluster 2", "Cluster 3"],
-        values : ["cluster1", "cluster2", "cluster3"],
-        cluster1: [],
-        cluster2: [],
-        cluster3: [],
+        id : ["cluster1", "cluster2", "cluster3"],
+        clusters:{},
+        legendTip:null
     }
 
     function addLymphNode(){
@@ -40,26 +39,39 @@ let RadiomicView = function(){
         }
     }
     
-    function drawRadiomic(data){  
+    function drawRadiomic(){  
         // create svg element
         d3.select("#bigRadiomicSvg").remove();
-        // console.log(document.getElementById("radiomics").offsetWidth)
-        // console.log(document.getElementById("unbelievable-fix").offsetWidth)
-        // console.log(document.getElementById("subjectPrediction").offsetWidth)
+
+        //draw radiomicLegend
+        drawRadiomicLegend();
 
         let width = document.getElementById("radiomics").offsetWidth;
+        let navigationBarHeight = document.getElementById("title").clientHeight ;
+        let height = (window.innerHeight / 2) - (2 * navigationBarHeight);
+        // console.log(height)
         let bigSvg = d3.select("#radiomics")
             .append("svg")
             .attr("id", "bigRadiomicSvg")
-            .attr("width", 150)
-            .attr("height", 300)
+            .attr("width", width)
+            .attr("height", height)
 
         let name = ["OS","PRS", "FDT", "ASP" ]
-        let full_name = [ "overall","progression",  "feeding tube", "aspiration"]
-        let colorScale = d3.scaleLinear()
-            .interpolate(d3.interpolateHcl)
-            // .domain([1,0])
-            .range(["#d18161", "#70a4c2"]); 
+        // let full_name = [ "overall","progression",  "feeding tube", "aspiration"]
+        // let cluster1Color = d3.scaleLinear()
+        //     .interpolate(d3.interpolateHcl)
+        //     .domain([0,1])
+        //     .range(["#e5f5f9", "#70a4c2"]); 
+
+        // let cluster2Color = d3.scaleLinear()
+        //     .interpolate(d3.interpolateHcl)
+        //     .domain([0,1])
+        //     .range(["#ece7f2", "#2b8cbe"]); 
+
+        // let cluster3Color = d3.scaleLinear()
+        //     .interpolate(d3.interpolateHcl)
+        //     .domain([0,1])
+        //     .range(["#fff7bc", "#d95f0e"]); 
 
          // Create the scale
          let x = d3.scaleLinear()
@@ -75,66 +87,162 @@ let RadiomicView = function(){
             .scale(axisScale)
             .ticks(5);
 
-        for(let i=0; i < 4; i++){
-
-            let tip = d3.tip().attr('class', 'd3-tip')
-                .html(function() { 
-                    // let value = 
-                    let text = full_name[i] + " : " + data[i].toFixed(3); 
-                    return text;
-                })
-            
-            let svg = bigSvg.append("svg").attr("width", 150)
-
-            svg.call(tip)
-            
+        for(let i=0; i < name.length; i++){
+            let svg = bigSvg.append("svg").attr("width", width)
             svg.append("g").append("text")
-            .attr("x", 0)
-            .attr("y", (60+60*i))
-            .style("font-size", "10px")
-            .text(name[i])           
+                .attr("x", 0)
+                .attr("y", (60+60*i))
+                .style("font-size", "10px")
+                .text(name[i])           
 
-                // Draw the axis
+            // Draw the axis
             svg
             .append("g")
             .attr("transform", "translate(0," + (50 + 60 * i) +")")  
             .call(xAxis);  
-                           
-        // Add dots
-            svg.append('g')
-            .append("circle")
-            .attr("cx", function(){
-                    return x(data[i])
+
+            for(let j = 0; j < self.clusters["OS"].length ; j++){
+                let tip = d3.tip().attr('class', 'd3-tip')
+                .html(function() { 
+                    let value = self.clusters[name[i]][j] * 100
+                    let text = "Cluster " + (j+1) + " : " + value.toFixed(3) + "%"; 
+                    return text;
                 })
-            .attr("cy", (50 + 60 * i) )
-            .attr("r", 5)
-            .style("fill", function(){
-                if(name[i] == "FDT" || name[i] == "ASP"){
-                    colorScale.domain([1,0])
-                }else if(name[i] == "OS" || name[i] == "PRG"){
-                    colorScale.domain([0,1])
+                svg.call(tip)
+                            
+                // Add dots
+                svg.append('g')
+                .append("circle")
+                .attr("class", "radiomic "+self.id[j])
+                .attr("id", self.id[j])
+                .attr("cx", function(){
+                        return x(self.clusters[name[i]][j])
+                    })
+                .attr("cy", (50 + 60 * i) )
+                .attr("r", 5)
+                .style("fill", function(){
+                    if(j == 0){
+                        // return cluster1Color(self.clusters[name[i]][j])
+                        return "#66c2a5"
+                    }else if(j == 1){
+                        // return cluster2Color(self.clusters[name[i]][j])
+                        return "#fc8d62";
+                    }else if(j == 2){
+                        // return cluster3Color(self.clusters[name[i]][j])
+                        return "#8da0cb"
+                    }
+                })
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide)
+
                 }
-                return colorScale(data[i])
-            })
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide)
-            
-    
          }
     }
+
+    function drawRadiomicLegend(){
+        let width = document.getElementById("subjectPrediction").offsetWidth;
+        let navigationBarHeight = document.getElementById("title").clientHeight ;
+        let height = ((window.innerHeight / 2) - (2 * navigationBarHeight)) / 3.5;
+        console.log(width, height)
+         let svg = d3.select("#radiomicLegend")
+            .append("svg")
+            .attr("id", "radiomicLegend")
+            .attr("width", width)
+            .attr("height", height)
+        for(let j = 0; j < self.clusters["OS"].length ; j++){
+            self.legendTip = d3.tip().attr('class', 'd3-tip')
+            .html(function() { 
+                let OS = self.clusters["OS"][j] * 100 ;
+                let PRS = self.clusters["PRS"][j] * 100 ;
+                let FDT = self.clusters["FDT"][j] * 100 ;
+                let ASP = self.clusters["ASP"][j] * 100 ; 
+                let text = "OS : " + OS.toFixed(3) + " % <br>" +
+                "PRS : " + PRS.toFixed(3) + " % <br>" +
+                "FDT : " + FDT.toFixed(3) + " % <br>" +
+                "ASP : " + ASP.toFixed(3) + " %"
+                return text;
+            })
+            svg.call(self.legendTip)
+                        
+            // Add dots
+            svg.append('g')
+            .append("circle")
+            .attr("cx", 15)
+            .attr("cy", (10 + 20 * j) )
+            .attr("r", 5)
+            .style("fill", function(){
+                if(j == 0){
+                    // return cluster1Color(self.clusters[name[i]][j])
+                    return "#66c2a5"
+                }else if(j == 1){
+                    // return cluster2Color(self.clusters[name[i]][j])
+                    return "#fc8d62";
+                }else if(j == 2){
+                    // return cluster3Color(self.clusters[name[i]][j])
+                    return "#8da0cb"
+                }
+            })
+            .on('mouseover', function(){
+                self.legendTip.show(this)
+                highlight(self.id[j])
+            })
+            .on('mouseout', function(){
+                self.legendTip.hide(this)
+                noHighlight()
+            })
+
+            svg.append("g").append("text")
+            .attr("x", 23)
+            .attr("y", (14 + 20 * j))
+            .style("font-size", "10px")
+            .text(self.options[j]) 
+            .on('mouseover', function(){
+                self.legendTip.show(this);
+                highlight(self.id[j]);
+                // tip.show;
+            })
+            .on('mouseout', function(){
+                self.legendTip.hide(this)
+                noHighlight();
+                // tip.hide;
+            })
+
+        }
+
+    }
+
+
+    function highlight(d){
+        // console.log(d)
+        // self.legendTip.show;
+
+        // // reduce opacity of all groups
+        d3.select("#radiomics").select("svg").selectAll(".radiomic").style("opacity", .05)
+        // // except the one that is hovered
+        d3.select("#radiomics").select("svg").selectAll("."+d).style("opacity", 1)
+    }
+
+    // And when it is not hovered anymore
+    function noHighlight(){        
+        // self.legendTip.hide;
+        d3.select("#radiomics").select("svg").selectAll(".radiomic").style("opacity", 1)
+    }
+
+
 
     function populateClusterData(data){
         // console.log(data)
         // 0 - feed, 1- asp, 2 - ovr, 3 - prog
         //our chronology will be ovr, prog, feed, asp
-        console.log(data)
-        self.cluster1 = [data[2][0] , data[3][0], data[0][0], data[1][0]];
-        self.cluster2 = [data[2][1] , data[3][1], data[0][1], data[1][1]];
-        self.cluster3 = [data[2][2] , data[3][2], data[0][2], data[1][2]];
+        // console.log(data)
+        self.clusters.OS = [data[2][0] , data[2][1], data[2][2]];
+        self.clusters.PRS = [data[3][0] , data[3][1], data[3][2]];
+        self.clusters.FDT = [data[0][0] , data[0][1], data[0][2]];
+        self.clusters.ASP = [data[1][0] , data[1][1], data[1][2]];
 
-        // console.log(self.cluster1, self.cluster2, self.cluster3)
+        console.log(self.clusters)
 
-        drawRadiomic(self.cluster1);
+        drawRadiomic();
 
     }
 
