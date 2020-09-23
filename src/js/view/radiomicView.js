@@ -14,11 +14,11 @@ let RadiomicView = function(){
         d3.select("#withLymphnode").append("div")
             // .append("h5")
             .style("text-align", "center")
-            .text("With Lymphnode")
+            .text("With Lymph Nodes")
             // .style("padding-left", "30%")
             // .attr("class", "viewTitleDiv")
 
-        let textName = ["Lymph Node Clusters"]
+        let textName = ["Lymph Nodes Clusters"]
         let idName = ["dendrogramlinker"]
         
         let spatialInformation = d3.select("#withLymphnode").append("div")

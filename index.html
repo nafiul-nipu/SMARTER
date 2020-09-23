@@ -297,12 +297,13 @@
                 </div>
                 <!-- patient dropdown menu -->
                 <div class="col-md-4 patient-dropdown-wrapper" id="similarPatientList" style="text-align: left; padding-left: 3%;">
-                  <div class="form-inline">
+                  <div class="col-md-6 form-inline" style="padding-right: 0; padding-left: 6%;">
                       <div class="form-group">
                           <label for="patientSel">Patient ID:</label>
                           <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
                       </div>
                   </div>
+                  <div class="col-md-6" id="subjectPrediction"></div>
               </div>
 
               <div class="col-md-3">
@@ -409,9 +410,9 @@
             <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
               <div class="row">
                 <div class="col-md-4">
-                  <div class= "row" id="subjectPrediction"></div>
+                  <!-- <div class= "row" id="subjectPrediction"></div> -->
                   <div class="row">
-                    <label style="text-align: center;">With Radiomics
+                    <label style="text-align: center;">Prediction With Radiomics
                       <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#WithRadiomics"></span>
                     </label>
                     <div id="radiomicLegend"></div>
