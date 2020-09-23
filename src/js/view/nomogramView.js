@@ -300,9 +300,13 @@ let NomogramView = function (targetID) {
             .attr("id", (d) => d + "-nomogram-selector")
             .text((d) => {
                 if (d === "default") {
-                    return "feeding tube"
-                } else {
-                    return d;
+                    return "feeding tube (FDT)"
+                } else if(d === "aspiration") {
+                    return "aspiration (ASP)";
+                }else if(d === "overall") {
+                    return "overall (OS)";
+                }else if(d === "progression") {
+                    return "progression (RMS)";
                 }
             });
 

@@ -21,7 +21,7 @@ let nomogramPredictionInfoController = function(listID) {
                 let os = +id["overall_survival_5yr_prob"] * 100;
                 let text = /*"<strong>ID: " + id["Dummy ID"] + "</strong><br>" +*/
                 "OS: " + os.toFixed(3)  + " %<br>" +
-                "PRS: " + prog.toFixed(3) + " %<br>" +
+                "RMS: " + prog.toFixed(3) + " %<br>" +
                 "FDT: " + feed.toFixed(3) + " %<br>" +
                 "ASP: " + asp.toFixed(3) + " %"
                 return text;

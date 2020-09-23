@@ -461,7 +461,7 @@ let KiviatDiagramView = function(targetID) {
                     let os = +d["overall_survival_5yr_prob"] * 100;
                     let text = /*"Score: " + d.score + "<br>" +*/
                     "OS: " + os.toFixed(2) + " %<br>" +
-                    "PRS: " + prog.toFixed(2) + " %<br>" +
+                    "RMS: " + prog.toFixed(2) + " %<br>" +
                     "FDT: " + feed.toFixed(2) + " %<br>" +
                     "ASP: " + asp.toFixed(2) + " %"
                     return text;
