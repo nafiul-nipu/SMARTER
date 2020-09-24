@@ -380,7 +380,7 @@ let PatientModel = function() {
         let score = 0;
         let outOf = 1;
 
-        // console.log("Subject iD" , subjectID)
+        // console.log(knnAttributes)
         
         //giving error 
         // if(self.patients[patientID].AgeAtTx && self.patients[subjectID].AgeAtTx){
@@ -406,9 +406,11 @@ let PatientModel = function() {
         }
         // let twoDecimalScore = score.toFixed(2)
         let percentage = (score / outOf) * 100;
-        let result = percentage.toFixed(2) + " %"
+        // let twoFix = percentage.toFixed(2);
+        // let result = percentage.toFixed(2) + " %"
 
-        return result;
+        // result = score + " / " + outOf
+        return percentage;
     }
 
     function setAxes(axes) {

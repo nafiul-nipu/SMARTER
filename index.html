@@ -382,16 +382,13 @@
                                     <!-- </button> -->
                                 </div>
                                 <div class="row">
-                                    <!-- <div class="col-md-4" style = "padding-left: 8%;bottom: 10px;"> -->
-                                        <!-- prediction model modal button -->
-                                        <!-- <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
-                                          Prediction Attributes
-                                        </button> -->
-                                    <!-- </div> -->
-                                    <div class="col-md-6 col-md-6" style="bottom: 10px;padding-left: 38%;width: 60%;">
+                                    <div class="col-md-4" id="polylineLegend" style="top: 30px;"> 
+                                      <!-- nomogram.less style left added -->
+                                    </div>
+                                    <div class="col-md-4 col-md-4" style="bottom: 10px;width: 28%;">
                                         <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
                                     </div>
-                                    <div class="col-md-4 knnCheckBox" style="bottom: 10px;">
+                                    <div class="col-md-4 knnCheckBox" style="bottom: 10px; left: 16%;">
                                         <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
                                     </div>
                                 </div>
@@ -409,7 +406,7 @@
 
             <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" style="padding-top: 30%;">
                   <!-- <div class= "row" id="subjectPrediction"></div> -->
                   <div class="row">
                     <label style="text-align: center;">Prediction With Radiomics
@@ -514,8 +511,8 @@
                                 <!-- </button>                             -->
                             </div>
                             <div class="col-md-2 dropdown">
-                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="glyphicon glyphicon-wrench"></span>
+                              <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" style="font-size: 12px;"></span>
                               </button>
                               <div class="dropdown-menu" id="kiviatDropdown" aria-labelledby="dropdownMenuButton" style="height: 55px; width: 340px;">
                                 <!-- KNN controller -->

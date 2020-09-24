@@ -15,6 +15,8 @@ let RadiomicView = function(){
             // .append("h5")
             .style("text-align", "center")
             .text("With Lymph Nodes")
+            .style("font-size", "12px")
+            .style("font-weight", "bold")
             // .style("padding-left", "30%")
             // .attr("class", "viewTitleDiv")
 
@@ -22,19 +24,24 @@ let RadiomicView = function(){
         let idName = ["dendrogramlinker"]
         
         let spatialInformation = d3.select("#withLymphnode").append("div")
-                                     .attr("preserveAspectRatio", "xMidYMid")
-                                    //  .style("padding-left", "18%")
+                                    //  .attr("preserveAspectRatio", "xMidYMid")
+                                     .style("padding-left", "4%")
         for(let i = 0 ; i < textName.length ; i ++ ){
             spatialInformation.append("a")
                 .attr("href", "Lymphnode.html")
                 .attr("target", "_blank")
                 .attr("id", idName[i])
                 .append("button")
-                .attr("class", "btn btn-default btn-sm")
+                .attr("class", "btn btn-default")
+                .style("width", "90%")
+                .style("white-space", "normal")
                 .attr('id', idName[i] + '-class')
                 .style("font-size", "10px")
+                .style("padding", 0)
+                .style("margin", 0)
+                .style("color", "#337ab7")
                 // .style("display", "block")
-                .style("margin-bottom", "5px")
+                // .style("margin-bottom", "5px")
                 .text(textName[i])      
         }
     }
@@ -139,13 +146,14 @@ let RadiomicView = function(){
     }
 
     function drawRadiomicLegend(){
+        d3.select("#radiomicLegendSvg").remove();
         let width = document.getElementById("subjectPrediction").offsetWidth;
         let navigationBarHeight = document.getElementById("title").clientHeight ;
         let height = ((window.innerHeight / 2) - (2 * navigationBarHeight)) / 3.5;
         // console.log(width, height)
          let svg = d3.select("#radiomicLegend")
             .append("svg")
-            .attr("id", "radiomicLegend")
+            .attr("id", "radiomicLegendSvg")
             .attr("width", width)
             .attr("height", height)
         for(let j = 0; j < self.clusters["OS"].length ; j++){

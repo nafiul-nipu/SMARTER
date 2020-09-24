@@ -21,7 +21,8 @@ let NomogramView = function (targetID) {
         },
         selectedPatientID: -1,
         mode: null,
-        legendSvgHeight : 40
+        legendSvgHeight : 40,
+        polylineSvg: null
         // navigationBarHeight : document.getElementById("title").clientHeight,
         
     };
@@ -47,6 +48,11 @@ let NomogramView = function (targetID) {
             // .attr("viewBox", "0 0 140 100")
             .attr("preserveAspectRatio", "xMidYMid");
 
+        self.polylineSvg = d3.select("#polylineLegend").append("svg")
+            .attr("id", "polyLineSVG")
+            .attr("width", d3.select("#polylineLegend").node().clientWidth)
+            .attr("height", self.legendSvgHeight)
+
         const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
         // console.log(self.axes)
@@ -58,7 +64,7 @@ let NomogramView = function (targetID) {
             .select(".viewTitleDiv").append("div")
             .attr("class", "pull-right")
             .append("button")
-            .attr("class", 'btn btn-default navbar-btn')
+            .attr("class", 'btn btn-default navbar-btn btn-sm')
             .attr("id", "nomogram-menu-button")
             .on("click", function () {
                 $('.nomogramControlsBox').toggle();
@@ -66,7 +72,8 @@ let NomogramView = function (targetID) {
             });
 
         d3.select("#nomogram-menu-button").append("span")
-            .attr("class", 'glyphicon glyphicon-wrench');
+            .attr("class", 'glyphicon glyphicon-wrench')
+            .attr("font-size", "10px");
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -199,9 +206,12 @@ let NomogramView = function (targetID) {
 
     /* update the legend based on the selected attribute for coloring */
     function updateLegend(attr) {
+        // console.log("called")
         d3.selectAll(".nomogramLegend").remove();
+        d3.selectAll("#polyLine").remove();
 
         let attrVals = App.models.patients.getPatientKnnAttributeDomains()[attr];
+        let polyline = ["Current", "Most Similar"]
         // console.log(attr, attrVals);
 
         for (let valInd in attrVals) {
@@ -221,6 +231,44 @@ let NomogramView = function (targetID) {
                 .style("font-size", "10px")
                 .text(attrVals[valInd]);
         }
+
+        // current patient black
+        self.polylineSvg.append("rect")
+            .attr("id", "polyLine")
+            .attr("x", 10)
+            .attr("y", 5)
+            .attr("width", 8)
+            .attr("height", 8)
+            .style("fill", "black")
+            // .style("opacity", "0.5");
+
+        //text for current 
+        self.polylineSvg.append("text")
+            .attr("class", "nomogramLegend")
+            .attr("x", 25)
+            .attr("y", 5 + 8)
+            .style("font-size", "10px")
+            .text("Current Patient");
+
+        // similar patients
+        for (let valInd in attrVals) {
+            self.polylineSvg.append("rect")
+                .attr("id", "polyLine")
+                .attr("x", 10 + 10 * valInd)
+                .attr("y", 15)
+                .attr("width", 8)
+                .attr("height", 8)
+                .style("fill", App.attributeColors(attrVals[valInd]))
+                .style("opacity", "0.5");
+        }
+
+        //text
+        self.polylineSvg.append("text")
+                .attr("class", "nomogramLegend")
+                .attr("x", 15 + 10 * attrVals.length)
+                .attr("y", 23)
+                .style("font-size", "10px")
+                .text("Most Similar Patients");
     }
 
     /* update the nomogram with filtered axes */

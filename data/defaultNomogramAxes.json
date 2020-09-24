@@ -162,7 +162,7 @@
     "range":[5 , 20, 35],
     "label": "Neck boost",
     "type": "ordinal",
-    "forKnn": true
+    "forKnn": false
   },
   "Neck dissection": {
     "name": "Neck Disssection after IMRT (Y/N)",
@@ -179,7 +179,7 @@
     "range":[5 , 20, 35],
     "label": "Neck dissection",
     "type": "ordinal",
-    "forKnn": true
+    "forKnn": false
   },
  "Predictive Probability": {
     "name": "feeding_tube_prob",

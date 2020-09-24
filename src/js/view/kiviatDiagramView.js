@@ -427,7 +427,7 @@ let KiviatDiagramView = function(targetID) {
 
         // console.log(App.controllers.kiviatAttrSelector.getKiviatTrigger());
         // console.log(i)
-        // console.log(d)
+        // console.log(App.patientKnnAttributes)
         let SVG = d3.select(this);
         let similarityHead = d3.select(this.parentNode)       
 
@@ -440,16 +440,7 @@ let KiviatDiagramView = function(targetID) {
         if (d.score) {
             similarityHead.select(".similarityScore")
                 .html(function(){
-                    // console.log(d)
-                    let feed = +d["feeding_tube_prob"];
-                    let asp = +d["aspiration_prob"];
-                    let prog = +d["progression_free_5yr_prob"];
-                    let os = +d["overall_survival_5yr_prob"];
-                    let text = "Similarity Score: " + d.score /*+ "<br>" +
-                    "Feed: " + feed.toFixed(3) + "<br>" +
-                    "ASP: " + asp.toFixed(3) + "<br>" + 
-                    "PROG: " + prog.toFixed(3) + "<br>" +
-                    "OS: " + os.toFixed(3) */
+                    let text = "Similarity Score: " + d.score.toFixed(2) + " %"
 
                     return text;
                 });
