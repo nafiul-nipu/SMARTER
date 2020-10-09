@@ -37,8 +37,11 @@ def output():
             ### set file directory
             ## Modify this to correct file location 
             #file.dir <- "D:\\dblab\\research\\opc_validation\\data\\"
-            file.dir <- "../data/"    
-            png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
+            file.dir <- "../data/"   
+            #for my laptop 
+            # png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
+            #for the pc
+            png.dir <- "D:/RA Project/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
@@ -419,7 +422,10 @@ def output():
             ## Modify this to correct file location 
             #file.dir <- "D:\\dblab\\research\\opc_validation\\data\\"
             file.dir <- "../data/"     
-            png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
+            #for my laptop 
+            # png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
+            #for the pc
+            png.dir <- "D:/RA Project/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
@@ -840,7 +846,10 @@ def picture():
     value = data["name"]
     # response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     # response.headers['Cache-Control'] = 'public, max-age=0'
-    CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
+    # for laptop
+    # CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
+    # for pc
+    CLIENT_IMAGES = 'D:/RA Project/png/'
     app.config['CLIENT_IMAGES'] = CLIENT_IMAGES
     if value == "OS":
         filename = 'CoxForest_OS.png'

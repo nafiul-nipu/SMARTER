@@ -52,13 +52,14 @@ let RadiomicView = function(){
 
         let width = document.getElementById("radiomics").offsetWidth;
         let navigationBarHeight = document.getElementById("title").clientHeight ;
-        let height = (window.innerHeight / 2) - (2 * navigationBarHeight);
+        let height = (window.innerHeight / 2) - (1.5 * navigationBarHeight);
         // console.log(height)
         let bigSvg = d3.select("#radiomics")
             .append("svg")
             .attr("id", "bigRadiomicSvg")
             .attr("width", width)
             .attr("height", height)
+            .style("position", "fixed")
 
         let name = ["OS","RMS", "FDT", "ASP" ]
         // let full_name = [ "overall","progression",  "feeding tube", "aspiration"]
