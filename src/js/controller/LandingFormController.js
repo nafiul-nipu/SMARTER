@@ -106,17 +106,21 @@ let LandingFormController = function() {
         let input_count = 0
         
         if(!$('#age-element').val()){
+             $('#age-label').css('color', 'red')
             // $('#age-validation').show();
             // alert("Please provide age")
         }else{
             // $('#age-validation').hide();
+            $('#age-label').css('color', 'black')
             input_count = input_count + 1
         }
         if(!$("input:radio[name=Gender]:checked").val()){
             // $('#gender-validation').show();
             // alert("Please provide gender")
+            $('#gender-label').css('color', 'red')
         }else{
             // $('#gender-validation').hide();
+            $('#gender-label').css('color', 'black')
             input_count = input_count + 1
         }
         /*
@@ -145,8 +149,10 @@ let LandingFormController = function() {
         if(!$("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val()){
             // $('#smoking-validation').show();
             // alert("Please provide smoking status")
+            $('#smoking-label').css('color', 'red')
         }else{
             // $('#smoking-validation').hide();
+            $('#smoking-label').css('color', 'black')
             input_count = input_count + 1
         }
         /*
@@ -176,15 +182,19 @@ let LandingFormController = function() {
         if(!$("input:radio[name='T-category']:checked").val()){
             // $('#t-validation').show();
             // alert("Please provide T-category")
+            $('#tcat-label').css('color', 'red')
         }else{
             // $('#t-validation').hide();
+            $('#tcat-label').css('color', 'black')
             input_count = input_count + 1
         }
         if(!$("input:radio[name='N-category']:checked").val()){
             // $('#n-validation').show();
             // alert("Please provide N-category")
+            $('#ncat-label').css('color', 'red')
         }else{
             // $('#n-validation').hide();
+            $('#ncat-label').css('color', 'black')
             input_count = input_count + 1
         }
         /*

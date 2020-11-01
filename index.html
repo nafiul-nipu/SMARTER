@@ -122,10 +122,10 @@
                       <select class="idSelect">
                           <option>N/A</option>
                       </select>
-                      <label><span>Age<sup><i class="fa fa-asterisk" id="age-validation"></i></sup></span></label>
+                      <label id="age-label"><span>Age<sup><i class="fa fa-asterisk" id="age-validation"></i></sup></span></label>
                       <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
                       <!-- <div id="age-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Age</div> -->
-                      <label><span>Gender<sup><i class="fa fa-asterisk" id="gender-validation"></i></sup></span></label>
+                      <label id="gender-label"><span>Gender<sup><i class="fa fa-asterisk" id="gender-validation"></i></sup></span></label>
                       <input type="radio" name="Gender" value="Male" id="male-radio">Male
                       <input type="radio" name="Gender" value="Female" id="female-radio">Female
                       <!-- <div id="gender-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Gender</div> -->
@@ -144,7 +144,7 @@
                       <input type="radio" name="Aspiration rate Pre-therapy" value="N/A" id="aspiration-na-radio" checked>N/A
                       <!-- <div id="aspiration-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Aspiration</div> -->
                       <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
-                      <label><span>Smoking Status<sup><i class="fa fa-asterisk" id="smoking-validation"></i></sup></span></label>
+                      <label id="smoking-label"><span>Smoking Status<sup><i class="fa fa-asterisk" id="smoking-validation"></i></sup></span></label>
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
                       <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
@@ -200,13 +200,13 @@
                       <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV -->
 
 
-                      <label><span>T-category<sup><i class="fa fa-asterisk" id="t-validation"></i></sup></span></label>
+                      <label id="tcat-label"><span>T-category<sup><i class="fa fa-asterisk" id="t-validation"></i></sup></span></label>
                       <input type="radio" name="T-category" value="T1" id="tcat1">T1
                       <input type="radio" name="T-category" value="T2" id="tcat2">T2
                       <input type="radio" name="T-category" value="T3" id="tcat3">T3
                       <input type="radio" name="T-category" value="T4" id="tcat4">T4
                       <!-- <div id="t-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide T-Category</div> -->
-                      <label><span>N-Category<sup><i class="fa fa-asterisk" id="n-validation"></i></sup></span></label>
+                      <label id="ncat-label"><span>N-Category<sup><i class="fa fa-asterisk" id="n-validation"></i></sup></span></label>
                       <!-- <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A -->
                       <input type="radio" name="N-category" value="N0" id="ncat-0">N0
                       <input type="radio" name="N-category" value="N1" id="ncat-1">N1
@@ -292,7 +292,7 @@
                       </button>  
                     <button class="btn btn-default navbar-btn" id="add-patient-button">
                       <span class="glyphicon glyphicon-plus"></span>
-                      Add Patient
+                      Update Patient
                     </button>
                 </div>
                 <!-- patient dropdown menu -->
@@ -303,7 +303,7 @@
                           <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
                       </div>
                   </div>
-                  <div class="col-md-6" id="subjectPrediction"></div>
+                  <div class="col-md-6" id="subjectPrediction" style="padding-left: 0; padding-right: 0;"></div>
               </div>
 
               <div class="col-md-3">
@@ -383,7 +383,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4" id="polylineLegend" style="top: 30px;"> 
-                                      <!-- nomogram.less style left added -->
                                     </div>
                                     <div class="col-md-4 col-md-4" style="bottom: 10px;width: 28%;">
                                         <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
@@ -899,17 +898,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="WithRadiomicsLabel">Picture to be added</h3>
+        <h3 class="modal-title" id="WithRadiomicsLabel">Radiomic Clusters</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" id="WithRadiomicsBody">
-        <div class="row">
+        <!-- <div class="row">
           With Radiomics
-        </div>
+        </div> -->
         <div class="row" id="WithRadiomicsPicture"></div>
-        <img src="imgs/CoxForest_OS_default.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+        <img src="imgs/rad_clusters.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
       </div>
       <div class="modal-footer">        
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

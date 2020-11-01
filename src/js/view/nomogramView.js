@@ -39,19 +39,22 @@ let NomogramView = function (targetID) {
         //  console.log(self.targetElement.node().clientWidth)
         //  console.log(self.targetElement.node().clientHeight)
         // console.log(nomogramWidth)
+
+        self.polylineSvg = d3.select(self.targetID + "Header").append("svg")
+            .attr("id", "polyLineSVG")
+            .attr("width", self.targetElement.node().clientWidth)
+            .attr("height", self.legendSvgHeight)
+            .attr("preserveAspectRatio", "none");
         
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
             .attr("width", self.targetElement.node().clientWidth)
             .attr("height", self.legendSvgHeight)
+            .style("position", "relative")
+            .style("bottom", "25px")
             // .attr("width", self.navigationBarWidth)
             // .attr("height", self.navigationBarHeight)
             // .attr("viewBox", "0 0 140 100")
-            .attr("preserveAspectRatio", "xMidYMid");
-
-        self.polylineSvg = d3.select("#polylineLegend").append("svg")
-            .attr("id", "polyLineSVG")
-            .attr("width", d3.select("#polylineLegend").node().clientWidth)
-            .attr("height", self.legendSvgHeight)
+            // .attr("preserveAspectRatio", "none");
 
         const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
@@ -235,7 +238,7 @@ let NomogramView = function (targetID) {
         // current patient black
         self.polylineSvg.append("rect")
             .attr("id", "polyLine")
-            .attr("x", 10)
+            .attr("x", 100)
             .attr("y", 5)
             .attr("width", 8)
             .attr("height", 8)
@@ -245,7 +248,7 @@ let NomogramView = function (targetID) {
         //text for current 
         self.polylineSvg.append("text")
             .attr("class", "nomogramLegend")
-            .attr("x", 25)
+            .attr("x", 115)
             .attr("y", 5 + 8)
             .style("font-size", "10px")
             .text("Current Patient");
@@ -254,7 +257,7 @@ let NomogramView = function (targetID) {
         for (let valInd in attrVals) {
             self.polylineSvg.append("rect")
                 .attr("id", "polyLine")
-                .attr("x", 10 + 10 * valInd)
+                .attr("x", 100 + 10 * valInd)
                 .attr("y", 15)
                 .attr("width", 8)
                 .attr("height", 8)
@@ -265,7 +268,7 @@ let NomogramView = function (targetID) {
         //text
         self.polylineSvg.append("text")
                 .attr("class", "nomogramLegend")
-                .attr("x", 15 + 10 * attrVals.length)
+                .attr("x", 100 + 11 * attrVals.length)
                 .attr("y", 23)
                 .style("font-size", "10px")
                 .text("Most Similar Patients");
@@ -352,7 +355,7 @@ let NomogramView = function (targetID) {
                 } else if(d === "aspiration") {
                     return "aspiration (ASP)";
                 }else if(d === "overall") {
-                    return "overall (OS)";
+                    return "overall survival (OS)";
                 }else if(d === "progression") {
                     return "progression (RMS)";
                 }

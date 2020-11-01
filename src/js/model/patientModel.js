@@ -200,6 +200,7 @@ let PatientModel = function() {
          */
         function computeCommonKaplanAttributeValues(patients, kaplanAttribute, currentPatient){
             // console.log("kaplan attribute values " + currentPatient)
+            // console.log(kaplanAttribute)
             self.commonKaplanAttributeValues = {Subgroup : 0};
             // let patientRealID = getPatientIDFromDummyID(currentPatient)
             // console.log(patientRealID);
@@ -212,12 +213,25 @@ let PatientModel = function() {
             // console.log(patients[test])
 
             for (let attribute of kaplanAttribute) {
-                // console.log(attribute)
-                self.commonKaplanAttributeValues[patients[currentPatient][attribute]] = 0;
+                // there are two N/A values can be made for race and therap
+                // console.log(patients[currentPatient][attribute])
+                if(patients[currentPatient][attribute] == "N/A") {
+                    if(attribute == "Therapeutic combination"){
+                        self.commonKaplanAttributeValues["TherapNA"] = 0;
+                    }else if(attribute == "Race"){
+                        self.commonKaplanAttributeValues["RaceNA"] = 0;
+                    }
+                }else{
+                    self.commonKaplanAttributeValues[patients[currentPatient][attribute]] = 0;
+                }
                 for (let patient in patients){
-                    // console.log(patients[patient])
-                    // console.log(patients[patient][attribute] +  "===" + patients[currentPatient][attribute])
-                    if (patients[patient][attribute] === patients[currentPatient][attribute]) {
+                    if(patients[patient][attribute] == "N/A" && patients[currentPatient][attribute] == "N/A"){
+                        if(attribute == "Therapeutic combination"){
+                            self.commonKaplanAttributeValues["TherapNA"] += 1;
+                        }else if(attribute == "Race" && patients[currentPatient][attribute] == "N/A"){
+                            self.commonKaplanAttributeValues["RaceNA"] += 1;
+                        }
+                    }else if (patients[patient][attribute] === patients[currentPatient][attribute]){
                         self.commonKaplanAttributeValues[patients[currentPatient][attribute]] += 1;
                     }
                 }

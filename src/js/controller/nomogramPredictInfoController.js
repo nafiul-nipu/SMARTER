@@ -20,8 +20,8 @@ let nomogramPredictionInfoController = function(listID) {
                 let prog = +id["progression_free_5yr_prob"] * 100;
                 let os = +id["overall_survival_5yr_prob"] * 100;
                 let text = /*"<strong>ID: " + id["Dummy ID"] + "</strong><br>" +*/
-                "&nbsp; OS: " + os.toFixed(2)  + " %" + "&nbsp;&nbsp;&nbsp;&nbsp; FDT: " + feed.toFixed(2) + " %<br>" +
-                "RMS: " + prog.toFixed(2) + " %" + "&nbsp;&nbsp;&nbsp;&nbsp; ASP: " + asp.toFixed(2) + " %"
+                "&nbsp; <b>OS:</b> " + os.toFixed(2)  + " %" + "&nbsp;&nbsp;&nbsp;&nbsp; <b>FDT:</b> " + feed.toFixed(2) + " %<br>" +
+                "<b>RMS:</b> " + prog.toFixed(2) + " %" + "&nbsp;&nbsp;&nbsp;&nbsp; <b>ASP:</b> " + asp.toFixed(2) + " %"
                 return text;
             })
 

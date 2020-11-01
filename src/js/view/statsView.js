@@ -111,8 +111,16 @@ let StatsView = function () {
             if(attr == "Subgroup"){
                 cols += `<td class="col-sm-6">`+"Patient ID: "+ `<span class="">${currentPatientAttributes["Dummy ID"]}</span> <span class="">${attr}</span></td>`;
             }else{
-                cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">${attr}</span></td>`;
-                kaplanGroupNameCounter++;
+                if(attr == "TherapNA"){
+                    cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">N/A</span></td>`;
+                     kaplanGroupNameCounter++;
+                }else if(attr == "RaceNA"){
+                    cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">N/A</span></td>`;
+                    kaplanGroupNameCounter++;
+                }else{
+                    cols += `<td class="col-sm-6"><span class="">${kaplanMeierGroup[kaplanGroupNameCounter]}</span>`+ " : " + `<span class="">${attr}</span></td>`;
+                    kaplanGroupNameCounter++;
+                }
             }
             
             cols += `<td class="col-sm-6"><span class="">${kaplamMeierGroupValues[attr]}</span></td>`;
@@ -124,6 +132,7 @@ let StatsView = function () {
 
             
         }
+        // console.log(newRow)
     }
 
 /*
