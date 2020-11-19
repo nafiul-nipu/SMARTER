@@ -15,7 +15,7 @@ let RadiomicView = function(){
             // .append("h5")
             .style("text-align", "center")
             .text("With Lymph Nodes")
-            .style("font-size", "12px")
+            .style("font-size", "1em")
             .style("font-weight", "bold")
             // .style("padding-left", "30%")
             // .attr("class", "viewTitleDiv")
@@ -36,7 +36,7 @@ let RadiomicView = function(){
                 .style("width", "90%")
                 .style("white-space", "normal")
                 .attr('id', idName[i] + '-class')
-                .style("font-size", "10px")
+                .style("font-size", ".85em")
                 .style("padding", 0)
                 .style("margin", 0)
                 .style("color", "#337ab7")
@@ -49,15 +49,16 @@ let RadiomicView = function(){
     function drawRadiomic(){  
         // create svg element
         d3.select("#bigRadiomicSvg").remove();
+        let marginRight = 25;
 
-        let width = document.getElementById("radiomics").offsetWidth;
+        let width = document.getElementById("radiomics").clientWidth - marginRight;
         let navigationBarHeight = document.getElementById("title").clientHeight ;
-        let height = (window.innerHeight / 2) - (1.5 * navigationBarHeight);
+        let height = (window.innerHeight / 2) - (1.15 * navigationBarHeight);
         // console.log(height)
         let bigSvg = d3.select("#radiomics")
             .append("svg")
             .attr("id", "bigRadiomicSvg")
-            .attr("width", width)
+            .attr("width", width + marginRight)
             .attr("height", height)
             .style("position", "fixed")
 
@@ -81,11 +82,15 @@ let RadiomicView = function(){
          // Create the scale
          let x = d3.scaleLinear()
          .domain([0, 1])         // This is what is written on the Axis: from 0 to 100
-         .range([30, 120]);       // This is where the axis is placed: from 100px to 800px
+         .range([35, width - marginRight]);       // This is where the axis is placed: from 100px to 800px
 
         let axisScale = d3.scaleLinear()
         .domain([0, 100])
-        .range([30, 120])
+        .range([35, width - marginRight])
+
+        let yPosition = d3.scaleLinear()
+            .domain([0,3])
+            .range([60, height - 30])
 
         let xAxis = d3
             .axisBottom()
@@ -98,15 +103,20 @@ let RadiomicView = function(){
             let svg = bigSvg.append("svg").attr("width", width)
             svg.append("g").append("text")
                 .attr("x", 0)
-                .attr("y", (60+60*i))
-                .style("font-size", "10px")
+                .attr("y", function(){
+                    // console.log(yPosition(0), yPosition(1), yPosition(2), yPosition(3))
+                    return yPosition(i) + 10
+                })
+                .style("font-size", ".85em")
                 .text(name[i])           
 
             // Draw the axis
             svg
             .append("g")
-            .attr("transform", "translate(0," + (50 + 60 * i) +")")  
-            .call(xAxis);  
+            .attr("transform", "translate(0," + (yPosition(i)) +")")  
+            .call(xAxis)
+            .selectAll('text')
+            .style("font-size", "1.05em");  
 
             for(let j = 0; j < self.clusters["OS"].length ; j++){
                 let tip = d3.tip().attr('class', 'd3-tip')
@@ -125,7 +135,9 @@ let RadiomicView = function(){
                 .attr("cx", function(){
                         return x(self.clusters[name[i]][j])
                     })
-                .attr("cy", (50 + 60 * i) )
+                .attr("cy", (function(){
+                    return yPosition(i)
+                }) )
                 .attr("r", 5)
                 .style("fill", function(){
                     if(j == 0){
@@ -203,7 +215,7 @@ let RadiomicView = function(){
             svg.append("g").append("text")
             .attr("x", 23)
             .attr("y", (14 + 20 * j))
-            .style("font-size", "10px")
+            .style("font-size", "0.85em")
             .text(self.options[j]) 
             .on('mouseover',self.legendTip.show)/* function(d){
                 self.legendTip.show(d, this);

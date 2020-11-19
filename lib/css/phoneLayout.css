@@ -16,7 +16,7 @@ body{
   	font-weight: bold;
   	font-family: 'Ultra', sans-serif;
   	font-size: 25px;
-  	line-height: 42px;
+  	line-height: 2.625em;
   	text-align: center;
 
 }
@@ -30,7 +30,7 @@ body{
   margin-top: 25px;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   border-radius: 30px;
@@ -49,7 +49,7 @@ body{
   border: none;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   border-radius: 30px;
@@ -73,7 +73,7 @@ body{
   border: none;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   margin-top: 25px;
@@ -88,7 +88,7 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.625em;
   margin-top: 7px;
   margin-bottom: 0px;
 
@@ -117,7 +117,7 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.625em;
   margin-top: 7px;
   margin-bottom: 0px;
 }
@@ -146,7 +146,7 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.7625em;
   margin-top: 7px;
   margin-bottom: 0px;
 }

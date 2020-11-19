@@ -231,7 +231,7 @@ let NomogramView = function (targetID) {
                 .attr("class", "nomogramLegend")
                 .attr("x", 110 + 110 * valInd)
                 .attr("y", 8 + (self.legendSvgHeight / 2))
-                .style("font-size", "10px")
+                .style("font-size", "0.8em")
                 .text(attrVals[valInd]);
         }
 
@@ -250,7 +250,7 @@ let NomogramView = function (targetID) {
             .attr("class", "nomogramLegend")
             .attr("x", 115)
             .attr("y", 5 + 8)
-            .style("font-size", "10px")
+            .style("font-size", "0.8em")
             .text("Current Patient");
 
         // similar patients
@@ -270,7 +270,7 @@ let NomogramView = function (targetID) {
                 .attr("class", "nomogramLegend")
                 .attr("x", 100 + 11 * attrVals.length)
                 .attr("y", 23)
-                .style("font-size", "10px")
+                .style("font-size", "0.8em")
                 .text("Most Similar Patients");
     }
 
