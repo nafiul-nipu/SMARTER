@@ -355,9 +355,9 @@ let NomogramView = function (targetID) {
                 } else if(d === "aspiration") {
                     return "aspiration (ASP)";
                 }else if(d === "overall") {
-                    return "overall survival (OS)";
+                    return "overall survival (OS) 5 years";
                 }else if(d === "progression") {
-                    return "progression (RMS)";
+                    return "progression (RMS) 5 years";
                 }
             });
 
