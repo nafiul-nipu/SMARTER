@@ -351,7 +351,7 @@ let KiviatDiagramView = function(targetID) {
             axesGroup.append("text")
                 .attr("x", axisEndpoint.x)
                 .attr("y", axisEndpoint.y + 4)
-                .style("font-size", "5px")
+                .style("font-size", "0.38em")
                 .style("text-anchor", "middle")
                 // .attr("transform", "rotate(0)")
                 // .text("helo");
