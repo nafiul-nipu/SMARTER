@@ -133,9 +133,20 @@ let NomogramAxisController = function(listID) {
             });
 
         // disable the axis selection in the domain mode
+        // console.log(Object.keys(self.axes))
         if (self.editMode === "domain") {
             self.select.selectAll("option")
-                .attr("disabled", (d) => _.find(App.patientKnnAttributes, el => el === d));
+                .attr("disabled", function(d){
+                    console.log(d)
+                    let keys = Object.keys(self.axes)
+                    for(let key of keys){
+                        if(d !== "AgeAtTx" && d !== "Predictive Probability"){
+                            return true
+                        }else{
+                            return null
+                        }
+                    }
+                });
         } else if (self.editMode === "range") {
             self.select.selectAll("option")
                 .attr("disabled", null);
@@ -200,37 +211,47 @@ let NomogramAxisController = function(listID) {
             self.attributeRange[key] = value["rangeShrink"];
         });
 
+        _.forEach(self.axes, function(value, key){
+            self.attributeDomain[key] = value["domain"]
+        })
+
 
         // set the range scale for all axes
         self.rangeScale = d3.scaleLinear()
             .domain([0, 1])
             .range([sliderHeight - 3, 3]);
 
-        // set the domain scale for age and prob-surv axis
-        // self.domainScale["AgeAtTx"] = d3.scaleLinear()
-        //     .domain(self.attributeDomain["AgeAtTx"])
-        //     .range([3, sliderHeight - 3]);
+        // // set the domain scale for age and prob-surv axis
+        self.domainScale["AgeAtTx"] = d3.scaleLinear()
+            .domain(self.attributeDomain["AgeAtTx"])
+            .range([3, sliderHeight - 3]);
 
-        // self.domainScale["Probability of Survival"] = d3.scaleLinear()
-        //     .domain(self.attributeDomain["Probability of Survival"])
-        //     .range([sliderHeight - 3, 3]);
+        self.domainScale["Predictive Probability"] = d3.scaleLinear()
+            .domain(self.attributeDomain["Predictive Probability"])
+            .range([sliderHeight - 3, 3]);
 
         updateBrush();
     }
 
     function updateBrush() {
+        // console.log(self.axes)
+        // console.log(self.selectedAxis)
+        // console.log(self.attributeRange)
+        // console.log(self.rangeScale)
         if (self.editMode === "range") {
             let range = self.attributeRange[self.selectedAxis];
-
             self.sliderBrush
                 .call(self.brushFunc.move, [
                     self.rangeScale(d3.max(range)), self.rangeScale(d3.min(range))
                 ]);
         } else if (self.editMode === "domain") {
-            let domainScaleExtent = d3.extent(self.attributeDomain[self.selectedAxis], d => self.domainScale[self.selectedAxis](d));
+            // console.log(self.attributeDomain)
+            if(self.attributeDomain[self.selectedAxis] != undefined){
+                let domainScaleExtent = d3.extent(self.attributeDomain[self.selectedAxis], d => self.domainScale[self.selectedAxis](d));
+                self.sliderBrush
+                    .call(self.brushFunc.move, domainScaleExtent);
 
-            self.sliderBrush
-                .call(self.brushFunc.move, domainScaleExtent);
+            }
         }
     }
 
@@ -284,8 +305,8 @@ let NomogramAxisController = function(listID) {
             self.attributeRange[key] = value["rangeShrink"];
         });
 
-        _.forEach(self.attributeDomainDefault, function(value, key) {
-            self.attributeDomain[key] = value;
+        _.forEach(axes, function(value, key) {
+            self.attributeDomain[key] = value["domain"];
         });
 
         // update brush
