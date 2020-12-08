@@ -56,7 +56,7 @@ let PreditictionAttributeModal = function(){
                 console.log( $("#featureModelSelect").val())
                 let value = $("#featureModelSelect").val()
                 if(value == "OS"){
-                    axios({url: 'http://127.0.0.1:5000/picture',
+                    axios({url: 'http://131.193.78.149:8080/picture',
                         method: 'post',
                         responseType: 'arraybuffer',
                         headers: {'cache-control': "public, max-age=0"},
@@ -78,7 +78,7 @@ let PreditictionAttributeModal = function(){
                                 console.log(error);
                             });
                 }else if(value == "PRG"){
-                    axios({url: 'http://127.0.0.1:5000/picture',
+                    axios({url: 'http://131.193.78.149:8080/picture',
                         method: 'post',
                         responseType: 'arraybuffer',
                         headers: {'cache-control': "public, max-age=0"},
@@ -112,7 +112,7 @@ let PreditictionAttributeModal = function(){
             });   
             
             
-        axios({url: 'http://127.0.0.1:5000/picture',
+        axios({url: 'http://131.193.78.149:8080/picture',
              method: 'post',
              responseType: 'arraybuffer',
              headers: {'cache-control': "public, max-age=0"},
