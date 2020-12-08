@@ -28,11 +28,11 @@ def output():
             ## Adds therapy as a predictor
 
             ## load libraries
-            library(survival)
-            library(tidyverse)
+            # library(survival)
+            # library(tidyverse)
             # library(purrr)
-            # if(!require("pacman")) install.packages("pacman")
-            # pacman::p_load(pacman, survival, tidyverse)
+            if(!require("pacman")) install.packages("pacman")
+            pacman::p_load(pacman, survival, tidyverse)
 
             ### set file directory
             ## Modify this to correct file location 
@@ -412,11 +412,11 @@ def output():
             ## Adds therapy as a predictor
 
             ## load libraries
-            library(survival)
-            library(tidyverse)
+            # library(survival)
+            # library(tidyverse)
             # library(purrr)
-            # if(!require("pacman")) install.packages("pacman")
-            # pacman::p_load(pacman, survival, tidyverse)
+            if(!require("pacman")) install.packages("pacman")
+            pacman::p_load(pacman, survival, tidyverse)
 
             ### set file directory
             ## Modify this to correct file location 
