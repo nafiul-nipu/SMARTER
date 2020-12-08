@@ -33,6 +33,7 @@ def output():
             library(dplyr)
             library(tidyr)
             library(readr)
+            library(survminer)
             # library(tidyverse)
             # library(purrr)
             # if(!require("pacman")) install.packages("pacman")
@@ -417,6 +418,7 @@ def output():
 
             ## load libraries
             library(survival)
+            library(survminer)
             library(ggplot2)
             library(dplyr)
             library(tidyr)
