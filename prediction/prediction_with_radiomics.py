@@ -830,21 +830,21 @@ def output():
         elif i==10:
             array = np.array(result[result.names.index("progression_free_5yr_prob_RAD")])
         list1 = array.tolist()
-        # for j in range(len(list1)):
-        #     if(i == 3):
-        #         prediction[i][j] = list1[j][0]
-        #     elif(i == 4):
-        #         prediction[i][j] = list1[j][0]
-        #     elif(i == 9 and j == 3):
-        #         prediction[i][j] = list1[4]
-        #     elif (i == 10 and j == 3):
-        #         prediction[i][j] = list1[4] 
-        #     elif(i == 9 and j == 4):
-        #         prediction[i][3] = list1[4]
-        #     elif (i == 10 and j == 4):
-        #         prediction[i][3] = list1[4]          
-        #     else:
-        #         prediction[i][j] = list1[j]
+        for j in range(len(list1)):
+            if(i == 3):
+                prediction[i][j] = list1[j][0]
+            elif(i == 4):
+                prediction[i][j] = list1[j][0]
+            elif(i == 9 and j == 3):
+                prediction[i][j] = list1[3]
+            elif (i == 10 and j == 3):
+                prediction[i][j] = list1[3] 
+            elif(i == 9 and j == 4):
+                prediction[i][3] = list1[4]
+            elif (i == 10 and j == 4):
+                prediction[i][3] = list1[4]          
+            else:
+                prediction[i][j] = list1[j]
     
     return jsonify(list1)
 
