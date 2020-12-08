@@ -46,7 +46,8 @@ def output():
             #for my laptop 
             # png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
             #for the pc
-            png.dir <- "D:/RA Project/png/"
+            # png.dir <- "D:/RA Project/png/"
+            png.dir <- "/home/mnipu2/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
@@ -435,7 +436,8 @@ def output():
             #for my laptop 
             # png.dir <-  "D:/01. PhD Research/Qubbd-smarter/png/"
             #for the pc
-            png.dir <- "D:/RA Project/png/"
+            # png.dir <- "D:/RA Project/png/"
+            png.dir <- "/home/mnipu2/png/"
             ### load data
             #OPC <- read.csv(paste0(file.dir, "Anonymized_644.Updated_cleaned_v1.3.1.csv"))
                     
