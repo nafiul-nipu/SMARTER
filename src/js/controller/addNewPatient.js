@@ -372,7 +372,7 @@ let AddNewPatient = function() {
                 }
 
                 
-                axios.post('http://127.0.0.1:5000/output', {patient: post_data, therap: therapeutic_bool})
+                axios.post('http://0.0.0.0:5000/output', {patient: post_data, therap: therapeutic_bool})
                 .then(function (response) {
                     // console.log(response.data);
                     self.prediction = response.data;
