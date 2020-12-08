@@ -849,7 +849,7 @@ def picture():
     # for laptop
     # CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
     # for pc
-    CLIENT_IMAGES = '/home/mnipu2/png/'
+    CLIENT_IMAGES = 'D:/RA Project/png/'
     app.config['CLIENT_IMAGES'] = CLIENT_IMAGES
     if value == "OS":
         filename = 'CoxForest_OS.png'
