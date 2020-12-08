@@ -861,4 +861,5 @@ def picture():
                                filename, as_attachment=True)
 
 if __name__ == "__main__":
-    app.run()
+    app.debug = True
+    app.run(host='131.193.78.149', port='8080')
