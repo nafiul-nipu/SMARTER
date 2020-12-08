@@ -29,6 +29,10 @@ def output():
 
             ## load libraries
             library(survival)
+            library(ggplot2)
+            library(dplyr)
+            library(tidyr)
+            library(readr)
             # library(tidyverse)
             # library(purrr)
             # if(!require("pacman")) install.packages("pacman")
@@ -413,6 +417,10 @@ def output():
 
             ## load libraries
             library(survival)
+            library(ggplot2)
+            library(dplyr)
+            library(tidyr)
+            library(readr)
             # library(tidyverse)
             # library(purrr)
             # if(!require("pacman")) install.packages("pacman")
