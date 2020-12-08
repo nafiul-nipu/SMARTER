@@ -846,7 +846,7 @@ def output():
             else:
                 prediction[i][j] = list1[j]
     
-    return jsonify(list1)
+    return jsonify(prediction)
 
 
 
