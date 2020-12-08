@@ -29,7 +29,7 @@ def output():
 
             ## load libraries
             library(survival)
-            library(tidyverse)
+            # library(tidyverse)
             # library(purrr)
             # if(!require("pacman")) install.packages("pacman")
             # pacman::p_load(pacman, survival, tidyverse)
@@ -413,7 +413,7 @@ def output():
 
             ## load libraries
             library(survival)
-            library(tidyverse)
+            # library(tidyverse)
             # library(purrr)
             # if(!require("pacman")) install.packages("pacman")
             # pacman::p_load(pacman, survival, tidyverse)
