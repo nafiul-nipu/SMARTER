@@ -719,6 +719,7 @@
               <li>Clicking the <strong>Cohort</strong> button will show the subgroup analysis of the selected patients</li>
               <li><strong>Survival Over Time</strong> view in the left shows the probability of survival over time</li>
               <li><strong>Survival and Toxicity Risk Prediction</strong> shows a graphical calculating device for Probability fo Survival</li>
+              <li><strong>Lymph Nodes Clusters</strong> button will show the Lymph Node Clusters Page</li>
               <li>The Bottom Part shows patient attributes. The <strong>Current Patient</strong> view shows the attributes of the selected
                  patient and the <strong>Most Similar Patients</strong> view shows the attributes of patients that are most similar to the 
                  selected patient</li>
@@ -739,7 +740,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Most Similar Patients (Star Plots)</h5>
+          <h3 class="modal-title" id="exampleModalLabel">Current Patient and Most Similar Patients</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -750,17 +751,22 @@
                     <img src="imgs/kiviat/select-dropdown.png"  style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
                     <br><br>
                 </li>
-                <li>Kiviat Diagram Shows five characteristics of the patient
+                <li><strong>Current Patient</strong> view shows the current selected patient</li>
+                <li><strong>Most Similar Patients</strong> view shows five most similar patients for the selected patient</li>
+                <li>The views shows nine characteristics of the patient
                     <ul>
                         <li>Age</li>
                         <li>Gender</li>
                         <li>Race</li>
                         <li>T-Category</li>
                         <li>N-Category</li>
+                        <li>Tumor Subsite</li>
+                        <li>Therapeutic Combination</li>
+                        <li>Smoking Status</li>
+                        <li>HPV/P16</li>
                     </ul>
                 </li>
                 <li>The Color indicates probabilty of survival</li>
-                <li>For each selected patient five most similar patients in the repository are shown</li>
                 <li>Mouse Over to see details <br><br>
                     <div style="display:flex;">
                         <div style="flex: 50%; padding: 5px;">
@@ -773,6 +779,10 @@
                     <!-- <img src="imgs/kiviat/mouseOver.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;">
                     <img src="imgs/kiviat/mouseOverAxis.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;"> -->
                 </li>
+                <li>For each similar patient, similarity score and different survival probability are shown beneath each view</li>
+                <li>Use the controll settings to select Attributes for calculating most similar patients (KNN Attributes Used)</li>
+                <li>Use the controll settings to see less or more patient axes (Patient Axes Control)</li>
+
               </ul>
         </div>
         <div class="modal-footer">
