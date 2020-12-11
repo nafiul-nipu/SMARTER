@@ -14,6 +14,7 @@ less.pageLoadFinished.then(function() {
     // Initialize attribute variables
     App.patientKnnAttributes = [];
     App.kiviatAttributes = [];
+    App.nomogramAttributes = [];
 
     // hard code the order of attributes for drawing the mosaic viewBox
     App.mosaicAttributeOrder = ["Therapeutic combination", /*"Race",*/ "T-category", /*"Gender",*/ 

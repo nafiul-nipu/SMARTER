@@ -33,7 +33,7 @@ let NomogramAxisController = function(listID) {
     init();
 
     function init() {
-        let attributes = App.patientKnnAttributes;
+        let attributes = App.nomogramAttributes;
         self.axes = App.models.axesModel.getAxesData();
 
         for (let attribute of attributes) {
@@ -45,7 +45,7 @@ let NomogramAxisController = function(listID) {
     }
 
     function attachToList(listID) {
-        let attributes = App.patientKnnAttributes;
+        let attributes = App.nomogramAttributes;
 
         self.list = d3.select(listID);
 
@@ -111,7 +111,7 @@ let NomogramAxisController = function(listID) {
         self.selectedAxis = d3.select(this).node().value;
         // console.log(self.selectedAxis);
         // disable the domain button when the non-age or non-prob axis is selected
-        console.log(self.toggleButtons);
+        // console.log(self.toggleButtons);
         if (self.selectedAxis !== "AgeAtTx" && self.selectedAxis !== "Predictive Probability") {
             self.toggleButtons
                 .attr("disabled", true);
@@ -156,6 +156,7 @@ let NomogramAxisController = function(listID) {
     }
 
     function updateNomogramAxisVisibility() {
+        // console.log(self.checkboxStates)
         App.views.nomogram.updateAxisVisibility(self.checkboxStates);
     }
 
@@ -276,7 +277,7 @@ let NomogramAxisController = function(listID) {
         if (self.editMode === "range") {
             // update the axis range
             self.attributeRange[self.selectedAxis] = d3.event.selection.map(self.rangeScale.invert);
-            if (self.selectedAxis === "Probability of Survival") {
+            if (self.selectedAxis === "Predictive Probability" || self.selectedAxis === "AgeAtTx") {
                 self.attributeRange[self.selectedAxis] = self.attributeRange[self.selectedAxis].reverse();
             }
 
@@ -285,7 +286,7 @@ let NomogramAxisController = function(listID) {
         } else if (self.editMode === "domain") {
             // update the axis domain
             self.attributeDomain[self.selectedAxis] = d3.event.selection.map(self.domainScale[self.selectedAxis].invert);
-            if (self.selectedAxis === "Probability of Survival") {
+            if (self.selectedAxis === "Predictive Probability" || self.selectedAxis === "AgeAtTx") {
               self.attributeDomain[self.selectedAxis] = self.attributeDomain[self.selectedAxis].reverse();
             }
 

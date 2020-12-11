@@ -788,7 +788,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nomogram Risk Prediction</h5>
+          <h3 class="modal-title" id="exampleModalLabel">Survival and Toxicity Risk Prediction</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -804,11 +804,14 @@
                     <br><br>
                 </li>
                 <li>Use the controller setting to resize and reposition each axis <br><br>
-                    <img src="imgs/nomogram/resize 3.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <img src="imgs/nomogram/resize.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
                     <br><br>
                 </li>
                 <li>In the view, the thick dark polyline corresonds to the patient that the user selected.<br>
-                    The remaining polylines correspond to the five most similar patients</li>
+                    The remaining polylines correspond to the five most similar patients.</li>
+                <li>Mouse over a poly line to view that poly line only</li>
+                <li>Uncheck "Show K-Nearest Neighbors" to see all of the patients information</li>
+                <li>Click on the question mark (?) over "Predictive Probability" to view "Attributes Used in Predicting The Outcomes"</li>
               </ul>
         </div>
         <div class="modal-footer">
@@ -824,14 +827,27 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Survival Over Time</h5>
+          <h3 class="modal-title" id="exampleModalLabel">Survival Over Time</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            Survival Over Time view showing survival over time per patient group,
-            depending on the selected attribute
+          <ul>
+            <li>Survival Over Time view showing survival over time per patient group,
+              depending on the selected attribute</li>
+            <li>From the dropdown, attributes can be selected <br><br>
+              <img src="imgs/kaplan/dropdown.jpg" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+            </li>
+            <li>User can select to view all values or any particular value from the dropdown</li>
+            <li>By default, selected patient's (from patient ID dropdown) cohort color is more opaqued than the other cohorts</li>
+            <li>Mouse Over to the legends to view the cohort <br><br>
+              <img src="imgs/kaplan/legend.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+             </li>
+             <li>Mouse Over the view to see details <br><br>
+              <img src="imgs/kaplan/mouseover.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+             </li>
+          </ul> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

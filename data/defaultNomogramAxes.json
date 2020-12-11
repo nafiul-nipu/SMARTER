@@ -12,7 +12,8 @@
     "label": "AgeAtTx",
     "type": "linear",
     "forKiviat": true,
-    "forKnn": false
+    "forKnn": false,
+    "forNomogram": false
   },
   "Gender": {
     "name": "Gender",
@@ -28,7 +29,8 @@
     "label": "Gender",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "Race": {
     "name": "Race",
@@ -45,12 +47,14 @@
     "label": "Race",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "Smoking Status": {
     "name": "Smoking status at Diagnosis (Never/Former/Current)",
     "forKiviat": true,
     "forKnn": true,
+    "forNomogram": true,
     "rangeShrink": [
       0,
       0.093
@@ -79,7 +83,8 @@
     "label": "HPV/P16",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "T-category": {
     "name": "T-category",
@@ -99,7 +104,8 @@
     "label": "T-category",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "N-category": {
     "name": "N-category",
@@ -117,7 +123,8 @@
     "label": "N-category",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "Tumor Subsite": {
     "name": "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
@@ -134,7 +141,8 @@
     "label": "Tumor Subsite",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "Therapeutic combination": {
     "name":"Therapeutic combination",
@@ -144,7 +152,8 @@
     "label": "Therapeutic combination",
     "type": "ordinal",
     "forKiviat": true,
-    "forKnn": true
+    "forKnn": true,
+    "forNomogram": true
   },
   "Neck boost": {
     "name": "Neck boost (Y/N)",
@@ -162,7 +171,8 @@
     "range":[5 , 20, 35],
     "label": "Neck boost",
     "type": "ordinal",
-    "forKnn": false
+    "forKnn": false,
+    "forNomogram": true
   },
   "Neck dissection": {
     "name": "Neck Disssection after IMRT (Y/N)",
@@ -179,7 +189,8 @@
     "range":[5 , 20, 35],
     "label": "Neck dissection",
     "type": "ordinal",
-    "forKnn": false
+    "forKnn": false,
+    "forNomogram": true
   },
  "Predictive Probability": {
     "name": "feeding_tube_prob",
@@ -194,6 +205,7 @@
       1
     ],
     "forKiviat": false,
-    "forKnn": false
+    "forKnn": false,
+    "forNomogram": false
   }
 }

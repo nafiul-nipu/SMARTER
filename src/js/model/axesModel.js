@@ -58,6 +58,8 @@ let AxesModel = function() {
                         App.kiviatAttributes.push(d);
                     if (defaultAxes[d].forKnn)
                         App.patientKnnAttributes.push(d);
+                    if(defaultAxes[d].forNomogram)
+                        App.nomogramAttributes.push(d);
                         // console.log(App.patientKnnAttributes, 'knn')
                 });
 

@@ -133,6 +133,7 @@ let KaplanMeierView = function(targetID) {
                 .attr("x", 85)
                 .attr("y", 4 + attrValNum * 5)
                 .style("font-size", "0.3em")
+                .style("cursor", "default")
                 // .style("cursor", "context-menu")
                 .text(attrVal)
                 /*

@@ -61,7 +61,7 @@ let NomogramView = function (targetID) {
         // console.log(self.axes)
 
         self.filteredAxes = Object.keys(axes);
-        // console.log(self.filteredAxes);
+        // console.log("first time filtered axes", self.filteredAxes);
 
         let menuDiv = d3.select(self.targetID + "Header")
             .select(".viewTitleDiv").append("div")
@@ -95,6 +95,7 @@ let NomogramView = function (targetID) {
         self.axes = App.models.axesModel.getAxesData();
         // console.log(self.axes);
         self.filteredAxes = Object.keys(self.axes);
+        // console.log(self.filteredAxes)
 
         updateAxes();
         updateView();
@@ -294,13 +295,15 @@ let NomogramView = function (targetID) {
         // update self.filteredAxes
         self.filteredAxes = [];
         self.filteredAxes.push(Object.keys(self.axes)[0]);
+        // console.log(self.filteredAxes)
         Object.keys(self.axes).forEach((el) => {
             if (axisStates[el]) {
                 self.filteredAxes.push(el);
             }
         });
-        self.filteredAxes.push(Object.keys(self.axes)[App.patientKnnAttributes.length + 1]);
-
+        // console.log(self.filteredAxes)
+        self.filteredAxes.push(Object.keys(self.axes)[App.nomogramAttributes.length + 1]);
+        // console.log(self.filteredAxes)
         // then updateAxes
         updateAxes();
         updateView();
