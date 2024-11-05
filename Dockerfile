@@ -7,4 +7,4 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-CMD ['python3', '-m', 'http:8000']
+CMD ["python", "-m", "http.server", "8000"]
