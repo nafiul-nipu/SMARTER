@@ -526,7 +526,7 @@ let AddNewPatient = function () {
       }
 
       axios
-        .post("https://qubbd-smarter.evl.uic.edu/api/backend/output", {
+        .post("https://qubbd-smarter.evl.uic.edu/prediction/output", {
           patient: post_data,
           therap: therapeutic_bool,
         })
