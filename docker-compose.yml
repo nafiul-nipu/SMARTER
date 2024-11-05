@@ -12,10 +12,10 @@ services:
       - 443:443
       - 80:80
     volumes:
-      # - ./docker/proxy/service-example/nginx.conf:/etc/nginx/nginx.conf
-      - ./cert/_.evl.uic.edu.key:/etc/ssl/evl.key
-      - ./cert/_.evl.uic.edu.crt:/etc/ssl/evl.crt
-      - ./proxy/https-forwarding.conf:/etc/nginx/conf.d/https-forwarding.conf
+  # - ./docker/proxy/service-example/nginx.conf:/etc/nginx/nginx.conf (uncomment if needed)
+  - ./cert/_.evl.uic.edu.key:/etc/ssl/evl.key  # Remove the trailing slash
+  - ./cert/_.evl.uic.edu.crt:/etc/ssl/evl.crt
+  - ./proxy/https-forwarding.conf:/etc/nginx/conf.d/https-forwarding.conf
     networks:
       - example
   smarterfrontend:
