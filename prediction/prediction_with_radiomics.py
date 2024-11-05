@@ -873,5 +873,4 @@ def picture():
                                filename, as_attachment=True)
 
 if __name__ == "__main__":
-    app.debug = False
-    app.run(host='131.193.78.149', port='8080')
+    app.run(debug=False, host='0.0.0.0', port=5000)
