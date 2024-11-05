@@ -861,12 +861,12 @@ def picture():
     # for laptop
     # CLIENT_IMAGES = 'D:/01. PhD Research/Qubbd-smarter/png/'
     # for pc
-    CLIENT_IMAGES = '/home/mnipu2/png/'
+    CLIENT_IMAGES = '../imgs/'
     app.config['CLIENT_IMAGES'] = CLIENT_IMAGES
     if value == "OS":
-        filename = 'CoxForest_OS.png'
+        filename = 'CoxForest_OS_default.png'
     elif value == "PRG":
-        filename = 'CoxForest_PFS.png'
+        filename = 'CoxForest_PFS_default.png'
     # print(data)
 
     return send_from_directory(app.config['CLIENT_IMAGES'],
