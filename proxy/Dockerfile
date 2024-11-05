@@ -9,7 +9,4 @@ COPY ./_.evl.uic.edu.crt /etc/nginx/ssl/evl.crt
 COPY ./_.evl.uic.edu.key /etc/nginx/ssl/evl.key
 COPY ./https-forwarding.conf /etc/nginx/conf.d/https-forwarding.conf
 
-EXPOSE 80
-EXPOSE 443
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN service nginx restart
