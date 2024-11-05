@@ -8,9 +8,6 @@ services:
     container_name: smarterproxy
     image: nginx
     restart: always
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile
     ports:
       - 443:443
       - 80:80
