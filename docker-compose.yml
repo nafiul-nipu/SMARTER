@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 networks:
   example:
     driver: bridge
@@ -16,10 +16,10 @@ services:
       - ./cert/_.evl.uic.edu.key:/etc/ssl/evl.key
       - ./cert/_.evl.uic.edu.crt:/etc/ssl/evl.crt
       - ./proxy/https-forwarding.conf:/etc/nginx/conf.d/https-forwarding.conf
-    networks: 
+    networks:
       - example
   smarterfrontend:
-    container_name: smarterfrontend:
+    container_name: smarterfrontend
     restart: unless-stopped
     build:
       context: ./frontend
@@ -40,5 +40,5 @@ services:
       - 5000:5000
     volumes:
       - ./:/app/smarter
-    networks: 
+    networks:
       - example
