@@ -1,0 +1,70 @@
+{
+    "Pathological Grade": {
+      "I": 0,
+      "II": 0,
+      "III": 0,
+      "N/A": 0
+    },
+    "Gender": {
+      "Male": 0,
+      "Female": 0
+    },
+    "Race": {
+      "Native American": 0,
+      "Other": 0,
+      "White/Caucasion": 0
+    },
+    "Tm Laterality (R/L)": {
+      "L": 0,
+      "R": 0,
+      "Bilateral": 0
+    },
+    "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)": {
+      "BOT": 0,
+      "Tonsil": 0,
+      "Soft Palate": 0,
+      "Other": 0
+    },
+    "HPV/P16 status": {
+      "Positive": 0,
+      "Negative": 0,
+      "Unknown": 0
+    },
+    "T-category": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 0,
+      "Tis": 0,
+      "Tx": 0
+    },
+    "N-category": {
+      "N0": 0,
+      "N1": 0,
+      "N2": 0,
+      "N3": 0
+    },
+    "AJCC 7th edition": {
+      "I": 0,
+      "II": 0,
+      "III": 0,
+      "IV": 0
+    },
+    "AJCC 8th edition": {
+      "I": 0,
+      "II": 0,
+      "III": 0,
+      "IV": 0
+    },
+    "Smoking status at Diagnosis (Never/Former/Current)": {
+      "Current": 0,
+      "Former": 0,
+      "Never": 0,
+      "N/A": 0
+    },
+    "SmokeStatusPacksYear": 0,
+    "OS": 0,
+    "TotalDose": 0,
+    "TreatmentDays": 0,
+    "AgeAtTx": 0
+  }

@@ -1,0 +1,290 @@
+@bgColor: rgba(255, 255, 255, 1);
+
+body,
+html,
+#allContent {
+  overflow: hidden;
+  height: 100%;
+
+  background-color: @bgColor;
+}
+
+.landing-form {
+  z-index: 1000;
+  opacity: 100%;
+  height: 100%;
+}
+
+.add-patient-form{
+  z-index: 1000;
+  opacity: 100%;
+  height: 100%;
+}
+
+.container-fluid {
+  overflow: hidden;
+  height: 100%;
+}
+
+.info-overlay {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  z-index: 200;
+}
+
+div.overlay img {
+  width: 100%;
+  height: 100%;
+}
+
+.infoDiv {
+  display: none;
+  /*position: relative;*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.9);
+
+  z-index: 100;
+  /*box-sizing: border-box;*/
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.navbar-right {
+  margin-right: 0;
+}
+
+#title {
+  box-sizing: border-box;
+  /*width: 100%;*/
+  height: 7.5%;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#allContent {
+  box-sizing: border-box;
+  width: 100%;
+  height: 92%;
+}
+
+// #right {
+//   box-sizing: border-box;
+//   height: 50%;
+// }
+
+#top {
+  box-sizing: border-box;
+  height: 46%;
+}
+
+#bottom {
+  box-sizing: border-box;
+  height: 46%;
+}
+
+// #kaplanTop{
+//   box-sizing: border-box;
+//   height: 80%;
+//   // min-height: 500px;
+// }
+// #buttonBottom{
+//   box-sizing: border-box;
+//   height: 200px;
+// }
+// #kaplanMeierHeader{
+//   height: 20%;
+// }
+// #kaplanMeier{
+//   height: 60%;
+//   min-height: 300px;
+
+// }
+
+
+.contentDiv {
+  box-sizing: border-box;
+  // height: 100%;
+  /*border: 1px solid black;*/
+
+  //background-color: rgba(127, 82, 255, 0.75);
+  background: white;
+}
+
+.contentWrapper {
+  padding: 5px;
+}
+
+.viewTitleDiv {
+  font-size: 2.5vmin;
+  font-weight: bold;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.modal-right-buttons {
+  float: right;
+}
+
+.modal-left-buttons {
+  float: left;
+}
+
+.controlDiv {
+  box-sizing: border-box;
+  height: 50%;
+}
+
+#nomogramControls {
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 30px;
+  background-color: #fff;
+}
+
+.checkbox-li {
+  padding-right: 10px;
+  /*text-align: center;*/
+  padding-left: 10px;
+}
+
+.separated-checkbox {
+  margin-left: 0 !important;
+}
+
+.dropdown-control-row {
+  height: 20%;
+}
+
+.axis-control-row {
+  height: 80%;
+  padding-top: 15px;
+}
+
+.dropdown-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.axisSliderWrapper {
+  height: 100%;
+  padding-left: 5%;
+  padding-right: 0;
+}
+
+#axisHeightSlider {
+  // min-height: 100px;
+  height: 85%;
+  width: 80%;
+}
+
+.glyphicon-question-sign {
+  z-index: 250;
+}
+
+#allContent .glyphicon-question-sign {
+  /*cursor: help;*/
+  cursor: pointer;
+  color: #851717;
+  font-size: 0.75em;
+}
+
+.btn-grey {
+  background-color: grey;
+  border-color: grey;
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+  color: #428bca;
+}
+
+.btn-success.btn-outline {
+  color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+  color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+  color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+  color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+  color: #fff;
+}
+
+.nomogramControlsBox {
+  border: 2px solid black;
+  border-radius: 5px;
+  display: none;
+  height: auto;
+  width: 15%;
+}
+
+.navbar-grey {
+  background-color: #f4f4f4;
+}
+.kiviatLegendText{
+  font-size: 8px;
+}
+
+@media screen and (max-height: 650px){
+  #nomogramControl{
+    height: 40px;
+  }
+  // #mostSimilarPatient{
+  //   padding-right: 600px
+  // }
+  .kiviatLegendText{
+    font-size: 5px;
+    font-weight: bold;
+  }
+
+}
+
+
+#loading {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  opacity: 0.7;
+  background-color: #000000;
+  z-index: 99;
+  text-align: center;
+}
+
+#loading-image {
+  position: sticky;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
+}
