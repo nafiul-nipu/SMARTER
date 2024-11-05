@@ -26,5 +26,5 @@ RUN pip install -r requirements.txt
 # "--chdir", "/app/HNC-PREDICTOR/api"
 
 # Run app.py when the container launches
-# CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "prediction_with_radiomics:app"]
-CMD ["python3", "prediction_with_radiomics.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "prediction_with_radiomics:app"]
+# CMD ["python3", "prediction_with_radiomics.py"]
