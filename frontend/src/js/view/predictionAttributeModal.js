@@ -69,7 +69,7 @@ let PreditictionAttributeModal = function () {
         let value = $("#featureModelSelect").val();
         if (value == "OS") {
           axios({
-            url: "https://http://qubbd-smarter.evl.uic.edu/api/backend/picture",
+            url: "https://qubbd-smarter.evl.uic.edu/prediction/picture",
             method: "post",
             responseType: "arraybuffer",
             headers: { "cache-control": "public, max-age=0" },
@@ -89,7 +89,7 @@ let PreditictionAttributeModal = function () {
             });
         } else if (value == "PRG") {
           axios({
-            url: "https://http://qubbd-smarter.evl.uic.edu/api/backend/picture",
+            url: "https://qubbd-smarter.evl.uic.edu/prediction/picture",
             method: "post",
             responseType: "arraybuffer",
             headers: { "cache-control": "public, max-age=0" },
@@ -121,7 +121,7 @@ let PreditictionAttributeModal = function () {
       });
 
     axios({
-      url: "https://http://qubbd-smarter.evl.uic.edu/api/backend/picture",
+      url: "https://qubbd-smarter.evl.uic.edu/prediction/picture",
       method: "post",
       responseType: "arraybuffer",
       headers: { "cache-control": "public, max-age=0" },
